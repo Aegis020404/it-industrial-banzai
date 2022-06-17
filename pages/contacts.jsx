@@ -1,0 +1,27 @@
+import React, {useEffect, useRef} from "react";
+// import ContactMap from "../src/componentsUI/contactsP/ContactMap";
+// import ContactsLocationInfo from '../src/componentsUI/contactsP/ContactsLocationInfo';
+// import NavPagesHead from "../src/componentsUI/UI/navpage/MyNavPages";
+// import Container from '../src/componentsUI/Container'
+
+const ContactsPage = ()=>{
+    // const contactI = useRef(''toggle('contactsI')
+    // },[contactI]))
+    // useEffect(()=>{
+    //     document.body.scrollTo({top:0,behavior:'smooth'})
+    //     contactI.current.classList.
+    // const infoPage = [{text: 'Контакты'}]
+    return (
+        <>
+            {/*<Container>*/}
+                {/*<main ref={contactI} className="contacts">*/}
+                {/*    <NavPagesHead navItems={infoPage}/>*/}
+                {/*    <ContactsLocationInfo/>*/}
+                    {/*<ContactMap/>*/}
+                {/*</main>*/}
+            {/*</Container>*/}
+        </>
+        
+    )
+}
+export default ContactsPage
