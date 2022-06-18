@@ -26,7 +26,6 @@ const MobileService = ({column}) => {
                     el: `.pag${column}`,
                     type: 'bullets',
                 },
-                autoHeight: true,
             })
         }
 
@@ -43,7 +42,6 @@ const MobileService = ({column}) => {
 
         function loadResize() {
             if (typeof window !== 'undefined') {
-
                 let windowWidth = window.innerWidth
                 if (windowWidth <= mediaQuerySize) {
                     inititalSwiper()
@@ -51,14 +49,14 @@ const MobileService = ({column}) => {
                     destroySwiper()
                 }
             }
-            if (checkin) {
-                loadResize()
-                checkin = 0
-            }
+        }
+        if (typeof window !== 'undefined') {
+            loadResize()
             window.addEventListener('load', loadResize);
             window.addEventListener('resize', loadResize);
         }
-    })
+    }, [])
+
     return (
         <section className={cl.serviceSection}>
             <div className="container">

@@ -38,11 +38,15 @@ const MyBtns = ({arrBtns, selectBtn, btnsClasses, btnClasses, setTabActive, item
                     catalogSliderDestroyd()
                 }
             }
+        }
+        if (typeof window !== 'undefined') {
+
             loadResize()
             window.addEventListener('load', loadResize);
             window.addEventListener('resize', loadResize);
         }
     });
+
     const dispatch = useDispatch();
 
     return (

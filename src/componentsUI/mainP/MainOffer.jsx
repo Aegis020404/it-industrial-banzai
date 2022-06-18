@@ -59,9 +59,7 @@ const MainOffer = (props) => {
                     <div className={cl.btnsM}>
                         <Swiper
                             slidesPerView={"auto"}
-                            autoHeight={true}
                             spaceBetween={10}
-
                             className={cl.mySwiper}>
 
                             {infoData.map((el, i) => (
@@ -69,7 +67,7 @@ const MainOffer = (props) => {
                                     <button className={el.selected ? `${cl.btn} ${cl.btnSelected}` : cl.btn}  my_key={i}
                                             onClick={e => {
                                                 dispatch(selectBtn(e.target.getAttribute('my_key')))
-                                                e.preventDefault();
+                                                // e.preventDefault();
                                             }}>{el.textS}
                                     </button>
                                 </SwiperSlide>
@@ -81,7 +79,7 @@ const MainOffer = (props) => {
                             <button className={el.selected ? `${cl.btn} ${cl.btnSelected}` : cl.btn} key={i} my_key={i}
                                     onClick={(e,i) => {
                                         dispatch(selectBtn(e.target.getAttribute('my_key')))
-                                        e.preventDefault();
+                                        // e.preventDefault();
                                     }}>{el.text}
                             </button>
                         ))}

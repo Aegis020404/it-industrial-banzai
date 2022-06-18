@@ -4,7 +4,9 @@
 * Autoprefixer: v10.4.4
 * Browsers: last 4 version
 */
-
+.mySwiper {
+    width: 100% !important;
+}
 .MainOffer {
     margin-top: 87px;
     overflow: hidden;
@@ -859,7 +861,7 @@
 
     .wrapper {
         margin: 0 auto;
-        width: 100.375vw;
+        width: 100%;
         max-width: 100%;
         position: relative;
         -webkit-box-sizing: border-box;
@@ -927,7 +929,7 @@
         -ms-grid-columns: auto 5px auto 5px auto 5px auto;
         grid-template-columns: repeat(4, auto);
         gap: 5px;
-        width: 100vw;
+        width: 100%;
     }
 
     .btn {

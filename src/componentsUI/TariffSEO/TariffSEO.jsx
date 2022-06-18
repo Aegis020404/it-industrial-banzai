@@ -74,6 +74,7 @@ const TariffSeo = ({column}) => {
                     destroySwiper()
                 }
             }
+        }
 
             if (checkin) {
                 loadResize()
@@ -81,7 +82,6 @@ const TariffSeo = ({column}) => {
             }
             window.addEventListener('load', loadResize);
             window.addEventListener('resize', loadResize);
-        }
     })
     return (<div className={cl.tariffSEO}>
             <div className="container">

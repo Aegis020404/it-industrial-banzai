@@ -547,7 +547,7 @@
     .text {
         display: inline-block;
         max-width: 296px;
-        height: 57px;
+        min-height: 57px;
         margin: 0  !important;
         font-family: 'GothamProRegular';
         font-style: normal;

@@ -63,6 +63,7 @@ const MainTariff = props => {
         }
 
         function loadResize() {
+            console.log('hello')
             if (typeof window !== 'undefined') {
 
                 let windowWidth = window.innerWidth
@@ -73,6 +74,8 @@ const MainTariff = props => {
                 }
             }
 
+        }
+        if (typeof window !== 'undefined') {
             loadResize()
             window.addEventListener('load', loadResize);
             window.addEventListener('resize', loadResize);

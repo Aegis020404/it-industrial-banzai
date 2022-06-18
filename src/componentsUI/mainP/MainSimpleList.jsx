@@ -79,10 +79,13 @@ const MainSimpleList = () => {
                 }
             }
 
+        }
+        if (typeof window !== 'undefined') {
+            loadResize()
             window.addEventListener('load', loadResize);
             window.addEventListener('resize', loadResize);
         }
-    });
+    }, []);
 
 
     return (

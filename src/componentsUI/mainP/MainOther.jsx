@@ -93,16 +93,19 @@ const MainOther = () => {
                 }
             }
 
+        }
+        if (typeof window !== 'undefined') {
+            loadResize()
             window.addEventListener('load', loadResize);
             window.addEventListener('resize', loadResize);
         }
-    });
+    }, []);
 
 
     return (
         <section className={cl.other}>
             <div className={cl.allOtherContent}>
-                <div className={cl.overlay}></div>
+                <div className={cl.overlay}/>
                 <div className={cl.container}>
                     <div className={cl.otherContent}>
                         <h2 className={cl.otherTitle}>Другие услуги <span
