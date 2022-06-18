@@ -4,7 +4,9 @@
 * Autoprefixer: v10.4.4
 * Browsers: last 4 version
 */
-
+.css-67l5gl {
+    padding: 5px !important;
+}
 @font-face { 
     font-family: "GothamProLight";
     src: url("../assets/fonts/GothamProLight/GothamProLight.eot");
