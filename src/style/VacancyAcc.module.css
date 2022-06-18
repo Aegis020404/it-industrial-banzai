@@ -217,7 +217,7 @@
 }
 .accordionTitle {
     font-size: 13px !important;
-    max-width: 185px;
+    /*max-width: 185px;*/
 }
 .title {
     margin-bottom: 15px;
