@@ -44,7 +44,7 @@ const MainSimpleList = () => {
 
         function catalogSliderInit() {
             if (!swiperS) {
-                swiperS = new Swiper('.swiperSim', {
+                swiperS = new Swiper(`.${cl.swiperSim}`, {
                     modules: [Pagination],
                     slidesPerView: "auto",
                     speed: 400,
@@ -90,7 +90,7 @@ const MainSimpleList = () => {
 
     return (
         <div>
-            <div className={'swiper swiperSim ' + cl.mySwiper}>
+            <div className={`swiper ${cl.swiperSim} ` + cl.mySwiper}>
 
 
                 <div className={'swiper-wrapper ' + cl.simpleList}>
