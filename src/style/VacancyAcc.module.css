@@ -120,8 +120,9 @@
 
 
 .accordionDescr {
-    padding-top: 23px;
-    padding-bottom: 25px;
+    padding-top: 23px !important;
+    padding-bottom: 25px !important;
+
 }
 
 .accordionDescr, .accordionItem, .accordionWhatDo {
