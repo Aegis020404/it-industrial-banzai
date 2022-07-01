@@ -16,7 +16,7 @@ const KeysMainSeo = (props) => {
     return (
         <div className={[cl.seoBlock, props.classesTabs].join` `}>
             <ul className={cl.seoList}>
-                {KeysMainSeoPage.map((e,i)=><KeysMainSeoItem  index={i} nameCompany={e.nameCompany} linkCompany={e.linkCompany} beenTopTen={e.changeSeo.beenChange.topTen}  schedule={e.schedule} scheduleSet={e.scheduleSet} beenTraffic={e.changeSeo.becameChange.traffic} becameTopTen={e.changeSeo.becameChange.topTen} becameTraffic={e.changeSeo.becameChange.traffic}/>)}
+                {KeysMainSeoPage.map((e,i)=><KeysMainSeoItem key={i} index={i} nameCompany={e.nameCompany} linkCompany={e.linkCompany} beenTopTen={e.changeSeo.beenChange.topTen}  schedule={e.schedule} scheduleSet={e.scheduleSet} beenTraffic={e.changeSeo.becameChange.traffic} becameTopTen={e.changeSeo.becameChange.topTen} becameTraffic={e.changeSeo.becameChange.traffic}/>)}
             </ul>
         </div>
     )
