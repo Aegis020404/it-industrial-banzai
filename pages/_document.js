@@ -5,6 +5,7 @@ class MyDocument extends Document {
         return (
             <Html>
                 <Head>
+                    <title>it-industrial</title>
                     <link rel="icon" href="/icon-192x192.png" />
                     <link rel="manifest" href="/manifest.json" />
                     <link rel="apple-touch-icon" href="/icon-192x192.png"></link>

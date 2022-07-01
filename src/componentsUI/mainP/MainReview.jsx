@@ -5,8 +5,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import arrPrevRev from '../../assets/img/arrPrevRev.svg'
-import arrNextRev from '../../assets/img/arrNextRev.svg'
+// import arrPrevRev from '../../../public/img/arrPrevRev.svg'
+// import arrNextRev from '../../../public/img/arrNextRev.svg'
 import cl from '../../style/MainReview.module.css'
 
 const MainReview = () => {

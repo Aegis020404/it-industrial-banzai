@@ -45,24 +45,24 @@
 .calendarImg {
     width: 67px;
     height: 66px;
-    background-image: url('../assets/img/calendar.svg');
+    background-image: url('../../public/img/calendar.svg');
 }
 .contractImg {
     width: 72px;
     height: 71px;
-    background-image: url('../assets/img/contract.svg');
+    background-image: url('../../public/img/contract.svg');
 }
 
 .gearsImg {
     width: 75px;
     height: 75px;
-    background-image: url('../assets/img/gears.svg');
+    background-image: url('../../public/img/gears.svg');
 }
 
 .searchImg {
     width: 67px;
     height: 67px;
-    background-image: url('../assets/img/search-big.svg');
+    background-image: url('../../public/img/search-big.svg');
 }
 
 .resultImgBlock {
@@ -216,24 +216,24 @@
 .calendarImg {
     width: 47px;
     height: 46px;
-    background-image: url('../assets/img/calendar.svg');
+    background-image: url('../../public/img/calendar.svg');
 }
 .contractImg {
     width: 52px;
     height: 51px;
-    background-image: url('../assets/img/contract.svg');
+    background-image: url('../../public/img/contract.svg');
 }
 
 .gearsImg {
     width: 55px;
     height: 55px;
-    background-image: url('../assets/img/gears.svg');
+    background-image: url('../../public/img/gears.svg');
 }
 
 .searchImg {
     width: 47px;
     height: 47px;
-    background-image: url('../assets/img/search-big.svg');
+    background-image: url('../../public/img/search-big.svg');
 }
 
 .resultImgBlock {
@@ -323,24 +323,24 @@
 .calendarImg {
     width: 47px;
     height: 46px;
-    background-image: url('../assets/img/calendar.svg');
+    background-image: url('../../public/img/calendar.svg');
 }
 .contractImg {
     width: 52px;
     height: 51px;
-    background-image: url('../assets/img/contract.svg');
+    background-image: url('../../public/img/contract.svg');
 }
 
 .gearsImg {
     width: 55px;
     height: 55px;
-    background-image: url('../assets/img/gears.svg');
+    background-image: url('../../public/img/gears.svg');
 }
 
 .searchImg {
     width: 47px;
     height: 47px;
-    background-image: url('../assets/img/search-big.svg');
+    background-image: url('../../public/img/search-big.svg');
 }
 
 .resultImgBlock {

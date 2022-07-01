@@ -29,11 +29,11 @@
 }
 
 .arrPrevRevSeo {
-    background-image: url("../assets/img/seoLeft.svg");
+    /*background-image: url("../../public/img/seoLeft.svg");*/
 }
 
 .arrNextRevSeo {
-    background-image: url("./..//assets/img/seoRight.svg");
+    background-image: url("../../public/img/seoRight.svg");
 }
 
 
@@ -319,7 +319,7 @@ opacity: 0.6;
     border: none;
     height: 100%;
     width: 100%;
-    appearance: slider-vertical !important;
+    /*appearance: slider-vertical !important;*/
     -webkit-appearance: slider-vertical !important; 
     writing-mode: bt-lr !important;
     position: relative !important;

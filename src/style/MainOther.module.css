@@ -20,7 +20,7 @@
 .overlay {
     position: absolute;
     display: inline-block;
-    background-image: url('../assets/img/it-bgjpg.jpg');
+    background-image: url('../../public/img/it-bgjpg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;

@@ -1,11 +1,11 @@
 import React from 'react';
 import cl from '../../style/KeysMainSeo.module.css';
 import KeysMainSeoItem from './KeysMainSeoItem';
-import ecoSchedule from '../../assets/img/keys-seo-eco.svg';
-import stroySchedule from '../../assets/img/keys-seo-stroy.svg';
-import veniSchedule from '../../assets/img/key-seo-veni.svg';
-import autoSchedule from '../../assets/img/keys-seo-auto.svg';
-import llumarSchedule from '../../assets/img/keys-seo-lumar.svg';
+import ecoSchedule from '../../../public/img/keys-seo-eco.svg';
+import stroySchedule from '../../../public/img/keys-seo-stroy.svg';
+import veniSchedule from '../../../public/img/key-seo-veni.svg';
+import autoSchedule from '../../../public/img/keys-seo-auto.svg';
+import llumarSchedule from '../../../public/img/keys-seo-lumar.svg';
 import {connect} from "react-redux/lib";
 import { useDispatch, useSelector } from 'react-redux';
 

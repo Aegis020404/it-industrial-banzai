@@ -3,7 +3,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import cl from '../style/keySite.module.css'
 import {NavLink} from "react-router-dom";
 import MainApplication from "./mainP/MainApplication";
-import miniPhone from '../assets/img/miniPhone.png'
+import miniPhone from '../../public/img/miniPhone.png'
 import MyModal from "./UI/modal/MyModal";
 import MyThxModal from "./UI/thxmodal/MyThxModal";
 import MyBtnBlank from "./UI/buttonborder/MyBtnBlank";

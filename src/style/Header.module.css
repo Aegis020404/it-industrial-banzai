@@ -396,7 +396,7 @@
     display: inline-block;
     width: 41px;
     height: 44px;
-    background-image: url('../assets/img/logo-header.svg');
+    background-image: url('../../public/img/logo-header.svg');
     background-repeat: no-repeat;
 }
 
@@ -602,7 +602,7 @@
 
         width: 30px;
         height: 30px;
-        background-image: url('../assets/img/logo-header.svg');
+        background-image: url('../../public/img/logo-header.svg');
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
@@ -755,7 +755,7 @@
 
         width: 30px;
         height: 30px;
-        background-image: url('../assets/img/logo-header.svg');
+        background-image: url('../../public/img/logo-header.svg');
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
@@ -1075,7 +1075,7 @@
         display: inline-block;
         width: 21px;
         height: 21px;
-        background-image: url('../assets/img/logo-header.svg');
+        background-image: url('../../public/img/logo-header.svg');
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;

@@ -10,7 +10,7 @@
     
     position: absolute;
     display: inline-block;
-    background-image: url('../assets/img/bc-mini-seo.png');
+    background-image: url('../../public/img/bc-mini-seo.png');
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
@@ -29,7 +29,7 @@
     margin-bottom: 35px;
     width: 47px;
     height: 47px;
-    background-image: url('../assets/img/seo-mini.svg');
+    background-image: url('../../public/img/seo-mini.svg');
 }
 
 

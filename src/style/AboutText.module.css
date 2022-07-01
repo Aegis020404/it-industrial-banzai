@@ -18,7 +18,7 @@
     
     width: 480px;
     height: 483px;
-    background-image: url('../assets/img/blank-about.svg');
+    background-image: url('../../public/img/blank-about.svg');
     background-size: contain;
     background-position: center;
 }

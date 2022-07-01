@@ -106,7 +106,7 @@
     margin: auto;
     width: 485px;
     height: 485px;
-    background-image: url('../assets/img/blank-about.svg');
+    background-image: url('../../public/img/blank-about.svg');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;

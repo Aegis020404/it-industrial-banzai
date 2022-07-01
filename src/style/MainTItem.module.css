@@ -18,7 +18,7 @@
     display: inline-block;
     width: 39px;
     height: 39px;
-    background-image: url('../assets/img/mac-grid.svg');
+    background-image: url('../../public/img/mac-grid.svg');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -27,7 +27,7 @@
     display: inline-block;
     width: 41px;
     height: 37px;
-    background-image: url('../assets/img/visit-card-grid.svg');
+    background-image: url('../../public/img/visit-card-grid.svg');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -36,7 +36,7 @@
     display: inline-block;
     width: 37px;
     height: 33px;
-    background-image: url('../assets/img/site-grid.svg');
+    background-image: url('../../public/img/site-grid.svg');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -45,7 +45,7 @@
     display: inline-block;
     width: 40px;
     height: 33px;
-    background-image: url('../assets/img/search.svg');
+    background-image: url('../../public/img/search.svg');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -54,7 +54,7 @@
     display: inline-block;
     width: 37px;
     height: 37px;
-    background-image: url('../assets/img/market-grid.svg');
+    background-image: url('../../public/img/market-grid.svg');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -63,7 +63,7 @@
     display: inline-block;
     width: 37px;
     height: 37px;
-    background-image: url('../assets/img/cloud-grid.svg');
+    background-image: url('../../public/img/cloud-grid.svg');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -110,7 +110,7 @@
     display: inline-block;
     margin-top: 5px;
     margin-right: 16px;
-    background-image: url('../assets/img/circle.svg');
+    background-image: url('../../public/img/circle.svg');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -321,7 +321,7 @@
         display: inline-block;
         margin-top: 5px;
         margin-right: 10px;
-        background-image: url('../assets/img/circle.svg');
+        background-image: url('../../public/img/circle.svg');
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
@@ -474,7 +474,7 @@
         margin-top: 2px;
         margin-right: 7px;
         margin-top: 3px;
-        background-image: url('../assets/img/circle.svg');
+        background-image: url('../../public/img/circle.svg');
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
