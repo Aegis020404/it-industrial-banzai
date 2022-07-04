@@ -16,6 +16,12 @@
     
 }
 
+.listAcc {
+   display: grid;
+   grid-template-rows: repeat(5, auto);
+   gap: 12px;
+}
+
 .accordionBlock {
     display: grid;
     grid-template-rows: repeat(4, auto);
@@ -120,9 +126,8 @@
 
 
 .accordionDescr {
-    padding-top: 23px !important;
-    padding-bottom: 25px !important;
-
+    /* padding-top: 23px !important;
+    padding-bottom: 25px !important; */
 }
 
 .accordionDescr, .accordionItem, .accordionWhatDo {
@@ -211,12 +216,13 @@
 
     
 .accordionSignBlock {
-    
+    margin: 0 5px;
     width: 19px;
+    min-width: 19px;
     height: 19px;
 }
 .accordionTitle {
-    font-size: 13px !important;
+    font-size: 12px !important;
     /*max-width: 185px;*/
 }
 .title {
@@ -226,4 +232,9 @@
 .vacancySection {
     margin: 25px 0 50px;
 }
+.listAcc {
+    display: grid;
+    grid-template-rows: repeat(5, auto);
+    gap: 8px;
+ }
 }

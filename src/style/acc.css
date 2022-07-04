@@ -10,7 +10,7 @@
     box-shadow: none !important;
     outline: none;
     cursor: pointer;
-    margin: 12px 0;
+    margin: 0 !important;
 }
 
 .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root  {
@@ -19,6 +19,8 @@
 }
 .MuiAccordionSummary-content  {
     margin: 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, auto);
     justify-content: space-between;
     align-items: center;
 }
@@ -124,6 +126,6 @@
 }
 .MuiPaper-root {
     border-radius: 5px !important;
-    margin: 8px 0;
+    margin: 0 !important;
 }
 }

@@ -14,9 +14,12 @@ const VacancyAccAll = ({itemList, classesItem, classesBlock, classesDescr})=>{
     };
   
     return (
-        <div>
-            {itemList.map((e,i)=><VacancyAccItem key={i} handleChange={handleChange} expanded={expanded} title={e.title} descr={e.descr} whatDo={e.whatdo} info={e.list} check={'panel' + (i + 1)}/>)}
-        </div>
+        <>
+             <div className={cl.listAcc}>
+                {itemList.map((e,i)=><VacancyAccItem key={i} handleChange={handleChange} expanded={expanded} title={e.title} descr={e.descr} whatDo={e.whatdo} info={e.list} check={'panel' + (i + 1)}/>)}
+            </div>
+        </>
+       
     )
 }
 

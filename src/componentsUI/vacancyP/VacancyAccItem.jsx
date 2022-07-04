@@ -35,6 +35,7 @@ const VacancyAccItem = ({title, descr, whatDo, info, check,classesItem, classesB
         //         </div>  
         //     </div>
         // </details>
+        <>
           <Accordion expanded={expanded === check} onChange={handleChange(check)} className={cl.Accordion}>
           <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" className={cl.accSummary}>
           <Typography className={cl.accordionTitle}>
@@ -64,6 +65,8 @@ const VacancyAccItem = ({title, descr, whatDo, info, check,classesItem, classesB
           </Typography>
           </AccordionDetails>
       </Accordion>
+        </>
+          
     )
 }
 

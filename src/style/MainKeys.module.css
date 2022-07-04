@@ -469,6 +469,7 @@
 @media (max-width:567px) {
     .keys {
         padding-top: 60px;
+        padding-bottom: 30px;
         overflow:hidden;
     }
 

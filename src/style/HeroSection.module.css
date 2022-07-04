@@ -42,6 +42,10 @@
     font-weight: 500;
 }
 
+.left {
+    padding-bottom: 60px;
+}
+
 .img {
     background-position: center;
     background-size: contain;

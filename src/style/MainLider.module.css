@@ -441,7 +441,7 @@ border-radius: 10px;
         grid-template-columns: auto;
         grid-template-rows: auto 319px;
         gap: 34px;
-        padding: 67px 0 0;
+        padding: 25px 0 0;
     }
 
     .liderTitle {
