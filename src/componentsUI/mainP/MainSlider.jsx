@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react';
 // import {Swiper, SwiperSlide} from "swiper/react";
-import Swiper, {Navigation, Pagination} from "swiper";
+import Swiper, {Autoplay, Navigation, Pagination} from "swiper";
 // Import Swiper styles
 import MyModal from '../UI/modal/MyModal';
 // import required modules
@@ -41,15 +41,20 @@ const Slider = (props) => {
                 prevEl: '.prevElSlider',
                 nextEl: '.nextElSlider'
             },
-            autoplay: 2000,
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                },
             autoHeight: true,
             slidesPerView: 1,
             spaceBetween: 10,
-            modules: [Navigation, Pagination],
+
+            modules: [Navigation, Pagination, Autoplay],
             pagination: {
                 el: '.pagSlider'
             }
         })
+
     })
     return (
         <section className={cl.slider}>
@@ -94,10 +99,11 @@ const Slider = (props) => {
                         ))}
 
                 </div>
-                <div className="swiper-pagination pagSlider"></div>
-                <div className="swiper-button-prev prevElSlider"></div>
-                <div className="swiper-button-next nextElSlider"></div>
-                <div className="swiper-scrollbar"></div>
+                {/*<div className="swiper-slide" data-swiper-autoplay="200"/>*/}
+                <div className="swiper-pagination pagSlider"/>
+                <div className="swiper-button-prev prevElSlider"/>
+                <div className="swiper-button-next nextElSlider"/>
+                <div className="swiper-scrollbar"/>
 
             </div>
 

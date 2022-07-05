@@ -29,28 +29,28 @@ const MainPage = ()=>{
             <main ref={mainI} className="main">
                 <SliderContainer />
 
-                <MainTariffContainer title={<div className={cl.tariffTittleBlock}>
-                    <h2 className={cl.tariffTitle}>Тарифы на разработку сайтов</h2>
-                </div>}/>
+                {/*<MainTariffContainer title={<div className={cl.tariffTittleBlock}>*/}
+                {/*    <h2 className={cl.tariffTitle}>Тарифы на разработку сайтов</h2>*/}
+                {/*</div>}/>*/}
 
-                <MainQuiz />
-                <MainApplication/>
+                {/*<MainQuiz />*/}
+                {/*<MainApplication/>*/}
 
 
-                <MainDevContainer column={'turnkeyWebsite'}/>
+                {/*<MainDevContainer column={'turnkeyWebsite'}/>*/}
 
-                <MainOfferContainer/>
-                <MainResult />
+                {/*<MainOfferContainer/>*/}
+                {/*<MainResult />*/}
 
-                <MainOther/>
+                {/*<MainOther/>*/}
 
-                <MainKeys/>
-                <MainLider/>
-                <MainReview/>
+                {/*<MainKeys/>*/}
+                {/*<MainLider/>*/}
+                {/*<MainReview/>*/}
 
-                <MainSimple/>
+                {/*<MainSimple/>*/}
 
-                <MainQuestion/>
+                {/*<MainQuestion/>*/}
             </main>
             </Container>
            
