@@ -40,7 +40,7 @@ const MainQuestion = ()=>{
                     <form action="" id='question' className={cl.questionForm}>
                         <div className={cl.questionFormTop}>
                             <MyInput setInput={setModalInfo} input={modalInfo} valueInput={modalInfo.namePerson} place='Введите ваше имя' classesInput={cl.questionInput} classesPlace={cl.questionInputP}/>
-                            <MyMask classesItem={cl.questionMask} value={modalInfo.tel} onChange={e => setModalInfo({...modalInfo, tel: e.target.value})} />
+                            <MyMask classesItem={cl.questionMask} classesPlace={cl.questionPlaceMask} value={modalInfo.tel} onChange={e => setModalInfo({...modalInfo, tel: e.target.value})} />
                         </div>
                         <div className={cl.questiontextAreaBlock}>
                             <MyTextarea setTextarea={setModalInfo} textarea={modalInfo} textareaValue={modalInfo.question} place='Ваш вопрос' classesTextarea={cl.questionTextarea} classesPlace={cl.questionTextareaP}/>

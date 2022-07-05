@@ -68,18 +68,25 @@
 
 .questionFormTop {
     display: grid;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     width: 100%;
 }
 
 .questionInput {
     height: 100%;
-    padding: 24px 37px 18px;
-    border: none;
+    padding: 29px 18px 18px;
+    border: 1px solid #fff;
     overflow: hidden; 
     background: #fff;
     color: #ACB8C0;
+}
+
+
+
+.questionInput:active, .questionInput:focus, .questionInput:valid:required {
+    border: 1px solid #fff;
+    /* padding: 31px 18px 17px; */
 }
 
 
@@ -99,8 +106,6 @@ color: #ACB8C0;
 
 .questionInput:valid:required ~  .questionInputP,
 .questionInput:focus ~ .questionInputP {
-
-
     color: #ACB8C0;
 }
 
@@ -110,9 +115,9 @@ color: #ACB8C0;
 }
 
 .questionMask {
-    padding: 24px 37px 24px;
+    /* padding: 24px 37px 24px; */
     overflow: hidden; 
-    border: none;
+    border: 1px solid #fff;
     font-family: 'GothamProRegular';
     font-style: normal;
     font-weight: 400;
@@ -121,6 +126,17 @@ color: #ACB8C0;
     letter-spacing: -0.02em;
     color: #ACB8C0;
     background: #fff;
+}
+
+
+.questionMask:active, .questionMask:focus, .questionMask:valid:required {
+    border: 1px solid #fff;
+    /* padding: 31px 18px 17px; */
+}
+
+
+.questionPlaceMask {
+    color: #ACB8C0;
 }
 
 .questionMask::placeholder {
@@ -150,7 +166,7 @@ color: #ACB8C0;
 }
 
 .questionTextarea {
-    padding: 23px 37px;
+    padding: 27px 18px 21px;
     resize: none;
     height: 100%;
     min-height: 166px;
@@ -272,7 +288,7 @@ color: #ACB8C0;
         
     .questionInputP {
         top: 20px;
-        left: 32px;
+        left: 18px;
         font-family: 'GothamProRegular';
         font-style: normal;
         font-weight: 400;
@@ -312,14 +328,14 @@ color: #ACB8C0;
     
     .questionFormTop {
         display: grid;
-        grid-template-columns: repeat(2, auto);
+       
         gap: 15px;
         width: 100%;
     }
     
     .questionInput {
-        padding: 20px 30px 20px;
-        border: none;
+        padding: 25px 18px 15px;
+       
         overflow: hidden; 
         background: #fff;
     }
@@ -329,13 +345,13 @@ color: #ACB8C0;
     }
     
     .questionMask {
-        padding: 20px 30px 20px;
+        /* padding: ; */
         overflow: hidden; 
-        border: none;
+     
         font-family: 'GothamProRegular';
         font-style: normal;
         font-weight: 400;
-        font-size: 13px;
+       
         line-height: 130%;
         letter-spacing: -0.02em;
         color: #ACB8C0;
@@ -478,15 +494,14 @@ color: #ACB8C0;
     
     .questionFormTop {
         display: inline-grid;
-        grid-template-columns: repeat(2, auto);
+        
         gap: 15px;
         width: 100%;
         max-width: 483px;
     }
     
     .questionInput {
-        padding: 20px 30px 20px;
-        border: none;
+        padding: 25px 18px 15px;
         overflow: hidden; 
         background: #fff;
     }
@@ -497,7 +512,7 @@ color: #ACB8C0;
     }
     
     .questionMask {
-        padding: 20px 30px 20px;
+        padding: 20px 18px 20px;
         overflow: hidden; 
         border: none;
         font-family: 'GothamProRegular';
@@ -527,9 +542,10 @@ color: #ACB8C0;
     
     .questionTextarea {
         margin: 0 auto;
-        padding: 22px 37px;
+        padding: 26px 18px;
         resize: none;
-        width: 84%;
+        width: 99%;
+        box-sizing: border-box;
         background-color: #fff;
         border-radius: 5px;
         font-family: 'GothamProRegular';
@@ -652,14 +668,14 @@ color: #ACB8C0;
     .questionFormTop {
         display: inline-grid;
         grid-template-columns: auto;
-        grid-template-rows: repeat(2, auto);
+       
         gap: 7px;
         width: 100%;
         max-width: 483px;
     }
     
     .questionInput {
-        padding: 19px 18px 14px;
+        padding: 23px 18px 14px;
         border: none;
         height: 54px;
         font-size: 13px;

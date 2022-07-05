@@ -176,7 +176,7 @@
 .input {
     display: block;
     width: 100%;
-    padding: 26px 37px 19px;
+   
     height: 67px;
     font-family: 'GothamProRegular';
     font-style: normal;
@@ -192,9 +192,9 @@
 
 }
 
-.mask {
+/* .mask {
     padding: 25px 37px;
-}
+} */
 
 .requestWrap {
     display: -webkit-box;

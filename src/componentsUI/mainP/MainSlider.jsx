@@ -41,6 +41,7 @@ const Slider = (props) => {
                 prevEl: '.prevElSlider',
                 nextEl: '.nextElSlider'
             },
+            autoplay: 2000,
             autoHeight: true,
             slidesPerView: 1,
             spaceBetween: 10,

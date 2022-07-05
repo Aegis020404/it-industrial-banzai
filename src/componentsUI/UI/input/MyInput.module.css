@@ -14,7 +14,7 @@
 
 .myInput {
     position: relative;
-    padding: 26px 37px 22px;
+    padding: 32px 18px 18px;
     background-color: #fff;
     border: 1px solid #DADBDD;
     -webkit-box-sizing: border-box;
@@ -27,16 +27,20 @@
     line-height: 130%;
     letter-spacing: -0.02em;
     color: var(--rock-grey-color);
+    transition: all .35s ease-in-out;
     border-radius: 5px;
     z-index: 3;
 }
 
+ .myInput:active, .myInput:focus, .myInput:valid:required {
+    border: 1px solid #9DA0AB;
+}
 
 
 .inputPlace {
     position: absolute;
-    left: 37px;
-    top: 26px;
+    left: 18px;
+    top: 24px;
     font-family: 'GothamProRegular';
     font-style: normal;
     font-weight: 400;
@@ -61,13 +65,13 @@
     font-family: 'GothamProRegular';
     font-style: normal;
     font-weight: 400;
-    font-size: 10px ;
+    font-size: 11px ;
     line-height: 130%;
     /* or 13px */
 
     letter-spacing: -0.02em;
 
-    color: #83919B;
+    color: #909EA8;
 }
 
 

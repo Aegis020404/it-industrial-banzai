@@ -81,7 +81,7 @@
 .applicationInput {
     margin-bottom: 10px;
     width: 100%;
-    padding: 30px 32px 18px;
+   
     background: #FFFFFF;
     font-family: 'GothamProRegular';
     font-style: normal;
@@ -93,14 +93,14 @@
 }
 
 .applicationPlace {
-    left: 32px;
+   
     top: 26px;
 }
 
 .applicationPlaceholder {
     position: absolute;
-    left: 32px;
-    top: 12px;
+    /* left: 32px;
+    top: 12px; */
     font-family: 'GothamProRegular';
     font-style: normal;
     font-weight: 400;
@@ -112,7 +112,7 @@
 
 .applicationMask {
     width: 100%;
-    padding: 24px 32px;
+  
     background: #FFFFFF;
 }
 

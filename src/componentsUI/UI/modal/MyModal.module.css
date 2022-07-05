@@ -177,7 +177,7 @@ pointer-events: all;
     margin-bottom: 10px;
     width: 100%;
     height: 68px;
-    padding: 26px 37px 19px !important;
+    padding: 32px 18px 18px !important;
 }
 
 .btnBlock {
@@ -276,7 +276,7 @@ pointer-events: all;
         max-width: 350px;
         height: 50px !important;
         font-size: 12px !important;
-        padding: 26px 20px 17px !important;
+        padding: 26px 18px 17px !important;
     }
     
     .modalMask {
