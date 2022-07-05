@@ -100,7 +100,7 @@
 
 .swiperSl {
     min-height: 400px;
-    padding-bottom: 35px;
+    padding-bottom: 190px;
 }
 
 .titleCaseSpan {
@@ -244,9 +244,9 @@
         margin-right: 10px;
     }
     .btnWrap {
-        margin-top: 34px;
-        position: relative;
-        bottom: 0;
+        /*margin-top: 34px;*/
+        /*position: relative;*/
+        /*bottom: 0;*/
     }
 
     .text {
@@ -259,6 +259,7 @@
         font-size: 16px;
     }
     .swiperSl {
+        padding-bottom: 150px !important;
         width: 250px;
         min-height: 306px;
     }
@@ -285,8 +286,8 @@
         margin-right: 13px;
     }
     .btnWrap {
-        margin-top: 34px;
-        position: relative;
+        /*margin-top: 34px;*/
+        /*position: relative;*/
         bottom: 0;
     }
     .price {
