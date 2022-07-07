@@ -5,7 +5,7 @@ import MyModal from "../UI/modal/MyModal";
 import MyThxModal from "../UI/thxmodal/MyThxModal";
 import MyBtnBlank from "../UI/buttonborder/MyBtnBlank";
 import {useSelector} from 'react-redux';
-
+import MyViewElement from '../UI/viewelement/MyViewElement';
 const TariffSeo = ({column}) => {
     let nameSwiper = column// + ~~(Math.random() * 100)
     const {tarrifSEOPage} = useSelector(state => state)
@@ -85,13 +85,17 @@ const TariffSeo = ({column}) => {
     })
     return (<div className={cl.tariffSEO}>
             <div className="container">
+
                 <div className={cl.column1}>
-                    {state.title ? <div className={cl.title}>{state.title}</div> : ''}
-                    {state.text ? <div className={cl.text}>{state.text}</div> : ''}
-                    {state.titleText ? <div className={cl.titleText}>{state.titleText}</div> : ''}
+                    {state.title ?  <MyViewElement element={<div className={cl.title}>{state.title}</div>}/> : ''}
+                    {state.text ? <MyViewElement element={<div className={cl.text}>{state.text}</div>}/> : ''}
+                    {state.titleText ? <MyViewElement element={<div className={cl.titleText}>{state.titleText}</div>}/> : ''}
 
                 </div>
             </div>
+            <MyViewElement element={
+
+          
             <div className={"swiper " + nameSwiper + ' ' + cl.swiper}>
                 <div className={"swiper-wrapper " + ' container ' + cl.wrapperSlid} ref={swiperWrapper}>
                     {state.cases.map((el, i) => <div key={i} className={"swiper-slide " + cl.swiperSl}>
@@ -119,7 +123,7 @@ const TariffSeo = ({column}) => {
                 <div className="swiper-scrollbar"/>
                 <div className={cl.pag + ' ' + nameSwiper + 'pag'} ref={pag}/>
             </div>
-
+              }/>
 
             <MyModal visible={modal} setVisible={setModal} title='Получить консультацию' setThx={setThxModal}/>
             <MyThxModal visible={thxModal} setVisible={setThxModal}/>

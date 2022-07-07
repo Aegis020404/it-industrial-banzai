@@ -29,7 +29,8 @@
 }
 
 .arrPrevRevSeo {
-    /*background-image: url("../../public/img/seoLeft.svg");*/
+    background-image: url("../../public/img/seoRight.svg");
+    transform: rotate(180deg);
 }
 
 .arrNextRevSeo {

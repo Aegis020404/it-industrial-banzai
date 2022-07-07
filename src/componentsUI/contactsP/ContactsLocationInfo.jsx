@@ -1,16 +1,20 @@
 import React from "react";
 import cl from '../../style/ContactsInfo.module.css';
 import MyTitle from "../UI/titlepage/MyTitle";
+import MyViewElement from "../UI/viewelement/MyViewElement";
 
 const ContactsLocationInfo = ()=>{
     return (
         <section className={cl.contact}>
             <div className={["container", cl.contactContainer].join` `}>
                 <div className={cl.contactCont}>
-                    <MyTitle title='Контакты' classes={cl.titleCont}/>
+                    <MyViewElement element={
+                        <MyTitle title='Контакты' classes={cl.titleCont}/>                    }/>
+                    
                     <div className={cl.contentInfo}>
                         <div className={cl.contactLeft}>
                             <ul className={cl.contactListInfo}>
+                            <MyViewElement element={
                                 <li className={cl.contactImg}>
                                     <div className={cl.contactImgBlock}>
                                         <span className={cl.contactImgCard}>
@@ -22,18 +26,25 @@ const ContactsLocationInfo = ()=>{
                                     <p className={cl.contactDescr}>Связаться с нами</p>
                                     <span className={cl.contactLine}></span>
                                 </li>
+                                 }/>
+                                  <MyViewElement element={
                                 <li className={cl.contactTel}>
                                     <span className={cl.contactTelName}>Телефон:</span>
                                     <a href="tel:+79251170046" className={cl.telLocation}>+7 (925) 117-00-46</a>
                                 </li>
+                                 }/>
+                                 <MyViewElement element={
                                 <li className={cl.contactTel}>
                                     <span className={cl.contactTelName}>Email:</span>
                                     <a href="mailto:info@it-industriul.ru" className={cl.mail}>info@it-industriul.ru </a>
                                 </li>
+                                  }/>
                             </ul>
                         </div>
                         <div className={cl.contactRight}>
                             <ul className={cl.contactListInfo}>
+                            <MyViewElement element={
+
                                 <li className={cl.contactImg}>
                                     <div className={cl.contactImgBlock}>
                                         <span className={cl.contactImgCard}>
@@ -45,10 +56,16 @@ const ContactsLocationInfo = ()=>{
                                     <p className={cl.contactDescr}>Как нас найти</p>
                                     <span className={cl.contactLine}></span>
                                 </li>
+                                  }/>
+
+                                 <MyViewElement element={
+
                                 <li className={[cl.contactTel, cl.contactMail].join` `}>
                                     <span className={cl.contactTelName}>Адрес:</span>
                                     <p className={cl.telLocation}>Москва, ул. Деловая, 20</p>
                                 </li>
+                                  }/>
+
                             </ul>
                         </div>
                     </div>

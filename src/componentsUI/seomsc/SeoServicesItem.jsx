@@ -1,5 +1,6 @@
 import React from "react";
 import cl from '../../style/SeoServices.module.css';
+import MyViewElement from "../UI/viewelement/MyViewElement";
 
 const SeoServicesItem = ({title, img, infoItem})=>{
     return (
@@ -8,13 +9,18 @@ const SeoServicesItem = ({title, img, infoItem})=>{
                 <span className={cl.servicesImgBlock}>
                     {img}
                 </span>
-                <h4 className={cl.servicesITitle}>{title}</h4>
-            </div>
+                <MyViewElement element={
+                    <h4 className={cl.servicesITitle}>{title}</h4>
+                }/>
+                </div>
             <ul className={cl.servicesIList}>
                 {infoItem.map((e, i)=>
+                <MyViewElement element={
                     <li className={cl.servicesIItem} key={i}>
-                        {e}
-                    </li>    
+                    {e}
+                </li>   
+                }/>
+                    
                 )}
             </ul>
         </li>

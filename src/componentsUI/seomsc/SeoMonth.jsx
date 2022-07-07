@@ -1,5 +1,6 @@
 import React from "react";
 import cl from '../../style/SeoMonth.module.css';
+import MyViewElement from "../UI/viewelement/MyViewElement";
 import SeoMonthItem from "./SeoMonthItem";
 
 
@@ -12,7 +13,10 @@ const SeoMonth = ()=>{
     return (
         <section className={cl.monthSection}>
             <div className="container">
+                <MyViewElement element={
                 <h2 className={cl.monthTitle}>Ежемесячно SEO оптимизатор выполняет следующие работы</h2>
+
+                }/>
                 <div className={cl.monthContent}>
                     <div className={cl.monthLeft}>
                         <ul className={cl.monthLeftList}>
@@ -20,9 +24,11 @@ const SeoMonth = ()=>{
                         </ul>
                     </div>
                     <div className={cl.monthRight}>
+                    <MyViewElement element={
                         <div className={cl.monthRightImg}>
                             <img src={'/img/seo-month.png'} alt="web-google"/>
                         </div>
+                        }/>
                     </div>
                 </div>
             </div>

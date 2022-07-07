@@ -1,5 +1,6 @@
 import React from "react";
 import cl from '../../style/SeoStable.module.css';
+import MyViewElement from "../UI/viewelement/MyViewElement";
 import SeoStableItem from "./SeoStableItem";
 
 const SeoStable = ()=>{
@@ -19,7 +20,10 @@ const SeoStable = ()=>{
     return (
         <section className={cl.stableSection}>
             <div className="container">
-                <h2 className={cl.stableTitle}>SEO продвижение поможет вам получать стабильный поток целевых заявок длительное время</h2>
+                <MyViewElement element={
+                    <h2 className={cl.stableTitle}>SEO продвижение поможет вам получать стабильный поток целевых заявок длительное время</h2>
+                }/>
+                
                 <div className={cl.stableListBlock}>
                     <ul className={cl.stableList}>
                         {infoArr.map((e, i)=>

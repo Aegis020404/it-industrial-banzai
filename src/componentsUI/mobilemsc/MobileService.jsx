@@ -5,6 +5,7 @@ import {connect} from "react-redux/lib";
 import {Pagination, Swiper} from "swiper";
 
 import { useSelector, useDispatch } from 'react-redux';
+import MyViewElement from '../UI/viewelement/MyViewElement';
 
 const MobileService = ({column}) => {
     const {mobileServicePage} = useSelector(state=>state)
@@ -60,8 +61,8 @@ const MobileService = ({column}) => {
     return (
         <section className={cl.serviceSection}>
             <div className="container">
-                {state.title ? <h2 className={cl.serviceTitle}>{state.title}</h2> : ''}
-                {state.text ? <p className={cl.serviceDescr}>{state.text}</p> : ''}
+                {state.title ? <MyViewElement element={<h2 className={cl.serviceTitle}>{state.title}</h2>}/> : ''}
+                {state.text ?  <MyViewElement element={<p className={cl.serviceDescr}>{state.text}</p>}/> : ''}
                 <div className={cl.serviceListBlock}>
                     <div className={`swiper ${column}`}>
                         <div className={'swiper-wrapper ' + cl.serviceList}>

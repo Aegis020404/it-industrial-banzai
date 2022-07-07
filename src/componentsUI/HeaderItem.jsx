@@ -21,7 +21,7 @@ const HeaderItem = ({title, info, titleClass, setHeaderNav, burgerA, page, setBu
             <ul className={cl.headerIClist}>
                 {info.map(e=>
                     <li className={[cl.headerICitem, e.class].join` `} key={e.link} >
-                        {e.page !== undefined ?   <Link href={e.page} className={cl.headerIClink}  onClick={e=>changePage(e)}><a>{e.link}</a></Link>:<a className={cl.headerIClink}>{e.link}</a>}
+                        {e.page !== undefined ?   <Link href={e.page} className={cl.headerIClink}  onClick={e=>changePage(e)}><a onClick={e=>document.bosy.scrollTo({top:0,behavior:'smooth'})}>{e.link}</a></Link>:<a className={cl.headerIClink}>{e.link}</a>}
 
                     </li>
                 )}

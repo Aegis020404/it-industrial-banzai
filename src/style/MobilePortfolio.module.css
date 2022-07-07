@@ -39,6 +39,11 @@
     margin-bottom: 35px;
     min-height: 640px;
     border-radius: 10px;
+    transition: all .35s ease-in-out;
+}
+
+.portLBlock:hover, .portRBlock:hover {
+    filter: blur(3px);
 }
 
 .portLBlock {
