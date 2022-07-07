@@ -57,7 +57,7 @@ const MyModal = ({block, title, visible, setVisible, setThx})=>{
                         <h3 className={cl.modalTitle}>{title}</h3>
                         <p className={cl.modalDescr}>Менеджер свяжется с вами в течение дня, чтобы обсудить вашу задачу</p>
                         <MyInput valueInput={modalInfo.namePerson}  required clean={clean} classesInput={cl.modalInput} classesPlace={cl.modalPlace} place='Ваше имя' setInput={setModalInfo} input={modalInfo}/>
-                        <MyMask classesItem={cl.modalMask} value={modalInfo.tel} onChange={e => setModalInfo({...modalInfo, tel: e.target.value})} required/>
+                        <MyMask classesItem={cl.modalMask} classesPlace={cl.modalMaskPlace} value={modalInfo.tel} onChange={e => setModalInfo({...modalInfo, tel: e.target.value})} required/>
                         <p className={cl.modalWarning}>Нажимая на кнопку, вы даете согласие на обработку ваших персональных данных</p>
                         <span className={cl.modalExit} onClick={e=>{e.preventDefault();setVisible(false)}}></span>
                         <div className={cl.btnBlock}>

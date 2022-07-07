@@ -51,8 +51,15 @@ const KeyGenSites = ({link}) => {
 
             {state.imageInfo.map((el, i) => (
                 <div className={cl.photoWrap}>
-                    <h1 className={cl.imageInfo}>{state.imageInfo[i][0]}</h1>
-                    <img src={`/img/${state.imageInfo[i][1]}`} alt="" className={cl.photo}/>
+                    {!i ? 
+                        <img src={`/img/${state.imageInfo[i][1]}`} alt="" className={cl.photo}/>
+                    :   
+                    <>
+                         <h1 className={cl.imageInfo}>{state.imageInfo[i][0]}</h1>
+                        <img src={`/img/${state.imageInfo[i][1]}`} alt="" className={cl.photo}/>
+                    </>
+                    }
+                    
                 </div>
             ))
             }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import cl from '../../style/VacancyAcc.module.css';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -6,7 +6,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 
 const VacancyAccItem = ({title, descr, whatDo, info, check,classesItem, classesBlock, classesDescr, handleChange, expanded})=>{
-  
+  const [isActive, setIsActive] = useState(false)
 
 
     return (
@@ -36,7 +36,7 @@ const VacancyAccItem = ({title, descr, whatDo, info, check,classesItem, classesB
         //     </div>
         // </details>
         <>
-          <Accordion expanded={expanded === check} onChange={handleChange(check)} className={cl.Accordion}>
+          <Accordion expanded={isActive ? expanded === check : false} onClick={e=>setIsActive(true)} defaultExpanded={false} onChange={handleChange(check)} className={cl.Accordion}>
           <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" className={cl.accSummary}>
           <Typography className={cl.accordionTitle}>
                {title} 

@@ -13,6 +13,7 @@ import Swiper from "swiper";
 import MainTItem from "./MainTItem";
 import {Pagination} from "swiper";
 import MyThxModal from "../UI/thxmodal/MyThxModal";
+import MyViewElement from "../UI/viewelement/MyViewElement";
 
 
 const MainOther = () => {
@@ -108,8 +109,11 @@ const MainOther = () => {
                 <div className={cl.overlay}/>
                 <div className={cl.container}>
                     <div className={cl.otherContent}>
-                        <h2 className={cl.otherTitle}>Другие услуги <span
-                            className={cl.otherTitleItem}>IT-INDUSTRIAL</span></h2>
+                        <MyViewElement element={
+                             <h2 className={cl.otherTitle}>Другие услуги <span
+                             className={cl.otherTitleItem}>IT-INDUSTRIAL</span></h2>
+                        }/>
+                       <MyViewElement element={
                         <div className={cl.otherListBlock}>
                             <div className={'swiper swiperM '}>
 
@@ -145,12 +149,15 @@ const MainOther = () => {
                             {/*    </ul>*/}
                             {/*</Swiper>*/}
                         </div>
+                         }/>
+                          <MyViewElement element={
                         <div className={cl.btnCont}>
                             <MyBtnFiled classes={cl.otherBtn} onClick={e => {
                                 e.preventDefault(e);
                                 setModal(true)
                             }}>нужна консультация</MyBtnFiled>
                         </div>
+                        }/>
                     </div>
                 </div>
             </div>

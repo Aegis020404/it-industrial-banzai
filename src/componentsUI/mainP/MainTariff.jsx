@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import Swiper, {Pagination} from "swiper";
 import MyModal from '../UI/modal/MyModal';
 import MyThxModal from '../UI/thxmodal/MyThxModal';
+import MyViewElement from '../UI/viewelement/MyViewElement';
 
 const MainTariff = props => {
     const [theme, setTheme] = useState('')
@@ -86,9 +87,8 @@ const MainTariff = props => {
     return (
         <section ref={tariffS} className={cl.tariffSection}>
 
-            {
-                props.title
-            }
+            <MyViewElement element={props.title}/> 
+            {/* {props.title} */}
             <div className={cl.tariffListBlock}>
 
                 <div className={`swiper  ` + cl.mySwiper}>
@@ -97,10 +97,15 @@ const MainTariff = props => {
                     <div className={'swiper-wrapper ' + cl.tariffList}>
 
                         {infoData.map((e, i) => (
-                            <div className={'swiper-slide ' + cl.slide} key={i}>
-                                <MainTItem img={e.img} title={e.title} descr={e.descr} price={e.price} dl={e.dl}
-                                           key={e.title} setModal={setModal} setTheme={setTheme}/>
-                            </div>
+                            
+                                <div className={'swiper-slide ' + cl.slide} key={i}>
+                                    <MyViewElement element={
+                                    <MainTItem img={e.img} title={e.title} descr={e.descr} price={e.price} dl={e.dl}
+                                            key={e.title} setModal={setModal} setTheme={setTheme}/>
+                                        }/>
+                                            </div>
+                           
+                           
                         ))}
                     </div>
 

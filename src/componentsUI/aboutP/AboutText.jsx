@@ -1,5 +1,6 @@
 import React from "react";
 import cl from '../../style/AboutText.module.css';
+import MyViewElement from "../UI/viewelement/MyViewElement";
 
 const AboutText = ()=>{
     return (
@@ -7,8 +8,12 @@ const AboutText = ()=>{
              <div className={cl.aboutBackImg}></div>
             <div className={["container", cl.container].join` `}>
                 <div className={cl.aboutCont}>
-                    <h1 className={cl.aboutTitle}>О компании</h1>
+                    <MyViewElement element={
+                         <h1 className={cl.aboutTitle}>О компании</h1>
+                    }/>
+                   
                     <div className={cl.aboutContent}>
+                    <MyViewElement element={
                         <div className={cl.aboutTextCard}>
                             <p className={cl.aboutText}>
                             «IT-INDUSTRIAL» — коллектив специалистов, каждый из которых имеет большой опыт работы в разных по сложности и объему проектах и (не скромно) профессионал своего дела. Мы не накладываем никаких рамок на наших сотрудников и не давим на них авторитетом и бессмысленными правилами. 
@@ -21,15 +26,20 @@ const AboutText = ()=>{
 
                             </p>
                         </div>
+                         }/>
                         <div className={cl.countCard}>
+                        <MyViewElement element={
                             <div className={cl.countTopCard}>
                                 <span className={cl.count}>100+</span>
                                 <p className={cl.countDescr}>Cайтов разработано</p>
                             </div>
+                             }/>
+                             <MyViewElement element={
                             <div className={cl.countBottomCard}>
                                 <span className={cl.count}>150+</span>
                                 <p className={cl.countDescr}>Сайтов выведено в ТОП</p>
                             </div>
+                         }/>
                         </div>
                     </div>
                 </div>

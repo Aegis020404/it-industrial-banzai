@@ -333,30 +333,13 @@ color: #ACB8C0;
         width: 100%;
     }
     
-    .questionInput {
-        padding: 25px 18px 15px;
-       
-        overflow: hidden; 
-        background: #fff;
-    }
+  
     
     .questionForm {
         box-sizing: border-box;
     }
     
-    .questionMask {
-        /* padding: ; */
-        overflow: hidden; 
-     
-        font-family: 'GothamProRegular';
-        font-style: normal;
-        font-weight: 400;
-       
-        line-height: 130%;
-        letter-spacing: -0.02em;
-        color: #ACB8C0;
-        background: #fff;
-    }
+ 
     
     /* input::placeholder {
         font-family: 'GothamProRegular';
@@ -431,6 +414,14 @@ color: #ACB8C0;
     z-index: -0;
 }
 
+.questionInput {
+    padding:31px 18px 16px;
+}
+
+.questionInputP {
+    top: 23px;;
+}
+
 }
 
 @media (max-width:768px) {
@@ -500,30 +491,13 @@ color: #ACB8C0;
         max-width: 483px;
     }
     
-    .questionInput {
-        padding: 25px 18px 15px;
-        overflow: hidden; 
-        background: #fff;
-    }
-    
+
     .questionForm {
         padding: 0 30px;
         box-sizing: border-box;
     }
     
-    .questionMask {
-        padding: 20px 18px 20px;
-        overflow: hidden; 
-        border: none;
-        font-family: 'GothamProRegular';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 130%;
-        letter-spacing: -0.02em;
-        color: #ACB8C0;
-        background: #fff;
-    }
+
 /*     
     input::placeholder {
         font-family: 'GothamProRegular';
@@ -567,7 +541,30 @@ color: #ACB8C0;
         color: #ACB8C0;
     }
 
-    
+    .questionMask, .questionInput {
+        height: 62px;
+    }
+
+    .questionInputP {
+        top: 20px;
+    }
+
+    .questionInput:valid:required ~  .questionInputP,
+    .questionInput:focus ~ .questionInputP {
+        -webkit-transform: translateY(-9px);
+            -ms-transform: translateY(-9px);
+                transform: translateY(-9px);
+        font-family: 'GothamProRegular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 11px ;
+        line-height: 130%;
+        /* or 13px */
+
+        letter-spacing: -0.02em;
+
+       
+    }
         
     .questionLeftImg {
         position: absolute;
@@ -709,17 +706,17 @@ color: #ACB8C0;
 
     
     .questionMask {
-        padding: 19px 17px 17px;
-        overflow: hidden; 
-        border: none;
-        font-family: 'GothamProRegular';
-        font-style: normal;
-        font-weight: 400;
         font-size: 13px;
-line-height: 130%;
-        letter-spacing: -0.02em;
-        color: #ACB8C0;
-        background: #fff;
+        
+        height: 54px;
+    }
+
+    .questionPlaceMask {
+        top: 9px;
+    }
+
+    .questionMask::placeholder {
+        font-size: 13px;
     }
 /*     
     input::placeholder {

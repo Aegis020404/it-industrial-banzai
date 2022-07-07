@@ -114,12 +114,12 @@ const Footer = () => {
         {
             title: 'Разработка и развитие',
             titleClass: cl.footerCItitleD,
-            page: '/mobile-develop',
             info: [{link: 'Создание сайтов', class: cl.footerCIItemB}, {
                 link: 'Техническая поддержка сайтов',
                 class: cl.footerCIItemB
             }, {
                 link: 'Создание мобильного приложения',
+                page: '/mobile-develop',
                 class: cl.footerCIItemB
             }, {
                 link: 'Модернизация и поддержка приложений',

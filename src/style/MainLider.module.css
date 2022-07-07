@@ -115,6 +115,9 @@ border-radius: 10px;
 }
 
 @media (max-width:1200px) {
+    .lider {
+        min-height: 650px;
+    }
     .liderContent {
         display: grid;
         height: 100%;

@@ -192,7 +192,7 @@ pointer-events: all;
 .modalMask {
     margin-bottom: 32px;
     width: 100%;
-    padding: 24px 36px;
+   
 }
 
 .modalMask::-webkit-input-placeholder {
@@ -245,9 +245,8 @@ pointer-events: all;
 
 @media (max-width:992px) {
     .modalContent {
-      
-  
-        padding: 40px 30px;
+        max-width: 500px;
+        padding: 40px 45px;
        
     }
 
@@ -276,7 +275,7 @@ pointer-events: all;
         max-width: 350px;
         height: 50px !important;
         font-size: 12px !important;
-        padding: 26px 18px 17px !important;
+        padding: 25px 19px 15px  !important;
     }
     
     .modalMask {
@@ -286,7 +285,11 @@ pointer-events: all;
         min-height: 44px;
         height: 50px !important;
         max-width: 350px;
-        padding: 0 20px !important;
+       
+    }
+
+    .modalMaskPlace {
+        top: 6px;
     }
 
     .modalMask::-webkit-input-placeholder {
@@ -316,11 +319,7 @@ pointer-events: all;
         max-width: 350px;
     }
 
-    .modalPlace {
-        top: 17px !important;
-        left: 20px !important;
-        font-size: 12px;
-    }
+ 
 
     .modalTitle {
         font-family: 'GothamProMedium';

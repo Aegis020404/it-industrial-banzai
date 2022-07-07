@@ -6,6 +6,7 @@ import MyMask from "../UI/maskinput/MyMask";
 import MyModal from "../UI/modal/MyModal";
 import MyTextarea from "../UI/textarea/MyTextarea";
 import MyThxModal from "../UI/thxmodal/MyThxModal";
+import MyViewElement from "../UI/viewelement/MyViewElement";
 
 
 const MainQuestion = ()=>{
@@ -33,10 +34,16 @@ const MainQuestion = ()=>{
             <div className={cl.questionRightImg}></div>
             <div className={['container', cl.container].join` `}>
                 <div className={cl.questionContent}>
+                    <MyViewElement element={
                     <h2 className={cl.questionTitle}>У вас остались вопросы?</h2>
+                        
+                    }/>
+                    <MyViewElement element={
                     <p className={cl.questionDescr}>
                         Если вы не нашли ответ на свой вопрос — свяжитесь с нами любым удобным способом и мы обязательно проконсультируем вас:
                     </p>
+                     }/>
+                     <MyViewElement element={
                     <form action="" id='question' className={cl.questionForm}>
                         <div className={cl.questionFormTop}>
                             <MyInput setInput={setModalInfo} input={modalInfo} valueInput={modalInfo.namePerson} place='Введите ваше имя' classesInput={cl.questionInput} classesPlace={cl.questionInputP}/>
@@ -49,6 +56,7 @@ const MainQuestion = ()=>{
                         <MyBtnFiled type='submit' form='question' classes={cl.questionBtn} onClick={e=>{addModalInfo(e)}}>ЗАДАТЬ ВОПРОС</MyBtnFiled>
                         
                     </form>
+                     }/>
                 </div>
             </div>
            

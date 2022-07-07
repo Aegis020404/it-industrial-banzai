@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 // import arrPrevRev from '../../../public/img/arrPrevRev.svg'
 // import arrNextRev from '../../../public/img/arrNextRev.svg'
 import cl from '../../style/MainReview.module.css'
+import MyViewElement from '../UI/viewelement/MyViewElement';
 
 const MainReview = () => {
     let state = [
@@ -65,8 +66,11 @@ const MainReview = () => {
     ]
     return (
         <section className={cl.MainReview}>
-            <p className={cl.title}>98% наших клиентов довольны результатом</p>
-            <div className={cl.container}>
+            <MyViewElement element={
+                <p className={cl.title}>98% наших клиентов довольны результатом</p>
+            }/>
+            <MyViewElement element={
+                <div className={cl.container}>
                 <div className={`arrPrevRev ${cl.arrPrevWrap}`}>
                     <span className={cl.arrPrev}></span>
                 </div>
@@ -103,6 +107,8 @@ const MainReview = () => {
                     <span className={cl.arrNext}></span>
                 </div>
             </div>
+            }/>
+             <MyViewElement element={
             <div className={cl.containerM}>
                 <Swiper
                     navigation={{
@@ -138,8 +144,9 @@ const MainReview = () => {
                     </div>
                 </div>
             </div>
+             }/>
             <div className={`paginationRev ${cl.pagination}`}> </div>
-
+           
         </section>
     );
 };

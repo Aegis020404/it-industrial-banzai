@@ -7,6 +7,7 @@ import MyInput from '../UI/input/MyInput';
 import MyBtnBlank from '../UI/buttonborder/MyBtnBlank';
 import MyBtnFiled from '../UI/buttonback/MyBtnFiled';
 import MyThxModal from '../UI/thxmodal/MyThxModal';
+import MyViewElement from '../UI/viewelement/MyViewElement';
 
 const MainQuiz = ()=>{
 
@@ -132,11 +133,14 @@ const MainQuiz = ()=>{
         <section className={cl.quizSection}>
             <div className="container" ref={mainQuiz}>
                 <div className={cl.quizSectionBlock} ref={mainQuiz}>
-                    <div className={cl.quizHeading}>
-                        <h2 className={cl.quizTitle}>Рассчитать стоимость вашего сайта?</h2>
-                        <p className={cl.quizDescr}>Ответьте на 4 вопроса, и получите расчет стоимости в 2-х вариантах бюджета</p>
-                    </div>
-                    <div className={cl.quizPagination}>
+                    <MyViewElement element={
+                        <div className={cl.quizHeading}>
+                            <h2 className={cl.quizTitle}>Рассчитать стоимость вашего сайта?</h2>
+                            <p className={cl.quizDescr}>Ответьте на 4 вопроса, и получите расчет стоимости в 2-х вариантах бюджета</p>
+                        </div>
+                    }/>
+                    <MyViewElement element={
+                        <div className={cl.quizPagination}>
                         <ul className={cl.quizPLisy}>
                             <li className={cl.quizPItem}>
                                 <div className={cl.quizPBlock} >
@@ -193,17 +197,27 @@ const MainQuiz = ()=>{
                             </li>
                         </ul>
                     </div>
-                    <div  className={cl.quizTabs} ref={firstSection}>
-                        <h3 className={cl.quizSectionTitle}>Какой сайт вам нужен?</h3>
-                        <ul className={cl.quizSectionListFour}>
-                            {itemChekArr[0].map((e,i,arr) => {
-                                return (<MainQItem subtitle={e.subtitle} price={e.price} arrItems={arrItems} setArrItems={setArrItems} name={e.name} count={1} setQuizItems={setQuizItems} quizItems={quizItems} key={e.subtitle} countArr={i+1} />)
-                            })}
-                        </ul>
-                        <div className={cl.quizBtnBlock}>
-                            <MyBtnBlank classes={cl.quizSectionBtnNext} onClick={e=>changePageAndPagination(e,2)} id='n-1'>Далее</MyBtnBlank>
-                        </div>
-                    </div>
+                    }/>
+                    <MyViewElement element={
+                         <div  className={cl.quizTabs} ref={firstSection}>
+                    
+                         <h3 className={cl.quizSectionTitle}>Какой сайт вам нужен?</h3>
+                     
+                     
+                         <ul className={cl.quizSectionListFour}>
+                             {itemChekArr[0].map((e,i,arr) => {
+                                 return (<MainQItem subtitle={e.subtitle} price={e.price} arrItems={arrItems} setArrItems={setArrItems} name={e.name} count={1} setQuizItems={setQuizItems} quizItems={quizItems} key={e.subtitle} countArr={i+1} />)
+                             })}
+                         </ul>
+                     
+                    
+                          <div className={cl.quizBtnBlock}>
+                             <MyBtnBlank classes={cl.quizSectionBtnNext} onClick={e=>changePageAndPagination(e,2)} id='n-1'>Далее</MyBtnBlank>
+                         </div>
+                    
+                 </div>
+                    }/>
+                   
                     <div className={cl.quizTabs} ref={secondSection}>
                         <h3 className={cl.quizSectionTitle}>Какие задачи должен решать сайт?</h3>
                         <ul className={cl.quizSectionListFour}>

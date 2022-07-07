@@ -88,34 +88,15 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 130%;
+    border:1px solid #fff !important;
     letter-spacing: -0.02em;
     color: #607483;
 }
 
-.applicationPlace {
-   
-    top: 26px;
-}
-
-.applicationPlaceholder {
-    position: absolute;
-    /* left: 32px;
-    top: 12px; */
-    font-family: 'GothamProRegular';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 130%;
-    letter-spacing: -0.02em;
-    color: #83919B;
-}
-
 .applicationMask {
-    width: 100%;
-  
-    background: #FFFFFF;
+    background-color: #fff;
+    border:1px solid #fff !important;
 }
-
 .applicationBottomDescr {
     margin-bottom: 32px;
     max-width: 387px;
@@ -250,7 +231,7 @@
     .applicationInput {
         margin-bottom: 10px;
         width: 100%;
-        padding: 30px 32px 18px;
+      
         background: #FFFFFF;
         font-family: 'GothamProRegular';
         font-style: normal;
@@ -263,7 +244,7 @@
     
     .applicationPlaceholder {
         position: absolute;
-        left: 32px;
+       
         top: 12px;
         font-family: 'GothamProRegular';
         font-style: normal;
@@ -276,7 +257,7 @@
     
     .applicationMask {
         width: 100%;
-        padding: 24px 32px;
+      
         background: #FFFFFF;
     }
     
@@ -333,7 +314,7 @@
 
     
     .applicationPlace {
-        left: 30px;
+      
         top: 20px;
     }
 
@@ -410,38 +391,17 @@
         position: relative;
     }
     
-    .applicationInput {
-        margin-bottom: 10px;
-        width: 100%;
-        padding: 20px 30px 14px;
-        background: #FFFFFF;
-        font-family: 'GothamProRegular';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 130%;
-        letter-spacing: -0.02em;
-        color: #607483;
+  
+    .applicationMask:focus, .applicationMask:valid:required  {
+        padding: 32px 18px 16px !important;
+    }
+
+    .applicationPlaceM {
+        top: 9px;
     }
     
-    .applicationPlaceholder {
-        position: absolute;
-        left: 25px;
-        top: 7px;
-        font-family: 'GothamProRegular';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 10px;
-        line-height: 130%;
-        letter-spacing: -0.02em;
-        color: #83919B;
-    }
-    
-    .applicationMask {
-        width: 100%;
-        padding: 18px 25px;
-        font-size: 14px;
-        background: #FFFFFF;
+    .applicationInput, .applicationMask {
+      height: 60px;
     }
 
     .applicationMask::placeholder {
@@ -504,6 +464,10 @@
         margin: 0 auto 25px;
     }
 
+    .applicationInput, .applicationMask {
+        height: 60px;
+    }
+
     .applicationBottomDescr {
         display: inline-block;
         width: 100%;
@@ -546,6 +510,9 @@
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
+    }
+    .applicationMask:focus, .applicationMask:valid:required  {
+        padding: 31px 18px 17px !important;
     }
 
     .applicationLeftBlock {
@@ -685,6 +652,7 @@
         left: 19px;
     }
 
+
     .applicationMask::placeholder {
         font-size: 12px;
         line-height: 130%;
@@ -749,6 +717,26 @@
         background-repeat: no-repeat;
     }
 
+    .applicationInput, .applicationMask {
+        height: 54px;
+      } 
 
+      
+      .applicationInput:valid:required ~  .applicationPlace,
+      .applicationInput:focus ~ .applicationPlace {
+          -webkit-transform: translateY(-9.5px);
+              -ms-transform: translateY(-9.5px);
+                  transform: translateY(-9.5px);
+          font-family: 'GothamProRegular';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 9px ;
+          line-height: 130%;
+          /* o8.5r 13px */
+  
+          letter-spacing: -0.02em;
+  
+         
+      }
 
 }

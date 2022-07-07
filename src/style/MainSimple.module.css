@@ -23,6 +23,9 @@
     gap: 20px ;
     margin-bottom: 30px;
 }
+.pag {
+    display: flex;justify-content: center;align-items: center;
+}
 
 .simpleTitle {
     margin-bottom: 63px;

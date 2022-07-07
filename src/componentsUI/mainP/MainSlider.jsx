@@ -43,8 +43,10 @@ const Slider = (props) => {
             },
                 autoplay: {
                     delay: 2500,
+                   
                     disableOnInteraction: false,
                 },
+                speed: 600,
             autoHeight: true,
             slidesPerView: 1,
             spaceBetween: 10,

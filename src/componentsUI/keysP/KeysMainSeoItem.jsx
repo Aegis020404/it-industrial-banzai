@@ -3,6 +3,7 @@ import cl from '../../style/KeysMainSeo.module.css';
 import {togglePhoto} from "../../../redux/keysMainSeo-redux";
 import KeysMainSeoInput from './KeysMainSeoInput';
 import mediumZoom from 'medium-zoom';
+import MyViewElement from '../UI/viewelement/MyViewElement';
 
 
 const KeysMainSeoItem = ({nameCompany, linkCompany, beenTopTen, becameTopTen, beenTraffic, becameTraffic, schedule, index,scheduleSet})=>{
@@ -33,11 +34,12 @@ const KeysMainSeoItem = ({nameCompany, linkCompany, beenTopTen, becameTopTen, be
     }
 
     return (
-        <li className={cl.seoItem}>
+        <MyViewElement element={
+            <li className={cl.seoItem}>
             <div className={cl.seoItemBlock}>
                 <div className={cl.seoLeftBlock}>
                     <h3 className={cl.seoItemTitle}>Продвижение «{nameCompany}»</h3>
-                    <a className={cl.seoItemLink} target='_blank' href={linkCompany}>{linkCompany}</a>
+                    <a className={cl.seoItemLink} target='_blank' href={'https://' + linkCompany}>{linkCompany}</a>
                     <div className={cl.seoChangeBlock}>
                         <div className={cl.seoChangeTop}>
                             <p className={cl.seoChangeTopTitle}>Было:</p>
@@ -122,6 +124,8 @@ const KeysMainSeoItem = ({nameCompany, linkCompany, beenTopTen, becameTopTen, be
                 </div>
             </div>
         </li>
+        }/>
+        
     )
 }
 

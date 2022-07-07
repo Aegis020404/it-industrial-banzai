@@ -123,8 +123,18 @@
 
 .keysILeft, .keysIRight {
     max-width: 560px;
+    cursor: pointer;
+}
+.keysIContentF {
+    cursor: pointer;
+}
+.img {
+    transition: all .35s ease-in-out;
 }
 
+.img:hover {
+    filter: blur(4px);
+}
 .keysImgItemTopBlock {
     margin: 0 auto;
     height: 100%;
@@ -202,6 +212,10 @@
         grid-template-rows: repeat(3, auto);
         gap: 80px;
         padding: 0;
+    }
+
+    .ekoM {
+        border-radius: 10px;
     }
 
     

@@ -4,13 +4,15 @@ import MainKItem from './MainKItem';
 import MyBtnBlank from '../UI/buttonborder/MyBtnBlank';
 
 import Link from 'next/link';
+import MyViewElement from '../UI/viewelement/MyViewElement';
 
 const MainKeys = () => {
 
     const itemInfo = [{
         count: 2,
+        
         info: [{
-            href: '/строй-мат',
+            href: '/stroy-mat',
             descr: 'Интернет-магазин «Строймат»',
             classes: cl.imgPhone,
             img: 'orange-phone-block.jpg',
@@ -24,6 +26,7 @@ const MainKeys = () => {
         }]
     }, {
         count: 1,
+
         info: [{
             href: '/llumar',
             descr: 'Сайт компании «Llumar»',
@@ -33,8 +36,9 @@ const MainKeys = () => {
         }]
     }, {
         count: 2,
+       
         info: [{
-            href: '/ec-vtor',
+            href: '/ecovtor',
             descr: 'Разработка сайта компании «Эковтор»',
             classes: cl.imgEva,
             img: ['logo-evo.svg', 'female-sort.png', 'eko-mobile.jpg'],
@@ -52,21 +56,29 @@ const MainKeys = () => {
         <section className={cl.keys}>
             <div className="container">
                 <div className={cl.keysContent}>
-                    <h2 className={cl.keysTitle}>Наши кейсы</h2>
+                    <MyViewElement element={
+                         <h2 className={cl.keysTitle}>Наши кейсы</h2>
+                    }/>
+                     <MyViewElement element={
                     <p className={cl.keysDescr}>В каждом проекты мы разрабатываем и внедряем новые решения</p>
+                    }/>
                     <div className={cl.keysListBlock}>
                         <ul className={cl.keysList}>
                             {itemInfo.map((e, i) =>
-                            <MainKItem count={e.count} infoArr={e.info} key={i}/>
+                           
+                                <MainKItem count={e.count} infoArr={e.info} key={i}/>
+                           
+                                
                             )}
                         </ul>
                     </div>
+                    <MyViewElement element={
                     <Link href='/keys'>
                         <a onClick={e => {document.body.scrollTo({top: 0, behavior: 'smooth'})}}> 
                             <MyBtnBlank classes={cl.keysBtn}>все кейсы</MyBtnBlank>
                         </a>
                     </Link>
-
+                    }/>
                 </div>
             </div>
         </section>

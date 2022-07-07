@@ -4,6 +4,7 @@ import {Navigation, Pagination} from "swiper";
 
 import cl from '../../style/MainDev.module.css'
 import { useDispatch, useSelector } from 'react-redux';
+import MyViewElement from '../UI/viewelement/MyViewElement';
 
 
 
@@ -14,9 +15,12 @@ const MainDev = (props) => {
     const infoData = MainDevPage.turnkeyWebsite
     return (<section className={cl.MainDev}>
             <div className={["container", cl.container].join` `}>
-                <h1 className={cl.text}>Процесс разработки сайта под ключ</h1>
-
-                <Swiper
+                <MyViewElement element={
+                    <h1 className={cl.text}>Процесс разработки сайта под ключ</h1>
+                }/>
+                
+                <MyViewElement  element={
+                    <Swiper
                     navigation={{
                         prevEl: '.arrPrev', nextEl: '.arrNext',
                     }}
@@ -115,6 +119,8 @@ const MainDev = (props) => {
                             </SwiperSlide>)
                     })}
                 </Swiper>
+                }/>
+                
             </div>
 
         </section>)

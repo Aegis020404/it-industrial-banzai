@@ -10,6 +10,7 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import MyThxModal from '../UI/thxmodal/MyThxModal';
 import {selectBtn} from "../../../redux/mainOffer-redux";
 import {useDispatch, useSelector} from 'react-redux';
+import MyViewElement from '../UI/viewelement/MyViewElement';
 
 const MainOffer = (props) => {
     const [btnActive, setBtnActive] = useState('')
@@ -52,65 +53,84 @@ const MainOffer = (props) => {
                 <div className={cl.wrapper}>
                     <span className={cl.mailRight}/>
                     <span className={cl.mailLeft}/>
-                    <p className={cl.title}>Получить коммерческое предложение</p>
-                    <p className={cl.titleText}>Заполните форму сейчас и наш специалист свяжется с вами для консультации
+                    <MyViewElement element={
+                        <p className={cl.title}>Получить коммерческое предложение</p>
+                    }/>
+                    <MyViewElement element={
+                        <p className={cl.titleText}>Заполните форму сейчас и наш специалист свяжется с вами для консультации
                         и составит ваше персональное предложение. Вы получите более точное КП, если укажете полную
                         информацию о проекте.</p>
-                    <div className={cl.btnsM}>
-                        <Swiper
-                            slidesPerView={"auto"}
-                            spaceBetween={10}
-                            className={cl.mySwiper}>
+                    }/>
+                    <MyViewElement element={
+                        <div className={cl.btnsM}>
+                            <Swiper
+                                slidesPerView={"auto"}
+                                spaceBetween={10}
+                                className={cl.mySwiper}>
 
+                                {infoData.map((el, i) => (
+                                    <SwiperSlide className={cl.swipeSl} key={i}>
+                                        <button className={el.selected ? `${cl.btn} ${cl.btnSelected}` : cl.btn}  my_key={i}
+                                                onClick={e => {
+                                                    dispatch(selectBtn(e.target.getAttribute('my_key')))
+                                                    // e.preventDefault();
+                                                }}>{el.textS}
+                                        </button>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                        </div>
+                    }/>
+                    <MyViewElement element={
+                         <div className={cl.btns}>
                             {infoData.map((el, i) => (
-                                <SwiperSlide className={cl.swipeSl} key={i}>
-                                    <button className={el.selected ? `${cl.btn} ${cl.btnSelected}` : cl.btn}  my_key={i}
-                                            onClick={e => {
-                                                dispatch(selectBtn(e.target.getAttribute('my_key')))
-                                                // e.preventDefault();
-                                            }}>{el.textS}
-                                    </button>
-                                </SwiperSlide>
+                                <button className={el.selected ? `${cl.btn} ${cl.btnSelected}` : cl.btn} key={i} my_key={i}
+                                        onClick={(e,i) => {
+                                            dispatch(selectBtn(e.target.getAttribute('my_key')))
+                                            // e.preventDefault();
+                                        }}>{el.text}
+                                </button>
                             ))}
-                        </Swiper>
-                    </div>
-                    <div className={cl.btns}>
-                        {infoData.map((el, i) => (
-                            <button className={el.selected ? `${cl.btn} ${cl.btnSelected}` : cl.btn} key={i} my_key={i}
-                                    onClick={(e,i) => {
-                                        dispatch(selectBtn(e.target.getAttribute('my_key')))
-                                        // e.preventDefault();
-                                    }}>{el.text}
-                            </button>
-                        ))}
-                    </div>
-
-                    <div className={cl.prices}>
+                        </div>
+                    }/>
+                    
+                   
+                    <MyViewElement element={
+                        <div className={cl.prices}>
                         <p className={cl.titlePrices}>Бюджет проекта</p>
                         <p className={cl.titlePricesText}>Укажите примерную сумму, которую плнируете потратить на
                             реализацию проекта</p>
                         <Ranger setTo={setPriseTo} priceTo={priceTo} priceFrom={priceFrom} setFrom={setPriseFrom}/>
                     </div>
+                    }/>
+                    
 
                     <div className={cl.contacts}>
                         <form id='offer' action="">
-                            <p className={cl.titleContacts}>Контакты</p>
-                            <div className={cl.contactsBtn}>
-                                <div className={cl.itemBlock}>
-                                    <MyInput classesInput={cl.input} valueInput={modalInfo.namePerson}
-                                             setInput={setModalInfo} input={modalInfo} classesPlace={cl.modalPlace}
-                                             place='Введите ваше имя'/>
+                            <MyViewElement element={
+                                <p className={cl.titleContacts}>Контакты</p>
+                            }/>
+                            <MyViewElement element={
+                                <div className={cl.contactsBtn}>
+                                    <div className={cl.itemBlock}>
+                                        <MyInput classesInput={cl.input} valueInput={modalInfo.namePerson}
+                                                setInput={setModalInfo} input={modalInfo} classesPlace={cl.modalPlace}
+                                                place='Введите ваше имя'/>
+                                    </div>
+                                    <div className={cl.itemBlock}>
+                                        <MyMask classesItem={[cl.input, cl.modalMask, cl.mask].join` `}
+                                                value={modalInfo.tel}
+                                                onChange={e => setModalInfo({...modalInfo, tel: e.target.value})}/>
+                                    </div>
                                 </div>
-                                <div className={cl.itemBlock}>
-                                    <MyMask classesItem={[cl.input, cl.modalMask, cl.mask].join` `}
-                                            value={modalInfo.tel}
-                                            onChange={e => setModalInfo({...modalInfo, tel: e.target.value})}/>
-                                </div>
-                            </div>
-                            <p className={cl.agreement}>Нажимая на кнопку, вы даете согласие на обработку ваших
+                            }/>
+                            <MyViewElement element={
+                                <p className={cl.agreement}>Нажимая на кнопку, вы даете согласие на обработку ваших
                                 персональных
                                 данных</p>
-                            <div className={cl.requestWrap}>
+                            }/>
+                            <MyViewElement element={
+                                <div className={cl.requestWrap}>
                                 <MyBtnFiled type='submit' form='offer' children={'получить консультацию'}
                                             onClick={e => addModalInfo(e)}
                                             classes={cl.request}/>
@@ -118,6 +138,8 @@ const MainOffer = (props) => {
                                             onClick={e => addModalInfo(e)}
                                             classes={cl.requestM}/>
                             </div>
+                            }/>
+                            
                         </form>
                     </div>
                 </div>

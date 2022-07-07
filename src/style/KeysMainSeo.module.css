@@ -166,6 +166,8 @@
     color: #25495C;
 }
 
+.seoGraphBottom {}
+
 .seoChangeBottomCount {
     color: #7BA562;
 }
@@ -407,7 +409,7 @@ opacity: 0.6;
     font-size: 11px;
     line-height: 150%;
     /* or 16px */
-
+margin-bottom: 6px;
     text-align: center;
     letter-spacing: -0.02em;
     text-transform: uppercase;

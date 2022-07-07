@@ -79,15 +79,15 @@
     
 .inputPlace {
     position: absolute;
-    left: 37px;
-    top: 26px;
+  
+    
     font-family: 'GothamProRegular';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 130%;
     letter-spacing: -0.02em;
-    color: #607483;
+   
     pointer-events: none;
     -webkit-transition: all .35s ease-in-out;
     -o-transition: all .35s ease-in-out;
@@ -97,15 +97,15 @@
 @media (max-width:768px) {
     .inputPlace {
         position: absolute;
-        left: 35px;
-        top: 26px;
+       
+      
         font-family: 'GothamProRegular';
         font-style: normal;
         font-weight: 400;
         font-size: 13px;
         line-height: 130%;
         letter-spacing: -0.02em;
-        color: #607483;
+      
         pointer-events: none;
         -webkit-transition: all .35s ease-in-out;
         -o-transition: all .35s ease-in-out;
@@ -137,8 +137,8 @@
     }
         .inputPlace {
         position: absolute;
-        left: 17px ;
-        top: 19px ;
+        left: 18px ;
+        top: 16px ;
         font-family: 'GothamProRegular';
         font-style: normal;
         font-weight: 400;
@@ -160,12 +160,12 @@
         font-family: 'GothamProRegular';
         font-style: normal;
         font-weight: 400;
-        font-size: 8px ;
+        font-size: 9px ;
         line-height: 130%;
         /* or 13px */
 
         letter-spacing: -0.02em;
 
-        color: #607483;
+       
     }
 }
