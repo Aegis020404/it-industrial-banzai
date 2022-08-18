@@ -13,6 +13,51 @@
     color: #25495C;
 }
 
+.imgBlock {
+    position: absolute;
+    left: 0;right: 0;top: 0;bottom: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 5px;
+    z-index: 10;
+    width: 120px;
+}
+.changeItemBtn {
+    right: 0;
+    left: auto;
+}
+
+.drop, .drag {
+    margin-top: 40px;
+    height: 50px;
+    max-width: 120px;
+    margin-bottom: 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;justify-content: center;
+    font-size: 14px;
+    font-family: 'GothamProRegular';
+    font-style: normal;
+    font-weight: 400;
+    border: 3px solid var(--pink-color);
+    border-radius: 3px;
+    transition: all;
+    color: #989898;
+}
+
+.drop {
+    border: 3px dashed var(--pink-color);
+}
+
+
+.serviceList {
+    position:relative;
+}
 .serviceDescr {
     margin: 0 auto 50px;
     max-width: 945px;
@@ -27,6 +72,12 @@
     letter-spacing: -0.02em;
 
     color: #607483;
+}
+
+.serviceImg img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
 }
 
 .serviceList {
@@ -96,6 +147,7 @@
         border-radius: 5px;
     }
     .serviceList {
+
         column-gap: 15px;
         row-gap: 25px;
     }

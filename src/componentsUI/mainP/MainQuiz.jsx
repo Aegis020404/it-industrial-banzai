@@ -8,12 +8,17 @@ import MyBtnBlank from '../UI/buttonborder/MyBtnBlank';
 import MyBtnFiled from '../UI/buttonback/MyBtnFiled';
 import MyThxModal from '../UI/thxmodal/MyThxModal';
 import MyViewElement from '../UI/viewelement/MyViewElement';
-
+import MyAdminInput from '../UI/admininput/MyAdminInput';
+import { useDispatch, useSelector } from 'react-redux';
+import MyAddElement from '../UI/adminaddel/MyAddElement';
 const MainQuiz = ()=>{
 
     const [modalInfo, setModalInfo] = useState({namePerson: '', tel: '', theme: '', task: '', oldSite: '', text: '', totalPrice: 0})
     const [pricesInfo, setPricesInfo] = useState({theme:0,task: 0,oldSite: 0,text: 0});
     let forServerInfo = {}
+    const dispatch = useDispatch()
+    const AdminTexts = useSelector(state=>state.AdminTexts)
+    
 
     const addModalInfo = (e)=>{
         e.preventDefault();
@@ -127,16 +132,37 @@ const MainQuiz = ()=>{
         setModalInfo({...modalInfo, totalPrice:  totalPrice.reduce((e,ac)=> e + ac, 0).toString().split``.map((e,i,arr)=>(~~(arr.length/2)-1==i?`${e} `:e))})
        
     }
-    
+    const [quizChangeInfo, setQuizChangeInfo] = useState({title: {width:0,height: 0}, descr: {width:0,height:0}}) 
+    const titleQuiz = useRef('')
+    const descrQuiz = useRef('')
+    const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
 
+    useEffect(()=>{
+        dispatch({type: 'CHANGE_QUIZ_TITLE', info: ''})
+    },[titleQuiz])
     return (
         <section className={cl.quizSection}>
-            <div className="container" ref={mainQuiz}>
+           
+            <div className={["container", cl.cont].join` `} ref={mainQuiz}>
+                {isAdmin ? <MyAddElement /> : '' }
                 <div className={cl.quizSectionBlock} ref={mainQuiz}>
                     <MyViewElement element={
                         <div className={cl.quizHeading}>
-                            <h2 className={cl.quizTitle}>Рассчитать стоимость вашего сайта?</h2>
-                            <p className={cl.quizDescr}>Ответьте на 4 вопроса, и получите расчет стоимости в 2-х вариантах бюджета</p>
+                            {isAdmin ? 
+                                <MyAdminInput typeAction={'TITLE_QUIZ_INFO'} width={quizChangeInfo.title.width} height={quizChangeInfo.title.height}>
+                                    <h2 ref={titleQuiz}  className={cl.quizTitle} onClick={e=> setQuizChangeInfo({...quizChangeInfo, title: {width:titleQuiz.current.offsetWidth,height:titleQuiz.current.offsetHeight}}) }>{AdminTexts.mainQuiz.title}</h2>
+                                </MyAdminInput> 
+                            :
+                                <h2 ref={titleQuiz}  className={cl.quizTitle} >{AdminTexts.mainQuiz.title}</h2>
+                            
+                            }
+                            {isAdmin ? 
+                                <MyAdminInput typeAction={'DESCR_QUIZ_INFO'} width={quizChangeInfo.descr.width} height={quizChangeInfo.descr.height}>
+                                    <p ref={descrQuiz} className={cl.quizDescr} onClick={e=> setQuizChangeInfo({...quizChangeInfo, descr: {width:descrQuiz.current.offsetWidth,height:descrQuiz.current.offsetHeight}}) }>{AdminTexts.mainQuiz.descr}</p>
+                                </MyAdminInput>
+                            :
+                                <p ref={descrQuiz} className={cl.quizDescr} >{AdminTexts.mainQuiz.descr}</p>
+                            }
                         </div>
                     }/>
                     <MyViewElement element={

@@ -27,7 +27,7 @@ const SeoPage =()=>{
         <>
             <Container>
             <main ref={seoI} className='seo'>
-                <MobileHero column='seo'/>
+                <MobileHero column='seo' actionTitle={'TITLE_SEO_HERO_CHANGE'} actionDescr={'DESCR_SEO_HERO_CHANGE'}/>
                 <div className='seo-page-t'>
                    <SeoTariff/>
                 </div>

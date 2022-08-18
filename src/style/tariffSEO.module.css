@@ -8,6 +8,64 @@
     color: #4C6A3A;
 }
 
+.changeItem {
+    display: inline-block;
+    position: absolute;
+    right: 0;bottom: 0;
+    padding: 5 10px;
+    font-size: 12px;
+    color: #ACACAC;
+    font-family: 'GothamProMedium';
+    font-style: normal;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+.changeModal {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    right: 0;
+    height: 100%;
+    min-height: 400px;
+    width:100%;
+    padding: 30px 20px;
+    transition: all .35s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+    background-color: #fff;
+}
+
+.labelColor {
+    font-size: 16px;
+    font-family: 'GothamProMedium';
+    font-style: normal;
+    font-weight: 500;
+    color: #ACACAC;
+}
+
+.contetnModal {
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.contetnModal button {
+    height: 40px;
+    width: 100%;
+    display: flex;align-items: center;
+    justify-content: center;
+}
+
+.activeModal {
+    opacity: 1;
+    pointer-events: all;
+}
 .blue {
     background: #4280F810;
     color: #3952AB;
@@ -67,6 +125,7 @@
 }
 
 .swiperSl {
+    position: relative;
     background: #FFFFFF;
     box-shadow: 0px 14px 24px rgba(207, 201, 201, 0.25) !important;
     border-radius: 5px;
@@ -127,12 +186,20 @@
     /*margin-bottom: 46px;*/
 }
 
-.listTitle {
+.listItem {
     align-items: baseline;
     margin-bottom: 13px;
     display: flex;
     text-align: left;
     /*align-items: center;*/
+   
+}
+
+.listItem:last-child {
+    margin: 0;
+}
+
+.listTitle {
     font-family: 'GothamProLight';
     font-style: normal;
     font-weight: 400;
@@ -140,10 +207,6 @@
     line-height: 130%;
     letter-spacing: -0.02em;
     color: #607483;
-}
-
-.listTitle:last-child {
-    margin: 0;
 }
 
 .circle {
@@ -279,8 +342,11 @@
         margin-right: 10px;
         margin-top: 3px;
     }
-    .listTitle {
+    .listItem {
         align-items: start;
+      
+    }
+    .listTitle {
         font-size: 12px;
         margin-bottom: 7px;
         margin-right: 13px;

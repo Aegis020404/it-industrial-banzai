@@ -1,73 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import cl from '../../style/MainResult.module.css'
+import MyAdminInput from "../UI/admininput/MyAdminInput";
 import MyViewElement from "../UI/viewelement/MyViewElement";
-
+import { useSelector } from "react-redux";
+import MyAddElement from '../UI/adminaddel/MyAddElement';
+import MyDeleteElement from '../UI/admindelel/MyDeleteElement';
+import MainResultItem from "./MainResultItem";
 const MainResult = ()=>{
+    const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
+    const adminTexts = useSelector(state=>state.AdminTexts)
+    const dataRes = useSelector(state=>state.MainRes)
+    const [resInfo, setResinfo]=useState({title: {width:0,height:0}, itemTitle: {width:0,height:0}, itemDescr: {width:0,height:0}})
     return (
         <section className={cl.resultSection}>
             <div className="container">
                 <div className={cl.resultContent}>
                     <MyViewElement element={
                         <div className={cl.resultTitleBlock}>
-                            <h2 className={cl.resultTitle}>Мы&nbsp;не&nbsp;работаем по&nbsp;шаблонам, а&nbsp;работаем на&nbsp;результа</h2>
+                            {isAdmin ? 
+                                <MyAdminInput width={resInfo.title.width} height={resInfo.title.height} typeAction={'TITLE_RES_INFO'}>
+                                    <h2 className={cl.resultTitle} onClick={e=>setResinfo({...resInfo, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{adminTexts.mainRes.title}</h2>
+                                </MyAdminInput>
+                            :   
+                                <h2 className={cl.resultTitle}>{adminTexts.mainRes.title}</h2>
+                            }
+                            
                         </div>
                     }/>
                      <MyViewElement element={
                         <div className={cl.resultListBlock}>
                         <ul className={cl.resultList}>
-                        <li className={cl.resultItem}>
-                            <MyViewElement element={
-                                <div className={cl.resultImgBlock}>
-                                    <span className={[cl.resultImg, cl.calendarImg].join` `}></span>
-                                </div>
-                            }/>
-                            <MyViewElement element={
-                                <h3 className={cl.resultItemTitle}>Называем реальные сроки истоимость</h3>
-                            }/>
-                             <MyViewElement element={
-                                <p className={cl.resultItemDescr}>Которые прописаны в&nbsp;договоре и&nbsp;не&nbsp;меняются в&nbsp;процессе работ</p>
-                            }/>
-                            
-                        </li>
-                        <li className={cl.resultItem}>
-                        <MyViewElement element={
-                            <div className={cl.resultImgBlock}>
-                                <span className={[cl.resultImg, cl.contractImg].join` `}></span>
-                            </div>
-                            }/>
-                            <MyViewElement element={
-                            <h3 className={cl.resultItemTitle}>Делаем только&nbsp;то, что вам выгодно</h3>
-                            }/>
-                            <MyViewElement element={
-                            <p className={cl.resultItemDescr}>Не&nbsp;навязываем дополнительные услуги, не&nbsp;имитируем бурную деятельность</p>
-                            }/>
-                        </li>
-                        <li className={cl.resultItem}>
-                            <MyViewElement element={
-                            <div className={cl.resultImgBlock}>
-                                <span className={[cl.resultImg, cl.searchImg].join` `}></span>
-                            </div>
-                            }/>
-                            <MyViewElement element={
-                            <h3 className={cl.resultItemTitle}>Тестируем и&nbsp;дорабатываем</h3>
-                        }/>
-                            <MyViewElement element={
-                            <p className={cl.resultItemDescr}>После создания сайта следим за&nbsp;рекламной кампанией. Если нужно&mdash; дорабатываем лэндинг или переписываем объявления</p>
-                        }/>
-                        </li>
-                        <li className={cl.resultItem}>
-                            <MyViewElement element={
-                            <div className={cl.resultImgBlock}>
-                                <span className={[cl.resultImg, cl.gearsImg].join` `}></span>
-                            </div>
-                            }/>
-                            <MyViewElement element={
-                            <h3 className={cl.resultItemTitle}>Не&nbsp;навязываем технологиии</h3>
-                            }/>
-                            <MyViewElement element={
-                            <p className={cl.resultItemDescr}>Работаем c&nbsp;разными CMS, на&nbsp;которых можно реализовать любые решения для клиента</p>
-                            }/>
-                        </li>
+                        {isAdmin ? <MyAddElement typeAction={'ADD_RES_ELEMENT'}/> : ''}
+                            {dataRes.map((e,i)=>
+                               <MainResultItem infoObj={e}/>
+                            )}
                         </ul>
                     </div>    
                     }/>

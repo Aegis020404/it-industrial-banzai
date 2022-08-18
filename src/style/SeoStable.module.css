@@ -3,6 +3,13 @@
     background: rgba(217, 189, 194, 0.06);
 }
 
+.stableItem {
+    position: relative;
+}
+.stableListBlock {
+    position: relative;
+}
+
 .stableTitle {
     margin-bottom: 77px;
     font-family: 'GothamProMedium';

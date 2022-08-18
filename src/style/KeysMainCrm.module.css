@@ -1,6 +1,12 @@
 .crmBlock {
+    position: relative;
     transition: all .35s ease-in-out;
     padding-bottom: 110px;
+}
+
+.crmlogo {
+    width: 80px;
+    height: 44px;
 }
 
 .crmList {
@@ -19,5 +25,9 @@
     .crmLlumarImg img {
         width: 270px;
         height: 200px;
+    }
+    .crmlogo {
+        width: 50px;
+        height: 34px;
     }
 }

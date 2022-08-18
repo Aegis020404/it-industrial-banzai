@@ -6,21 +6,29 @@ import MyMask from "../UI/maskinput/MyMask";
 import MyInput from "../UI/input/MyInput";
 import MainOItem from "./MainOItem";
 import ContactsService from "../../API/ContactsService";
-
+import { useSelector } from "react-redux";
 // import {Swiper, SwiperSlide} from "swiper/react";
 import Swiper from "swiper";
+
+import {useDropzone} from 'react-dropzone'
 
 import MainTItem from "./MainTItem";
 import {Pagination} from "swiper";
 import MyThxModal from "../UI/thxmodal/MyThxModal";
 import MyViewElement from "../UI/viewelement/MyViewElement";
-
+import MyAdminInput from "../UI/admininput/MyAdminInput";
+import MyAddElement from '../UI/adminaddel/MyAddElement';
+import MyDeleteElement from '../UI/admindelel/MyDeleteElement';
 
 const MainOther = () => {
-
+    const isAdmin = useSelector(state=>state.AdminKey)
+    const {AdminTexts} = useSelector(state=>state)
+    const otherData = useSelector(state=>state.MainOther)
     const [modalInfo, setModalInfo] = useState({namePerson: '', tel: ''})
-
+    const [otherInfo, setOtherInfo] = useState({titleLeft: {width:0, height:0}, titleRight: {width:0, height:0}, descr: {width:0, height: 0}})
     let forServerInfo = {}
+
+
 
     const addModalInfoItem = (e) => {
         e.preventDefault();
@@ -49,12 +57,6 @@ const MainOther = () => {
     const [thxModal, setThxModal] = useState(false)
 
     const [modalItem, setModalItem] = useState(false)
-
-    const infoItem = [{title: 'SEO-продвижение', img: 'circle-cubs.png'},
-        {title: 'SMM', img: 'circle-phone.png'},
-        {title: 'Аналитика сайта', img: 'circle-mac.png'},
-        {title: 'Аудит сайта', img: 'circle-contract.png'}]
-
 
     React.useEffect(() => {
         let swiper = null;
@@ -107,21 +109,36 @@ const MainOther = () => {
         <section className={cl.other}>
             <div className={cl.allOtherContent}>
                 <div className={cl.overlay}/>
-                <div className={cl.container}>
+                <div className={[cl.container].join` `}>
                     <div className={cl.otherContent}>
+                    {isAdmin ? <MyAddElement typeAction={'OTHER_ADD_ITEM'}/>: ''}
                         <MyViewElement element={
-                             <h2 className={cl.otherTitle}>Другие услуги <span
-                             className={cl.otherTitleItem}>IT-INDUSTRIAL</span></h2>
+                            isAdmin ? 
+                               
+                                    <h2 className={cl.otherTitle} >
+                                        <MyAdminInput width={otherInfo.titleLeft.width} height={otherInfo.titleLeft.height} typeAction={'OTHER_TITLE_LEFT_CHANGE'}>
+                                            <span className={cl.otherTitleFirst} onClick={e=>setOtherInfo({...otherInfo, titleLeft: {width: e.target.offsetWidth, height: e.target.offsetHeight}})}>Другие услуги </span>
+                                        </MyAdminInput>
+                                        <MyAdminInput width={otherInfo.titleRight.width} height={otherInfo.titleRight.height} typeAction={'OTHER_TITLE_RIGHT_CHANGE'}>
+                                            <span className={cl.otherTitleItem} onClick={e=>setOtherInfo({...otherInfo, titleRight: {width: e.target.offsetWidth, height: e.target.offsetHeight}})}> IT-INDUSTRIAL</span>
+                                        </MyAdminInput>
+                                        
+                                    </h2>
+                               
+                            :
+                                <h2 className={cl.otherTitle}>Другие услуги <span className={cl.otherTitleItem}>IT-INDUSTRIAL</span></h2>
+                            
+                             
                         }/>
                        <MyViewElement element={
                         <div className={cl.otherListBlock}>
                             <div className={'swiper swiperM '}>
 
-
+                               
                                 <div className={'swiper-wrapper ' + cl.otherList}>
-                                    {infoItem.map((e, i) =>
+                                    {otherData.map((e, i) =>
                                         <div className={'swiper-slide ' + cl.swipeSl} key={i}>
-                                            <MainOItem title={e.title} img={e.img} setModalItem={setModalItem}
+                                            <MainOItem title={e.title} id={e.id} img={e.img} setModalItem={setModalItem}
                                                        key={e.title}/>
                                         </div>
                                     )}

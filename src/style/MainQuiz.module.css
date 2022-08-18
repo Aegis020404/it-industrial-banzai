@@ -4,6 +4,10 @@
 .quizSectionItem {
     cursor: pointer;
 }
+
+.cont {
+    position: relative;
+}
 .quizSection {
     padding-top: 144px;
     padding-bottom: 78px;
@@ -23,6 +27,8 @@
 }
 
 .quizTitle {
+    display: inline-block;
+    margin: 0 auto;
     margin-bottom: 25px;
     font-family: 'GothamProMedium';
     font-style: normal;

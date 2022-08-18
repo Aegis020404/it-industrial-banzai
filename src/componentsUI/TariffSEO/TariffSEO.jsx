@@ -4,14 +4,26 @@ import {Swiper, Pagination} from "swiper";
 import MyModal from "../UI/modal/MyModal";
 import MyThxModal from "../UI/thxmodal/MyThxModal";
 import MyBtnBlank from "../UI/buttonborder/MyBtnBlank";
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import MyViewElement from '../UI/viewelement/MyViewElement';
+
+import MyAdminInput from "../UI/admininput/MyAdminInput";
+import MyAddElement from '../UI/adminaddel/MyAddElement';
+import MyDeleteElement from '../UI/admindelel/MyDeleteElement';
+import MyBtnFiled from '../UI/buttonback/MyBtnFiled';
+import { useEventCallback } from '@mui/material';
+import TariffSEOitem from './TariffSEOitem';
 const TariffSeo = ({column}) => {
+    const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
+    const [sizeInfo, setSizeInfo] = useState({title: {width:0,height:0}, text: {width:0,height:0},titleItem:{width:0,height:0},price:{width:0,height:0},listItem:{width:0,height:0}, titleText: {width:0,height:0}, listText: {width:0,height:0}})
     let nameSwiper = column// + ~~(Math.random() * 100)
     const {tarrifSEOPage} = useSelector(state => state)
-    let swiperWrapper = React.createRef(false), pag = React.createRef(false), state = tarrifSEOPage[column]
+    let swiperWrapper = React.createRef(false), pag = React.createRef(false), state = tarrifSEOPage.find(e=>e.id == column)
     const [modal, setModal] = useState(false)
     const [thxModal, setThxModal] = useState(false)
+   
+   
+
     React.useEffect(() => {
         let swiper = null;
         let mediaQuerySize = null
@@ -87,9 +99,33 @@ const TariffSeo = ({column}) => {
             <div className="container">
 
                 <div className={cl.column1}>
-                    {state.title ?  <MyViewElement element={<div className={cl.title}>{state.title}</div>}/> : ''}
-                    {state.text ? <MyViewElement element={<div className={cl.text}>{state.text}</div>}/> : ''}
-                    {state.titleText ? <MyViewElement element={<div className={cl.titleText}>{state.titleText}</div>}/> : ''}
+                    {state.title ?  <MyViewElement element={
+                          isAdmin ? 
+                          <MyAdminInput width={sizeInfo.title.width} id={column} height={sizeInfo.title.height} typeAction={'TITLE_TARIFF_SEO_CHANGE'}>
+                               <div className={cl.title}  onClick={e=>setSizeInfo({...sizeInfo, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{state.title}</div>
+                          </MyAdminInput>
+                          :
+                          <div className={cl.title}>{state.title}</div>
+                       
+                    }/> : ''}
+                    {state.text ? <MyViewElement element={
+                          isAdmin ? 
+                          <MyAdminInput width={sizeInfo.text.width} id={column} height={sizeInfo.text.height} typeAction={'TEXT_TARIFF_SEO_CHANGE'}>
+                               <div className={cl.text}  onClick={e=>setSizeInfo({...sizeInfo, text: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{state.text}</div>
+                          </MyAdminInput>
+                          :
+                          <div className={cl.text}>{state.text}</div>
+                       
+                    }/> : ''}
+                    {state.titleText ? <MyViewElement element={
+                          isAdmin ? 
+                          <MyAdminInput width={sizeInfo.titleText.width} id={column} height={sizeInfo.titleText.height} typeAction={'TITLE_TEXT_TARIFF_SEO_CHANGE'}>
+                              <div className={cl.titleText} onClick={e=>setSizeInfo({...sizeInfo, titleText: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{state.titleText}</div>
+                          </MyAdminInput>
+                          :
+                          <div className={cl.titleText}>{state.titleText}</div>
+                        
+                    }/> : ''}
 
                 </div>
             </div>
@@ -98,27 +134,7 @@ const TariffSeo = ({column}) => {
           
             <div className={"swiper " + nameSwiper + ' ' + cl.swiper}>
                 <div className={"swiper-wrapper " + ' container ' + cl.wrapperSlid} ref={swiperWrapper}>
-                    {state.cases.map((el, i) => <div key={i} className={"swiper-slide " + cl.swiperSl}>
-                        <div className={cl.titleCase + ' ' + el.color}>
-                            <div className={cl.titleCaseSpan}>{el.title}</div>
-                        </div>
-                        {Array.isArray(el.list) ? <ul className={cl.wrapList}>
-                            {el.list.map((li, i) => <li key={i} className={cl.listTitle}>
-                                <div className={cl.circle}/>
-                                <div>{li}</div>
-                            </li>)}
-
-                        </ul> : <div className={cl.wrapList}>
-                            <div className={cl.caserText}>{el.list}</div>
-                        </div>}
-                        <div className={cl.btnWrap}>
-                            <div className={cl.price}>{el.price}</div>
-                            <MyBtnBlank classes={cl.btn} onClick={e => {
-                                e.preventDefault(e);
-                                setModal(true)
-                            }}>Заказать</MyBtnBlank>
-                        </div>
-                    </div>)}
+                    {state.cases.map((el, i) => <TariffSEOitem setModal={setModal} column={column} indexItem={i} sizeInfo={sizeInfo} setSizeInfo={setSizeInfo} infoItem={el}/>)}
                 </div>
                 <div className="swiper-scrollbar"/>
                 <div className={cl.pag + ' ' + nameSwiper + 'pag'} ref={pag}/>

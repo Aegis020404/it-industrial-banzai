@@ -10,6 +10,88 @@
     position: static;
 }
 
+.seoItem {
+    position: relative;
+}
+
+.overlayBlock {
+    padding: 35px 50px;
+}
+
+
+.formAdmin {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    justify-content: space-between;
+    column-gap: 30px;
+    row-gap: 40px;
+    align-items: center;
+}
+
+.formAdmin button {
+    height: 55px;
+}
+
+.titleModal {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-family: 'GothamProRegular';
+    font-style: normal;
+    font-weight: 400;
+    color: #b7b7b7;
+}
+
+.drop, .drag {
+    height: 50px;
+    text-align: center;
+    display: flex;
+    align-items: center;justify-content: center;
+    font-size: 16px;
+    font-family: 'GothamProRegular';
+    font-style: normal;
+    font-weight: 400;
+    border: 3px solid var(--pink-color);
+    border-radius: 3px;
+    transition: all;
+    color: #989898;
+}
+
+.drop {
+    border: 3px dashed var(--pink-color);
+
+}
+.overlayBlock {
+    position: absolute;
+    top: 0;left: 0;bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: #fff;
+    pointer-events: none;
+    opacity: 0;
+    transition: .35s all ease-in-out;
+} 
+
+.changeItem{
+    position: absolute;
+    left: 0;right: 0;bottom: auto;
+    top: 0;
+    margin: auto;
+    padding: 5px 10px;
+    background-color: #e4e4e4;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.overlayActive {
+    pointer-events: all;
+    opacity: 1;
+}
+
 .arrow {
     cursor: pointer;
     background-position: center;
@@ -42,6 +124,7 @@
 
 
 .seoBlock {
+    position: relative;
     max-width: 1200px;
     transition: all .35s ease-in-out;
     padding-bottom: 140px;

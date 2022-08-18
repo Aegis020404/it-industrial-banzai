@@ -1,69 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import cl from '../../style/Reviews.module.css';
 import ReviewsItem from './ReviewsItem';
 import MyTitle from '../UI/titlepage/MyTitle';
-
+import { useSelector } from 'react-redux';
+import MyAdminInput from '../UI/admininput/MyAdminInput';
+import MyAddElement from '../UI/adminaddel/MyAddElement';
 const Reviews = ()=>{
-    const reviewsInfo = [
-        {
-            photo: '/img/photoOfClient.png',
-            name: 'Юлия Орлова',
-            position: 'Руководитель компании Эковтор',
-            comment: <div>Мы продолжаем глобально меняться, предлагая принципиально новые и креативные решения: в
-                прошлом году обновился фирменный стиль компании, в этом мы представили абсолютно новый сайт «Эковтор»
-                разработанный командой IT-INDUSTRIAL.<br/><br/> Наше творческое сотрудничество явило современный, яркий и
-                интерактивный проект, который оказался интересным не только для наших партнеров и потенциальных
-                сотрудников.</div>
-        },
-        {
-            photo: '/img/photoOfClient.png',
-            name: 'Юлия Орлова',
-            position: 'Руководитель компании Эковтор',
-            comment: <div>Мы продолжаем глобально меняться, предлагая принципиально новые и креативные решения: в
-                прошлом году обновился фирменный стиль компании, в этом мы представили абсолютно новый сайт «Эковтор»
-                разработанный командой IT-INDUSTRIAL.<br/><br/> Наше творческое сотрудничество явило современный, яркий и
-                интерактивный проект, который оказался интересным не только для наших партнеров и потенциальных
-                сотрудников.</div>
-        },
-        {
-            photo: '/img/photoOfClient.png',
-            name: 'Юлия Орлова',
-            position: 'Руководитель компании Эковтор',
-            comment: <div>Мы продолжаем глобально меняться, предлагая принципиально новые и креативные решения: в
-                прошлом году обновился фирменный стиль компании, в этом мы представили абсолютно новый сайт «Эковтор»
-                разработанный командой IT-INDUSTRIAL.<br/><br/> Наше творческое сотрудничество явило современный, яркий и
-                интерактивный проект, который оказался интересным не только для наших партнеров и потенциальных
-                сотрудников.</div>
-        },
-        {
-            photo: '/img/photoOfClient.png',
-            name: 'Юлия Орлова',
-            position: 'Руководитель компании Эковтор',
-            comment: <div>Мы продолжаем глобально меняться, предлагая принципиально новые и креативные решения: в
-                прошлом году обновился фирменный стиль компании, в этом мы представили абсолютно новый сайт «Эковтор»
-                разработанный командой IT-INDUSTRIAL.<br/><br/> Наше творческое сотрудничество явило современный, яркий и
-                интерактивный проект, который оказался интересным не только для наших партнеров и потенциальных
-                сотрудников.</div>
-        },
-        {
-            photo: '/img/photoOfClient.png',
-            name: 'Юлия Орлова',
-            position: 'Руководитель компании Эковтор',
-            comment: <div>Мы продолжаем глобально меняться, предлагая принципиально новые и креативные решения: в
-                прошлом году обновился фирменный стиль компании, в этом мы представили абсолютно новый сайт «Эковтор»
-                разработанный командой IT-INDUSTRIAL.<br/><br/> Наше творческое сотрудничество явило современный, яркий и
-                интерактивный проект, который оказался интересным не только для наших партнеров и потенциальных
-                сотрудников.</div>
-        }]
+    const reviewsInfo = useSelector(state=>state.Reviews)
+    const adminTexts = useSelector(state=>state.AdminTexts)
+    const {isAdmin} = useSelector(state=>state.AdminKey)
+    const [reviewsData, setReviewsData] = useState({title: {width:0,height:0}})
     return (
         <>
             <section className={cl.reviewsSection}>
             <div className={["container", cl.container].join` `}>
                 <div className={cl.reviewsCont}>
-                    <MyTitle title='Отзывы' classes={cl.reviewsTitle}></MyTitle>
+                    <MyTitle title={adminTexts.reviewsTexts.title} typeAction={'TITLE_REVIEWS_PAGE_CHANGE'} classes={cl.reviewsTitle}></MyTitle>
+                   
                     <div className={cl.reviewsListBlock}>
+                        {isAdmin ? <MyAddElement typeAction={'ADD_REVIEWS_ELEMENT'}/>:''}
                         <ul className={cl.reviewsList}>
-                        {reviewsInfo.map((review, i) => <ReviewsItem key={i} imgPerson={review.photo} namePerson={review.name} commentPerson={review.comment} positionPerson={review.position}/>)}
+                        {reviewsInfo.map((review, i) => <ReviewsItem key={i} id={review.id} imgPerson={review.photo} namePerson={review.name} commentPerson={review.comment} positionPerson={review.position}/>)}
                         </ul>
                     </div>
                 </div>

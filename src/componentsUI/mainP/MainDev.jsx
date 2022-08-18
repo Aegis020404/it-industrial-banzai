@@ -1,23 +1,56 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useState, useCallback} from 'react';
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Navigation, Pagination} from "swiper";
 
 import cl from '../../style/MainDev.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import MyViewElement from '../UI/viewelement/MyViewElement';
-
-
+import MyAddElement from '../UI/adminaddel/MyAddElement';
+import MyDeleteElement from '../UI/admindelel/MyDeleteElement';
+import MyAdminInput from '../UI/admininput/MyAdminInput';
+import {useDropzone} from 'react-dropzone'
+import MainDevItem from './MainDevItem';
 
 const MainDev = (props) => {
     let spaceBetweenSwiper = 50;
+
     const dispatch = useDispatch()
+
     const {MainDevPage} = useSelector(state=>state)
-    const infoData = MainDevPage.turnkeyWebsite
-    return (<section className={cl.MainDev}>
+    const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
+    const adminTexts = useSelector(state=>state.AdminTexts)
+    const infoData = props.column === 'turnkeyWebsite' ? MainDevPage.turnkeyWebsite : props.column === 'developerCRM' ? MainDevPage.developerCRM : props.column === 'developerMobile' ? MainDevPage.developerMobile : ''
+    
+    const actionTitle =  props.column === 'turnkeyWebsite' ? 'MAINDEV_TITLE_CHANGE' : props.column === 'developerCRM' ? 'CRMDEV_TITLE_CHANGE' : props.column === 'developerMobile' ? 'MOBILEDEV_TITLE_CHANGE' : ''
+    const actionDescr =  props.column === 'turnkeyWebsite' ? 'MAINDEV_DESCR_CHANGE' : props.column === 'developerCRM' ? 'CRMDEV_DESCR_CHANGE' : props.column === 'developerMobile' ?   'MOBILEDEV_DESCR_CHANGE' :''
+    const actionAdd =  props.column === 'turnkeyWebsite' ? 'MAINDEV_ADD_ELEMENT' : props.column === 'developerCRM' ? 'CRMDEV_ADD_ELEMENT' : props.column === 'developerMobile' ?   'MOBILEDEV_ADD_ELEMENT' :''
+    const actionDelete =  props.column === 'turnkeyWebsite' ? 'MAINDEV_DELETE_ELEMENT' : props.column === 'developerCRM' ? 'CRMDEV_DELETE_ELEMENT' : props.column === 'developerMobile' ?   'MOBILEDEV_DELETE_ELEMENT':''
+    const actionImg =  props.column === 'turnkeyWebsite' ? 'MAINDEV_IMG_CHANGE' : props.column === 'developerCRM' ? 'CRMDEV_IMG_CHANGE' : props.column === 'developerMobile' ? 'MOBILEDEV_IMG_CHANGE' : ''
+    
+
+   
+
+
+
+    const [devInfo, setDevInfo] = useState({title: {width:0,height:0}, itemTitle: {width:0,height:0}, itemDescr: {width:0,height:0}})
+    
+    return (
+        
+        <section className={cl.MainDev}>
             <div className={["container", cl.container].join` `}>
-                <MyViewElement element={
-                    <h1 className={cl.text}>Процесс разработки сайта под ключ</h1>
-                }/>
+                
+                {isAdmin ? <MyAddElement typeAction={actionAdd}/>: ''}
+                <div className={cl.titleWrapper}>
+                    <MyViewElement element={
+                        isAdmin ? 
+                            <MyAdminInput width={devInfo.title.width} height={devInfo.title.height} typeAction={'TITLE_DEV_INFO'}>
+                                <h1 className={cl.text} onClick={e=>setDevInfo({...devInfo, title: {width:e.target.offsetWidth, height:e.target.offsetHeight}})}>{adminTexts.mainDev.title}</h1>
+                            </MyAdminInput>
+                            :
+                            <h1 className={cl.text} onClick={e=>setDevInfo({...devInfo, title: {width:e.target.offsetWidth, height:e.target.offsetHeight}})}>{adminTexts.mainDev.title}</h1>
+                    }/>
+                </div>
+               
                 
                 <MyViewElement  element={
                     <Swiper
@@ -44,80 +77,7 @@ const MainDev = (props) => {
                             <span className={cl.arrowNextGray}></span>
                         </div>
                     </div>
-                    {infoData.map((obj, i) => {
-                        return (<SwiperSlide key={i} className={cl.Swiper}>
-                                <div className={cl.contentBlock}>
-
-                                    <div className={cl.wrapper}>
-                                        <div className={cl.stepper}>
-                                            <div className={cl.step}>{i + 1} этап</div>
-                                            <div className={cl.title}>{obj.title}</div>
-                                        </div>
-                                        <div className={cl.photoWrapBlock}>
-                                            <div className={cl.photoWrap}>
-                                                <span className={[cl.photo, obj.photo].join` `}></span>
-                                            </div>
-
-                                        </div>
-
-                                        {Array.isArray(obj.lists) ? <ul className={cl.wrapList}>
-                                            {obj.lists.map((list, i) => {
-                                                return <div key={i}>
-                                                    <li className={cl.listItem}>
-                                                        <div className={cl.line}></div>
-                                                        <div>{list}</div>
-                                                    </li>
-                                                </div>
-                                            })}
-                                        </ul> : typeof obj.lists === 'object' ? <div className={cl.wholeText}>
-                                            <div className={cl.innerTitle}>{obj.lists.title}</div>
-                                            <ul className={cl.ulContainer}>
-                                                {
-                                                    obj.lists.list.map((el, i)=> <li className={cl.lis} key={i}>{el}</li>)
-                                                }
-                                            </ul>
-                                        </div> : <div className={cl.wholeText}>{obj.lists}</div>}
-
-                                        <div className={cl.stepCount}>
-                                            {i + 1}
-                                        </div>
-                                    </div>
-                                    <div className={cl.wrapperM}>
-                                        <div className={cl.stepperM}>
-                                            <div className={cl.stepperBlock}>
-                                                <div className={cl.stepM}>{i + 1} этап</div>
-                                                <div className={cl.titleM}>{obj.title}</div>
-                                                {Array.isArray(obj.lists) ?    <ul className={cl.listBlockM}>
-                                                    {obj.lists.map((list, i) => {
-                                                        return <div key={i}>
-                                                            <li className={cl.listIteMm}>
-                                                                <div className={cl.line}></div>
-                                                                <div>{list}</div>
-                                                            </li>
-                                                        </div>
-                                                    })}
-                                                </ul> : typeof obj.lists === 'object' ? <div className={cl.wholeText}>
-                                                    <div className={cl.innerTitle}>{obj.lists.title}</div>
-                                                    <ul>
-                                                        {
-                                                            obj.lists.list.map((el, i)=> <li key={i} >{el}</li>)
-                                                        }
-                                                    </ul>
-                                                </div> : <div className={cl.wholeText}>{obj.lists}</div>}
-                                            </div>
-                                            <div className={cl.stepCountM}>
-                                                {i + 1}
-                                            </div>
-                                        </div>
-                                        <div className={cl.photoBlockM}>
-                                            <div className={cl.photoWrapM}>
-                                                <span className={[cl.photoM, obj.photo].join` `}></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </SwiperSlide>)
-                    })}
+                    {infoData.map((obj, i) =>    <SwiperSlide key={obj.id}  className={cl.Swiper}><MainDevItem actionImg={actionImg} actionTitle={actionTitle} obj={obj} actionDescr={actionDescr} actionDelete={actionDelete} id={obj.id}/></SwiperSlide>)}
                 </Swiper>
                 }/>
                 

@@ -1,6 +1,9 @@
 .reportSection {
     padding: 90px 0;
 }
+.reportListBLock {
+    position:relative;
+}
 
 .reportTitle {
     max-width: 1050px;
@@ -27,6 +30,10 @@
     justify-content: start;
     column-gap: 150px;
     row-gap: 30px;
+}
+
+.reportItemList {
+    position:relative;
 }
 
 .reportItem {
@@ -81,6 +88,8 @@
 
 .reportMonth {
     justify-self: start;
+    display: flex;
+    align-items: end;
 }
 
 .reportMMonth {
@@ -94,6 +103,7 @@
     text-align: center;
     letter-spacing: -0.02em;
     color: #25495C;
+    margin-bottom: 25px;
 }
 
 .reportImgRes {

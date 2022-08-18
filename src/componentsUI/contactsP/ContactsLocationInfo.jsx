@@ -2,14 +2,19 @@ import React from "react";
 import cl from '../../style/ContactsInfo.module.css';
 import MyTitle from "../UI/titlepage/MyTitle";
 import MyViewElement from "../UI/viewelement/MyViewElement";
-
+import { useSelector } from "react-redux";
+import MyAdminInput from "../UI/admininput/MyAdminInput";
+import { useState } from "react";
 const ContactsLocationInfo = ()=>{
+    const {isAdmin} = useSelector(state=>state.AdminKey)
+    const contactTexts = useSelector(state=>state.AdminTexts.contactTexts)
+    const [contactData, setContactData] = useState({titleFirst: {width:0,height:0}, titleSec: {width:0,height:0}, titleNumber: {width:0,height:0}, titleEmail: {width:0,height:0}, valueNumber: {width:0,height:0}, valueEmail: {width:0,height:0}, titleAddres: {width:0,height:0}, valueAddres: {width:0,height:0}})
     return (
         <section className={cl.contact}>
             <div className={["container", cl.contactContainer].join` `}>
                 <div className={cl.contactCont}>
                     <MyViewElement element={
-                        <MyTitle title='Контакты' classes={cl.titleCont}/>                    }/>
+                        <MyTitle title={contactTexts.title} typeAction={'TITLE_CONTACT_PAGE_CHANGE'} classes={cl.titleCont}/>                    }/>
                     
                     <div className={cl.contentInfo}>
                         <div className={cl.contactLeft}>
@@ -23,20 +28,60 @@ const ContactsLocationInfo = ()=>{
                                             </svg>
                                         </span>
                                     </div>
-                                    <p className={cl.contactDescr}>Связаться с нами</p>
+                                    {
+                                         isAdmin ? 
+                                         <MyAdminInput width={contactData.titleFirst.width} height={contactData.titleFirst.height} typeAction={'TITLE_ITEM_FIRST_CONTACT_PAGE_CHANGE'}>
+                                            <p className={cl.contactDescr} onClick={e=>setContactData({...contactData, titleFirst: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{contactTexts.firstColumn.titleItem}</p>
+                                         </MyAdminInput>
+                                         :
+                                         <p className={cl.contactDescr}>{contactTexts.firstColumn.titleItem}</p>
+                                    }
+                                   
                                     <span className={cl.contactLine}></span>
                                 </li>
                                  }/>
                                   <MyViewElement element={
                                 <li className={cl.contactTel}>
-                                    <span className={cl.contactTelName}>Телефон:</span>
-                                    <a href="tel:+79251170046" className={cl.telLocation}>+7 (925) 117-00-46</a>
+                                     {
+                                         isAdmin ? 
+                                         <MyAdminInput width={contactData.titleNumber.width} height={contactData.titleNumber.height} typeAction={'TITLE_NUMBER_FIRST_CONTACT_PAGE_CHANGE'}>
+                                           <span className={cl.contactTelName}  onClick={e=>setContactData({...contactData, titleNumber: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{contactTexts.firstColumn.titleNumber}</span>
+                                         </MyAdminInput>
+                                         :
+                                         <span className={cl.contactTelName}>{contactTexts.firstColumn.titleNumber}</span>
+                                    }
+                                     {
+                                         isAdmin ? 
+                                         <MyAdminInput width={contactData.valueNumber.width} height={contactData.valueNumber.height} typeAction={'VALUE_NUMBER_FIRST_CONTACT_PAGE_CHANGE'}>
+                                            <a href="tel:+79251170046" className={cl.telLocation} onClick={e=>setContactData({...contactData, valueNumber: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{contactTexts.firstColumn.valueNumber}</a>
+                                         </MyAdminInput>
+                                         :
+                                         <a href="tel:+79251170046" className={cl.telLocation}>{contactTexts.firstColumn.valueNumber}</a>
+                                    }
+                                    
+                                   
                                 </li>
                                  }/>
                                  <MyViewElement element={
                                 <li className={cl.contactTel}>
-                                    <span className={cl.contactTelName}>Email:</span>
-                                    <a href="mailto:info@it-industriul.ru" className={cl.mail}>info@it-industriul.ru </a>
+                                     {
+                                         isAdmin ? 
+                                         <MyAdminInput width={contactData.titleEmail.width} height={contactData.titleEmail.height} typeAction={'TITLE_EMAIL_FIRST_CONTACT_PAGE_CHANGE'}>
+                                            <span className={cl.contactTelName} onClick={e=>setContactData({...contactData, titleEmail: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{contactTexts.firstColumn.titleEmail}</span>
+                                         </MyAdminInput>
+                                         :
+                                         <span className={cl.contactTelName}>{contactTexts.firstColumn.titleEmail}</span>
+                                    }
+                                     {
+                                         isAdmin ? 
+                                         <MyAdminInput width={contactData.titleFirst.width} height={contactData.titleFirst.height} typeAction={'VALUE_EMAIL_FIRST_CONTACT_PAGE_CHANGE'}>
+                                             <a href="mailto:info@it-industriul.ru" className={cl.mail}>{contactTexts.firstColumn.valueEmail}</a>
+                                         </MyAdminInput>
+                                         :
+                                         <a href="mailto:info@it-industriul.ru" className={cl.mail}>{contactTexts.firstColumn.valueEmail}</a>
+                                    }
+                                   
+                                   
                                 </li>
                                   }/>
                             </ul>
@@ -53,7 +98,15 @@ const ContactsLocationInfo = ()=>{
                                             </svg>
                                         </span>
                                     </div>
-                                    <p className={cl.contactDescr}>Как нас найти</p>
+                                    {
+                                         isAdmin ? 
+                                         <MyAdminInput width={contactData.titleSec.width} height={contactData.titleSec.height} typeAction={'TITLE_ITEM_SEC_CONTACT_PAGE_CHANGE'}>
+                                            <p className={cl.contactDescr} onClick={e=>setContactData({...contactData, titleSec: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{contactTexts.secondColumn.titleItem}</p> 
+                                        </MyAdminInput>
+                                         :
+                                         <p className={cl.contactDescr}>{contactTexts.secondColumn.titleItem}</p>
+                                    }
+                                    
                                     <span className={cl.contactLine}></span>
                                 </li>
                                   }/>
@@ -61,8 +114,24 @@ const ContactsLocationInfo = ()=>{
                                  <MyViewElement element={
 
                                 <li className={[cl.contactTel, cl.contactMail].join` `}>
-                                    <span className={cl.contactTelName}>Адрес:</span>
-                                    <p className={cl.telLocation}>Москва, ул. Деловая, 20</p>
+                                     {
+                                         isAdmin ? 
+                                         <MyAdminInput width={contactData.titleAddres.width} height={contactData.titleAddres.height} typeAction={'ADDRES_ITEM_SEC_CONTACT_PAGE_CHANGE'}>
+                                            <span className={cl.contactTelName} onClick={e=>setContactData({...contactData, titleAddres: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{contactTexts.secondColumn.addressItem}</span>
+                                        </MyAdminInput>
+                                         :
+                                         <span className={cl.contactTelName}>{contactTexts.secondColumn.addressItem}</span>
+                                    }
+                                   
+                                    {
+                                         isAdmin ? 
+                                         <MyAdminInput width={contactData.valueAddres.width} height={contactData.valueAddres.height} typeAction={'ADDRES_VALUE_SEC_CONTACT_PAGE_CHANGE'}>
+                                            <p className={cl.telLocation} onClick={e=>setContactData({...contactData, valueAddres: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{contactTexts.secondColumn.addressValue}</p>
+                                        </MyAdminInput>
+                                         :
+                                         <p className={cl.telLocation}>{contactTexts.secondColumn.addressValue}</p>
+                                    }
+                                   
                                 </li>
                                   }/>
 

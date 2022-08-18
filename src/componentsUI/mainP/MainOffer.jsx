@@ -11,15 +11,19 @@ import MyThxModal from '../UI/thxmodal/MyThxModal';
 import {selectBtn} from "../../../redux/mainOffer-redux";
 import {useDispatch, useSelector} from 'react-redux';
 import MyViewElement from '../UI/viewelement/MyViewElement';
+import { useStepContext } from '@mui/material';
+import MyAdminInput from '../UI/admininput/MyAdminInput';
 
 const MainOffer = (props) => {
     const [btnActive, setBtnActive] = useState('')
     const dispatch = useDispatch();
     const {mainOfferPage} =useSelector(state=>state)
+    const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
+    const adminTexts = useSelector(state=>state.AdminTexts)
     const infoData = mainOfferPage.btns
     const [priceTo, setPriseTo] = useState(0)
     const [priceFrom, setPriseFrom] = useState(0)
-
+    const [offerInfo, setOfferInfo] = useState({title: {width:0, height:0}, descr: {width:0,height:0}, titlePrice: {width:0,height:0}, descrPrice: {width:0,height:0}, titleContact: {width:0,height:0}, descrContact: {width:0,height:0}})
     const [modalInfo, setModalInfo] = useState({namePerson: '', tel: '', themeSite: '', range: {from: '', to: ''}})
     const [modal, setModal] = useState(false)
 
@@ -54,12 +58,20 @@ const MainOffer = (props) => {
                     <span className={cl.mailRight}/>
                     <span className={cl.mailLeft}/>
                     <MyViewElement element={
-                        <p className={cl.title}>Получить коммерческое предложение</p>
+                        isAdmin ? 
+                         <MyAdminInput width={offerInfo.title.width} height={offerInfo.title.height} typeAction={'TITLE_OFFER_INFO'}>
+                            <p className={cl.title} onClick={e=>setOfferInfo({...offerInfo, title: {width: e.target.offsetWidth, height: e.target.offsetHeight}})}>{adminTexts.mainOffer.title}</p>
+                        </MyAdminInput>
+                        :
+                            <p className={cl.title}>{adminTexts.mainOffer.title}</p>                       
                     }/>
                     <MyViewElement element={
-                        <p className={cl.titleText}>Заполните форму сейчас и наш специалист свяжется с вами для консультации
-                        и составит ваше персональное предложение. Вы получите более точное КП, если укажете полную
-                        информацию о проекте.</p>
+                         isAdmin ? 
+                         <MyAdminInput width={offerInfo.descr.width} height={offerInfo.descr.height} typeAction={'DESCR_OFFER_INFO'}>
+                            <p className={cl.titleText} onClick={e=>setOfferInfo({...offerInfo, descr: {width:e.target.offsetWidth,height:e.target.offsetHeight}})}>{adminTexts.mainOffer.descr}</p>
+                        </MyAdminInput>
+                        :
+                        <p className={cl.titleText}>{adminTexts.mainOffer.descr}</p>
                     }/>
                     <MyViewElement element={
                         <div className={cl.btnsM}>
@@ -97,9 +109,20 @@ const MainOffer = (props) => {
                    
                     <MyViewElement element={
                         <div className={cl.prices}>
-                        <p className={cl.titlePrices}>Бюджет проекта</p>
-                        <p className={cl.titlePricesText}>Укажите примерную сумму, которую плнируете потратить на
-                            реализацию проекта</p>
+                        {isAdmin ?
+                            <MyAdminInput width={offerInfo.titlePrice.width} height={offerInfo.titlePrice.height} typeAction={'TITLE_PRICE_OFFER_INFO'}>
+                            <p className={cl.titlePrices} onClick={e=>setOfferInfo({...offerInfo, titlePrice: {width: e.target.offsetWidth, height: e.target.offsetHeight}})}>{adminTexts.mainOffer.titlePrice}</p>
+                            </MyAdminInput>
+                        :
+                        <p className={cl.titlePrices}>{adminTexts.titlePrice}</p>
+                        }
+                        {isAdmin ?
+                            <MyAdminInput width={offerInfo.descrPrice.width} height={offerInfo.descrPrice.height} typeAction={'DESCR_PRICE_OFFER_INFO'}>
+                            <p className={cl.titlePricesText} onClick={e=>setOfferInfo({...offerInfo, descrPrice: {width: e.target.offsetWidth, height: e.target.offsetHeight}})}>{adminTexts.mainOffer.descrPrice}</p>
+                            </MyAdminInput>
+                        :
+                        <p className={cl.titlePricesText}>{adminTexts.descrPrice}</p>
+                        }
                         <Ranger setTo={setPriseTo} priceTo={priceTo} priceFrom={priceFrom} setFrom={setPriseFrom}/>
                     </div>
                     }/>
@@ -108,7 +131,12 @@ const MainOffer = (props) => {
                     <div className={cl.contacts}>
                         <form id='offer' action="">
                             <MyViewElement element={
-                                <p className={cl.titleContacts}>Контакты</p>
+                                isAdmin ?
+                                <MyAdminInput width={offerInfo.titleContact.width} height={offerInfo.titleContact.height} typeAction={'TITLE_CONTACT_OFFER_INFO'}>
+                                <p className={cl.titleContacts}  onClick={e=>setOfferInfo({...offerInfo, titleContact: {width: e.target.offsetWidth, height: e.target.offsetHeight}})}>{adminTexts.mainOffer.titleContact}</p>
+                                </MyAdminInput>
+                            :
+                                <p className={cl.titleContacts}>{adminTexts.mainOffer.titleContact}</p>
                             }/>
                             <MyViewElement element={
                                 <div className={cl.contactsBtn}>
@@ -125,9 +153,14 @@ const MainOffer = (props) => {
                                 </div>
                             }/>
                             <MyViewElement element={
-                                <p className={cl.agreement}>Нажимая на кнопку, вы даете согласие на обработку ваших
-                                персональных
-                                данных</p>
+                                 isAdmin ?
+                                    <MyAdminInput width={offerInfo.descrContact.width} height={offerInfo.descrContact.height} typeAction={'DESCR_CONTACT_OFFER_INFO'}>
+                                    <p className={cl.agreement}  onClick={e=>setOfferInfo({...offerInfo, descrContact: {width: e.target.offsetWidth, height: e.target.offsetHeight}})}>{adminTexts.mainOffer.descrContact}</p>
+                                    </MyAdminInput>
+                                :
+                                <p className={cl.agreement}>{adminTexts.mainOffer.descrContact}</p>
+                               
+                                
                             }/>
                             <MyViewElement element={
                                 <div className={cl.requestWrap}>

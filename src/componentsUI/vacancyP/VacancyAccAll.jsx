@@ -1,11 +1,12 @@
 import React, { useRef, useEffect } from "react";
 import cl from '../../style/VacancyAcc.module.css';
+import MyAddElement from "../UI/adminaddel/MyAddElement";
 
 import VacancyAccItem from "./VacancyAccItem";
 
 
 
-const VacancyAccAll = ({itemList, classesItem, classesBlock, classesDescr})=>{
+const VacancyAccAll = ({itemList, actionTitle, actionDescr, actionQuestion, actionList, actionListAdd, actionListDelete, actionAddMain = 'VACANCY_ADD_ELEMENT', actionDeleteMain})=>{
    
     const [expanded, setExpanded] = React.useState('panel1');
 
@@ -16,7 +17,8 @@ const VacancyAccAll = ({itemList, classesItem, classesBlock, classesDescr})=>{
     return (
         <>
              <div className={cl.listAcc}>
-                {itemList.map((e,i)=><VacancyAccItem key={i} handleChange={handleChange} expanded={expanded} title={e.title} descr={e.descr} whatDo={e.whatdo} info={e.list} check={'panel' + (i + 1)}/>)}
+                <MyAddElement typeAction={actionAddMain}/>
+                {itemList.map((e,i)=><VacancyAccItem actionTitle={actionTitle} actionDescr={actionDescr} actionQuestion={actionQuestion} actionList={actionList} actionDeleteMain={actionDeleteMain} actionListAdd={actionListAdd} actionListDelete={actionListDelete} key={i} id={e.id} handleChange={handleChange} expanded={expanded} title={e.title} descr={e.descr} whatDo={e.whatdo} info={e.list} check={'panel' + (i + 1)}/>)}
             </div>
         </>
        

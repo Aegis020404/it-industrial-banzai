@@ -11,6 +11,7 @@
 }
 
 .container {
+    position: relative;
     margin: 0 auto;
     max-width: 1170px;
     padding: 0 15px;
@@ -35,7 +36,17 @@
 }
 
 .otherTitle {
+    display:grid;
+    grid-template-columns: repeat(2,auto);
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 40px;
+   
+}
+
+.otherTitleFirst, .otherTitleItem {
+    display: inline-block;
     font-family: 'GothamProMedium';
     font-style: normal;
     font-weight: 500;
@@ -88,8 +99,8 @@
     width: 103px;
     height: 103px;
     border-radius: 50%;
-    background-position: center;
-    background-size: cover;
+   
+    object-fit: contain;
 
 }
 

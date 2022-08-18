@@ -29,9 +29,7 @@ const MainPage = ()=>{
             <main ref={mainI} className="main">
                 <SliderContainer />
 
-                <MainTariffContainer title={<div className={cl.tariffTittleBlock}>
-                    <h2 className={cl.tariffTitle}>Тарифы на разработку сайтов</h2>
-                </div>}/>
+                <MainTariffContainer title={true}/>
 
                 <MainQuiz />
                 <MainApplication/>

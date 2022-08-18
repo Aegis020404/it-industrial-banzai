@@ -22,11 +22,11 @@ const CRMPage = ()=>{
         <>
             <Container>
             <main ref={mobileI} className="mobile">
-                <MobileHero column='crm'/>
+                <MobileHero column='crm' actionTitle={'TITLE_HERO_CRM_PAGE_INFO'} actionDescr={'DESCR_HERO_CRM_PAGE_INFO'}/>
                 <CrmCount/>
-                <MobileServiceContainer column={'crmDevelop'}/>
+                <MobileServiceContainer column={'crmDevelop'} actionTitle={'TITLE_CRM_PAGE_CHANGE'} actionListAdd={'LIST_ADD_CRM_PAGE_CHANGE'} actionListTitle={'LIST_TITLE_CRM_PAGE_CHANGE'} actionListDescr={'LIST_DESCR_CRM_PAGE_CHANGE'} actionImg={'LIST_IMG_CRM_PAGE_CHANGE'} actionListDelete={'LIST_DELETE_CRM_PAGE_CHANGE'}/>
                 <MobilePortfolio/>
-                <MainDevContainer column={'developerCRM'}/>
+                <MainDevContainer column={'developerCRM'} />
                 <MainApplication/>
                 <div className={cl.offer}>
                     <MainOfferContainer/>

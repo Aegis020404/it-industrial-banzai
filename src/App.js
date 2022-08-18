@@ -18,6 +18,7 @@ function App() {
         <BrowserRouter >
             <div ref={wrap} hidden={true}>
             <Header />
+            <div className="header-under"></div>
             {/*<AppRouter />*/}
             <Footer />
             </div>

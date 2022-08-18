@@ -11,6 +11,26 @@ import {mobileServiceReducer} from "./mobileService-redux";
 import {mobileHeroReducer} from "./mobileHero-redux";
 import {KeysMainSeoReducer} from "./keysMainSeo-redux";
 import { composeWithDevTools } from 'redux-devtools-extension'
+import {isAdminReducer} from './isAdmin-redux';
+import { isAdminTextsReducer } from './adminTexts-redux';
+import { isAdminListsReducer } from './adminLists-redux';
+import  MainResReducer from './mainRes-redux';
+import  MainOtherReducer from './mainOther-redux';
+import MainSimpleReducer from './mainSimple-redux';
+import MainReviewReducer from './mainReview-redux';
+import ReviewsReducer from './reviews-redux';
+import VacancyAccReducer from './vacancyAcc-redux';
+import keysSitesReducer from './keysSites-redux';
+import { SeoServicesReducer } from './seoServices-redux';
+import { SeoStableReducer } from './seoStable-redux';
+import { SeoAccReducer } from './seoAcc-redux';
+import { SeoMonthReducer } from './seoMonth-redux';
+import { SeoReportReducer } from './seoReport-redux';
+import { crmPortfolioReducer } from './crmPortfolio-redux';
+import MainKeysReducer from './mainKeys-redux';
+import keysMobileReducer from './keysMobile-redux';
+import keysCrmReducer from './keysCrm-redux';
+
 
 
 let reducers = combineReducers( {
@@ -20,10 +40,29 @@ let reducers = combineReducers( {
     mainOfferPage: mainOfferReducer,
     keysNavPage: keysMainReducer,
     KeySitePage: KeySiteReducer,
+    KeySitesPage: keysSitesReducer,
     tarrifSEOPage: tarrifSEORedux,
     mobileServicePage: mobileServiceReducer,
     MobileHeroPage: mobileHeroReducer,
     KeysMainSeoPage: KeysMainSeoReducer,
+    AdminKey: isAdminReducer,
+    AdminTexts: isAdminTextsReducer,
+    AdminList: isAdminListsReducer,
+    MainRes: MainResReducer,
+    MainOther: MainOtherReducer,
+    MainSimple: MainSimpleReducer,
+    MainReview: MainReviewReducer,
+    Reviews: ReviewsReducer,
+    VacancyAccordion: VacancyAccReducer,
+    SeoServices: SeoServicesReducer,
+    SeoStable: SeoStableReducer,
+    SeoAcc: SeoAccReducer,
+    SeoMonth: SeoMonthReducer,
+    SeoReport: SeoReportReducer,
+    CrmPortfolio: crmPortfolioReducer,
+    MainKeys: MainKeysReducer,
+    KeysMobile: keysMobileReducer,
+    KeysCrm: keysCrmReducer
 })
 
 const initStore = ()=>{

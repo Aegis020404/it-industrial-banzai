@@ -19,7 +19,7 @@ const MarketplaceSeoPage = ()=>{
         <>
             <Container>
                 <main ref={marketI} className="marketplace">
-                    <MobileHero column='marketPlace'/>
+                    <MobileHero column='marketPlace' actionTitle={'TITLE_MARKETPLACE_HERO_CHANGE'}/>
                     <MarketplaceSeoText/>
                     <MainApplication/>
                     <MainOfferContainer/>

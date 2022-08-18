@@ -22,9 +22,9 @@ const MobilePage = ()=>{
         <>
             <Container>
                 <main ref={mobileI} className="mobile">
-                    <MobileHeroContainer column={'mobile'}/>
+                    <MobileHeroContainer column={'mobile'} actionDescr={'DESCR_HERO_MOBILE_PAGE_INFO'} actionTitle={'TITLE_HERO_MOBILE_PAGE_INFO'}/>
                     <MobileCount/>
-                    <MobileServiceContainer column={'mobileDevelop'}/>
+                    <MobileServiceContainer column={'mobileDevelop'}  actionImg={'LIST_IMG_MOBILE_PAGE_CHANGE'}  actionTitle={'TITLE_MOBILE_PAGE_CHANGE'} actionDescr={'DESCR_MOBILE_PAGE_CHANGE'} actionListAdd={'LIST_ADD_MOBILE_PAGE_CHANGE'} actionListTitle={'LIST_TITLE_MOBILE_PAGE_CHANGE'} actionListDescr={'LIST_DESCR_MOBILE_PAGE_CHANGE'} actionListDelete={'LIST_DELETE_MOBILE_PAGE_CHANGE'}/>
                     <MobilePortfolio/>
                     <MainDevContainer column={'developerMobile'}/>
                     <MainApplication/>

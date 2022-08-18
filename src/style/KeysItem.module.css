@@ -5,6 +5,38 @@
 * Browsers: last 4 version
 */
 
+.keysLogo img {
+    width: 75px;
+    height: 65px;
+    object-fit: contain;
+}
+
+.stroyLogo {
+    width: 60px;
+    height: 60px;
+}
+
+.autoLogo img {
+    height: 24px;
+    width: 106px;
+}
+
+.llumarLogo img {
+    width: 80px;
+    height: 45px;
+}
+
+.ecoLogo img {
+    width: 62px;
+    height: 62px;
+}
+
+.hockeyLogo  img{
+    width: 76px;
+    height: 82px;
+}
+
+
 .navLink {
     width: 100% !important;
 }
@@ -32,10 +64,29 @@
     -ms-grid-columns: (1fr)[2];
 }
 
+.keysItem {
+    position: relative;
+}
+
+.changeItemBtn  {
+    z-index: 10;
+    position:absolute;
+    bottom: auto;right: 0;left: 0;top:0;
+    margin:auto;
+    padding: 5px 10px;
+    font-size: 15px;
+    font-family: 'GothamProMedium';
+    font-style: normal;
+    font-weight: 500;
+    background-color: #FAFAFA;
+    color: #bdbdbd;
+    cursor: pointer;
+}
 
 .keysImgBlock:hover {
-    -webkit-filter: blur(4px);
-            filter: blur(4px);
+    -webkit-filter:brightness(0.5) grayscale(0.5);
+            filter:brightness(0.5) grayscale(0.5);
+           
 }
 .keysDescr {
     font-family: 'GothamProRegular';
@@ -126,4 +177,36 @@
         -ms-grid-row: 2;
         -ms-grid-column: 1;
     }
+
+    .keysLogo img {
+    width: 60px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.stroyLogo img {
+    width: 40px;
+    height: 40px;
+}
+
+.autoLogo  img{
+    height: 17px;
+    width: 78px;
+}
+
+.llumarLogo img {
+    width: 80px;
+    height: 45px;
+}
+
+.ecoLogo {
+    width: 56px;
+    height: 31px;
+}
+
+.hockeyLogo img{
+    width: 50px;
+    height: 54px;
+}
+
 }

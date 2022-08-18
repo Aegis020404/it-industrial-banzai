@@ -6,6 +6,59 @@
     height: 100%;
 }
 
+
+.modalChangeIcon {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    opacity: 0;pointer-events: none;
+    transition: all .35s ease-in-out;
+}
+
+.modalChangeActive {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.drop, .drag {
+    height: 50px;
+    max-width: 200px;
+    margin-bottom: 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;justify-content: center;
+    font-size: 16px;
+    font-family: 'GothamProRegular';
+    font-style: normal;
+    font-weight: 400;
+    border: 3px solid var(--pink-color);
+    border-radius: 3px;
+    transition: all;
+    color: #989898;
+}
+
+.drop {
+    border: 3px dashed var(--pink-color);
+}
+.changeItemBtn {
+    display: inline-block;
+    position:absolute;
+    top: 0;
+    left: 0;
+    background-color: #efefef;
+    padding: 5px 10px;
+    color: #CACACA;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.tariffPriceContent {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+}
+
 .tariffContent {
     display: flex;
     flex-direction: column;
@@ -31,6 +84,17 @@
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+.tariffImg {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+}
+.tariffImg img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
 }
 .tariffImg3 {
     display: inline-block;
@@ -119,6 +183,13 @@
 .tariffClauseText {
     display: inline-block;
     max-width: 180px;
+    font-family: 'GothamProRegular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    letter-spacing: -0.02em;
+    color: #607483;
 }
 
 
@@ -304,6 +375,16 @@
         gap: 7px;
         height: 83px;
     }
+
+    .tariffClauseText {
+        display: flex;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 130%;
+        letter-spacing: -0.02em;
+        color: #607483;
+    }
     
     .tariffСlause {
         display: flex;
@@ -454,6 +535,17 @@
         grid-template-rows: repeat(3, auto);
         min-height: 83px;
         height: auto;
+    }
+
+    .tariffClauseText {
+        display: flex;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 130%;
+        letter-spacing: -0.02em;
+        color: #607483;
+        white-space: pre-wrap;
     }
     
     .tariffСlause {

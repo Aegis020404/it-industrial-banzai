@@ -9,7 +9,7 @@ import KeysMainMobile from "./KeysMainMobile";
 import KeysMainCrm from "./KeysMainCrm";
 import { useSelector, useDispatch } from "react-redux";
 
-const KeysMainCard = (props)=>{
+const KeysMainCard = ({setModal, modal, setModalInfo, modalInfo})=>{
     let countPages = 4
     const {keysNavPage} = useSelector(state=>state)
     const dispatch = useDispatch()
@@ -29,10 +29,10 @@ const KeysMainCard = (props)=>{
             <nav className={cl.keysNav}>
                 <MyBtns arrBtns={infoData} setTabActive={setTabActive} selectBtn={selectBtnKeys} btnsClasses={cl.keysNavList} btnClasses={cl.keysNavItem} itemSwipeClasses={cl.keysSwipeItem}/>
             </nav>
-            <KeysMainSites classesTabs={arrClasses[0].class}/>
+            <KeysMainSites setModal={setModal} modalInfo={modalInfo} setModalInfo={setModalInfo} modal={modal} classesTabs={arrClasses[0].class}/>
             <KeysMainSeo  classesTabs={arrClasses[1].class}/>
-            <KeysMainMobile  classesTabs={arrClasses[2].class}/>
-            <KeysMainCrm  classesTabs={arrClasses[3].class}/>
+            <KeysMainMobile  setModal={setModal} modalInfo={modalInfo} setModalInfo={setModalInfo} modal={modal} classesTabs={arrClasses[2].class}/>
+            <KeysMainCrm  setModal={setModal} modalInfo={modalInfo} setModalInfo={setModalInfo} modal={modal}  classesTabs={arrClasses[3].class}/>
         </div>
     )
 }

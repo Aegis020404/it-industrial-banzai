@@ -1,19 +1,27 @@
-import React from "react";
+import React, {useState} from "react";
 import VacancyAccAll from "../vacancyP/VacancyAccAll";
 import cl from '../../style/SeoQuestion.module.css';
-
-
+import { useSelector } from "react-redux";
+import MyViewElement from "../UI/viewelement/MyViewElement";
+import MyAdminInput from "../UI/admininput/MyAdminInput";
 const SeoQuestions = ()=>{
-    const infoArr = [{title: 'Может ли быть такое, что результата не будет?', descr: 'Нет. Результат от нашей работы будет в любом случае. Не всегда результат получается сразу таким, который ожидает клиент, но мы всегда анализируем, дорабатываем и работаем до тех пор, пока результат не будет устраивать на 100%'},
-    {title: 'Какие гарантии вы даете?', descr: 'Мы не можем дать гарантий по позициям, т.к. алгоритмы поисковых систем меняются постоянно. Но каждый месяц мы предоставляем подробный отчет, где вы видите, какие работы проведены и результат этих работ.'},
-    {title: 'Заключаете ли вы официальный договор?', descr: 'Да, условия сотрудничества обсуждаем индивидуально.'},
-    {title: 'Обязательно ли переделывать сайт, если он мне нравится?', descr: 'Мы анализируем сайт с точки зрения требований поисковых систем и удобства дли клиента. Если не доработать, то сложно будет вывести его в топ и получить заявки. Поэтому дорабатывать сайт приходится всегда, и нужно быть к этому готовым.'},
-    {title: 'Если запросы вошли в топ, мы можем закончить сотруднчество?', descr: 'Если в вашей нише есть конкуренты, которые вкладываются в продвижение, то они со временем могут вас сместить. Рекомендуем работать над сайтом постоянно, подстраиваться под новые алгоритмы, улучшать и добаратывать, чтобы поддерживать лидирующие позиции'}]
+    const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
+    const seoTexts = useSelector(state=>state.AdminTexts.seoQuestion)
+    const [questionData, setQuestionData] = useState({title: {width:0,height:0}})
+    const infoArr = useSelector(state=>state.SeoAcc)
     return (
         <section className={cl.questSection}>
             <div className="container">
-                <h2 className={cl.questTitle}>Часто задаваемые вопросы</h2>
-                <VacancyAccAll itemList={infoArr} classesItem={cl.accItem} classesDescr={cl.accordionDescr} classesBlock={cl.accBlock}/>
+            <MyViewElement element={
+                    isAdmin ? 
+                    <MyAdminInput width={questionData.title.width}  height={questionData.title.height} typeAction={'TITLE_SEO_QUESTION_INFO'}>
+                        <h2 className={cl.questTitle} onClick={e=>setQuestionData({...questionData, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{seoTexts.title}</h2>
+                    </MyAdminInput>
+                    :
+                    <h2 className={cl.questTitle}>{seoTexts.title}</h2>
+                }/>
+               
+                <VacancyAccAll itemList={infoArr} classesItem={cl.accItem} classesDescr={cl.accordionDescr} classesBlock={cl.accBlock} actionTitle={'TITLE_SEO_ACC_CHANGE'} actionDescr={'DESCR_SEO_ACC_CHANGE'} actionAddMain={'ADD_SEO_ACC_ELEMENT'} actionDeleteMain={'DELETE_SEO_ACC_ELEMENT'}/>
             </div>
         </section>
     )

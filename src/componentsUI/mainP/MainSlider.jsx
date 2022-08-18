@@ -8,13 +8,17 @@ import {useDispatch, useSelector} from 'react-redux'
 import cl from '../../style/Slider.module.css';
 import MyBtnBlank from '../UI/buttonborder/MyBtnBlank';
 import MyThxModal from '../UI/thxmodal/MyThxModal';
+import MyAdminInput from '../UI/admininput/MyAdminInput';
 
 
-const Slider = (props) => {
+const Slider = ({...props}) => {
     const [modalInfo, setModalInfo] = useState({namePerson: '', tel: ''})
     const dispatch = useDispatch();
     const {mainSliderPage} = useSelector((state)=>state)
     const infoData = [...mainSliderPage]
+    const {isAdmin} = useSelector(state=>state.AdminKey)
+    const [heroInfo, setHeroInfo] = useState({title: {width:0,height:0}, descr: {width:0,height:0}})
+
     let forServerInfo = {}
 
     const addModalInfo = (e) => {
@@ -74,12 +78,21 @@ const Slider = (props) => {
                                         <div className={cl.wrapper}>
                                             <div className={cl.textBlock}>
                                                 <div className={cl.textWrap}>
-                                                    <div className={cl.heading}>
-                                                        {item.title}
-                                                    </div>
-                                                    <div className={cl.text}>
-                                                        {item.botTitle}
-                                                    </div>
+                                                    {isAdmin ?
+                                                        <MyAdminInput width={heroInfo.title.width} id={item.id} height={heroInfo.title.height} typeAction={'TITLE_SLIDER_MAIN_CHANGE'}>
+                                                            <div className={cl.heading}  onClick={e=>setHeroInfo({...heroInfo, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{item.title}</div>
+                                                        </MyAdminInput>
+                                                    :
+                                                        <div className={cl.heading}>{item.title}</div>
+                                                    }
+                                                     {isAdmin ?
+                                                        <MyAdminInput width={heroInfo.descr.width} id={item.id} height={heroInfo.descr.height} typeAction={'DESCR_SLIDER_MAIN_CHANGE'}>
+                                                             <div className={cl.text} onClick={e=>setHeroInfo({...heroInfo, descr: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{item.botTitle}</div>
+                                                        </MyAdminInput>
+                                                    :
+                                                        <div className={cl.text}>{item.botTitle}</div>
+                                                    }
+                                                   
                                                     <MyBtnBlank classes={cl.btn} onClick={e => {
                                                         e.preventDefault(e);
                                                         setModal(true)

@@ -1,5 +1,5 @@
 .MainDev {
-    margin-top: 138px;
+    margin-top: 103px;
     min-height: 350px;
     height: auto;
     overflow: hidden;
@@ -7,7 +7,49 @@
 
 .container {
     height: 100%;
+    position: relative;
+}
 
+
+.photoWrapBlock {
+    position: relative;
+}
+
+.photoWrap {
+    position: relative;
+}
+
+.drop, .drag {
+    margin-top: 40px;
+    height: 50px;
+    max-width: 120px;
+    margin-bottom: 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;justify-content: center;
+    font-size: 14px;
+    font-family: 'GothamProRegular';
+    font-style: normal;
+    font-weight: 400;
+    border: 3px solid var(--pink-color);
+    border-radius: 3px;
+    transition: all;
+    color: #989898;
+}
+
+.drop {
+    border: 3px dashed var(--pink-color);
+}
+
+
+.changeImgBtn {
+    position: absolute;
+    top: 0;left: 0;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: #c3c3c3;
+    background-color: rgb(250, 250, 250);
+    cursor: pointer;
 }
 
 .wrapper {
@@ -17,20 +59,26 @@
     height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .contentBlock {
+    position: relative;
     height: 100%;
 }
 
+.wrapList {
+    margin-top: 20px;
+}
 .stepper, .photoWrapBlock, .stepCount, .wrapList {
     min-height: 300px;
 }
 
+.titleWrapper {
+    margin-top: 35px;
+}
 
 .text {
-
     text-align: center;
     font-family: var(--ff-madium);
     font-style: normal;
@@ -261,6 +309,18 @@
     width: 57px;
     height: 68px;
 }
+ 
+
+.photo img {
+    object-fit: contain;
+    width: 64px;
+    height: 64px;
+}
+
+
+.photoM img {
+
+}
 
 .wholeText {
     margin-top: 40px;
@@ -312,6 +372,16 @@
     display: none;
 }
 
+.itemText { 
+    font-family: var(--ff-regular);
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 130%;
+letter-spacing: -0.02em;
+color: #607483;
+}
+
 .photoWrap {
     display: flex;
     justify-content: center;
@@ -327,16 +397,11 @@
 .listItem {
     display: flex;
     width: 250px;
-    font-family: var(--ff-regular);
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 130%;
+    
     margin-bottom: 25px;
-    letter-spacing: -0.02em;
+  
     position: relative;
-    color: #607483;
-
+  
 }
 
 .line {
@@ -573,14 +638,22 @@
         z-index: 5;
     }
 
+    .itemText {
+        font-size: 12px;
+    }
+
     .listItem {
         margin-bottom: 20px;
-        font-size: 11px;
+     
         /*max-width: 140px;*/
     }
 }
 
 @media (max-width: 768px) {
+
+    .wrapList {
+    margin-top: 20px;
+}
 
 
     .text {
@@ -607,9 +680,10 @@
         margin-bottom: 12px;
     }
 
-    .photo {
-        width: 43px;
-        height: 43px;
+    .photo img {
+        object-fit: contain;
+        width: 44px;
+        height: 44px;
     }
 
     .Swiper {
@@ -701,19 +775,23 @@
         background-size: contain;
     }
 
+    .itemText {
+        font-size: 12px;
+        font-size: 12px;
+        line-height: 115%;
+        max-width: 130px;
+    }
+
     .listItem {
         margin-right: 0;
         margin-bottom: 10px;
         margin-right: 0;
         max-width: 250px;
         width: 100%;
-        font-size: 12px;
-        line-height: 115%;
-        max-width: 130px;
     }
 
     .MainDev {
-        margin-top: 70px;
+        margin-top: 35px;
         min-height: 300px;
         overflow: hidden;
     }
@@ -738,7 +816,7 @@
     }
 
     .MainDev {
-        margin-top: 56px;
+        margin-top: 21px;
         min-height: 550px;
         height: auto;
 
@@ -791,6 +869,16 @@
         font-weight: 500;
         font-size: 15px;
         line-height: 110%;
+        letter-spacing: -0.02em;
+        color: #607483;
+    }
+
+    .itemText {
+        font-family: 'GothamProRegular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 130%;
         letter-spacing: -0.02em;
         color: #607483;
     }
@@ -900,6 +988,12 @@
         width: 70px;
         /*transform: translateY(-1100%);*/
         bottom: 190px;
+    }
+
+    .photoM img {
+        object-fit: contain;
+        width: 64px;
+        height: 64px;
     }
 
 }

@@ -8,6 +8,7 @@ import autoSchedule from '../../../public/img/keys-seo-auto.svg';
 import llumarSchedule from '../../../public/img/keys-seo-lumar.svg';
 import {connect} from "react-redux/lib";
 import { useDispatch, useSelector } from 'react-redux';
+import MyAddElement from '../UI/adminaddel/MyAddElement';
 
 const KeysMainSeo = (props) => {
     const dispatch = useDispatch()
@@ -15,8 +16,9 @@ const KeysMainSeo = (props) => {
 
     return (
         <div className={[cl.seoBlock, props.classesTabs].join` `}>
+            <MyAddElement typeAction={'ADD_KEYS_SEO_ELEMENT'}></MyAddElement>
             <ul className={cl.seoList}>
-                {KeysMainSeoPage.map((e,i)=><KeysMainSeoItem key={i} index={i} nameCompany={e.nameCompany} linkCompany={e.linkCompany} beenTopTen={e.changeSeo.beenChange.topTen}  schedule={e.schedule} scheduleSet={e.scheduleSet} beenTraffic={e.changeSeo.becameChange.traffic} becameTopTen={e.changeSeo.becameChange.topTen} becameTraffic={e.changeSeo.becameChange.traffic}/>)}
+                {KeysMainSeoPage.map((e,i)=><KeysMainSeoItem key={i} id={e.id} index={i} topTenTitle={e.topTenTitle} trafficTitle={e.trafficTitle} titleTopLeft={e.titleTopLeft} nameCompany={e.nameCompany} linkCompany={e.linkCompany} beenTopTen={e.changeSeo.beenChange.topTen}  schedule={e.schedule} scheduleSet={e.scheduleSet} beenTraffic={e.changeSeo.becameChange.traffic} becameTopTen={e.changeSeo.becameChange.topTen} graphImg={e.graphImg} becameTraffic={e.changeSeo.becameChange.traffic} />)}
             </ul>
         </div>
     )

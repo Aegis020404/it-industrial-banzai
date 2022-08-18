@@ -3,6 +3,12 @@
     padding-bottom: 30px;
 }
 
+.monthLeft {
+    position: relative;
+}
+.monthItem {
+    position: relative;
+}
 .monthTitle {
     margin: 0 auto 88px;
     max-width: 1050px;

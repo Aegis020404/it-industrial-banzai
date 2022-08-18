@@ -101,6 +101,8 @@ html, body {
     height: 100%;
 }
 
+
+
 body { 
     font-family: var(--ff-regular);
     -webkit-box-sizing: border-box;
@@ -187,18 +189,36 @@ button {
 body::-webkit-scrollbar {
     -webkit-transition: all .35s ease;
     transition: all .35s ease;
-    width: 12px;               
+    width: 12px;            
+    z-index: 9000;   
 }
 body::-webkit-scrollbar-track {
 background: rgba(227, 227, 227, 0.208);   
 -webkit-transition: all .35s ease;   
 transition: all .35s ease;    
+z-index: 1000;   
+
 }
 body::-webkit-scrollbar-thumb {
 background-color: var(--sky-grey-color);   
 -webkit-transition: all .35s ease;   
 transition: all .35s ease;
 border-radius: 20px;      
+z-index: 1000;   
+
+}
+
+
+.changeItemBtn {
+    position: absolute;
+    top: 0;left: 0;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: #bebebe;
+    background-color: rgb(234, 234, 234);
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 5;
 }
 
 html {
@@ -225,6 +245,7 @@ html {
     -o-transition: all .45s ease-in-out;
     transition: all .45s ease-in-out;
     opacity: 0;
+    margin-top: 125px;
 }
 
 .mainL, .keysI, .aboutI, .reviewsI, .vacancyI , .tariffI, .keyI, .contactsI, .seoI, .mobileI, .marketplaceI {

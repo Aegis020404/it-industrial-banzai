@@ -7,9 +7,16 @@ import MyModal from "../UI/modal/MyModal";
 import MyTextarea from "../UI/textarea/MyTextarea";
 import MyThxModal from "../UI/thxmodal/MyThxModal";
 import MyViewElement from "../UI/viewelement/MyViewElement";
-
+import MyAdminInput from "../UI/admininput/MyAdminInput";
+import MyAddElement from '../UI/adminaddel/MyAddElement';
+import { useSelector } from "react-redux";
 
 const MainQuestion = ()=>{
+    const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
+    const questionTexts = useSelector(state=>state.AdminTexts.mainQuestion)
+    const [sizeInfo, setSizeInfo] = useState({title: {width:0,height:0}, descr: {width:0,height:0}, bottomDescr: {width:0,height:0}})
+    const itemInfo = useSelector(state=>state.MainKeys)
+    const [isModal, setIsModal] = useState(false)
 
     const [modalInfo, setModalInfo] = useState({namePerson: '', tel: '', question: ''})
 
@@ -35,13 +42,24 @@ const MainQuestion = ()=>{
             <div className={['container', cl.container].join` `}>
                 <div className={cl.questionContent}>
                     <MyViewElement element={
-                    <h2 className={cl.questionTitle}>У вас остались вопросы?</h2>
+                   
+                        isAdmin ? 
+                          <MyAdminInput width={sizeInfo.title.width}  height={sizeInfo.title.height} typeAction={'TITLE_QUESTION_INFO'}>
+                            <h2 className={cl.questionTitle}  onClick={e=>setSizeInfo({...sizeInfo, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{questionTexts.title}</h2>
+                          </MyAdminInput>
+                          :
+                          <h2 className={cl.questionTitle}>{questionTexts.title}</h2>
                         
                     }/>
                     <MyViewElement element={
-                    <p className={cl.questionDescr}>
-                        Если вы не нашли ответ на свой вопрос — свяжитесь с нами любым удобным способом и мы обязательно проконсультируем вас:
-                    </p>
+                          isAdmin ? 
+                          <MyAdminInput width={sizeInfo.descr.width}  height={sizeInfo.descr.height} typeAction={'DESCR_QUESTION_INFO'}>
+                             <p className={cl.questionDescr}  onClick={e=>setSizeInfo({...sizeInfo, descr: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{questionTexts.descr}</p>
+
+                          </MyAdminInput>
+                          :
+                          <p className={cl.questionDescr}>{questionTexts.descr}</p>
+
                      }/>
                      <MyViewElement element={
                     <form action="" id='question' className={cl.questionForm}>
@@ -52,7 +70,16 @@ const MainQuestion = ()=>{
                         <div className={cl.questiontextAreaBlock}>
                             <MyTextarea setTextarea={setModalInfo} textarea={modalInfo} textareaValue={modalInfo.question} place='Ваш вопрос' classesTextarea={cl.questionTextarea} classesPlace={cl.questionTextareaP}/>
                         </div>
-                        <p className={cl.questionDescrForm}>Нажимая на кнопку, вы даете согласие на обработку ваших персональных данных</p>
+                        {
+                            isAdmin ? 
+                            <MyAdminInput width={sizeInfo.bottomDescr.width}  height={sizeInfo.bottomDescr.height} typeAction={'BOTTOM_DESCR_QUESTION_INFO'}>
+                               <p className={cl.questionDescrForm}  onClick={e=>setSizeInfo({...sizeInfo, bottomDescr: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{questionTexts.bottomDescr}</p>
+                            </MyAdminInput>
+                            :
+                            <p className={cl.questionDescrForm}>{questionTexts.bottomDescr}</p>
+  
+                        }
+                       
                         <MyBtnFiled type='submit' form='question' classes={cl.questionBtn} onClick={e=>{addModalInfo(e)}}>ЗАДАТЬ ВОПРОС</MyBtnFiled>
                         
                     </form>

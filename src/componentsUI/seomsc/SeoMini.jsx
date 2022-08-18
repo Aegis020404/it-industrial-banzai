@@ -1,7 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import cl from '../../style/SeoMini.module.css'
 import MyViewElement from '../UI/viewelement/MyViewElement';
+import { useSelector } from 'react-redux';
+import MyAdminInput from "../UI/admininput/MyAdminInput";
+
 const SeoMini = ()=>{
+    const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
+    const seoTexts = useSelector(state=>state.AdminTexts.seoMini)
+    const [miniData, setMiniData] = useState({title: {width:0,height:0}, descr: {width:0,height:0}})
+
     return (
         <section className={cl.miniSection}>
             <div className={cl.overlay}>
@@ -14,10 +21,23 @@ const SeoMini = ()=>{
                         </svg> */}
                     </span>
                     <MyViewElement element={
-                            <h2 className={cl.miniTitle}>В работе мы используем только белые методы продвижения (естественные, «законные» с точки зрения поисковых систем).</h2>
+                        isAdmin ? 
+                        <MyAdminInput width={miniData.title.width}  height={miniData.title.height} typeAction={'TITLE_SEO_MINI_INFO'}>
+                            <h2 className={cl.miniTitle} onClick={e=>setMiniData({...miniData, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{seoTexts.title}</h2>
+                        </MyAdminInput>
+                        :
+                        <h2 className={cl.miniTitle}>{seoTexts.title}</h2>
+                           
                     }/>
                     <MyViewElement element={
-                    <p className={cl.miniDescr}>Поэтому мы исключаем ситуации, в которых ваш сайт получит бан и вы потеряете вложенные в сайт деньги.</p>
+                        isAdmin ? 
+                        <MyAdminInput width={miniData.descr.width}  height={miniData.descr.height} typeAction={'DESCR_SEO_MINI_INFO'}>
+                            <p className={cl.miniDescr}  onClick={e=>setMiniData({...miniData, descr: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{seoTexts.descr}</p>
+
+                        </MyAdminInput>
+                        :
+                            <p className={cl.miniDescr}>{seoTexts.descr}</p>
+                        
                 }/>
 
                 </div>

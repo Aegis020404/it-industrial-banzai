@@ -1,6 +1,12 @@
 .mobileBlock {
     transition: all .35s ease-in-out;
     padding-bottom: 110px;
+    position: relative;
+}
+
+.mobileLogo {
+    width: 60px;
+    height: 53px;
 }
 
 .mobileList {
@@ -33,5 +39,9 @@
     .logoBlue {
         width: 40px;
         height: 33px;
+    }
+    .mobileLogo {
+        width: 40px;
+        height: 32px;
     }
 }
