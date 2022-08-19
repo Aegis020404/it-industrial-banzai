@@ -1,16 +1,21 @@
 .container {
-    margin-top: 10px;
-    flex-direction: column;
+    height: 70vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     gap: 20px;
 }
-.title {
-    font-weight: 900;
-}
+.status {
+    color: #f84262;
+    font-size: 150px;
+    font-weight: bolder;
 
+}
+.zero {
+color: #727270;
+}
 .btn {
     padding: 17px 24px 17px 23px;
 }
