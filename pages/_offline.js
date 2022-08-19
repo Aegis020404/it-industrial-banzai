@@ -1,13 +1,8 @@
-import Head from 'next/head'
 import cl from '/src/style/offline.module.css'
-import MyBtnFiled from "../src/componentsUI/UI/buttonback/MyBtnFiled";
-import React from "@types/react";
+import MyBtnFiled from "/src/componentsUI/UI/buttonback/MyBtnFiled";
 
-export default () => (
+const offline = () => (
     <>
-        <Head>
-            <title>it-industrial</title>
-        </Head>
         <div className={cl.container}>
             <img src="/icon-256x256.png" alt=""/>
             <h1 className={cl.title}>Данная страница OFFLINE!</h1>
@@ -19,3 +14,5 @@ export default () => (
         </div>
     </>
 )
+
+export default offline
