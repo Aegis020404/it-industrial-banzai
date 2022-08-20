@@ -7,6 +7,7 @@ import MyAddElement from '../UI/adminaddel/MyAddElement';
 import MyDeleteElement from '../UI/admindelel/MyDeleteElement';
 import {useDropzone} from 'react-dropzone'
 import { useDispatch } from "react-redux";
+import Image from "next/image";
 
 const MainResultItem = ({infoObj})=>{
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
@@ -37,7 +38,7 @@ const MainResultItem = ({infoObj})=>{
                         </div>
                     :
                         <span className={[cl.resultImg].join` `}>
-                            <img src={'/img/' +  infoObj.img}></img>
+                            <Image width={68} height={76}  src={'/img/' +  infoObj.img}/>
                         </span>
                     } 
                 </div>

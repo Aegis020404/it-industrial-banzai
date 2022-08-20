@@ -10,6 +10,7 @@ import MyMask from "./UI/maskinput/MyMask";
 import ContactsService from "../API/ContactsService";
 import Link from "next/link";
 import MyThxModal from "./UI/thxmodal/MyThxModal";
+import Image from "next/image";
 
 const Footer = () => {
 
@@ -138,7 +139,7 @@ const Footer = () => {
                                     <div className={cl.footerILogoBlock}>
                                         <div className={cl.company}>
                                             <div className={cl.logoWrap}>
-                                                <img className={cl.logo} src={`/img/logo-header.svg`} alt="logo"/>
+                                                <Image width={42} height={43} className={cl.logo} src={`/img/logo-header.svg`} alt="logo"/>
                                             </div>
                                             <div className={cl.companyWrap}>
                                                 <p className={cl.name}>IT-INDUSTRIAL</p>

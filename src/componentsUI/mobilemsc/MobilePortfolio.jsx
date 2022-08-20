@@ -11,6 +11,7 @@ import MyAddElement from '../UI/adminaddel/MyAddElement';
 import MyAdminInput from '../UI/admininput/MyAdminInput';
 import MyDeleteElement from '../UI/admindelel/MyDeleteElement';
 import MyAdminModal from '../UI/adminmodal/MyAdminModal';
+import Image from "next/image";
 const MobilePortfolio = ()=>{
     const infoData =    useSelector(state=>state.CrmPortfolio)
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
@@ -56,7 +57,7 @@ const MobilePortfolio = ()=>{
                                 <figure className={cl.portFigure}>
                                     <Link href={e.href}>
                                         <div className={[cl.portBlock, e.classes].join` `}  onClick={e=>document.body.scrollTo({top:0,behavior:'smooth'})} style={{'backgroundColor': e.background}}>
-                                            <img src={e.img} />
+                                            <Image  src={e.img} />
                                         </div>
                                     </Link>
                                     {
@@ -78,7 +79,7 @@ const MobilePortfolio = ()=>{
                         <Link href={e.href}>
                               <figure className={cl.portFigure} onClick={e=>document.body.scrollTo({top:0,behavior:'smooth'})}>
                                 <div className={[cl.portBlock, e.classes].join` `} style={{'backgroundColor': e.background}}>
-                                    <img src={e.img} />
+                                    <Image src={e.img} />
                                 </div>
                                 <figcaption className={cl.portImgDescr}>{e.descr}</figcaption>
                             </figure>

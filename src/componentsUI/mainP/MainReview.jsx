@@ -15,6 +15,7 @@ import MyAddElement from '../UI/adminaddel/MyAddElement';
 import MyAdminModal from '../UI/adminmodal/MyAdminModal';
 import {useDropzone} from 'react-dropzone'
 import MainReviewItem from './MainReviewItem';
+import Image from "next/image";
 
 const MainReview = () => {
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
@@ -89,7 +90,7 @@ const MainReview = () => {
                                 <span className={cl.changeItem} onClick={e=>{setModalInfo(obj.id);setIsModal(true)}}>ИЗМЕНИТЬ</span>
                                 <div className={cl.wrapperPhotoPerson}>
                                     <div className={cl.photoBlock}>
-                                        <img src={`/img/${obj.photo}`} alt="photo" className={cl.photo}/>
+                                        <Image  width={107} height={107} src={`/img/${obj.photo}`} alt="photo" className={cl.photo}/>
                                         {
                                              isAdmin ? 
                                              <MyAdminInput width={sizeInfo.name.width} id={obj.id} height={sizeInfo.name.height} typeAction={'INITIALS_REVIEW_MAIN_CHANGE'}>

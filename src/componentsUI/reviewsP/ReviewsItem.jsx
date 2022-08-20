@@ -7,6 +7,7 @@ import MyAdminInput from "../UI/admininput/MyAdminInput";
 
 
 import {useDropzone} from 'react-dropzone'
+import Image from "next/image";
 
 const ReviewsItem = ({imgPerson, namePerson, positionPerson, commentPerson, id})=>{
     const reviewsInfo = useSelector(state=>state.Reviews)
@@ -56,7 +57,7 @@ const ReviewsItem = ({imgPerson, namePerson, positionPerson, commentPerson, id})
                                 </div>
                             </div>
                             :
-                            <img src={'/img/'+imgPerson} alt="Personality image"  className={cl.reviewsImg}/>
+                            <Image   src={'/img/'+imgPerson} alt="Personality image"  className={cl.reviewsImg}/>
                         }
                           
                         </div>

@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {useDropzone} from 'react-dropzone'
 
 import MyAdminInput from "../UI/admininput/MyAdminInput";
+import Image from "next/image";
 
 
 
@@ -46,7 +47,7 @@ const SeoServicesItem = ({title, img, infoItem, id})=>{
                 </div>
                 :
                 <span className={cl.servicesImgBlock}>
-                        <img src={`/img/${img}`} alt="photo" className={cl.itemImg}/>
+                        <Image  src={`/img/${img}`} alt="photo" className={cl.itemImg}/>
                 </span>
                 
             }

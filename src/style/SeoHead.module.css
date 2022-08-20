@@ -1,5 +1,5 @@
 .seoSection {
-    background-image: url('../../public/img/hero-bg.jpg');
+    background-image: url('../../public/img/hero-bg.WebP');
     background-position: center center;
     background-repeat: no-repeat;
     min-height: 700px;
@@ -8,14 +8,14 @@
 .darts {
     margin-top: 30px;
     margin-left: 30px;
-    background-image: url('../../public/img/darts.png');
+    background-image: url('../../public/img/darts.WebP');
     min-height: 500px;
 }
 
 @media (max-width: 1200px) {
     .darts {
         margin-left: 0px;
-        background-image: url('../../public/img/darts.png');
+        background-image: url('../../public/img/darts.WebP');
         min-height: 500px;
     }
 } 
@@ -24,7 +24,7 @@
     .darts {
         margin-top: 50px;
         margin-left: 0px;
-        background-image: url('../../public/img/darts.png');
+        background-image: url('../../public/img/darts.WebP');
         min-height: 400px;
     }
 }
@@ -33,7 +33,7 @@
     .darts {
         margin-top: 50px;
         margin-left: 0px;
-        background-image: url('../../public/img/darts.png');
+        background-image: url('../../public/img/darts.WebP');
         min-height: 290px;
     }
 }

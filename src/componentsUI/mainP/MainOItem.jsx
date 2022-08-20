@@ -7,6 +7,7 @@ import MyViewElement from "../UI/viewelement/MyViewElement";
 import MyAdminInput from "../UI/admininput/MyAdminInput";
 import MyDeleteElement from "../UI/admindelel/MyDeleteElement";
 import {useDropzone} from 'react-dropzone'
+import Image from "next/image";
 
 const MainOItem = ({title, img, setModalItem, id})=>{
     const dispatch = useDispatch()
@@ -50,7 +51,7 @@ const MainOItem = ({title, img, setModalItem, id})=>{
                     </div>
                 </div>
                 :
-                <img className={cl.otherItemImgBlock} src={`/img/${img}`}/>
+                <Image width={104} height={103}  className={cl.otherItemImgBlock} src={`/img/${img}`}/>
             }
            
             <MyBtnBlank classes={cl.otherItemBtn} onClick={e=>{e.preventDefault(e); setModalItem(true)}}>ЗАКАЗАТЬ</MyBtnBlank>

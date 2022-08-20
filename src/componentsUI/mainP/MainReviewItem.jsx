@@ -16,6 +16,7 @@ import MyAddElement from '../UI/adminaddel/MyAddElement';
 import MyAdminModal from '../UI/adminmodal/MyAdminModal';
 
 import {useDropzone} from 'react-dropzone'
+import Image from "next/image";
 
 const MainReviewItem = ({infoObj})=>{
   
@@ -45,7 +46,7 @@ const MainReviewItem = ({infoObj})=>{
                         </div>
                     </div>
                     :
-                    <img src={`/img/${infoObj.photo}`} alt="photo" className={cl.photo}/>
+                    <Image width={107} height={107} src={`/img/${infoObj.photo}`} alt="photo" className={cl.photo}/>
                 }
                
                 {

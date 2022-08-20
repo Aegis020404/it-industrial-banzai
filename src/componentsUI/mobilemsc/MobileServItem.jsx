@@ -46,7 +46,7 @@ const MobileServItem = ({title, descr, img,id, actionListDelete,actionImg,action
                         </div>
                         :
                         <span className={cl.serviceImg}>
-                            <img src={'/img/'+img} ></img>
+                            <Image  src={'/img/'+img} />
                         </span>
                 }/>
                 <MyViewElement element={

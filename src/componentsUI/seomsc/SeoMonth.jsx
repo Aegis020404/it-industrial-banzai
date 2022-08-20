@@ -5,6 +5,7 @@ import SeoMonthItem from "./SeoMonthItem";
 import { useSelector } from 'react-redux';
 import MyAdminInput from "../UI/admininput/MyAdminInput";
 import MyAddElement from "../UI/adminaddel/MyAddElement";
+import Image from "next/image";
 
 const SeoMonth = ()=>{
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
@@ -32,7 +33,7 @@ const SeoMonth = ()=>{
                     <div className={cl.monthRight}>
                     <MyViewElement element={
                         <div className={cl.monthRightImg}>
-                            <img src={'/img/seo-month.WebP'} alt="web-google"/>
+                            <Image  src={'/img/seo-month.WebP'} alt="web-google"/>
                         </div>
                         }/>
                     </div>

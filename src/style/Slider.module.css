@@ -2,7 +2,7 @@
     margin: 0 auto;
     /*max-width: 1560px;*/
     min-height: 700px;
-    background-image: url("../../public/img/hero-bg.jpg");
+    background-image: url("../../public/img/hero-bg.WebP");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -258,7 +258,7 @@
     }
     .slider {
         min-height: 450px;
-        background-image: url("../../public/img/hero-bg.jpg");
+        background-image: url("../../public/img/hero-bg.WebP");
         height: auto;
     }
     .heading {
@@ -354,7 +354,7 @@
     }
     .slider {
         min-height: 500px;
-        background-image: url("../../public/img/hero-bg.jpg");
+        background-image: url("../../public/img/hero-bg.WebP");
     }
     .heading {
         margin: 0 !important;
@@ -421,7 +421,7 @@
         margin: 0 auto;
         /*max-width: 1560px;*/
         min-height: 400px;
-        background-image: url("../../public/img/hero-bg.jpg");
+        background-image: url("../../public/img/hero-bg.WebP");
         overflow: hidden;
     }
 
