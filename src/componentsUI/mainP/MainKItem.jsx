@@ -5,6 +5,7 @@ import MyViewElement from "../UI/viewelement/MyViewElement";
 import { useSelector } from "react-redux";
 import MyAdminInput from "../UI/admininput/MyAdminInput";
 import MyDeleteElement from "../UI/admindelel/MyDeleteElement";
+import Image from "next/image";
 
 const MainKItem = ({count, infoArr, id, modalInfoChanging, setModal, modalInfo})=>{
     <MyDeleteElement typeAction={'DELETE_KEYS_MAIN_ITEM_ELEMENT'} id={id}/>
@@ -22,13 +23,13 @@ const MainKItem = ({count, infoArr, id, modalInfoChanging, setModal, modalInfo})
                                 <span className={cl.changeItem} onClick={e=>{setModal(true);modalInfoChanging({...modalInfo,href: infoArr[0].href,color:infoArr[0].backColor, alt:infoArr[0].alt, id: id, count: 1})}}>ИЗМЕНИТЬ</span>
                                  <Link href={'/keys/' + infoArr[0].href}>
                                 {infoArr[0].classes == cl.imgEva ?  <div className={[cl.evaBlock, cl.img].join` `} style={{backgroundColor: infoArr[0].backColor}} onClick={e=>document.body.scrollTo({top:0,behavior:'smooth'})}>
-                                    <img src={`/img/${infoArr[0].img[0]}`} alt="logo Ekovtor" className={[cl.evaLogo].join` `}/>
-                                    <img src={`/img/${infoArr[0].img[1]}`} alt="female Ekovtor" className={[cl.femaleimgSort].join` `}/>
-                                    <img src={`/img/${infoArr[0].img[2]}`} className={[cl.ekoM].join` `}/>
+                                    <Image width={185} height={40} src={`/img/${infoArr[0].img[0]}`} alt="logo Ekovtor" className={[cl.evaLogo].join` `}/>
+                                    <Image width={360} height={390} src={`/img/${infoArr[0].img[1]}`} alt="female Ekovtor" className={[cl.femaleimgSort].join` `}/>
+                                    <Image width={576} height={659} src={`/img/${infoArr[0].img[2]}`} alt='ekoM' className={[cl.ekoM].join` `}/>
                                 </div>
                                 :   
                                 <div className={cl.imgCardWrapper} style={{backgroundColor: infoArr[0].backColor}} onClick={e=>document.body.scrollTo({top:0,behavior:'smooth'})}>
-                                    <img src={`/img/${infoArr[0].img[0]}`}   className={[cl.keysImg, infoArr[0].classes, cl.img ].join` `}/>
+                                    <Image width={560} height={640}  src={`/img/${infoArr[0].img[0]}`} alt='info'   className={[cl.keysImg, infoArr[0].classes, cl.img ].join` `}/>
                                 </div>}
                                 </Link>
                                 {
@@ -50,11 +51,11 @@ const MainKItem = ({count, infoArr, id, modalInfoChanging, setModal, modalInfo})
                               <Link href={'/keys/' + infoArr[1].href}>
                             {infoArr[1].classes == cl.imgMiniPad ? 
                             <div className={[cl.padBlock, cl.img].join` `} style={{backgroundColor: infoArr[1].backColor}} onClick={e=>document.body.scrollTo({top:0,behavior:'smooth'})}>
-                                <img src={`/img/${infoArr[1].img[0]}`}  className={[infoArr[1].classes].join` `}/>
+                                <Image src={`/img/${infoArr[1].img[0]}`} width={440} height={340} alt='photo'  className={[infoArr[1].classes].join` `}/>
                             </div>
                             :
                             <div className={cl.imgCardWrapper} style={{backgroundColor: infoArr[1].backColor}} onClick={e=>document.body.scrollTo({top:0,behavior:'smooth'})}>
-                             <img src={`/img/${infoArr[1].img[0]}`}  className={[cl.keysImg, infoArr[1].classes, cl.img].join` `}/>
+                             <Image src={`/img/${infoArr[1].img[0]}`} width={561} height={641} alt='photo'  className={[cl.keysImg, infoArr[1].classes, cl.img].join` `}/>
 
                             </div>  }
                             </Link>
@@ -78,8 +79,8 @@ const MainKItem = ({count, infoArr, id, modalInfoChanging, setModal, modalInfo})
                          <span className={cl.changeItem} onClick={e=>{setModal(true);modalInfoChanging({...modalInfo,href: infoArr[0].href,color:infoArr[0].backColor, alt:infoArr[0].alt, id: id, count: 1})}}>ИЗМЕНИТЬ</span>
                           <Link href={'/keys/' + infoArr[0].href} >
                         <div className={[cl.keysImgBlockF, cl.img].join` `} style={{backgroundColor: infoArr[0].backColor}} onClick={e=>document.body.scrollTo({top:0,behavior:'smooth'})}>
-                        <img src={`/img/${infoArr[0].img[0]}`}className={[cl.keysImg, infoArr[0].classes[0]].join` `}/>
-                        <img src={`/img/${infoArr[0].img[0]}`}className={[cl.keysImg, infoArr[0].classes[1]].join` `}/>
+                        <Image src={`/img/${infoArr[0].img[0]}`} width={756} height={513} className={[cl.keysImg, infoArr[0].classes[0]].join` `}/>
+                        <Image src={`/img/${infoArr[0].img[0]}`}  width={756} height={513} className={[cl.keysImg, infoArr[0].classes[1]].join` `}/>
                         </div>
                         </Link>
                             {

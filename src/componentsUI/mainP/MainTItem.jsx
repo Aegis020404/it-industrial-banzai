@@ -5,6 +5,7 @@ import MyBtnBlank from "../UI/buttonborder/MyBtnBlank";
 import MyDeleteElement from '../UI/admindelel/MyDeleteElement';
 import MyAdminInput from '../UI/admininput/MyAdminInput';
 import {useDropzone} from 'react-dropzone'
+import Image from "next/image";
 const MainTItem = ({img, title, descr, price, dl, setModal, setTheme,logo, deleteAction, id})=>{
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
     const [tariffItem, setTariffItem] = useState({title: {width:0,height:0}, dl: {width:0,height:0}, price: {width:0,height:0}, descr: {first:{width:0,height:0},second:{width:0,height:0},third:{width:0,height:0}}})
@@ -12,10 +13,23 @@ const MainTItem = ({img, title, descr, price, dl, setModal, setTheme,logo, delet
     const [isLogo, setIsLogo] = useState('')
 
     const [changeModal, setChangeModal] = useState(false)
-
-    const onDrop = useCallback(acceptedFiles => {
+    
+    const onDrop = useCallback((acceptedFiles) => {
+        acceptedFiles.forEach((file) => {
+          const reader = new FileReader()
+    
+          reader.onabort = () => console.log('file reading was aborted')
+          reader.onerror = () => console.log('file reading has failed')
+          reader.onload = () => {
+       
+            const binaryStr = reader.result
+            console.log(binaryStr)
+          }
+          reader.readAsArrayBuffer(file)
+        })
         setIsLogo(acceptedFiles[0].path)
       }, [])
+
       const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
     const confirmModal = (e)=>{
@@ -51,7 +65,7 @@ const MainTItem = ({img, title, descr, price, dl, setModal, setTheme,logo, delet
             <div className={cl.tariffContent}>
                 <div className={cl.tariffHeader}>
                     <span className={cl.tariffImg}>
-                        <img src={'/img/' + logo}></img>
+                        <Image width={38} height={39} src={'/img/' + logo}></Image>
                     </span>
                     {isAdmin ? 
                         <MyAdminInput width={tariffItem.title.width} height={tariffItem.title.height} typeAction={'TARIFF_TITLE_CHANGE'} id={id}>

@@ -1,8 +1,8 @@
 
-const initialState =  [{title: 'SEO-продвижение', img: 'circle-cubs.png', id:1},
-{title: 'SMM', img: 'circle-phone.png', id:2},
-{title: 'Аналитика сайта', img: 'circle-mac.png', id:3},
-{title: 'Аудит сайта', img: 'circle-contract.png', id:4}]
+const initialState =  [{title: 'SEO-продвижение', img: 'circle-cubs.WebP', id:1},
+{title: 'SMM', img: 'circle-phone.WebP', id:2},
+{title: 'Аналитика сайта', img: 'circle-mac.WebP', id:3},
+{title: 'Аудит сайта', img: 'circle-contract.WebP', id:4}]
 
 
 const MainOtherReducer = (state = initialState,action)=>{

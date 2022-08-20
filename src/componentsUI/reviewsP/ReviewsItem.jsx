@@ -7,6 +7,7 @@ import MyAdminInput from "../UI/admininput/MyAdminInput";
 
 
 import {useDropzone} from 'react-dropzone'
+import Image from "next/image";
 
 const ReviewsItem = ({imgPerson, namePerson, positionPerson, commentPerson, id})=>{
     const reviewsInfo = useSelector(state=>state.Reviews)
@@ -26,10 +27,23 @@ const ReviewsItem = ({imgPerson, namePerson, positionPerson, commentPerson, id})
             <>{res}</>
         );
     }
-
-    const onDrop = useCallback(acceptedFiles => { 
+    
+    const onDrop = useCallback((acceptedFiles) => {
+        acceptedFiles.forEach((file) => {
+          const reader = new FileReader()
+    
+          reader.onabort = () => console.log('file reading was aborted')
+          reader.onerror = () => console.log('file reading has failed')
+          reader.onload = () => {
+       
+            const binaryStr = reader.result
+            console.log(binaryStr)
+          }
+          reader.readAsArrayBuffer(file)
+        })
         dispatch({type: 'IMG_REVIEWS_CHANGE', info: {text:acceptedFiles[0].path, id: id}})
-    }, [])
+      }, [])
+
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
 
@@ -56,7 +70,7 @@ const ReviewsItem = ({imgPerson, namePerson, positionPerson, commentPerson, id})
                                 </div>
                             </div>
                             :
-                            <img src={'/img/'+imgPerson} alt="Personality image"  className={cl.reviewsImg}/>
+                            <Image   src={'/img/'+imgPerson} alt="Personality image"  className={cl.reviewsImg}/>
                         }
                           
                         </div>

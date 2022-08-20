@@ -3,12 +3,13 @@ import React, {useEffect, useRef, useState} from 'react';
 import cl from '../style/keySite.module.css'
 import {NavLink} from "react-router-dom";
 import MainApplication from "./mainP/MainApplication";
-import miniPhone from '../../public/img/miniPhone.png'
+import miniPhone from '../../public/img/miniPhone.WebP'
 import MyModal from "./UI/modal/MyModal";
 import MyThxModal from "./UI/thxmodal/MyThxModal";
 import MyBtnBlank from "./UI/buttonborder/MyBtnBlank";
 import NavPagesHead from './UI/navpage/MyNavPages';
 import { useDispatch,useSelector } from 'react-redux';
+import Image from "next/image";
 
 const KeyGenSites = ({link}) => {
     const [modal, setModal] = useState(false)
@@ -51,12 +52,12 @@ const KeyGenSites = ({link}) => {
 
             {state.imageInfo.map((el, i) => (
                 <div className={cl.photoWrap}>
-                    {!i ? 
-                        <img src={`/img/${state.imageInfo[i][1]}`} alt="" className={cl.photo}/>
+                    {!i ?
+                        <Image  src={`/img/${state.imageInfo[i][1]}`} alt="photo" className={cl.photo}/>
                     :   
                     <>
                          <h1 className={cl.imageInfo}>{state.imageInfo[i][0]}</h1>
-                        <img src={`/img/${state.imageInfo[i][1]}`} alt="" className={cl.photo}/>
+                        <Image src={`/img/${state.imageInfo[i][1]}`} alt="photo" className={cl.photo}/>
                     </>
                     }
                     

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {useDropzone} from 'react-dropzone'
 
 import MyAdminInput from "../UI/admininput/MyAdminInput";
+import Image from "next/image";
 const MobileServItem = ({title, descr, img,id, actionListDelete,actionImg,actionListDescr,actionListTitle})=> {
     useEffect(() => {})
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
@@ -14,9 +15,21 @@ const MobileServItem = ({title, descr, img,id, actionListDelete,actionImg,action
     const [changeImg, setChangeImg] = useState(false)
     const dispatch = useDispatch()
 
-    const onDrop = useCallback(acceptedFiles => { 
+    const onDrop = useCallback((acceptedFiles) => {
+        acceptedFiles.forEach((file) => {
+          const reader = new FileReader()
+    
+          reader.onabort = () => console.log('file reading was aborted')
+          reader.onerror = () => console.log('file reading has failed')
+          reader.onload = () => {
+       
+            const binaryStr = reader.result
+            console.log(binaryStr)
+          }
+          reader.readAsArrayBuffer(file)
+        })
         dispatch({type: actionImg, info: {text:acceptedFiles[0].path, id: id}})
-    }, [])
+      }, [])
 
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
     
@@ -46,7 +59,7 @@ const MobileServItem = ({title, descr, img,id, actionListDelete,actionImg,action
                         </div>
                         :
                         <span className={cl.serviceImg}>
-                            <img src={'/img/'+img} ></img>
+                            <Image width={35} height={35} src={'/img/'+img} />
                         </span>
                 }/>
                 <MyViewElement element={

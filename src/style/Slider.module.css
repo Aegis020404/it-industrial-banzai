@@ -2,7 +2,7 @@
     margin: 0 auto;
     /*max-width: 1560px;*/
     min-height: 700px;
-    background-image: url("../../public/img/hero-bg.jpg");
+    background-image: url("../../public/img/hero-bg.WebP");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -77,7 +77,7 @@
 .photo1 {
     width: 474px;
     height: 615px;
-    background-image: url('../../public/img/0.png');
+    background-image: url('../../public/img/0.WebP');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -86,7 +86,7 @@
 .photo2 {
     width: 448px;
     height: 344px;
-    background-image: url('../../public/img/1slide.png');
+    background-image: url('../../public/img/1slide.WebP');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -95,7 +95,7 @@
 .photo3 {
     width: 607px;
     height: 340px;
-    background-image: url('../../public/img/2.png');
+    background-image: url('../../public/img/2.WebP');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -220,7 +220,7 @@
         width: 374px;
         height: 515px;
         transform: translateX(-50px);
-        background-image: url('../../public/img/0.png');
+        background-image: url('../../public/img/0.WebP');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
@@ -230,7 +230,7 @@
         width: 358px;
         height: 254px;
         transform: translateX(-50px);
-        background-image: url('../../public/img/1slide.png');
+        background-image: url('../../public/img/1slide.WebP');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
@@ -240,7 +240,7 @@
         width: 507px;
         height: 240px;
         transform: translateX(-70px);
-        background-image: url('../../public/img/2.png');
+        background-image: url('../../public/img/2.WebP');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
@@ -258,7 +258,7 @@
     }
     .slider {
         min-height: 450px;
-        background-image: url("../../public/img/hero-bg.jpg");
+        background-image: url("../../public/img/hero-bg.WebP");
         height: auto;
     }
     .heading {
@@ -292,7 +292,7 @@
         height: 425px;
         transform: none;
         transform: translateX(-80px);
-        background-image: url('../../public/img/0.png');
+        background-image: url('../../public/img/0.WebP');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: left;
@@ -303,7 +303,7 @@
         height: 204px;
         transform: none;
         transform: translateY(-10px) translateX(-70px);
-        background-image: url('../../public/img/1slide.png');
+        background-image: url('../../public/img/1slide.WebP');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: left;
@@ -313,7 +313,7 @@
         width: 407px;
         height: 320px;
         transform: translateX(-100px); 
-        background-image: url('../../public/img/2.png');
+        background-image: url('../../public/img/2.WebP');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: left;
@@ -354,7 +354,7 @@
     }
     .slider {
         min-height: 500px;
-        background-image: url("../../public/img/hero-bg.jpg");
+        background-image: url("../../public/img/hero-bg.WebP");
     }
     .heading {
         margin: 0 !important;
@@ -421,7 +421,7 @@
         margin: 0 auto;
         /*max-width: 1560px;*/
         min-height: 400px;
-        background-image: url("../../public/img/hero-bg.jpg");
+        background-image: url("../../public/img/hero-bg.WebP");
         overflow: hidden;
     }
 
@@ -437,7 +437,7 @@
         width: 274px;
         height: 315px;
         transform: none;
-        background-image: url('../../public/img/0.png');
+        background-image: url('../../public/img/0.WebP');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: left;
@@ -447,7 +447,7 @@
         width: 288px;
         height: 184px;
         transform: none;
-        background-image: url('../../public/img/1slide.png');
+        background-image: url('../../public/img/1slide.WebP');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: left;
@@ -457,7 +457,7 @@
         width: 307px;
         height: 240px;
         transform: none ;
-        background-image: url('../../public/img/2.png');
+        background-image: url('../../public/img/2.WebP');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: left;
@@ -612,7 +612,7 @@
         width: 244px;
         height: 316px;
         transform: translateX(0px);
-        background-image: url('../../public/img/0.png');
+        background-image: url('../../public/img/0.WebP');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
@@ -622,7 +622,7 @@
         width: 288px;
         height: 184px;
         transform: translateX(0) translateY(40px);
-        background-image: url('../../public/img/1slide.png');
+        background-image: url('../../public/img/1slide.WebP');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
@@ -632,7 +632,7 @@
         width: 307px;
         height: 240px;
         transform: translateX(-10px) translateY(30px);
-        background-image: url('../../public/img/2.png');
+        background-image: url('../../public/img/2.WebP');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;

@@ -213,7 +213,7 @@
     position:absolute;
     right: -260px;
     top: 24%;
-    background-image: url('../../public/img/mainLeft.png') ;
+    background-image: url('../../public/img/mainLeft.WebP') ;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -225,7 +225,7 @@
     position: absolute;
     bottom: -2%;
     left: -320px;
-    background-image: url('../../public/img/mailRight.png') ;
+    background-image: url('../../public/img/mailRight.WebP') ;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -311,7 +311,7 @@
         position:absolute;
         right: -170px;
         top: 28%;
-        background-image: url('../../public/img/mainLeft.png') ;
+        background-image: url('../../public/img/mainLeft.WebP') ;
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
@@ -322,7 +322,7 @@
         position: absolute;
         bottom: 5%;
         left: -170px;
-        background-image: url('../../public/img/mailRight.png') ;
+        background-image: url('../../public/img/mailRight.WebP') ;
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
@@ -828,7 +828,7 @@
         position:absolute;
         right: -170px;
         top: 24%;
-        background-image: url('../../public/img/mainLeft.png') ;
+        background-image: url('../../public/img/mainLeft.WebP') ;
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
@@ -839,7 +839,7 @@
         position: absolute;
         bottom: -2%;
         left: -180px;
-        background-image: url('../../public/img/mailRight.png') ;
+        background-image: url('../../public/img/mailRight.WebP') ;
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
@@ -1112,7 +1112,7 @@
         right: 0;
         left: -65px;
         bottom: 0;
-        background-image: url('../../public/img/mailRight.png') ;
+        background-image: url('../../public/img/mailRight.WebP') ;
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;

@@ -7,15 +7,29 @@ import MyAddElement from '../UI/adminaddel/MyAddElement';
 import MyDeleteElement from '../UI/admindelel/MyDeleteElement';
 import {useDropzone} from 'react-dropzone'
 import { useDispatch } from "react-redux";
+import Image from "next/image";
 
 const MainResultItem = ({infoObj})=>{
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
     const [resInfo, setResinfo]=useState({title: {width:0,height:0}, itemTitle: {width:0,height:0}, itemDescr: {width:0,height:0}})
     const [changeImg, setChangeimg] = useState(false)
     const dispatch = useDispatch()
-    const onDrop = useCallback(acceptedFiles => {
+    const onDrop = useCallback((acceptedFiles) => {
+        acceptedFiles.forEach((file) => {
+          const reader = new FileReader()
+    
+          reader.onabort = () => console.log('file reading was aborted')
+          reader.onerror = () => console.log('file reading has failed')
+          reader.onload = () => {
+       
+            const binaryStr = reader.result
+            console.log(binaryStr)
+          }
+          reader.readAsArrayBuffer(file)
+        })
         dispatch({type: 'IMG_RES_CHANGE', info: {text:acceptedFiles[0].path, id: infoObj.id}})
-    }, [])
+      }, [])
+
 
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
     return (
@@ -37,7 +51,7 @@ const MainResultItem = ({infoObj})=>{
                         </div>
                     :
                         <span className={[cl.resultImg].join` `}>
-                            <img src={'/img/' +  infoObj.img}></img>
+                            <Image width={68} height={76}  src={'/img/' +  infoObj.img}/>
                         </span>
                     } 
                 </div>

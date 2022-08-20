@@ -7,13 +7,26 @@ import MyViewElement from "../UI/viewelement/MyViewElement";
 import MyAdminInput from "../UI/admininput/MyAdminInput";
 import MyDeleteElement from "../UI/admindelel/MyDeleteElement";
 import {useDropzone} from 'react-dropzone'
+import Image from "next/image";
 
 const MainOItem = ({title, img, setModalItem, id})=>{
     const dispatch = useDispatch()
-    const onDrop = useCallback(acceptedFiles => {
+    const onDrop = useCallback((acceptedFiles) => {
+        acceptedFiles.forEach((file) => {
+          const reader = new FileReader()
     
-    dispatch({type: 'OTHER_ITEM_IMG_CHANGE', info: {text:acceptedFiles[0].path, id: id}})
-    }, [])
+          reader.onabort = () => console.log('file reading was aborted')
+          reader.onerror = () => console.log('file reading has failed')
+          reader.onload = () => {
+       
+            const binaryStr = reader.result
+            console.log(binaryStr)
+          }
+          reader.readAsArrayBuffer(file)
+        })
+        dispatch({type: 'OTHER_ITEM_IMG_CHANGE', info: {text:acceptedFiles[0].path, id: id}})
+        
+      }, [])
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
     const [modal, setModal] = useState(false)
@@ -50,7 +63,7 @@ const MainOItem = ({title, img, setModalItem, id})=>{
                     </div>
                 </div>
                 :
-                <img className={cl.otherItemImgBlock} src={`/img/${img}`}/>
+                <Image width={104} height={103}  className={cl.otherItemImgBlock} src={`/img/${img}`}/>
             }
            
             <MyBtnBlank classes={cl.otherItemBtn} onClick={e=>{e.preventDefault(e); setModalItem(true)}}>ЗАКАЗАТЬ</MyBtnBlank>

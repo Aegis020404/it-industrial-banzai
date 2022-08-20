@@ -9,6 +9,7 @@ import MyAddElement from '../UI/adminaddel/MyAddElement';
 import MyDeleteElement from '../UI/admindelel/MyDeleteElement';
 import MyAdminInput from '../UI/admininput/MyAdminInput';
 import {useDropzone} from 'react-dropzone'
+import Image from "next/image";
 
 
 const MainDevItem = ({actionTitle, actionDescr, actionDelete, id, obj, actionImg}) => {
@@ -16,9 +17,21 @@ const MainDevItem = ({actionTitle, actionDescr, actionDelete, id, obj, actionImg
     const dispatch = useDispatch()
     const [changeImg, setChangeImg] = useState(false)
     const [devInfo, setDevInfo] = useState({title: {width:0,height:0}, itemTitle: {width:0,height:0}, itemDescr: {width:0,height:0}})
-    const onDrop = useCallback(acceptedFiles => {
+      const onDrop = useCallback((acceptedFiles) => {
+        acceptedFiles.forEach((file) => {
+          const reader = new FileReader()
+    
+          reader.onabort = () => console.log('file reading was aborted')
+          reader.onerror = () => console.log('file reading has failed')
+          reader.onload = () => {
        
+            const binaryStr = reader.result
+            console.log(binaryStr)
+          }
+          reader.readAsArrayBuffer(file)
+        })
         dispatch({type: actionImg, info: {text:acceptedFiles[0].path, id: id}})
+        
       }, [])
       const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
     return (
@@ -57,7 +70,7 @@ const MainDevItem = ({actionTitle, actionDescr, actionDelete, id, obj, actionImg
                             :
                         
                             <span className={[cl.photo].join` `}>
-                                <img src={'/img/' + obj.img}></img>
+                                <Image width={70} height={70}  src={'/img/' + obj.img}/>
                             </span>
                         
                         }
@@ -151,7 +164,7 @@ const MainDevItem = ({actionTitle, actionDescr, actionDelete, id, obj, actionImg
                 <div className={cl.photoBlockM}>
                     <div className={cl.photoWrapM}>
                              <span className={[cl.photoM].join` `}>
-                                <img src={'/img/' + obj.img}></img>
+                                <Image width={64} height={64}  src={'/img/' + obj.img}/>
                             </span>
                     </div>
                 </div>

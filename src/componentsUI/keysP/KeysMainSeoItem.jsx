@@ -12,6 +12,7 @@ import MyInput from '../UI/input/MyInput';
 import {useDropzone} from 'react-dropzone'
 import MyBtnFiled from '../UI/buttonback/MyBtnFiled';
 import { useDispatch } from 'react-redux';
+import Image from "next/image";
 
 
 const KeysMainSeoItem = ({nameCompany, linkCompany,id, beenTopTen,graphImg,topTenTitle,setModal,modalInfoChanging,trafficTitle,titleTopLeft, becameTopTen, beenTraffic, becameTraffic, schedule, index,countSchedule})=>{
@@ -230,7 +231,7 @@ const KeysMainSeoItem = ({nameCompany, linkCompany,id, beenTopTen,graphImg,topTe
                         {checkImg ? 
                             <div className={cl.imgCard}>
                                 <figure ref={figureItem} className={cl.imgBlock} onClick={e=>figureActive(e)} onMouseMove={e=>figureMove(e)} onMouseLeave={e=>figureLeave(e)}>
-                                    <img ref={imgItem} src={`/img/${graphImg}`} className={cl.img} id='graph'/>
+                                    <Image ref={imgItem} src={`/img/${graphImg}`} className={cl.img} id='graph'/>
                                 </figure>
                                
                             </div>  

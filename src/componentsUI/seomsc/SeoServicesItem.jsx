@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {useDropzone} from 'react-dropzone'
 
 import MyAdminInput from "../UI/admininput/MyAdminInput";
+import Image from "next/image";
 
 
 
@@ -14,12 +15,25 @@ const SeoServicesItem = ({title, img, infoItem, id})=>{
     const seoTexts = useSelector(state=>state.AdminTexts.seoServices)
     const servicesData = useSelector(state=>state.SeoServices)
     const [servicesItem, setServicesItem] = useState({title:{width:0,height:0}, textItem: {width:0,height:0}})
-    console.log(img)
     const dispatch = useDispatch()
-
-    const onDrop = useCallback(acceptedFiles => { 
+    const onDrop = useCallback((acceptedFiles) => {
+        acceptedFiles.forEach((file) => {
+          const reader = new FileReader()
+    
+          reader.onabort = () => console.log('file reading was aborted')
+          reader.onerror = () => console.log('file reading has failed')
+          reader.onload = () => {
+       
+            const binaryStr = reader.result
+            console.log(binaryStr)
+          }
+          reader.readAsArrayBuffer(file)
+        })
         dispatch({type: 'IMG_SEO_SERV_CHANGE', info: {text:acceptedFiles[0].path, id: id}})
-    }, [])
+      }, [])
+   
+
+
 
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
     
@@ -46,7 +60,7 @@ const SeoServicesItem = ({title, img, infoItem, id})=>{
                 </div>
                 :
                 <span className={cl.servicesImgBlock}>
-                        <img src={`/img/${img}`} alt="photo" className={cl.itemImg}/>
+                        <Image  src={`/img/${img}`} alt="photo" className={cl.itemImg}/>
                 </span>
                 
             }
