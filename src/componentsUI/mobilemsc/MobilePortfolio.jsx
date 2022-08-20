@@ -57,7 +57,7 @@ const MobilePortfolio = ()=>{
                                 <figure className={cl.portFigure}>
                                     <Link href={e.href}>
                                         <div className={[cl.portBlock, e.classes].join` `}  onClick={e=>document.body.scrollTo({top:0,behavior:'smooth'})} style={{'backgroundColor': e.background}}>
-                                            <Image  src={e.img} />
+                                            <Image width={512} height={604} src={e.img} />
                                         </div>
                                     </Link>
                                     {

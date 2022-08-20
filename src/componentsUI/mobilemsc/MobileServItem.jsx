@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {useDropzone} from 'react-dropzone'
 
 import MyAdminInput from "../UI/admininput/MyAdminInput";
+import Image from "next/image";
 const MobileServItem = ({title, descr, img,id, actionListDelete,actionImg,actionListDescr,actionListTitle})=> {
     useEffect(() => {})
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
@@ -58,7 +59,7 @@ const MobileServItem = ({title, descr, img,id, actionListDelete,actionImg,action
                         </div>
                         :
                         <span className={cl.serviceImg}>
-                            <Image  src={'/img/'+img} />
+                            <Image width={35} height={35} src={'/img/'+img} />
                         </span>
                 }/>
                 <MyViewElement element={

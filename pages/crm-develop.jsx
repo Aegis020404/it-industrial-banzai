@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import cl from '../src/style/CRM.module.css'
 import MobilePortfolio from "../src/componentsUI/mobilemsc/MobilePortfolio";
 import MainApplication from "../src/componentsUI/mainP/MainApplication";
