@@ -1,6 +1,6 @@
 .phoneHand {
     margin-left: 100px;
-    background-image: url('../../public/img/mobile-hand.png');
+    background-image: url('../../public/img/mobile-hand.WebP');
     max-width: 400px;
     min-height: 588px;
 }
@@ -9,7 +9,7 @@
     min-height: 340px;
     max-width: 600px;
     width: 100%;
-    background-image: url('../../public/img/2.png');
+    background-image: url('../../public/img/2.WebP');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -51,7 +51,7 @@
     }
     .phoneHand {
         margin-left: 50px;
-        background-image: url('../../public/img/mobile-hand.png');
+        background-image: url('../../public/img/mobile-hand.WebP');
         max-width: 350px;
         min-height: 500px;
         
@@ -86,14 +86,14 @@
         min-height: 300px;
         max-width: 500px;
         width: 100%;
-        background-image: url('../../public/img/2.png');
+        background-image: url('../../public/img/2.WebP');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center top;
     }
     .phoneHand {
         margin: 0 auto;
-        background-image: url('../../public/img/mobile-hand.png');
+        background-image: url('../../public/img/mobile-hand.WebP');
         max-width: 300px;
         min-height: 500px;
         
@@ -103,7 +103,7 @@
 @media (max-width:768px) {
     .phoneHand {
         margin: 40px auto 0;
-        background-image: url('../../public/img/mobile-hand.png');
+        background-image: url('../../public/img/mobile-hand.WebP');
         max-width: 300px;
         min-height: 500px;   
     }
@@ -141,14 +141,14 @@
         height: 100%;
         max-width: 100%;
         width: auto;
-        background-image: url('../../public/img/2.png');
+        background-image: url('../../public/img/2.WebP');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center top ;
     }
     .phoneHand {
         margin: 40px auto 0;
-        background-image: url('../../public/img/mobile-hand.png');
+        background-image: url('../../public/img/mobile-hand.WebP');
         max-width: 300px;
         min-height: 350px;
     }

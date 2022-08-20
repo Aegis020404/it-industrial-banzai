@@ -11,7 +11,7 @@ const initialState = [{
         beenChange: {topTen: '67 запросов', traffic: '312 пос/мес'},
         becameChange: {topTen: '453 запроса', traffic: '1 600 пос/мес'}
     },
-    graphImg: 'graffik1-3.png',
+    graphImg: 'graffik1-3.WebP',
     schedule: {step:50,max:550, min:50, change:false,crossing:5, inputs: [{id:1,name:'ДЕК',value:80},{id:2,name:'ЯНВ',value:80},{id:3,name:'ФЕВ',value:45},{id:4,name:'МАР',value:130},{id:5,name:'АПР',value:150},{id:6,name:'МАЙ',value:250},{id:7,name:'ИЮНЬ',value:280},{id:8,name:'ИЮЛЬ',value: 350},{id:9,name:'АВГ',value:410}]},
 },
     {
@@ -25,7 +25,7 @@ const initialState = [{
             beenChange: {topTen: '23 запроса', traffic: '200 пос/мес'},
             becameChange: {topTen: '550 запросов', traffic: '400 пос/мес'}
         },
-        graphImg: 'graffik1-3.png',
+        graphImg: 'graffik1-3.WebP',
         schedule: {step:50,max:550, min:50, change:false,crossing:5, inputs: [{id:1,name:'ДЕК',value:80},{id:2,name:'ЯНВ',value:80},{id:3,name:'ФЕВ',value:45},{id:4,name:'МАР',value:130},{id:5,name:'АПР',value:150},{id:6,name:'МАЙ',value:250},{id:7,name:'ИЮНЬ',value:280},{id:8,name:'ИЮЛЬ',value: 350},{id:9,name:'АВГ',value:410}]},
     },
     {
@@ -40,7 +40,7 @@ const initialState = [{
             beenChange: {topTen: '5 запросов', traffic: '50 пос/мес'},
             becameChange: {topTen: '453 запроса', traffic: '2 300 пос/мес'}
         },
-        graphImg: 'graffik1-3.png',
+        graphImg: 'graffik1-3.WebP',
         schedule: {step:50,max:550, min:50, change:false,crossing:6, inputs: [{id:1,name:'ДЕК',value:80},{id:2,name:'ЯНВ',value:80},{id:3,name:'ФЕВ',value:45},{id:4,name:'МАР',value:130},{id:5,name:'АПР',value:150},{id:6,name:'МАЙ',value:70},{id:7,name:'ИЮНЬ',value:175},{id:8,name:'ИЮЛЬ',value: 320},{id:9,name:'АВГ',value:460}]},
     },
     {
@@ -55,7 +55,7 @@ const initialState = [{
             beenChange: {topTen: '5 запросов', traffic: '50 пос/мес'},
             becameChange: {topTen: '453 запроса', traffic: '2 300 пос/мес'}
         }, 
-        graphImg: 'graffik1-3.png',
+        graphImg: 'graffik1-3.WebP',
         schedule: {step:50,max:550, min:50, change:false,crossing:3, inputs: [{id:1,name:'ДЕК',value:80},{id:2,name:'ЯНВ',value:80},{id:3,name:'ФЕВ',value:45},{id:4,name:'МАР',value:250},{id:5,name:'АПР',value:225},{id:6,name:'МАЙ',value:210},{id:7,name:'ИЮНЬ',value:280},{id:8,name:'ИЮЛЬ',value: 300},{id:9,name:'АВГ',value:430}]},
     },
     {
@@ -70,7 +70,7 @@ const initialState = [{
             beenChange: {topTen: '20 запросов', traffic: '50 пос/мес'},
             becameChange: {topTen: '4000 запроса', traffic: '1 800 пос/мес'}
         },
-        graphImg: 'graffik1-3.png',
+        graphImg: 'graffik1-3.WebP',
         schedule: {max:5000, min:0, change:false,crossing:5, inputs: [{id:1,name:'ДЕК',value:1350},{id:2,name:'ЯНВ',value:1100},{id:3,name:'ФЕВ',value:950},{id:4,name:'МАР',value:1150},{id:5,name:'АПР',value:1300}, {id:6,name:'МАЙ',value:3200},{id:7,name:'ИЮНЬ',value:3000},{id:8,name:'ИЮЛЬ',value: 3300},{id:9,name:'АВГ',value:3900}]}
     }]
 

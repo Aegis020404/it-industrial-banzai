@@ -15,7 +15,7 @@ const initialState =
             descr: 'Интернет-магазин «Строймат»',
             classes: cl.imgPhone,
             backColor: '',
-            img: ['orange-phone-block.jpg'],
+            img: ['orange-phone-block.WebP'],
             alt: 'Website компании "Строймат" на телефоне'
         }, {
             
@@ -24,7 +24,7 @@ const initialState =
             descr: 'Интернет-магазин «Автоэстетика»',
             classes: cl.imgAmout,
             backColor: '',
-            img: ['black-gadjets-block.jpg'],
+            img: ['black-gadjets-block.WebP'],
             alt: 'Website компании "Автоэстетика" на телефоне и ноутбуке'
         }]
     }, {
@@ -38,7 +38,7 @@ const initialState =
             descr: 'Сайт компании «Llumar»',
             backColor: '#F8F8F9',
             classes: [cl.imgPad, cl.imgPadM],
-            img: ['pad-keys.png', 'pad-mobile.jpg'],
+            img: ['pad-keys.WebP', 'pad-mobile.WebP'],
             alt: 'Website компании "Llumar" на планшете'
         }]
     }, {
@@ -51,7 +51,7 @@ const initialState =
             descr: 'Разработка сайта компании «Эковтор»',
             classes: cl.imgEva,
             backColor: '#EFF2ED',
-            img: ['logo-evo.svg', 'female-sort.png', 'eko-mobile.jpg'],
+            img: ['logo-evo.svg', 'female-sort.WebP', 'eko-mobile.WebP'],
             alt: '"Ековтор" - экологически чистая компания, спасает природу, перерабатывая бумагу, пластик, пластмассы'
         }, {
             id:2,
@@ -59,7 +59,7 @@ const initialState =
             descr: 'Сайт для хоккейной команды',
             classes: cl.imgMiniPad,
             backColor: '#07315E',
-            img: ['pad-hockey.png'],
+            img: ['pad-hockey.WebP'],
             alt: 'Website хоккейной команды на планшете'
         }]
     }]

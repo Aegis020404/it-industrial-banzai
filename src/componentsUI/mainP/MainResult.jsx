@@ -32,7 +32,7 @@ const MainResult = ()=>{
                         <ul className={cl.resultList}>
                         {isAdmin ? <MyAddElement typeAction={'ADD_RES_ELEMENT'}/> : ''}
                             {dataRes.map((e,i)=>
-                               <MainResultItem infoObj={e}/>
+                               <MainResultItem infoObj={e} key={i}/>
                             )}
                         </ul>
                     </div>    
