@@ -1,6 +1,6 @@
 .lider {
     min-height: 700px;
-    background-image: url('../../public/img/lider-bg.jpg');
+    background-image: url('../../public/img/lider-bg.WebP');
     background-position: center;
     background-size: cover;
     overflow:hidden;
@@ -108,7 +108,7 @@ border-radius: 10px;
 .liderPerson {
     height: 623px;
     width: 100%;
-    background-image: url('../../public/img/male-bg.png');
+    background-image: url('../../public/img/male-bg.WebP');
     background-size: contain;
     background-position: left;
     background-repeat: no-repeat;
@@ -130,7 +130,7 @@ border-radius: 10px;
 .liderPerson {
     height: 623px;
     width: 100%;
-    background-image: url('../../public/img/male-bg.png');
+    background-image: url('../../public/img/male-bg.WebP');
     background-size: contain;
     background-position: left bottom;
     background-repeat: no-repeat;
@@ -141,7 +141,7 @@ border-radius: 10px;
 @media (max-width: 992px) {
     .lider {
         height: 500px;
-        background-image: url('../../public/img/lider-bg.jpg');
+        background-image: url('../../public/img/lider-bg.WebP');
         background-position: center;
         background-size: cover;
         overflow:hidden;
@@ -239,7 +239,7 @@ border-radius: 10px;
     
     .liderPerson {
         height: 623px;
-        background-image: url('../../public/img/male-bg.png');
+        background-image: url('../../public/img/male-bg.WebP');
         background-size: contain;
         background-position: left bottom;
         background-repeat: no-repeat;
@@ -274,7 +274,7 @@ border-radius: 10px;
 
     .liderPerson {
         height: 488px;
-        background-image: url('../../public/img/male-bg.png');
+        background-image: url('../../public/img/male-bg.WebP');
         background-size: contain;
         background-position: left bottom;
         background-repeat: no-repeat;
@@ -285,7 +285,7 @@ border-radius: 10px;
 @media (max-width:768px) {
     .lider {
         min-height: 400px;
-        background-image: url('../../public/img/lider-bg.jpg');
+        background-image: url('../../public/img/lider-bg.WebP');
         background-position: center bottom;
         background-size: cover;
         overflow:hidden;
@@ -388,7 +388,7 @@ border-radius: 10px;
     
     .liderPerson {
         height: 422px;
-        background-image: url('../../public/img/male-bg.png');
+        background-image: url('../../public/img/male-bg.WebP');
         background-size: contain;
         background-position: left;
         background-repeat: no-repeat;
@@ -423,7 +423,7 @@ border-radius: 10px;
 
     .liderPerson {
         height: 382px;
-        background-image: url('../../public/img/male-bg.png');
+        background-image: url('../../public/img/male-bg.WebP');
         background-size: contain;
         background-position: bottom;
         background-repeat: no-repeat;
@@ -434,7 +434,7 @@ border-radius: 10px;
     .lider {
         height: 683px;
         padding-bottom: 50px;
-        background-image: url('../../public/img/lider-bg.jpg');
+        background-image: url('../../public/img/lider-bg.WebP');
         background-position: center;
         background-size: cover;
         overflow:hidden;
@@ -550,7 +550,7 @@ border-radius: 10px;
         margin-left: 20vw;
         min-height: 319px;
         /* height: 319px; */
-        background-image: url('../../public/img/male-bg.png');
+        background-image: url('../../public/img/male-bg.WebP');
         background-size: contain;
         background-position: left;
         background-repeat: no-repeat;

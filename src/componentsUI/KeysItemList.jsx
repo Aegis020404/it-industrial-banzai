@@ -16,9 +16,9 @@ const KeysItemList = ({logo,logoClasses, descr, background, alt, img,modal, acti
     console.log(logoClasses)
     const defaultLinks = ['/img/keys-stroy-logo.svg',
     '/img/keys-auto-logo.svg',
-    '/img/llumar-pad.png',
-    '/img/female-sort.png',
-    '/img/pad-hockey.png',]
+    '/img/llumar-pad.WebP',
+    '/img/female-sort.WebP',
+    '/img/pad-hockey.WebP',]
 
     return (
         <MyViewElement element={

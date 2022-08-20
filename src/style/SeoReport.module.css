@@ -107,7 +107,7 @@
 }
 
 .reportImgRes {
-    background-image: url('../../public/img/seo-report.png');
+    background-image: url('../../public/img/seo-report.WebP');
     width: 150px;
     height: 150px;
     background-position: center;
@@ -197,7 +197,7 @@
         margin-bottom: 40px;
     }
     .reportImgRes {
-        background-image: url('../../public/img/seo-report.png');
+        background-image: url('../../public/img/seo-report.WebP');
         width: 90px;
         height: 90px;
         background-position: center;

@@ -2,11 +2,11 @@ import cl from './../src/style/KeysMainSites.module.css';
 import itemCl from './../src/style/KeysItem.module.css';
 
 
-const initialState = [{ href: 'stroy-mat', descr: 'Интернет-магазин «Строймат»', imageInfo: {classesImg: cl.orangePhone , alt:'Сайт компании "Строймат" на мобильном устройстве',background: '#FFAA5C', logo: 'keys-stroy-logo.svg', logoClasses: itemCl.stroyLogo, img: 'orange-img-phone.png'}, id: 1},
-{href: 'avto-estetica', descr: 'Интернет-магазин «Автоэстетика»', imageInfo: {classesImg:cl.blackGadjets, alt:'Сайт компании "Auto estetica" на различных устройствах', background: '#000000', logo: 'keys-auto-logo.svg',logoClasses: itemCl.autoLogo,  img: 'auto-gadjets.png'}, id: 2},
-{href: 'llumar', descr: 'Сайт компании «Llumar»', imageInfo: {classesImg:cl.llumar,alt: 'Сайт компании "LLumar" на планшете', background: '#F8F8F9', logo: 'keys-llumar-logo.svg',logoClasses: itemCl.llumarLogo,  img: 'llumar-pad.png'}, id: 3},
-{href: 'ecovtor', descr: 'Разработка сайта «Эковтор»', imageInfo: {classesImg:cl.ecoFemale,alt: 'Девушка сортирует отходы',background: '#F8F8F9', logo: 'keys-eco-logo.svg', logoClasses: itemCl.ecoLogo, img: 'female-sort.png'}, id: 4},
-{href: 'hock-team', descr: 'Сайт для хоккейной команды', imageInfo: {classesImg:cl.hockeyImg,alt:'Сайт хоккейной команды на планшете',background: '#07315D', logo: 'keys-hockey-logo.svg',logoClasses: itemCl.hockeyLogo,  img: 'pad-hockey.png'}, id: 5}]
+const initialState = [{ href: 'stroy-mat', descr: 'Интернет-магазин «Строймат»', imageInfo: {classesImg: cl.orangePhone , alt:'Сайт компании "Строймат" на мобильном устройстве',background: '#FFAA5C', logo: 'keys-stroy-logo.svg', logoClasses: itemCl.stroyLogo, img: 'orange-img-phone.WebP'}, id: 1},
+{href: 'avto-estetica', descr: 'Интернет-магазин «Автоэстетика»', imageInfo: {classesImg:cl.blackGadjets, alt:'Сайт компании "Auto estetica" на различных устройствах', background: '#000000', logo: 'keys-auto-logo.svg',logoClasses: itemCl.autoLogo,  img: 'auto-gadjets.WebP'}, id: 2},
+{href: 'llumar', descr: 'Сайт компании «Llumar»', imageInfo: {classesImg:cl.llumar,alt: 'Сайт компании "LLumar" на планшете', background: '#F8F8F9', logo: 'keys-llumar-logo.svg',logoClasses: itemCl.llumarLogo,  img: 'llumar-pad.WebP'}, id: 3},
+{href: 'ecovtor', descr: 'Разработка сайта «Эковтор»', imageInfo: {classesImg:cl.ecoFemale,alt: 'Девушка сортирует отходы',background: '#F8F8F9', logo: 'keys-eco-logo.svg', logoClasses: itemCl.ecoLogo, img: 'female-sort.WebP'}, id: 4},
+{href: 'hock-team', descr: 'Сайт для хоккейной команды', imageInfo: {classesImg:cl.hockeyImg,alt:'Сайт хоккейной команды на планшете',background: '#07315D', logo: 'keys-hockey-logo.svg',logoClasses: itemCl.hockeyLogo,  img: 'pad-hockey.WebP'}, id: 5}]
 
 
 

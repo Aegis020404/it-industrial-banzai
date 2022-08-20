@@ -32,7 +32,7 @@ const SeoMonth = ()=>{
                     <div className={cl.monthRight}>
                     <MyViewElement element={
                         <div className={cl.monthRightImg}>
-                            <img src={'/img/seo-month.png'} alt="web-google"/>
+                            <img src={'/img/seo-month.WebP'} alt="web-google"/>
                         </div>
                         }/>
                     </div>

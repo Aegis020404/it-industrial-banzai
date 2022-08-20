@@ -1,5 +1,6 @@
 import cl from '/src/style/offline.module.css'
-import MyBtnFiled from "/src/componentsUI/UI/buttonback/MyBtnFiled";
+import MyBtnFiled from '/src/componentsUI/UI/buttonback/MyBtnFiled';
+
 
 const offline = () => (
     <>
