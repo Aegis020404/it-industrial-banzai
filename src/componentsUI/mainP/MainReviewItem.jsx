@@ -24,9 +24,22 @@ const MainReviewItem = ({infoObj})=>{
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
     const [changeImg, setChangeImg] = useState(false)
     const dispatch = useDispatch()
-    const onDrop = useCallback(acceptedFiles => { 
+    const onDrop = useCallback((acceptedFiles) => {
+        acceptedFiles.forEach((file) => {
+          const reader = new FileReader()
+    
+          reader.onabort = () => console.log('file reading was aborted')
+          reader.onerror = () => console.log('file reading has failed')
+          reader.onload = () => {
+       
+            const binaryStr = reader.result
+            console.log(binaryStr)
+          }
+          reader.readAsArrayBuffer(file)
+        })
         dispatch({type: 'IMG_REVIEW_MAIN_CHANGE', info: {text:acceptedFiles[0].path, id: infoObj.id}})
-    }, [])
+      }, [])
+
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
     return (
         <div className={cl.wrapper}>
