@@ -7,7 +7,7 @@ const AboutText = ()=>{
     const adminTexts = useSelector(state=>state.AdminTexts.aboutTexts)
     const {isAdmin} = useSelector(state=>state.AdminKey)
     const [aboutInfo, setAboutInfo] = useState({title: {width:0,height:0},firstDescr: {width:0,height:0},secDescr:{width:0,height:0},thirdDescr: {width:0,height:0},fourthDescr: {width:0,height:0}, countTop: {width:0,height:0}, countBottom: {width:0,height:0}, topDescr: {width:0,height:0}, bottomDescr: {width:0,height:0}})
-    console.log(adminTexts)
+    
     return (
         <section className={cl.aboutSection}>
              <div className={cl.aboutBackImg}></div>

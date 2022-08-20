@@ -1,7 +1,7 @@
 import cl from '../src/style/MobilePortfolio.module.css';
 
 const initialState = [
-    {descr: 'Перевозки App', img: '/img/mob-phones.svg', href: '/keys/carriage-app', background: '#2F80ED',classes:cl.portMobileCBlock, id: 1},
+    {descr: 'Перевозки App', img: '/img/mob-phones.svg', href: '/keys/carriage-app', background: '#2F80ED',classes: cl.portMobileCBlock, id: 1},
     {descr: 'Разработка индивидуальной CRM-системы', img: '/img/mob-crm.svg', href: '/keys/crm-system', background: '#E50A0B', classes:cl.portCrmBlock, id: 2},
 ]
 
