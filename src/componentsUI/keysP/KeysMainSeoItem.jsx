@@ -231,7 +231,7 @@ const KeysMainSeoItem = ({nameCompany, linkCompany,id, beenTopTen,graphImg,topTe
                         {checkImg ? 
                             <div className={cl.imgCard}>
                                 <figure ref={figureItem} className={cl.imgBlock} onClick={e=>figureActive(e)} onMouseMove={e=>figureMove(e)} onMouseLeave={e=>figureLeave(e)}>
-                                    <Image ref={imgItem} src={`/img/${graphImg}`} className={cl.img} id='graph'/>
+                                    <img ref={imgItem} src={`/img/${graphImg}`} className={cl.img} id='graph'/>
                                 </figure>
                                
                             </div>  

@@ -60,7 +60,7 @@ const SeoServicesItem = ({title, img, infoItem, id})=>{
                 </div>
                 :
                 <span className={cl.servicesImgBlock}>
-                        <Image  src={`/img/${img}`} alt="photo" className={cl.itemImg}/>
+                        <Image width={50} height={50}  src={`/img/${img}`} alt="photo" className={cl.itemImg}/>
                 </span>
                 
             }
