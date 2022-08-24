@@ -2,22 +2,26 @@ var db = require("../../../../src/API/DataStore").db;
 
 export default async (req, res) => {
     const { info } = req.query;
-    if(info.length != 2) {
-        res.status(400).json({err: "invalid category and/or id!"});
+    if(info.length < 1) {
+        res.status(400).json({err: "invalid category!"});
         return;
     }
 
     let category = info[0];
-    let id = info[1];
 
-    var data;
+    let data = null;
     try {
-        data =  db.getData("/" + category + "/" + id + "/");
+        if(info.length == 2) {
+            let id = info[1];
+            data =  db.getData("/" + category + "/" + id + "/");
+        } else {
+            data =  db.getData("/" + category + "/");
+        }
     } catch(error) {
         //in case no stored state data found
 
-        data = getInitialState(category);
-        db.push("/" + category + "/" + id + "/", data);
+        // data = getInitialState(category);
+        // db.push("/" + category + "/" + id + "/", data);
     };
 
     res.status(200).json(data);
