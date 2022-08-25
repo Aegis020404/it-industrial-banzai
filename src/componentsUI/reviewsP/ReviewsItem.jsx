@@ -70,7 +70,7 @@ const ReviewsItem = ({imgPerson, namePerson, positionPerson, commentPerson, id})
                                 </div>
                             </div>
                             :
-                            <Image   src={'/img/'+imgPerson} alt="Personality image"  className={cl.reviewsImg}/>
+                            <Image   src={'/img/'+imgPerson} alt="Personality image" width={200} height={200} className={cl.reviewsImg}/>
                         }
                           
                         </div>
