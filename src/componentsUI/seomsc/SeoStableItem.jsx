@@ -4,6 +4,7 @@ import MyDeleteElement from "../UI/admindelel/MyDeleteElement";
 import MyViewElement from "../UI/viewelement/MyViewElement";
 import { useSelector } from "react-redux";
 import MyAdminInput from "../UI/admininput/MyAdminInput";
+import Image from "next/image";
 const SeoStableItem = ({title, descr, img, id})=>{
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
     const [stableItem, setStableItem] = useState({title: {width:0,height:0}, descr: {width:0,height:0}})
@@ -12,7 +13,7 @@ const SeoStableItem = ({title, descr, img, id})=>{
             <MyDeleteElement id={id} typeAction={'DELETE_SEO_STABLE_ELEMENT'}></MyDeleteElement>
             <MyViewElement element={
                  <span className={cl.stableImgBlock}>
-                    {img}
+                    <Image src={`/img/${img}`} width={75} height={75} />
                 </span>
             }/>
             <MyViewElement element={

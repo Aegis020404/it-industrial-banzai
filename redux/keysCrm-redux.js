@@ -7,11 +7,11 @@ const initialState = [{
     href: '/crm-system', img: {
         background: '#E50A0B', 
         alt: 'Индивидуальная CRM-система разработанная для компании "LLumar"',
-        image: 'keys-crm-red.svg',
+        image: 'keys-crm-red.webp',
         classesImg: cl.crmLlumarImg,
         logo: 'keys-crm-logo.svg',
         logoClasses: cl.crmlogo,
-    },id:1
+    }
 }]
 
 const keysCrmReducer = (state= initialState, action) => {

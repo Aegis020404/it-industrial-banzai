@@ -7,7 +7,8 @@
 .css-67l5gl {
     padding: 5px !important;
 }
-@font-face { 
+@font-face {
+    font-display: swap;
     font-family: "GothamProLight";
     src: url("../assets/fonts/GothamProLight/GothamProLight.eot");
     src: url("../assets/fonts/GothamProLight/GothamProLight.eot?#iefix") format("embedded-opentype"),
@@ -17,7 +18,8 @@
     font-weight: 300;
 }
 
-@font-face { 
+@font-face {
+    font-display: swap;
     font-family: "GothamProRegular";
     src: url("../assets/fonts/GothamProRegular/GothamProRegular.eot");
     src: url("../assets/fonts/GothamProRegular/GothamProRegular.eot?#iefix") format("embedded-opentype"),
@@ -29,7 +31,8 @@
 a:-webkit-any-link {
     text-decoration: none;
 }
-@font-face { 
+@font-face {
+    font-display: swap;
     font-family: "GothamProMedium";
     src: url("../assets/fonts/GothamProMedium/GothamProMedium.eot");
     src: url("../assets/fonts/GothamProMedium/GothamProMedium.eot?#iefix") format("embedded-opentype"),
@@ -39,7 +42,8 @@ a:-webkit-any-link {
     font-weight: 500;
 }
 
-@font-face { 
+@font-face {
+    font-display: swap;
     font-family: "GothamProBold";
     src: url("../assets/fonts/GothamProBold/GothamProBold.eot");
     src: url("../assets/fonts/GothamProBold/GothamProBold.eot?#iefix") format("embedded-opentype"),
@@ -49,7 +53,8 @@ a:-webkit-any-link {
     font-weight: 700;
 }
 
-@font-face { 
+@font-face {
+    font-display: swap;
     font-family: "GothamProBlack";
     src: url("../assets/fonts/GothamProBlack/GothamProBlack.eot");
     src: url("../assets/fonts/GothamProBlack/GothamProBlack.eot?#iefix") format("embedded-opentype"),
