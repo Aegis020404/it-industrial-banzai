@@ -31,11 +31,12 @@ const KeysItemList = ({logo,logoClasses, descr, background, alt, img,modal, acti
                         <div className={cl.keysImgBlock} style={{backgroundColor: background}}  onClick={e=>document.body.scrollTo({top:0,behavior:'smooth'})}>
                             <div className={cl.keysImgCard}>
                         <span className={defaultLinks.some(e=>e == '/img/'+logo) ? [cl.keysLogo, logoClasses].join` ` : cl.keysLogo}>
-                            <Image width={69} height={68}  alt='logo' src={'/img/'+logo}/>
+                            {/*<Image width={69} height={68}  alt='logo' src={'/img/'+logo}/>*/}
+                            <img alt='logo' src={'/img/'+logo}/>
                         </span>
                             </div>
                             <div className={[cl.keysImgCard, classesImg].join` `}>
-                                <img  src={`/img/${img}`} alt={'preview'} className={cl.keysImg}/>
+                                <img width='90%' height='70%' src={`/img/${img}`} alt={'preview'} className={cl.keysImg}/>
                             </div>
                         </div>
                     </Link>
