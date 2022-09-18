@@ -1,11 +1,11 @@
 import React, {useState, useEffect, useMemo} from "react";
 
-import { useState } from "react";
+
 import cl from '../../../style/genericServStyle/MarketplaceSeoText.module.css';
 import { useSelector } from "react-redux";
 import MyAdminInput from "../../UI/admininput/MyAdminInput";
 import { useDispatch } from "react-redux";
-import { getStartedInfo } from "../../untils/getStartedInfo";
+import { getStartedInfo } from "../../../untils/getStartedInfo";
 const MarketplaceSeoText = ()=>{
     const textData = useSelector(state=>state.AdminTexts.marketText)
     const [textInfo, setTextInfo] = useState({title: {width:0,height:0},descr: {width:0,height:0}, overDescr: {width:0,height:0}})
@@ -34,7 +34,7 @@ const MarketplaceSeoText = ()=>{
         if(premissionGet) {
            setPremissionGet('200')
         }
-    },[adminTexts.marketText])
+    },[textData])
     useEffect(()=>{
         const startedInfo = getStartedInfo("marketText",'CHANGE_ALL_ADMIN','/adminTexts/marketText',dispatch )
         startedInfo.then(res=>{
