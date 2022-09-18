@@ -61,7 +61,6 @@
     -webkit-transition: all .35s ease-in-out;
     -o-transition: all .35s ease-in-out;
     transition: all .35s ease-in-out;
-    -ms-grid-columns: (1fr)[2];
 }
 
 .keysItem {
