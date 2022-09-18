@@ -13,7 +13,11 @@ import MainDevContainer from "../src/componentsUI/mainP/MainDev";
 import cl from '../src/style/MobilePage.module.css'
 import MobileCount from '../src/componentsUI/mobilemsc/MobileCount'
 import Container from '../src/componentsUI/Container'
+import { CheckAdminKey } from '../src/untils/checkAdminKey';
+
 const MobilePage = ()=>{
+    CheckAdminKey()
+
     const mobileI = useRef(false)
     useEffect(()=>{
         mobileI.current.classList.toggle('mobileI')

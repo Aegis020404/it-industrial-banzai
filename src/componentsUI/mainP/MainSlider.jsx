@@ -9,6 +9,7 @@ import cl from '../../style/Slider.module.css';
 import MyBtnBlank from '../UI/buttonborder/MyBtnBlank';
 import MyThxModal from '../UI/thxmodal/MyThxModal';
 import MyAdminInput from '../UI/admininput/MyAdminInput';
+import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
 
 
 const Slider = ({...props}) => {
@@ -18,7 +19,9 @@ const Slider = ({...props}) => {
     const infoData = [...mainSliderPage]
     const {isAdmin} = useSelector(state=>state.AdminKey)
     const [heroInfo, setHeroInfo] = useState({title: {width:0,height:0}, descr: {width:0,height:0}})
-
+    const [stopAutoplay,setStopAutoplay] = useState(false)
+    
+  
     let forServerInfo = {}
 
     const addModalInfo = (e) => {
@@ -36,8 +39,11 @@ const Slider = ({...props}) => {
 
     const sliderI = useRef(false)
 
+
+
     const [modal, setModal] = useState(false)
     const [thxModal, setThxModal] = useState(false)
+
 
     React.useEffect(() => {
         let swiper = new Swiper('.swiperSlider', {
@@ -63,7 +69,7 @@ const Slider = ({...props}) => {
 
     })
     return (
-        <section className={cl.slider}>
+        <section className={cl.slider} onClick={e=>setStopAutoplay(true)}>
             <div className={'swiper swiperSlider ' + cl.mySwiper}>
 
 
@@ -79,14 +85,14 @@ const Slider = ({...props}) => {
                                             <div className={cl.textBlock}>
                                                 <div className={cl.textWrap}>
                                                     {isAdmin ?
-                                                        <MyAdminInput width={heroInfo.title.width} id={item.id} height={heroInfo.title.height} typeAction={'TITLE_SLIDER_MAIN_CHANGE'}>
+                                                        <MyAdminInput width={heroInfo.title.width}  fetchInfo={{item: item, category: 'mainSlider', id: item.id}} id={item.id} height={heroInfo.title.height} typeAction={'TITLE_SLIDER_MAIN_CHANGE'}>
                                                             <div className={cl.heading}  onClick={e=>setHeroInfo({...heroInfo, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{item.title}</div>
                                                         </MyAdminInput>
                                                     :
                                                         <div className={cl.heading}>{item.title}</div>
                                                     }
                                                      {isAdmin ?
-                                                        <MyAdminInput width={heroInfo.descr.width} id={item.id} height={heroInfo.descr.height} typeAction={'DESCR_SLIDER_MAIN_CHANGE'}>
+                                                        <MyAdminInput width={heroInfo.descr.width} fetchInfo={{item: item, category: 'mainSlider', id: item.id}} id={item.id} height={heroInfo.descr.height} typeAction={'DESCR_SLIDER_MAIN_CHANGE'}>
                                                              <div className={cl.text} onClick={e=>setHeroInfo({...heroInfo, descr: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{item.botTitle}</div>
                                                         </MyAdminInput>
                                                     :
@@ -122,7 +128,7 @@ const Slider = ({...props}) => {
 
             </div>
 
-            <MyModal visible={modal} setVisible={setModal} title='Получить консультацию' setThx={setThxModal}/>
+            <MyModal visible={modal} id={'MainSlider'} setVisible={setModal} title='Получить консультацию' setThx={setThxModal}/>
             <MyThxModal visible={thxModal} setVisible={setThxModal}/>
         </section>
 

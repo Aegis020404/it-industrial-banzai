@@ -1,3 +1,4 @@
+import {useFetchingPost} from './../src/hooks/useAdminChangeing';
 
 
 const initialState = [{id:1,title: 'Может ли быть такое, что результата не будет?', descr: 'Нет. Результат от нашей работы будет в любом случае. Не всегда результат получается сразу таким, который ожидает клиент, но мы всегда анализируем, дорабатываем и работаем до тех пор, пока результат не будет устраивать на 100%'},
@@ -10,22 +11,37 @@ const initialState = [{id:1,title: 'Может ли быть такое, что 
 export function SeoAccReducer  (state = initialState, action) {
     switch (action.type) {
         case 'ADD_SEO_ACC_ELEMENT': {
-            return [...state, {...state[state.length - 1], id: state[state.length - 1].id + 1}]
+            const result =  [...state, {...state[state.length - 1], id: state[state.length - 1].id + 1}]
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'seoAcc', action.info.id)
+            return result
         }
         case 'DELETE_SEO_ACC_ELEMENT': {
-            return state.filter(e=>e.id !== action.info.id)
+            const result =  state.filter(e=>e.id !== action.info.id)
+            useFetchingPost(null, 'seoAcc', action.info.id)
+            return result
         }
         case 'TITLE_SEO_ACC_CHANGE': {
-            return state.map(e=>e.id == action.info.id ? {...e, title: action.info.text} : e)
+            const result =  state.map(e=>e.id == action.info.id ? {...e, title: action.info.text} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'seoAcc', action.info.id)
+            return result
         }
         case 'DESCR_SEO_ACC_CHANGE': {
-            return state.map(e=>e.id == action.info.id ? {...e, descr: action.info.text} : e)
+            const result =  state.map(e=>e.id == action.info.id ? {...e, descr: action.info.text} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'seoAcc', action.info.id)
+            return result
+        }
+        case 'SEO_ACC_CHANGE_STATE': {
+            const result =   [...state, ...action.info.text].filter((el,i,arr)=> arr.filter((item,n)=>n< i &&el.id==item.id).length!==0 || arr.filter((item,n)=>el.id==item.id).length<=1).sort((a,b)=>a.id-b.id)
+          
+            return result
         }
         default:
             return state
     }
 }
-
+export const seoAccChangeState = (info)=>({
+    type: 'SEO_ACC_CHANGE_STATE',info
+})
 export const addSeoAccElement = (info)=>({
     type: 'ADD_SEO_ACC_ELEMENT',info
 })

@@ -222,7 +222,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <MyModal visible={modal} setVisible={setModal} title='Оставить заявку' setThx={setThxModal}/>
+            <MyModal  visible={modal} setVisible={setModal} title='Оставить заявку' setThx={setThxModal}/>
             <MyThxModal visible={thxModal} setVisible={setThxModal}/>
         </footer>
 

@@ -5,6 +5,8 @@
     cursor: pointer;
 }
 
+
+
 .cont {
     position: relative;
 }
@@ -52,6 +54,9 @@
 
     color: #4c6171e7;
 }
+
+
+.quizPCountBlock{}
 
 .quizPagination {
     margin-bottom: 60px;
@@ -174,6 +179,8 @@
 }
 
 
+.quizCheckBoxActive{}
+
 
 .quizSectionItem {
     position: relative;
@@ -190,6 +197,10 @@
     box-shadow: none;
 }
 
+.quizSectionAllActive * {
+    pointer-events: all !important;
+}
+.resultSection{}
 .quizContentCard {
     width: 100%;
     height: 100%;

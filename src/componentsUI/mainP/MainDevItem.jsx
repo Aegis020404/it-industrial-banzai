@@ -10,14 +10,22 @@ import MyDeleteElement from '../UI/admindelel/MyDeleteElement';
 import MyAdminInput from '../UI/admininput/MyAdminInput';
 import {useDropzone} from 'react-dropzone'
 import Image from "next/image";
+import MyFormData from '../../untils/ImgFetch';
+import { useFetchingGet, useFetchingPost } from "../../hooks/useAdminChangeing";
 
 
-const MainDevItem = ({actionTitle, actionDescr, actionDelete, id, obj, actionImg}) => {
+const MainDevItem = ({actionTitle,premissionTariff, actionDescr, actionDelete, id,columnName, obj,columnState, actionImg}) => {
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
     const dispatch = useDispatch()
     const [changeImg, setChangeImg] = useState(false)
     const [devInfo, setDevInfo] = useState({title: {width:0,height:0}, itemTitle: {width:0,height:0}, itemDescr: {width:0,height:0}})
-      const onDrop = useCallback((acceptedFiles) => {
+      
+    
+    const [isImg, setIsImg] = useState('')
+    
+
+    
+    const onDrop = useCallback((acceptedFiles) => {
         acceptedFiles.forEach((file) => {
           const reader = new FileReader()
     
@@ -26,23 +34,29 @@ const MainDevItem = ({actionTitle, actionDescr, actionDelete, id, obj, actionImg
           reader.onload = () => {
        
             const binaryStr = reader.result
-            console.log(binaryStr)
+            setIsImg(file)
           }
           reader.readAsArrayBuffer(file)
         })
-        dispatch({type: actionImg, info: {text:acceptedFiles[0].path, id: id}})
+        
         
       }, [])
       const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+   
+     
     return (
      
         <div className={cl.contentBlock}>
-            {isAdmin ? <MyDeleteElement typeAction={actionDelete} id={id}/> : ''}
+             {isAdmin&& premissionTariff == '200'  ? 
+                <MyFormData  isImg={isImg} id={id} typeAction={actionImg}/>
+            :
+            ''}
+            {isAdmin && premissionTariff == '200' ? <MyDeleteElement typeAction={actionDelete} id={id}/> : ''}
             <div className={cl.wrapper}>
                 <div className={cl.stepper}>
                     <div className={cl.step}>{id} этап</div>
-                    {isAdmin ? 
-                        <MyAdminInput width={devInfo.itemTitle.width} height={devInfo.itemTitle.height} typeAction={actionTitle} id={id}>
+                    {isAdmin && premissionTariff == '200' ? 
+                        <MyAdminInput width={devInfo.itemTitle.width}  fetchInfo={{item: columnState, category: 'mainDev', id: columnName}}  height={devInfo.itemTitle.height} typeAction={actionTitle} id={id}>
                         <h2 className={cl.title} onClick={e=>setDevInfo({...devInfo,itemTitle: {width:e.target.offsetWidth,height:e.target.offsetHeight}})}>{obj.title}</h2>
                     </MyAdminInput>
                     :
@@ -52,7 +66,7 @@ const MainDevItem = ({actionTitle, actionDescr, actionDelete, id, obj, actionImg
                     
                 </div>
                 <div className={cl.photoWrapBlock}>
-                    {isAdmin ? 
+                    {isAdmin && premissionTariff == '200' ? 
                         <span className={'changeItemBtn'} onClick={e=>setChangeImg(!changeImg)}>изменить</span>
                         :'' }
                         <div className={cl.photoWrap}>
@@ -85,8 +99,8 @@ const MainDevItem = ({actionTitle, actionDescr, actionDelete, id, obj, actionImg
                             <li className={cl.listItem}>
                                 <div className={cl.line}></div>
                                 {
-                                    isAdmin ? 
-                                        <MyAdminInput width={devInfo.itemDescr.width} height={devInfo.itemDescr.height} typeAction={actionDescr} id={id} count={n}>
+                                    isAdmin && premissionTariff == '200' ? 
+                                        <MyAdminInput width={devInfo.itemDescr.width}  fetchInfo={{item: columnState, category: 'mainDev', id: columnName}}  height={devInfo.itemDescr.height} typeAction={actionDescr} id={id} count={n}>
                                             <div className={cl.itemText} onClick={e=>setDevInfo({...devInfo,itemDescr: {width:e.target.offsetWidth,height:e.target.offsetHeight}})}>{list}</div>
                                         </MyAdminInput>
                                     :
@@ -107,8 +121,8 @@ const MainDevItem = ({actionTitle, actionDescr, actionDelete, id, obj, actionImg
                         }
                     </ul>
                 </div> : 
-                    isAdmin ? 
-                    <MyAdminInput width={devInfo.itemDescr.width} height={devInfo.itemDescr.height} typeAction={actionDescr} id={id} >
+                    isAdmin && premissionTariff == '200' ? 
+                    <MyAdminInput width={devInfo.itemDescr.width}  fetchInfo={{item: columnState, category: 'mainDev', id: columnName}}  height={devInfo.itemDescr.height} typeAction={actionDescr} id={id} >
                         <div className={cl.wholeText} onClick={e=>setDevInfo({...devInfo,itemDescr: {width:e.target.offsetWidth,height:e.target.offsetHeight}})}>{obj.lists}</div>
                     </MyAdminInput>
                 :
@@ -128,8 +142,8 @@ const MainDevItem = ({actionTitle, actionDescr, actionDelete, id, obj, actionImg
                                 return <div key={n}>
                                     <li className={cl.listIteMm}>
                                         <div className={cl.line}></div>
-                                        {isAdmin ? 
-                                            <MyAdminInput width={devInfo.itemDescr.width} height={devInfo.itemDescr.height} typeAction={actionDescr} id={id} count={n}>
+                                        {isAdmin && premissionTariff == '200' ? 
+                                            <MyAdminInput width={devInfo.itemDescr.width}  fetchInfo={{item: columnState, category: 'mainDev', id: columnName}}  height={devInfo.itemDescr.height} typeAction={actionDescr} id={id} count={n}>
                                                 <div className={cl.itemText} onClick={e=>setDevInfo({...devInfo,itemDescr: {width:e.target.offsetWidth,height:e.target.offsetHeight}})}>{list}</div>
                                             </MyAdminInput>
                                         :
@@ -147,8 +161,8 @@ const MainDevItem = ({actionTitle, actionDescr, actionDelete, id, obj, actionImg
                                 }
                             </ul>
                         </div> :
-                            isAdmin ? 
-                                <MyAdminInput width={devInfo.itemDescr.width} height={devInfo.itemDescr.height} typeAction={actionDescr} id={id} >
+                            isAdmin && premissionTariff == '200' ? 
+                                <MyAdminInput width={devInfo.itemDescr.width}  fetchInfo={{item: columnState, category: 'mainDev', id: columnName}}  height={devInfo.itemDescr.height} typeAction={actionDescr} id={id} >
                                     <div className={cl.wholeText} onClick={e=>setDevInfo({...devInfo,itemDescr: {width:e.target.offsetWidth,height:e.target.offsetHeight}})}>{obj.lists}</div>
                                 </MyAdminInput>
                             :

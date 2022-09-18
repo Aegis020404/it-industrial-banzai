@@ -5,14 +5,18 @@ import MyBtnBlank from "../UI/buttonborder/MyBtnBlank";
 import MyDeleteElement from '../UI/admindelel/MyDeleteElement';
 import MyAdminInput from '../UI/admininput/MyAdminInput';
 import {useDropzone} from 'react-dropzone'
+import MyFormData from '../../untils/ImgFetch';
+
 import Image from "next/image";
-const MainTItem = ({img, title, descr, price, dl, setModal, setTheme,logo, deleteAction, id})=>{
+const MainTItem = ({img,premission, title, descr, price, dl, setModal, setTheme,logo, deleteAction, id, element})=>{
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
     const [tariffItem, setTariffItem] = useState({title: {width:0,height:0}, dl: {width:0,height:0}, price: {width:0,height:0}, descr: {first:{width:0,height:0},second:{width:0,height:0},third:{width:0,height:0}}})
     const dispatch = useDispatch()
     const [isLogo, setIsLogo] = useState('')
-
+    const [premissionFetching, setPremissionFetching] = useState(0)
     const [changeModal, setChangeModal] = useState(false)
+
+    const [isImg, setIsImg] = useState('')
     
     const onDrop = useCallback((acceptedFiles) => {
         acceptedFiles.forEach((file) => {
@@ -23,7 +27,7 @@ const MainTItem = ({img, title, descr, price, dl, setModal, setTheme,logo, delet
           reader.onload = () => {
        
             const binaryStr = reader.result
-            console.log(binaryStr)
+            setIsImg(file)
           }
           reader.readAsArrayBuffer(file)
         })
@@ -38,13 +42,17 @@ const MainTItem = ({img, title, descr, price, dl, setModal, setTheme,logo, delet
         setChangeModal(false)
     }
 
-    console.log('../../../public/img/' + logo)
+ 
     return (
         <li className={cl.tariffItem}> 
-            {isAdmin ? 
+            {isAdmin&& premission == '200'  ? 
+                    <MyFormData  isImg={isImg} id={id} typeAction={'TARIFF_LOGO_CHANGE'}/>
+            :
+            ''}
+            {isAdmin && premission == '200' ? 
                 <span className={cl.changeItemBtn} onClick={e=>setChangeModal(!changeModal)}>ИЗМЕНИТЬ</span>
             :''}
-            {isAdmin ? 
+            {isAdmin && premission == '200' ? 
                 <div className={changeModal ? [cl.modalChangeIcon, cl.modalChangeActive].join` ` : cl.modalChangeIcon }>
                     <div className={cl.modalContent}>
                         <div className={cl.imgBlock}>
@@ -61,14 +69,14 @@ const MainTItem = ({img, title, descr, price, dl, setModal, setTheme,logo, delet
                     </div>
                 </div>
             : ''}
-            {isAdmin ? <MyDeleteElement typeAction={deleteAction} id={id}/> : ''}
+            {isAdmin && premission == '200' ? <MyDeleteElement typeAction={deleteAction} id={id}/> : ''}
             <div className={cl.tariffContent}>
                 <div className={cl.tariffHeader}>
                     <span className={cl.tariffImg}>
                         <Image width={38} height={39} src={'/img/' + logo}></Image>
                     </span>
-                    {isAdmin ? 
-                        <MyAdminInput width={tariffItem.title.width} height={tariffItem.title.height} typeAction={'TARIFF_TITLE_CHANGE'} id={id}>
+                    {isAdmin && premission == '200' ? 
+                        <MyAdminInput premissionFetching={premissionFetching} setPremissionFetching={setPremissionFetching} width={tariffItem.title.width} height={tariffItem.title.height} typeAction={'TARIFF_TITLE_CHANGE'} id={id}>
                             <h3 className={cl.tariffTitle} onClick={e=>{setTariffItem({...tariffItem, title: {width:e.target.offsetWidth,height:e.target.offsetHeight}})}}>{title}</h3>
                         </MyAdminInput>
                     :
@@ -80,8 +88,8 @@ const MainTItem = ({img, title, descr, price, dl, setModal, setTheme,logo, delet
                     <ul className={cl.tariffCList}>
                         <li className={cl.tariffСlause}>
                              <span className={cl.tariffCycle}></span>
-                             {isAdmin ? 
-                            <MyAdminInput width={tariffItem.descr.first.width} height={tariffItem.descr.first.height} typeAction={'TARIFF_DESCR_CHANGE'} id={id} count={0}>
+                             {isAdmin && premission == '200' ? 
+                            <MyAdminInput premissionFetching={premissionFetching} setPremissionFetching={setPremissionFetching} width={tariffItem.descr.first.width} height={tariffItem.descr.first.height} typeAction={'TARIFF_DESCR_CHANGE'} id={id} count={0}>
                                <div className={cl.tariffClauseText} onClick={e=>{setTariffItem({...tariffItem, descr: {...tariffItem.descr ,first: {width:e.target.offsetWidth,height:e.target.offsetHeight}}})}}>{descr[0]}</div>
                             </MyAdminInput>
                             :
@@ -90,8 +98,8 @@ const MainTItem = ({img, title, descr, price, dl, setModal, setTheme,logo, delet
                          </li>
                          <li className={cl.tariffСlause}>
                              <span className={cl.tariffCycle}></span>
-                             {isAdmin ? 
-                            <MyAdminInput width={tariffItem.descr.second.width} height={tariffItem.descr.second.height} typeAction={'TARIFF_DESCR_CHANGE'} id={id} count={1}>
+                             {isAdmin && premission == '200' ? 
+                            <MyAdminInput premissionFetching={premissionFetching} setPremissionFetching={setPremissionFetching} width={tariffItem.descr.second.width} height={tariffItem.descr.second.height} typeAction={'TARIFF_DESCR_CHANGE'} id={id} count={1}>
                                <div className={cl.tariffClauseText} onClick={e=>{setTariffItem({...tariffItem, descr: {...tariffItem.descr ,second: {width:e.target.offsetWidth,height:e.target.offsetHeight}}})}}>{descr[1]}</div>
                             </MyAdminInput>
                             :
@@ -101,8 +109,8 @@ const MainTItem = ({img, title, descr, price, dl, setModal, setTheme,logo, delet
                         
                          <li className={cl.tariffСlause}>
                              <span className={cl.tariffCycle}></span>
-                             {isAdmin ? 
-                            <MyAdminInput width={tariffItem.descr.third.width} height={tariffItem.descr.third.height} typeAction={'TARIFF_DESCR_CHANGE'} id={id} count={2}>
+                             {isAdmin && premission == '200' ? 
+                            <MyAdminInput premissionFetching={premissionFetching} setPremissionFetching={setPremissionFetching} width={tariffItem.descr.third.width} height={tariffItem.descr.third.height} typeAction={'TARIFF_DESCR_CHANGE'} id={id} count={2}>
                                <div className={cl.tariffClauseText} onClick={e=>{setTariffItem({...tariffItem, descr: {...tariffItem.descr ,third: {width:e.target.offsetWidth,height:e.target.offsetHeight}}})}}>{descr[2]}</div>
                             </MyAdminInput>
                             :
@@ -117,7 +125,7 @@ const MainTItem = ({img, title, descr, price, dl, setModal, setTheme,logo, delet
                         <span className={cl.tariffPriceinside}>
                             от
                         </span>
-                        {isAdmin ? 
+                        {isAdmin && premission == '200' ? 
                             <MyAdminInput  width={tariffItem.price.width} height={tariffItem.price.height} typeAction={'TARIFF_PRICE_CHANGE'} id={id}> 
                                  <span className={cl.tariffPrice} onClick={e=>{setTariffItem({...tariffItem, price: {width:e.target.offsetWidth,height:e.target.offsetHeight}})}}>
                                     {price}
@@ -134,8 +142,8 @@ const MainTItem = ({img, title, descr, price, dl, setModal, setTheme,logo, delet
                     </div>
                 </div>
                 <div className={cl.tariffTermBlock}>
-                    {isAdmin ? 
-                        <MyAdminInput width={tariffItem.dl.width} height={tariffItem.dl.height} typeAction={'TARIFF_DL_CHANGE'} id={id}>
+                    {isAdmin && premission == '200' ? 
+                        <MyAdminInput premissionFetching={premissionFetching} setPremissionFetching={setPremissionFetching} width={tariffItem.dl.width} height={tariffItem.dl.height} typeAction={'TARIFF_DL_CHANGE'} id={id}>
                             <span className={cl.tariffTerm} onClick={e=>{setTariffItem({...tariffItem, dl: {width:e.target.offsetWidth,height:e.target.offsetHeight}})}}>{dl}</span>
                         </MyAdminInput>
                     :

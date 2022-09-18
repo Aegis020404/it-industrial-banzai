@@ -1,4 +1,5 @@
 import cl from '../src/style/MainDev.module.css';
+import {useFetchingPost} from './../src/hooks/useAdminChangeing';
 
 let initialState = {
     turnkeyWebsite: [
@@ -167,61 +168,98 @@ let initialState = {
 const MainDevReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'MAINDEV_ADD_ELEMENT': {
-            return {...state, turnkeyWebsite: [...state.turnkeyWebsite, {...state.turnkeyWebsite[state.turnkeyWebsite.length - 1], id: state.turnkeyWebsite[state.turnkeyWebsite.length - 1].id + 1}]}
+            const result = {...state, turnkeyWebsite: [...state.turnkeyWebsite, {...state.turnkeyWebsite[state.turnkeyWebsite.length - 1], id: state.turnkeyWebsite[state.turnkeyWebsite.length - 1].id + 1}]}
+            useFetchingPost(result['turnkeyWebsite'], 'mainDev', 'turnkeyWebsite')
+            return result
         }
         case 'MAINDEV_DELETE_ELEMENT': {
-            return {...state, turnkeyWebsite: state.turnkeyWebsite.filter(e=>e.id !== action.info.id)}
+            const result = {...state, turnkeyWebsite: state.turnkeyWebsite.filter(e=>e.id !== action.info.id)}
+            useFetchingPost(null, 'mainDev', 'turnkeyWebsite')
+            return result
         }
         case 'MAINDEV_TITLE_CHANGE': {
-            return {...state, turnkeyWebsite: state.turnkeyWebsite.map((e,i,arr)=>e.id === action.info.id ? {...e, title: action.info.text} : e )}
-        }  
+            const result = {...state, turnkeyWebsite: state.turnkeyWebsite.map((e,i,arr)=>e.id === action.info.id ? {...e, title: action.info.text} : e )}
+            useFetchingPost(result['turnkeyWebsite'], 'mainDev', 'turnkeyWebsite')
+            return result} 
+
         case 'MAINDEV_DESCR_CHANGE': {
-            return {...state, turnkeyWebsite: state.turnkeyWebsite.map((e,i,arr)=>e.id === action.info.id ? {...e, lists: e.lists.map((e,i)=>i === action.info.count? action.info.text : e)} : e )}
+            const result = {...state, turnkeyWebsite: state.turnkeyWebsite.map((e,i,arr)=>e.id === action.info.id ? {...e, lists: e.lists.map((e,i)=>i === action.info.count? action.info.text : e)} : e )}
+            useFetchingPost(result['turnkeyWebsite'], 'mainDev', 'developerMobile')
+            return result
         }
         case 'MAINDEV_IMG_CHANGE': {
-            return {...state, turnkeyWebsite: state.turnkeyWebsite.map((e,i,arr)=>e.id === action.info.id ? {...e, img: action.info.text} : e )}
-        } 
+            const result = {...state, turnkeyWebsite: state.turnkeyWebsite.map((e,i,arr)=>e.id === action.info.id ? {...e, img: action.info.text} : e )}
+            useFetchingPost(result['turnkeyWebsite'], 'mainDev','turnkeyWebsite')
+            return result}
+
 
 
 
         case 'CRMDEV_ADD_ELEMENT': {
-            return {...state, developerCRM: [...state.developerCRM, {...state.developerCRM[state.developerCRM.length - 1], id: state.developerCRM[state.developerCRM.length - 1].id + 1}]}
+            const result = {...state, developerCRM: [...state.developerCRM, {...state.developerCRM[state.developerCRM.length - 1], id: state.developerCRM[state.developerCRM.length - 1].id + 1}]}
+            useFetchingPost(result['developerCRM'], 'mainDev', 'developerCRM')
+            return result
         }
         case 'CRMDEV_DELETE_ELEMENT': {
-            return {...state, developerCRM: state.developerCRM.filter(e=>e.id !== action.info.id)}
+            const result = {...state, developerCRM: state.developerCRM.filter(e=>e.id !== action.info.id)}
+            useFetchingPost(null, 'mainDev', 'developerCRM')
+            return result
         }
         case 'CRMDEV_TITLE_CHANGE': {
-            return {...state, developerCRM: state.developerCRM.map((e,i,arr)=>e.id === action.info.id ? {...e, title: action.info.text} : e )}
-        }  
+            const result = {...state, developerCRM: state.developerCRM.map((e,i,arr)=>e.id === action.info.id ? {...e, title: action.info.text} : e )}
+            useFetchingPost(result['developerCRM'], 'mainDev', 'developerCRM')
+            return result} 
+
         case 'CRMDEV_DESCR_CHANGE': {
-            return  {...state, developerCRM: state.developerCRM.map((e,i,arr)=>e.id === action.info.id ? {...e, lists: action.info.text} : e )}
+            const result =  {...state, developerCRM: state.developerCRM.map((e,i,arr)=>e.id === action.info.id ? {...e, lists: action.info.text} : e )}
+            useFetchingPost(result['developerCRM'], 'mainDev', 'developerCRM')
+            return result
         }
         case 'CRMDEV_IMG_CHANGE': {
-            return {...state, developerCRM: state.developerCRM.map((e,i,arr)=>e.id === action.info.id ? {...e, img: action.info.text} : e )}
-        }  
+            const result = {...state, developerCRM: state.developerCRM.map((e,i,arr)=>e.id === action.info.id ? {...e, img: action.info.text} : e )}
+            useFetchingPost(result['developerCRM'], 'mainDev', 'developerCRM')
+            return result} 
+
 
 
 
         case 'MOBILEDEV_ADD_ELEMENT': {
-            return {...state, developerMobile: [...state.developerMobile, {...state.developerMobile[state.developerMobile.length - 1], id: state.developerMobile[state.developerMobile.length - 1].id + 1}]}
+            const result = {...state, developerMobile: [...state.developerMobile, {...state.developerMobile[state.developerMobile.length - 1], id: state.developerMobile[state.developerMobile.length - 1].id + 1}]}
+            useFetchingPost(result['developerMobile'], 'mainDev', 'developerMobile')
+            return result
         }
         case 'MOBILEDEV_DELETE_ELEMENT': {
-            return {...state, developerMobile: state.developerMobile.filter(e=>e.id !== action.info.id)}
+            const result = {...state, developerMobile: state.developerMobile.filter(e=>e.id !== action.info.id)}
+            useFetchingPost(null, 'mainDev', 'developerMobile')
+            return result
         }
         case 'MOBILEDEV_TITLE_CHANGE': {
-            return {...state, developerMobile: state.developerMobile.map((e,i,arr)=>e.id === action.info.id ? {...e, title: action.info.text} : e )}
-        }  
+            const result = {...state, developerMobile: state.developerMobile.map((e,i,arr)=>e.id === action.info.id ? {...e, title: action.info.text} : e )}
+            useFetchingPost(result['developerMobile'], 'mainDev', 'developerMobile')
+            return result} 
+
         case 'MOBILEDEV_DESCR_CHANGE': {
-            return  {...state, developerMobile: state.developerMobile.map((e,i,arr)=>e.id === action.info.id ? {...e, lists: action.info.text} : e )}
+            const result =  {...state, developerMobile: state.developerMobile.map((e,i,arr)=>e.id === action.info.id ? {...e, lists: action.info.text} : e )}
+            useFetchingPost(result['developerMobile'], 'mainDev', 'developerMobile')
+            return result
         }
         case 'MOBILEDEV_IMG_CHANGE': {
-            return {...state, developerMobile: state.developerMobile.map((e,i,arr)=>e.id === action.info.id ? {...e, img: action.info.text} : e )}
-        } 
+            const result = {...state, developerMobile: state.developerMobile.map((e,i,arr)=>e.id === action.info.id ? {...e, img: action.info.text} : e )}
+            useFetchingPost(result['developerMobile'], 'mainDev', 'developerMobile')
+            return result}
+
+        case 'CHANGE_STATE_DEV': {
+            const result = {...state, ...action.info.text}
+           
+            return result
+        }
         default:
         return state
     }
 }
-
+export const changeStateDev = (info)=>({
+    type: 'CHANGE_STATE_DEV', info
+})
 export const addMainDevElement = (info)=>({
     type: 'MAINDEV_ADD_ELEMENT', info
 })

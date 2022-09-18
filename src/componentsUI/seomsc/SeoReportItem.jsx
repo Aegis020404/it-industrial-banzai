@@ -4,7 +4,7 @@ import MyViewElement from "../UI/viewelement/MyViewElement";
 import { useSelector } from 'react-redux';
 import MyAdminInput from "../UI/admininput/MyAdminInput";
 import MyDeleteElement from "../UI/admindelel/MyDeleteElement";
-const SeoReportItem = ({img, text, id})=>{
+const SeoReportItem = ({img, text, id,premissionLists, element})=>{
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
     const [reportInfo, setReportInfo] = useState({title:{width:0,height:0},descr:{width:0,height:0}})
     return (
@@ -19,8 +19,8 @@ const SeoReportItem = ({img, text, id})=>{
                 </div>
                 }/>
             <MyViewElement element={
-                isAdmin ? 
-                <MyAdminInput width={reportInfo.title.width} id={id} height={reportInfo.title.height} typeAction={'TEXT_SEO_REPORT_CHANGE'}>
+                isAdmin && premissionLists == '200' ? 
+                <MyAdminInput width={reportInfo.title.width} fetchInfo={{item: element, category: 'seoReport', id: id}} id={id} height={reportInfo.title.height} typeAction={'TEXT_SEO_REPORT_CHANGE'}>
                     <p className={cl.reportDescr} onClick={e=>setReportInfo({...reportInfo, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{text}</p>
                 </MyAdminInput>
                 :

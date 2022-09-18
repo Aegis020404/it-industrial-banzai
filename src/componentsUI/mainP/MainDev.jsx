@@ -1,4 +1,4 @@
-import React, {useMemo, useState, useCallback} from 'react';
+import React, {useMemo, useState, useCallback, useEffect} from 'react';
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Navigation, Pagination} from "swiper";
 
@@ -10,6 +10,9 @@ import MyDeleteElement from '../UI/admindelel/MyDeleteElement';
 import MyAdminInput from '../UI/admininput/MyAdminInput';
 import {useDropzone} from 'react-dropzone'
 import MainDevItem from './MainDevItem';
+import { getStartedInfo } from '../../untils/getStartedInfo';
+import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
+
 
 const MainDev = (props) => {
     let spaceBetweenSwiper = 50;
@@ -27,8 +30,25 @@ const MainDev = (props) => {
     const actionDelete =  props.column === 'turnkeyWebsite' ? 'MAINDEV_DELETE_ELEMENT' : props.column === 'developerCRM' ? 'CRMDEV_DELETE_ELEMENT' : props.column === 'developerMobile' ?   'MOBILEDEV_DELETE_ELEMENT':''
     const actionImg =  props.column === 'turnkeyWebsite' ? 'MAINDEV_IMG_CHANGE' : props.column === 'developerCRM' ? 'CRMDEV_IMG_CHANGE' : props.column === 'developerMobile' ? 'MOBILEDEV_IMG_CHANGE' : ''
     
+    
 
-   
+    const [premissionGet, setPremissionGet] = useState(0) 
+    const [viewElUntil, setViewElUntil] = useState('')
+
+    useMemo(()=>{
+        if(premissionGet) {
+           setPremissionGet('200')
+        }
+    },[adminTexts.mainDev])
+    useEffect(()=>{
+        const startedInfo = getStartedInfo("mainDev",'CHANGE_ALL_ADMIN','/adminTexts/mainDev',dispatch )
+        startedInfo.then(res=>{
+            if(res){setPremissionGet(1)}else{setPremissionGet('200')}
+        })
+    },[viewElUntil])
+
+    const [premissionTariff, setPremissionTariff] = useState(0) 
+    const changeState = useChangeStateFirst( setPremissionTariff,premissionTariff, "-","/mainDev",infoData, 'CHANGE_STATE_DEV') 
 
 
 
@@ -42,8 +62,8 @@ const MainDev = (props) => {
                 {isAdmin ? <MyAddElement typeAction={actionAdd}/>: ''}
                 <div className={cl.titleWrapper}>
                     <MyViewElement element={
-                        isAdmin ? 
-                            <MyAdminInput width={devInfo.title.width} height={devInfo.title.height} typeAction={'TITLE_DEV_INFO'}>
+                        isAdmin  && premissionGet === '200' ? 
+                            <MyAdminInput width={devInfo.title.width} fetchInfo={{item: adminTexts.mainDev, id: "mainDev", category: 'adminTexts'}} height={devInfo.title.height} typeAction={'TITLE_DEV_INFO'}>
                                 <h1 className={cl.text} onClick={e=>setDevInfo({...devInfo, title: {width:e.target.offsetWidth, height:e.target.offsetHeight}})}>{adminTexts.mainDev.title}</h1>
                             </MyAdminInput>
                             :
@@ -77,7 +97,7 @@ const MainDev = (props) => {
                             <span className={cl.arrowNextGray}></span>
                         </div>
                     </div>
-                    {infoData.map((obj, i) =>    <SwiperSlide key={obj.id}  className={cl.Swiper}><MainDevItem actionImg={actionImg} actionTitle={actionTitle} obj={obj} actionDescr={actionDescr} actionDelete={actionDelete} id={obj.id}/></SwiperSlide>)}
+                    {infoData.map((obj, i) =>    <SwiperSlide key={obj.id}  className={cl.Swiper}><MainDevItem premissionTariff={changeState} columnState={infoData} columnName={props.column} actionImg={actionImg} actionTitle={actionTitle} obj={obj} actionDescr={actionDescr} actionDelete={actionDelete} id={obj.id}/></SwiperSlide>)}
                 </Swiper>
                 }/>
                 

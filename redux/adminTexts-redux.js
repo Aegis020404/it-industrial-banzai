@@ -1,4 +1,5 @@
 
+import {useFetchingPost} from './../src/hooks/useAdminChangeing';
 
 const initialState = {
     mainTariff: {
@@ -28,7 +29,8 @@ const initialState = {
         title: 'Мы не работаем по шаблонам, а работаем на результат'
     },
     mainOther: {
-        title: '',
+        titleLeft: 'Другие услуги',
+        titleRight: 'IT-INDUSTRIAL',
     },
     mainKeys: {
         title: 'Наши кейсы',
@@ -131,6 +133,9 @@ const initialState = {
     mobileService: {
         title: 'Услуги по разработке приложений',
         descr: 'Обратитесь к нам и мы на ранней стадии поможем вам спроектировать бизнес-модель и стратегию его поэтапного развития. Важное место в нашей работе занимает аналитика: анализ требований и бизнес-процессов, маркетинговый и технический аудит, управление требованиями на всех этапах проекта.'
+    },
+    tariffPageTexts: {
+        title: 'Тарифы',
     }
 
 }
@@ -139,202 +144,441 @@ const initialState = {
 
 export function isAdminTextsReducer (state = initialState, action) {
     switch (action.type) {
-        
+
+
        
+        case 'TITLE_TARIFF_PAGE_INFO': {
+            
+        const result = {...state, tariffPageTexts: {...state.tariffPageTexts, title: action.info.text}}
+        useFetchingPost(result['tariffPageTexts'], 'adminTexts', 'tariffPageTexts')
+        return result
+        }
         case 'TITLE_SERVICES_CRM_PAGE_INFO': {
-            return {...state, crmServices: {...state.crmServices, title: action.info.text}}
+            
+        const result = {...state, crmServices: {...state.crmServices, title: action.info.text}}
+        useFetchingPost(result['crmServices'], 'adminTexts', 'crmServices')
+        return result
         }
         case 'TITLE_PORTFOLIO_CRM_PAGE_INFO': {
-            return {...state, crmPortfolio: {...state.crmPortfolio, title: action.info.text}}
+            
+        const result = {...state, crmPortfolio: {...state.crmPortfolio, title: action.info.text}}
+        useFetchingPost(result['crmPortfolio'], 'adminTexts', 'crmPortfolio')
+        return result
         }
         case 'DESCR_PORTFOLIO_CRM_PAGE_INFO': {
-            return {...state, crmPortfolio: {...state.crmPortfolio, descr: action.info.text}}
+            
+        const result = {...state, crmPortfolio: {...state.crmPortfolio, descr: action.info.text}}
+        useFetchingPost(result['crmPortfolio'], 'adminTexts', 'crmPortfolio')
+        return result
         }
         case 'TITLE_DEVELOP_CRM_PAGE_INFO': {
-            return {...state, crmDevelop: {...state.crmDevelop, title: action.info.text}}
+            
+        const result = {...state, crmDevelop: {...state.crmDevelop, title: action.info.text}}
+        useFetchingPost(result['crmDevelop'], 'adminTexts', 'crmDevelop')
+        return result
         }
 
 
         case 'TITLE_SERVICES_MOBILE_PAGE_INFO': {
-            return {...state, mobileService: {...state.mobileService, title: action.info.text}}
+            
+        const result = {...state, mobileService: {...state.mobileService, title: action.info.text}}
+        useFetchingPost(result['mobileService'], 'adminTexts', 'mobileService')
+        return result
         }
         case 'TITLE_SERVICES_MOBILE_PAGE_INFO': {
-            return {...state, mobileService: {...state.mobileService, descr: action.info.text}}
+            
+        const result = {...state, mobileService: {...state.mobileService, descr: action.info.text}}
+        useFetchingPost(result['mobileService'], 'adminTexts', 'mobileService')
+        return result
         }
 
         
         case 'TITLE_QUIZ_INFO': {
-            return {...state, mainQuiz: {...state.mainQuiz, title: action.info.text}}
+            
+        const result = {...state, mainQuiz: {...state.mainQuiz, title: action.info.text}}
+        useFetchingPost(result['mainQuiz'], 'adminTexts', 'mainQuiz')
+        return result
         }
         case 'DESCR_QUIZ_INFO': {
-            return {...state, mainQuiz: {...state.mainQuiz, descr: action.info.text}}
+            
+        const result = {...state, mainQuiz: {...state.mainQuiz, descr: action.info.text}}
+        useFetchingPost(result['mainQuiz'], 'adminTexts', 'mainQuiz')
+        return result
         }  
         case 'TITLE_TARIFF_INFO': {
-            return {...state, mainTariff: {...state.mainTariff, title: action.info.text}}
+            
+        const result = {...state, mainTariff: {...state.mainTariff, title: action.info.text}}
+        useFetchingPost(result['mainTariff'], 'adminTexts', 'mainTariff')
+        return result
         }
         case 'TITLE_APPLICATION_INFO': {
-            return {...state, mainApplication: {...state.mainApplication, title: action.info.text}}
+            
+        const result = {...state, mainApplication: {...state.mainApplication, title: action.info.text}}
+        useFetchingPost(result['mainApplication'], 'adminTexts', 'mainApplication')
+        return result
         }
         case 'DESCR_APPLICATION_INFO': {
-            return {...state, mainApplication: {...state.mainApplication, descr: action.info.text}}
+            
+        const result = {...state, mainApplication: {...state.mainApplication, descr: action.info.text}}
+        useFetchingPost(result['mainApplication'], 'adminTexts', 'mainApplication')
+        return result
         }
         case 'SUBDESCR_APPLICATION_INFO': {
-            return {...state, mainApplication: {...state.mainApplication, subdescr: action.info.text}}
+            
+        const result = {...state, mainApplication: {...state.mainApplication, subdescr: action.info.text}}
+        useFetchingPost(result['mainApplication'], 'adminTexts', 'mainApplication')
+        return result
         }
         case 'TITLE_DEV_INFO': {
-            return {...state, mainDev: {...state.mainDev, title: action.info.text}}
+            
+        const result = {...state, mainDev: {...state.mainDev, title: action.info.text}}
+        useFetchingPost(result['mainDev'], 'adminTexts', 'mainDev')
+        return result
         }
         case 'TITLE_OFFER_INFO': {
-            return {...state, mainOffer: {...state.mainOffer, title: action.info.text}}
+            
+        const result = {...state, mainOffer: {...state.mainOffer, title: action.info.text}}
+        useFetchingPost(result['mainOffer'], 'adminTexts', 'mainOffer')
+        return result
         }
         case 'DESCR_OFFER_INFO': {
-            return {...state, mainOffer: {...state.mainOffer, descr: action.info.text}}
+            
+        const result = {...state, mainOffer: {...state.mainOffer, descr: action.info.text}}
+        useFetchingPost(result['mainOffer'], 'adminTexts', 'mainOffer')
+        return result
         }
         case 'TITLE_PRICE_OFFER_INFO': {
-            return {...state, mainOffer: {...state.mainOffer, titlePrice: action.info.text}}
+            
+        const result = {...state, mainOffer: {...state.mainOffer, titlePrice: action.info.text}}
+        useFetchingPost(result['mainOffer'], 'adminTexts', 'mainOffer')
+        return result
         }
         case 'DESCR_PRICE_OFFER_INFO': {
-            return {...state, mainOffer: {...state.mainOffer, descrPrice: action.info.text}}
+            
+        const result = {...state, mainOffer: {...state.mainOffer, descrPrice: action.info.text}}
+        useFetchingPost(result['mainOffer'], 'adminTexts', 'mainOffer')
+        return result
         }
         case 'DESCR_CONTACT_OFFER_INFO': {
-            return {...state, mainOffer: {...state.mainOffer, descrContact: action.info.text}}
+            
+        const result = {...state, mainOffer: {...state.mainOffer, descrContact: action.info.text}}
+        useFetchingPost(result['mainOffer'], 'adminTexts', 'mainOffer')
+        return result
         }
         case 'TITLE_CONTACT_OFFER_INFO': {
-            return {...state, mainOffer: {...state.mainOffer, titleContact: action.info.text}}
+            
+        const result = {...state, mainOffer: {...state.mainOffer, titleContact: action.info.text}}
+        useFetchingPost(result['mainOffer'], 'adminTexts', 'mainOffer')
+        return result
         }
         case 'TITLE_RES_INFO': {
-            return {...state, mainRes: {...state.mainRes, title: action.info.text}}
+            
+        const result = {...state, mainRes: {...state.mainRes, title: action.info.text}}
+        useFetchingPost(result['mainRes'], 'adminTexts', 'mainRes')
+        return result
         }
         case 'TITLE_KEYS_MAIN_INFO': {
-            return {...state, mainKeys: {...state.mainKeys, title: action.info.text}}
+            
+        const result = {...state, mainKeys: {...state.mainKeys, title: action.info.text}}
+        useFetchingPost(result['mainKeys'], 'adminTexts', 'mainKeys')
+        return result
         }case 'DESCR_KEYS_MAIN_INFO': {
-            return {...state, mainKeys: {...state.mainKeys, descr: action.info.text}}
+            
+        const result = {...state, mainKeys: {...state.mainKeys, descr: action.info.text}}
+        useFetchingPost(result['mainKeys'], 'adminTexts', 'mainKeys')
+        return result
         }case 'TITLE_LIDER_INFO': {
-            return {...state, mainLider: {...state.mainLider, title: action.info.text}}
+            
+        const result = {...state, mainLider: {...state.mainLider, title: action.info.text}}
+        useFetchingPost(result['mainLider'], 'adminTexts', 'mainLider')
+        return result
         }case 'DESCR_LIDER_INFO': {
-            return {...state, mainLider: {...state.mainLider, descr: action.info.text}}
+            
+        const result = {...state, mainLider: {...state.mainLider, descr: action.info.text}}
+        useFetchingPost(result['mainLider'], 'adminTexts', 'mainLider')
+        return result
         }case 'INITIIALS_LIDER_INFO': {
-            return {...state, mainLider: {...state.mainLider, initialis: action.info.text}}
+            
+        const result = {...state, mainLider: {...state.mainLider, initialis: action.info.text}}
+        useFetchingPost(result['mainLider'], 'adminTexts', 'mainLider')
+        return result
         }case 'POST_LIDER_INFO': {
-            return {...state, mainLider: {...state.mainLider, post: action.info.text}}
+            
+        const result = {...state, mainLider: {...state.mainLider, post: action.info.text}}
+        useFetchingPost(result['mainLider'], 'adminTexts', 'mainLider')
+        return result
         }case 'TITLE_SIMPLE_INFO': {
-            return {...state, mainSimple: {...state.mainSimple, title: action.info.text}}
+            
+        const result = {...state, mainSimple: {...state.mainSimple, title: action.info.text}}
+        useFetchingPost(result['mainSimple'], 'adminTexts', 'mainSimple')
+        return result
         }case 'TITLE_REVIEW_INFO': {
-            return {...state, mainReview: {...state.mainReview, title: action.info.text}}
+            
+        const result = {...state, mainReview: {...state.mainReview, title: action.info.text}}
+        useFetchingPost(result['mainReview'], 'adminTexts', 'mainReview')
+        return result
         }case 'TITLE_QUESTION_INFO': {
-            return {...state, mainQuestion: {...state.mainQuestion, title: action.info.text}}
+            
+        const result = {...state, mainQuestion: {...state.mainQuestion, title: action.info.text}}
+        useFetchingPost(result['mainQuestion'], 'adminTexts', 'mainQuestion')
+        return result
         }
         case 'DESCR_QUESTION_INFO': {
-            return {...state, mainQuestion: {...state.mainQuestion, descr: action.info.text}}
+            
+        const result = {...state, mainQuestion: {...state.mainQuestion, descr: action.info.text}}
+        useFetchingPost(result['mainQuestion'], 'adminTexts', 'mainQuestion')
+        return result
         }
         case 'BOTTOM_DESCR_QUESTION_INFO': {
-            return {...state, mainQuestion: {...state.mainQuestion, bottomDescr: action.info.text}}
+            
+        const result = {...state, mainQuestion: {...state.mainQuestion, bottomDescr: action.info.text}}
+        useFetchingPost(result['mainQuestion'], 'adminTexts', 'mainQuestion')
+        return result
         }
         case 'TITLE_ABOUT_PAGE_CHANGE' : {
-            return {...state, aboutTexts: {...state.aboutTexts, title: action.info.text}}
+            
+        const result = {...state, aboutTexts: {...state.aboutTexts, title: action.info.text}}
+        useFetchingPost(result['aboutTexts'], 'adminTexts', 'aboutTexts')
+        return result
         }
         case 'DESCR_FIRST_ABOUT_PAGE_CHANGE' : {
-            return {...state, aboutTexts: {...state.aboutTexts, descrFirst: action.info.text}}
+            
+        const result = {...state, aboutTexts: {...state.aboutTexts, descrFirst: action.info.text}}
+        useFetchingPost(result['aboutTexts'], 'adminTexts', 'aboutTexts')
+        return result
         }
         case 'DESCR_SEC_ABOUT_PAGE_CHANGE' : {
-            return {...state, aboutTexts: {...state.aboutTexts, descrSec: action.info.text}}
+            
+        const result = {...state, aboutTexts: {...state.aboutTexts, descrSec: action.info.text}}
+        useFetchingPost(result['aboutTexts'], 'adminTexts', 'aboutTexts')
+        return result
         }
         case 'DESCR_THIRD_ABOUT_PAGE_CHANGE' : {
-            return {...state, aboutTexts: {...state.aboutTexts, descrThird: action.info.text}}
+            
+        const result = {...state, aboutTexts: {...state.aboutTexts, descrThird: action.info.text}}
+        useFetchingPost(result['aboutTexts'], 'adminTexts', 'aboutTexts')
+        return result
         }
         case 'DESCR_FOURTH_ABOUT_PAGE_CHANGE' : {
-            return {...state, aboutTexts: {...state.aboutTexts, descrFourth: action.info.text}}
+            
+        const result = {...state, aboutTexts: {...state.aboutTexts, descrFourth: action.info.text}}
+        useFetchingPost(result['aboutTexts'], 'adminTexts', 'aboutTexts')
+        return result
         }
         case 'TOP_COUNT_ABOUT_PAGE_CHANGE' : {
-            return {...state, aboutTexts: {...state.aboutTexts, topCount: action.info.text}}
+            
+        const result = {...state, aboutTexts: {...state.aboutTexts, topCount: action.info.text}}
+        useFetchingPost(result['aboutTexts'], 'adminTexts', 'aboutTexts')
+        return result
         }
         case 'BOTTOM_COUNT_ABOUT_PAGE_CHANGE' : {
-            return {...state, aboutTexts: {...state.aboutTexts, developCount: action.info.text}}
+            
+        const result = {...state, aboutTexts: {...state.aboutTexts, developCount: action.info.text}}
+        useFetchingPost(result['aboutTexts'], 'adminTexts', 'aboutTexts')
+        return result
         }
         case 'TOP_DESCR_ABOUT_PAGE_CHANGE' : {
-            return {...state, aboutTexts: {...state.aboutTexts, topText: action.info.text}}
+            
+        const result = {...state, aboutTexts: {...state.aboutTexts, topText: action.info.text}}
+        useFetchingPost(result['aboutTexts'], 'adminTexts', 'aboutTexts')
+        return result
         }
         case 'BOTTOM_DESCR_ABOUT_PAGE_CHANGE' : {
-            return {...state, aboutTexts: {...state.aboutTexts, developText: action.info.text}}
+            
+        const result = {...state, aboutTexts: {...state.aboutTexts, developText: action.info.text}}
+        useFetchingPost(result['aboutTexts'], 'adminTexts', 'aboutTexts')
+        return result
         }
         case 'TITLE_REVIEWS_PAGE_CHANGE' : {
-            return {...state, reviewsTexts: {...state.reviewsTexts, title: action.info.text}}
+            
+        const result = {...state, reviewsTexts: {...state.reviewsTexts, title: action.info.text}}
+        useFetchingPost(result['reviewsTexts'], 'adminTexts', 'reviewsTexts')
+        return result
         }
         case 'TITLE_VACANCY_PAGE_CHANGE' : {
-            return {...state, vacancyTexts: {...state.vacancyTexts, title: action.info.text}}
+            
+        const result = {...state, vacancyTexts: {...state.vacancyTexts, title: action.info.text}}
+        useFetchingPost(result['vacancyTexts'], 'adminTexts', 'vacancyTexts')
+        return result
         }
         case 'TITLE_KEYS_PAGE_CHANGE' : {
-            return {...state, keysTexts: {...state.keysTexts, title: action.info.text}}
+            
+        const result = {...state, keysTexts: {...state.keysTexts, title: action.info.text}}
+        useFetchingPost(result['keysTexts'], 'adminTexts', 'keysTexts')
+        return result
         }
         case 'TITLE_CONTACT_PAGE_CHANGE' : {
-            return {...state, contactTexts: {...state.contactTexts, title: action.info.text}}
+            
+        const result = {...state, contactTexts: {...state.contactTexts, title: action.info.text}}
+        useFetchingPost(result['contactTexts'], 'adminTexts', 'contactTexts')
+        return result
         }
         case 'TITLE_ITEM_FIRST_CONTACT_PAGE_CHANGE' : {
-            return {...state, contactTexts: {...state.contactTexts, firstColumn: {...state.contactTexts.firstColumn, titleItem: action.info.text}}}
+            
+        const result = {...state, contactTexts: {...state.contactTexts, firstColumn: {...state.contactTexts.firstColumn, titleItem: action.info.text}}}
+        useFetchingPost(result['contactTexts'], 'adminTexts', 'contactTexts')
+        return result
         }
         case 'TITLE_NUMBER_FIRST_CONTACT_PAGE_CHANGE' : {
-            return {...state, contactTexts: {...state.contactTexts, firstColumn: {...state.contactTexts.firstColumn, titleNumber: action.info.text}}}
+            
+        const result = {...state, contactTexts: {...state.contactTexts, firstColumn: {...state.contactTexts.firstColumn, titleNumber: action.info.text}}}
+        useFetchingPost(result['contactTexts'], 'adminTexts', 'contactTexts')
+        return result
         }
         case 'TITLE_EMAIL_FIRST_CONTACT_PAGE_CHANGE' : {
-            return {...state, contactTexts: {...state.contactTexts, firstColumn: {...state.contactTexts.firstColumn, titleEmail: action.info.text}}}
+            
+        const result = {...state, contactTexts: {...state.contactTexts, firstColumn: {...state.contactTexts.firstColumn, titleEmail: action.info.text}}}
+        useFetchingPost(result['contactTexts'], 'adminTexts', 'contactTexts')
+        return result
         }
         case 'VALUE_EMAIL_FIRST_CONTACT_PAGE_CHANGE' : {
-            return {...state, contactTexts: {...state.contactTexts, firstColumn: {...state.contactTexts.firstColumn, valueEmail: action.info.text}}}
+            
+        const result = {...state, contactTexts: {...state.contactTexts, firstColumn: {...state.contactTexts.firstColumn, valueEmail: action.info.text}}}
+        useFetchingPost(result['contactTexts'], 'adminTexts', 'contactTexts')
+        return result
         }
           case 'VALUE_NUMBER_FIRST_CONTACT_PAGE_CHANGE' : {
-            return {...state, contactTexts: {...state.contactTexts, firstColumn: {...state.contactTexts.firstColumn, valueNumber: action.info.text}}}
+            
+        const result = {...state, contactTexts: {...state.contactTexts, firstColumn: {...state.contactTexts.firstColumn, valueNumber: action.info.text}}}
+        useFetchingPost(result['contactTexts'], 'adminTexts', 'contactTexts')
+        return result
         }
         case 'TITLE_ITEM_SEC_CONTACT_PAGE_CHANGE' : {
-            return {...state, contactTexts: {...state.contactTexts, secondColumn: {...state.contactTexts.secondColumn, titleItem: action.info.text}}}
+            
+        const result = {...state, contactTexts: {...state.contactTexts, secondColumn: {...state.contactTexts.secondColumn, titleItem: action.info.text}}}
+        useFetchingPost(result['contactTexts'], 'adminTexts', 'contactTexts')
+        return result
         }
         case 'ADDRES_ITEM_SEC_CONTACT_PAGE_CHANGE' : {
-            return {...state, contactTexts: {...state.contactTexts, secondColumn: {...state.contactTexts.secondColumn, addressItem: action.info.text}}}
+            
+        const result = {...state, contactTexts: {...state.contactTexts, secondColumn: {...state.contactTexts.secondColumn, addressItem: action.info.text}}}
+        useFetchingPost(result['contactTexts'], 'adminTexts', 'contactTexts')
+        return result
         }
         case 'ADDRES_VALUE_SEC_CONTACT_PAGE_CHANGE' : {
-            return {...state, contactTexts: {...state.contactTexts, secondColumn: {...state.contactTexts.secondColumn, addressValue: action.info.text}}}
+            
+        const result = {...state, contactTexts: {...state.contactTexts, secondColumn: {...state.contactTexts.secondColumn, addressValue: action.info.text}}}
+        useFetchingPost(result['contactTexts'], 'adminTexts', 'contactTexts')
+        return result
         }
         case 'TITLE_MARKETPLACE_HERO_INFO': {
-            return {...state, marketHero: {...state.marketHero, title: action.info.text}}
+            
+        const result = {...state, marketHero: {...state.marketHero, title: action.info.text}}
+        useFetchingPost(result['marketHero'], 'adminTexts', 'marketHero')
+        return result
         }
        
         case 'OVER_DESCR_MARKETPLACE_TEXTS_INFO': {
-            return {...state, marketText: {...state.marketText, overDescr: action.info.text}}
+            
+        const result = {...state, marketText: {...state.marketText, overDescr: action.info.text}}
+        useFetchingPost(result['marketText'], 'adminTexts', 'marketText')
+        return result
         }
         case 'DESCR_MARKETPLACE_TEXTS_INFO': {
-            return {...state, marketText: {...state.marketText, descr: action.info.text}}
+            
+        const result = {...state, marketText: {...state.marketText, descr: action.info.text}}
+        useFetchingPost(result['marketText'], 'adminTexts', 'marketText')
+        return result
         }
 
         case 'TITLE_SEO_MINI_INFO': {
-            return {...state, seoMini: {...state.seoMini, title: action.info.text}}
+            
+        const result = {...state, seoMini: {...state.seoMini, title: action.info.text}}
+        useFetchingPost(result['seoMini'], 'adminTexts', 'seoMini')
+        return result
         }
         case 'DESCR_SEO_MINI_INFO': {
-            return {...state, seoMini: {...state.seoMini, descr: action.info.text}}
+            
+        const result = {...state, seoMini: {...state.seoMini, descr: action.info.text}}
+        useFetchingPost(result['seoMini'], 'adminTexts', 'seoMini')
+        return result
         }
         case 'TITLE_SEO_SERVICES_INFO': {
-            return {...state, seoServices: {...state.seoServices, title: action.info.text}}
+            
+        const result = {...state, seoServices: {...state.seoServices, title: action.info.text}}
+        useFetchingPost(result['seoServices'], 'adminTexts', 'seoServices')
+        return result
         } case 'TITLE_SEO_STABLE_INFO': {
-            return {...state, seoStable: {...state.seoStable, title: action.info.text}}
+            
+        const result = {...state, seoStable: {...state.seoStable, title: action.info.text}}
+        useFetchingPost(result['seoStable'], 'adminTexts', 'seoStable')
+        return result
         } case 'TITLE_SEO_QUESTION_INFO': {
-            return {...state, seoQuestion: {...state.seoQuestion, title: action.info.text}}
+            
+        const result = {...state, seoQuestion: {...state.seoQuestion, title: action.info.text}}
+        useFetchingPost(result['seoQuestion'], 'adminTexts', 'seoQuestion')
+        return result
         } case 'TITLE_SEO_MONTH_INFO': {
-            return {...state, seoMonth: {...state.seoMonth, title: action.info.text}}
+            
+        const result = {...state, seoMonth: {...state.seoMonth, title: action.info.text}}
+        useFetchingPost(result['seoMonth'], 'adminTexts', 'seoMonth')
+        return result
         }case 'TITLE_SEO_REPORT_INFO': {
-            return {...state, seoReport: {...state.seoReport, title: action.info.text}}
+            
+        const result = {...state, seoReport: {...state.seoReport, title: action.info.text}}
+        useFetchingPost(result['seoReport'], 'adminTexts', 'seoReport')
+        return result
         }case 'BOTTOM_TITLE_SEO_REPORT_INFO': {
-            return {...state, seoReport: {...state.seoReport, bottomTitle: action.info.text}}
+            
+        const result = {...state, seoReport: {...state.seoReport, bottomTitle: action.info.text}}
+        useFetchingPost(result['seoReport'], 'adminTexts', 'seoReport')
+        return result
         }case 'BOTTOM_DESCR_SEO_REPORT_INFO': {
-            return {...state, seoReport: {...state.seoReport, bottomDescr: action.info.text}}
+            
+        const result = {...state, seoReport: {...state.seoReport, bottomDescr: action.info.text}}
+        useFetchingPost(result['seoReport'], 'adminTexts', 'seoReport')
+        return result
         }case 'NUMBER_SEO_REPORT_INFO': {
-            return {...state, seoReport: {...state.seoReport, number: action.info.text}}
+            
+        const result = {...state, seoReport: {...state.seoReport, number: action.info.text}}
+        useFetchingPost(result['seoReport'], 'adminTexts', 'seoReport')
+        return result
         }case 'VALUE_SEO_REPORT_INFO': {
-            return {...state, seoReport: {...state.seoReport, value: action.info.text}}
+            
+        const result = {...state, seoReport: {...state.seoReport, value: action.info.text}}
+        useFetchingPost(result['seoReport'], 'adminTexts', 'seoReport')
+        return result
         }
-        default:
+
+        case 'TITLE_LEFT_OTHER_INFO': {
+            
+        const result = {...state, mainOther: {...state.mainOther, titleLeft: action.info.text}}
+        useFetchingPost(result['mainOther'], 'adminTexts', 'mainOther')
+        return result
+        }case 'TITLE_RIGHT_OTHER_INFO': {
+            
+        const result = {...state, mainOther: {...state.mainOther, titleRight: action.info.text}}
+        useFetchingPost(result['mainOther'], 'adminTexts', 'mainOther')
+        return result
+        }
+
+        case 'CHANGE_ALL_ADMIN': {
+            
+        const result = {...state,...action.info.text}
+        return result
+        }
+        
+        default: {
             return state
+        }
+       
     }
 }
 
 
+export const changeAllAdmin = (info)=>({
+    type:'CHANGE_ALL_ADMIN', info
+})
+
+export const titleLeftOtherChange = (info)=>({
+    type: 'TITLE_TARIFF_PAGE_INFO', info
+})
+export const titleTariffPageChange = (info)=>({
+    type: 'TITLE_LEFT_OTHER_INFO', info
+})
+export const titleRighttOtherChange = (info)=>({
+    type: 'TITLE_RIGHT_OTHER_INFO', info
+})
 export const titleSeoMiniEdit = (info)=>({
     type: 'TITLE_SEO_MINI_INFO', info
 })

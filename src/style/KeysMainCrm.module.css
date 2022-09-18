@@ -3,6 +3,10 @@
     transition: all .35s ease-in-out;
     padding-bottom: 110px;
 }
+.adminBlock {
+    position: relative;
+    margin: 20px 0;
+}
 
 .crmlogo {
     width: 80px;

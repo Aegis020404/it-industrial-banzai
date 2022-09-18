@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useMemo} from "react";
 import cl from '../../style/MainOther.module.css';
 import MyBtnFiled from "../UI/buttonback/MyBtnFiled";
 import MyModal from "../UI/modal/MyModal";
@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import Swiper from "swiper";
 
 import {useDropzone} from 'react-dropzone'
-
+import { useDispatch } from "react-redux";
 import MainTItem from "./MainTItem";
 import {Pagination} from "swiper";
 import MyThxModal from "../UI/thxmodal/MyThxModal";
@@ -19,10 +19,12 @@ import MyViewElement from "../UI/viewelement/MyViewElement";
 import MyAdminInput from "../UI/admininput/MyAdminInput";
 import MyAddElement from '../UI/adminaddel/MyAddElement';
 import MyDeleteElement from '../UI/admindelel/MyDeleteElement';
+import { getStartedInfo } from '../../untils/getStartedInfo';
+import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
 
 const MainOther = () => {
     const isAdmin = useSelector(state=>state.AdminKey)
-    const {AdminTexts} = useSelector(state=>state)
+    const adminTexts = useSelector(state=>state.AdminTexts)
     const otherData = useSelector(state=>state.MainOther)
     const [modalInfo, setModalInfo] = useState({namePerson: '', tel: ''})
     const [otherInfo, setOtherInfo] = useState({titleLeft: {width:0, height:0}, titleRight: {width:0, height:0}, descr: {width:0, height: 0}})
@@ -105,31 +107,51 @@ const MainOther = () => {
     }, []);
 
 
+
+
+    const dispatch = useDispatch()
+
+
+
+    const [premissionGet, setPremissionGet] = useState(0) 
+    const changeStateTexts = useChangeStateFirst(setPremissionGet, premissionGet, 'mainOther', 'AT',adminTexts.mainOther)
+
+    const [premissionTariff, setPremissionTariff] = useState(0) 
+    const changeState = useChangeStateFirst( setPremissionTariff,premissionTariff, "-","/mainOther",otherData, 'OTHER_CHANGE_STATE') 
+
+    console.log(premissionGet)
+
+
     return (
         <section className={cl.other}>
             <div className={cl.allOtherContent}>
                 <div className={cl.overlay}/>
                 <div className={[cl.container].join` `}>
                     <div className={cl.otherContent}>
-                    {isAdmin ? <MyAddElement typeAction={'OTHER_ADD_ITEM'}/>: ''}
+                       
+                  
                         <MyViewElement element={
-                            isAdmin ? 
-                               
+                            isAdmin && changeStateTexts == '200' ? 
                                     <h2 className={cl.otherTitle} >
-                                        <MyAdminInput width={otherInfo.titleLeft.width} height={otherInfo.titleLeft.height} typeAction={'OTHER_TITLE_LEFT_CHANGE'}>
-                                            <span className={cl.otherTitleFirst} onClick={e=>setOtherInfo({...otherInfo, titleLeft: {width: e.target.offsetWidth, height: e.target.offsetHeight}})}>Другие услуги </span>
+                                        <MyAdminInput width={otherInfo.titleLeft.width} fetchInfo={{item: adminTexts.mainOther, id: "mainOther", category: 'adminTexts'}} height={otherInfo.titleLeft.height} typeAction={'TITLE_LEFT_OTHER_INFO'}>
+                                            <span className={cl.otherTitleFirst} onClick={e=>setOtherInfo({...otherInfo, titleLeft: {width: e.target.offsetWidth, height: e.target.offsetHeight}})}>{adminTexts.mainOther.titleLeft}</span>
                                         </MyAdminInput>
-                                        <MyAdminInput width={otherInfo.titleRight.width} height={otherInfo.titleRight.height} typeAction={'OTHER_TITLE_RIGHT_CHANGE'}>
-                                            <span className={cl.otherTitleItem} onClick={e=>setOtherInfo({...otherInfo, titleRight: {width: e.target.offsetWidth, height: e.target.offsetHeight}})}> IT-INDUSTRIAL</span>
+                                        <MyAdminInput width={otherInfo.titleRight.width} fetchInfo={{item: adminTexts.mainOther, id: "mainOther", category: 'adminTexts'}} height={otherInfo.titleRight.height} typeAction={'TITLE_RIGHT_OTHER_INFO'}>
+                                            <span className={cl.otherTitleItem} onClick={e=>setOtherInfo({...otherInfo, titleRight: {width: e.target.offsetWidth, height: e.target.offsetHeight}})}>{adminTexts.mainOther.titleRight}</span>
                                         </MyAdminInput>
                                         
                                     </h2>
                                
                             :
-                                <h2 className={cl.otherTitle}>Другие услуги <span className={cl.otherTitleItem}>IT-INDUSTRIAL</span></h2>
+                                <h2 className={cl.otherTitle}> <span className={cl.otherTitleFirst}>{adminTexts.mainOther.titleLeft}</span><span className={cl.otherTitleItem}>{adminTexts.mainOther.titleRight}</span></h2>
                             
                              
                         }/>
+                          {isAdmin ? 
+                            <div className={cl.adminBlock}>
+                                <MyAddElement typeAction={'OTHER_ADD_ITEM'}/>
+                            </div> 
+                            : ''}
                        <MyViewElement element={
                         <div className={cl.otherListBlock}>
                             <div className={'swiper swiperM '}>
@@ -138,7 +160,7 @@ const MainOther = () => {
                                 <div className={'swiper-wrapper ' + cl.otherList}>
                                     {otherData.map((e, i) =>
                                         <div className={'swiper-slide ' + cl.swipeSl} key={i}>
-                                            <MainOItem title={e.title} id={e.id} img={e.img} setModalItem={setModalItem}
+                                            <MainOItem premissionTariff={changeState} title={e.title} element={e} id={e.id} img={e.img} setModalItem={setModalItem}
                                                        key={e.title}/>
                                         </div>
                                     )}
@@ -179,8 +201,8 @@ const MainOther = () => {
                 </div>
             </div>
 
-            <MyModal visible={modal} setVisible={setModal} title='Получить консультацию' setThx={setThxModal}/>
-            <MyModal visible={modalItem} setVisible={setModalItem} title='Оставить заявку' setThx={setThxModal}/>
+            <MyModal visible={modal} setVisible={setModal} id={'MainOther'} title='Получить консультацию' setThx={setThxModal}/>
+            <MyModal visible={modalItem} setVisible={setModalItem} id={'MainOther'} title='Оставить заявку' setThx={setThxModal}/>
             <MyThxModal visible={thxModal} setVisible={setThxModal}/>
         </section>
     )

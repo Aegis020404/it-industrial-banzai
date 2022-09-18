@@ -3,6 +3,10 @@
     padding-bottom: 110px;
     position: relative;
 }
+.adminBlock {
+    position: relative;
+    margin: 20px 0;
+}
 
 .mobileLogo {
     width: 60px;

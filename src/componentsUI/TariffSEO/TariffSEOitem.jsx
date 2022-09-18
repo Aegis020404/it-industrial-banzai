@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import MyBtnBlank from "../UI/buttonborder/MyBtnBlank";
 
 
-const TariffSEOitem = ({column, infoItem, sizeInfo, setSizeInfo, indexItem, setModal})=>{
+const TariffSEOitem = ({column,premission, infoItem,stateFetch,setActiveItem, sizeInfo, setSizeInfo, indexItem, setModal, element})=>{
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
 
     const dispatch = useDispatch() 
@@ -37,14 +37,14 @@ const TariffSEOitem = ({column, infoItem, sizeInfo, setSizeInfo, indexItem, setM
                     <MyBtnFiled classes={cl.modalBtn} onClick={e=>confirmModal(e)}>ПОДТВЕРДИТЬ</MyBtnFiled>
                 </div>
             </div>
-            <div className={cl.titleCase } style={{backgroundColor: infoItem.background}}>
+            <div className={cl.titleCase } style={{backgroundColor: '#'+infoItem.background}}>
                 {
-                    isAdmin ? 
-                    <MyAdminInput width={sizeInfo.titleItem.width} id={column} count={infoItem.id} height={sizeInfo.titleItem.height} typeAction={'TITLE_ITEM_TARIFF_SEO_CHANGE'}>
-                            <div className={cl.titleCaseSpan} style={{color: infoItem.color}}   onClick={e=>setSizeInfo({...sizeInfo, titleItem: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{infoItem.title}</div>
+                    isAdmin && premission == '200' ? 
+                    <MyAdminInput width={sizeInfo.titleItem.width}  fetchInfo={{item: stateFetch, category: 'tariffSEO', id: column}} id={column} count={infoItem.id} height={sizeInfo.titleItem.height} typeAction={'TITLE_ITEM_TARIFF_SEO_CHANGE'}>
+                            <div className={cl.titleCaseSpan} style={{color: '#'+infoItem.color}}   onClick={e=>setSizeInfo({...sizeInfo, titleItem: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{infoItem.title}</div>
                     </MyAdminInput>
                     :
-                    <div className={cl.titleCaseSpan} style={{color: infoItem.color}}>{infoItem.title}</div>
+                    <div className={cl.titleCaseSpan} style={{color: '#'+infoItem.color}}>{infoItem.title}</div>
                 }
                 
             </div>
@@ -53,8 +53,8 @@ const TariffSEOitem = ({column, infoItem, sizeInfo, setSizeInfo, indexItem, setM
                 <li key={i} className={cl.listItem}>
                     <div className={cl.circle}/>
                     {
-                            isAdmin ? 
-                            <MyAdminInput width={sizeInfo.listItem.width} id={column} count={infoItem.id} number={li.id} height={sizeInfo.listItem.height} typeAction={'LIST_ITEM_TARIFF_SEO_CHANGE'}>
+                            isAdmin && premission == '200' ? 
+                            <MyAdminInput width={sizeInfo.listItem.width}  fetchInfo={{item: stateFetch, category: 'tariffSEO', id: column}} id={column} count={infoItem.id} number={li.id} height={sizeInfo.listItem.height} typeAction={'LIST_ITEM_TARIFF_SEO_CHANGE'}>
                                 <div className={cl.listTitle} onClick={e=>setSizeInfo({...sizeInfo, listItem: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{li.text}</div>
                             </MyAdminInput>
                             :
@@ -65,8 +65,8 @@ const TariffSEOitem = ({column, infoItem, sizeInfo, setSizeInfo, indexItem, setM
 
             </ul> : <div className={cl.wrapList}>
                 {
-                    isAdmin ? 
-                    <MyAdminInput width={sizeInfo.listText.width} id={column}  count={infoItem.id} height={sizeInfo.listText.height} typeAction={'LIST_TEXT_TARIFF_SEO_CHANGE'}>
+                    isAdmin && premission == '200' ? 
+                    <MyAdminInput width={sizeInfo.listText.width} id={column}  fetchInfo={{item: stateFetch, category: 'tariffSEO', id: column}} count={infoItem.id} height={sizeInfo.listText.height} typeAction={'LIST_TEXT_TARIFF_SEO_CHANGE'}>
                           <div className={cl.caserText}  onClick={e=>setSizeInfo({...sizeInfo, listText: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{infoItem.list}</div>
                     </MyAdminInput>
                     :
@@ -76,8 +76,8 @@ const TariffSEOitem = ({column, infoItem, sizeInfo, setSizeInfo, indexItem, setM
             </div>}
             <div className={cl.btnWrap}>
                 {
-                        isAdmin ? 
-                        <MyAdminInput width={sizeInfo.price.width} id={column} count={infoItem.id} height={sizeInfo.price.height} typeAction={'PRICE_ITEM_TARIFF_SEO_CHANGE'}>
+                        isAdmin && premission == '200' ? 
+                        <MyAdminInput width={sizeInfo.price.width} id={column}  fetchInfo={{item: stateFetch, category: 'tariffSEO', id: column}} count={infoItem.id} height={sizeInfo.price.height} typeAction={'PRICE_ITEM_TARIFF_SEO_CHANGE'}>
                             <div className={cl.price} onClick={e=>setSizeInfo({...sizeInfo, price: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{infoItem.price}</div>
                         
                         </MyAdminInput>
@@ -87,6 +87,7 @@ const TariffSEOitem = ({column, infoItem, sizeInfo, setSizeInfo, indexItem, setM
                 
                 <MyBtnBlank classes={cl.btn} onClick={e => {
                     e.preventDefault(e);
+                    setActiveItem({title:element.title,price:element.price});
                     setModal(true)
                 }}>Заказать</MyBtnBlank>
             </div>

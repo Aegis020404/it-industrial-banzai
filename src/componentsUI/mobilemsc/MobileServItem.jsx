@@ -1,19 +1,29 @@
-import React, {useEffect, useState, useCallback} from "react";
+import React, {useEffect, useState,useMemo, useCallback} from "react";
 import cl from '../../style/MobileService.module.css';
 import MyDeleteElement from "../UI/admindelel/MyDeleteElement";
 import MyViewElement from "../UI/viewelement/MyViewElement";
 import { useDispatch, useSelector } from "react-redux";
+import MyFormData from '../../untils/ImgFetch';
 
 import {useDropzone} from 'react-dropzone'
 
 import MyAdminInput from "../UI/admininput/MyAdminInput";
 import Image from "next/image";
-const MobileServItem = ({title, descr, img,id, actionListDelete,actionImg,actionListDescr,actionListTitle})=> {
+const MobileServItem = ({title,premissionLists, descr,element, img,id, actionListDelete,actionImg,actionListDescr,actionListTitle})=> {
     useEffect(() => {})
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
  
     const [changeImg, setChangeImg] = useState(false)
     const dispatch = useDispatch()
+    const [isImg, setIsImg] = useState('')
+    const [permitView, setPermitView] = useState(1)
+    if(typeof window !== "undefined"){
+        useMemo(()=>{
+            if(window.innerWidth<=576){
+                setPermitView(0)
+            }
+        },[window.innerWidth])
+    }
 
     const onDrop = useCallback((acceptedFiles) => {
         acceptedFiles.forEach((file) => {
@@ -24,11 +34,12 @@ const MobileServItem = ({title, descr, img,id, actionListDelete,actionImg,action
           reader.onload = () => {
        
             const binaryStr = reader.result
-            console.log(binaryStr)
+            setIsImg(file)
+
           }
           reader.readAsArrayBuffer(file)
         })
-        dispatch({type: actionImg, info: {text:acceptedFiles[0].path, id: id}})
+        
       }, [])
 
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
@@ -37,15 +48,19 @@ const MobileServItem = ({title, descr, img,id, actionListDelete,actionImg,action
     return (
         
         <div className={cl.serviceItem}>
-             {isAdmin ? 
+            {isAdmin&& premissionLists == '200'  ? 
+                <MyFormData  isImg={isImg} id={id} typeAction={actionImg}/>
+            :
+            ''}
+             {isAdmin && premissionLists=='200' ? 
                 <span className={['changeItemBtn', cl.changeItemBtn].join` `} onClick={e=>setChangeImg(!changeImg)}>изменить</span>
             :'' }
-             {isAdmin ? 
+             {isAdmin && premissionLists=='200' ? 
              <MyDeleteElement typeAction={actionListDelete} id={id}/>
 
             :'' }
             <div className={cl.serviceItemBlock}>
-                <MyViewElement element={
+                <MyViewElement permit={permitView} element={
                      isAdmin && changeImg ? 
                         <div className={cl.imgBlock}>
                             <div {...getRootProps()}>
@@ -62,18 +77,18 @@ const MobileServItem = ({title, descr, img,id, actionListDelete,actionImg,action
                             <Image width={35} height={35} src={'/img/'+img} />
                         </span>
                 }/>
-                <MyViewElement element={
-                    isAdmin ? 
-                    <MyAdminInput width={crmData.listTitle.width} id={id} height={crmData.listTitle.height} typeAction={actionListTitle}>
+                <MyViewElement permit={permitView} element={
+                    isAdmin && premissionLists=='200' ? 
+                    <MyAdminInput width={crmData.listTitle.width}  fetchInfo={{item: element, category: 'mobileServicePage', id: id}}  id={id} height={crmData.listTitle.height} typeAction={actionListTitle}>
                         <h4 className={cl.serviceItemTitle} onClick={e=>setCrmData({...crmData, listTitle: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{title}</h4>
                     </MyAdminInput>
                     :
                     <h4 className={cl.serviceItemTitle}>{title}</h4>
                 
                 }/>
-                <MyViewElement element={
-                    isAdmin ? 
-                    <MyAdminInput width={crmData.listDescr.width} id={id} height={crmData.listDescr.height} typeAction={actionListDescr}>
+                <MyViewElement permit={permitView} element={
+                    isAdmin && premissionLists=='200' ? 
+                    <MyAdminInput width={crmData.listDescr.width} fetchInfo={{item: element, category: 'mobileServicePage', id: id}}  id={id} height={crmData.listDescr.height} typeAction={actionListDescr}>
                         <p className={cl.serviceItemDescr}  onClick={e=>setCrmData({...crmData, listDescr: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{descr}</p>
                     </MyAdminInput>
                     :

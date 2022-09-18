@@ -7,34 +7,51 @@ import postRequest from "../../../../redux/requests";
 import ContactsService from "../../../API/ContactsService";
 import { useDispatch } from "react-redux";
 import {useDropzone} from 'react-dropzone'
+import MyFormData from '../../../untils/ImgFetch';
 
 const MyAdminModal = ({visible, setVisible, colorValue, hrefValue, imgValue,altValue, id, count, actionHref, actionColor, actionAlt, actionImg})=>{
     const dispatch = useDispatch()
     const [modalInfo, setModalInfo] = useState({img: ''})
-    const [color, setColor] = useState('')
+    const [color, setColor] = useState('F84263')
     const [inputValue, setInputValue] = useState('')
     const [altInput, setAltInput] = useState('')
     const blockModal = useRef('')
     let forServerInfo = {}
     const rootClasses = [cl.modalBlock]
     const rootContentClasses = [cl.modalContent]
+
+
     const [isImg, setIsImg] = useState('')
-    useMemo(()=>{console.log(isImg)},[isImg])
-    const onDrop = useCallback(acceptedFiles => {
-        setModalInfo({...modalInfo, img:acceptedFiles[0].path})
+
+    const onDrop = useCallback((acceptedFiles) => {
+        acceptedFiles.forEach((file) => {
+          const reader = new FileReader()
+    
+          reader.onabort = () => console.log('file reading was aborted')
+          reader.onerror = () => console.log('file reading has failed')
+          reader.onload = () => {
+       
+            const binaryStr = reader.result
+            setIsImg(file)
+          }
+          reader.readAsArrayBuffer(file)
+        })
+        // dispatch({type: 'OTHER_ITEM_IMG_CHANGE', info: {text:acceptedFiles[0].path, id: id}})
+        
       }, [])
-      const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
     
       
 
     const addModalInfo = (e)=>{
         e.preventDefault();
-        console.log(modalInfo)
-        colorValue &&  dispatch({type: actionColor, info: {text: color, id: id, count: count}})
+        console.log(color)
+        colorValue && color && dispatch({type: actionColor, info: {text: color.match(/\w/g).join``, id: id, count: count}})
         hrefValue && inputValue && dispatch({type: actionHref, info: {text: inputValue, id: id, count: count}})
         altValue && altInput && dispatch({type: actionAlt, info: {text: altInput, id: id, count: count}})
         imgValue && modalInfo.img && dispatch({type: actionImg, info: {text: modalInfo.img, id: id, count: count}})
         visible.sites ? setVisible({...visible, sites: false}) : setVisible(false)
+        setColor('');setInputValue('');setAltInput('');setModalInfo({img:''})
         // postRequest(forServerInfo)
         // console.log(forServerInfo)
         // ContactsService.setPhoneNName(modalInfo.tel, modalInfo.tel)
@@ -45,30 +62,29 @@ const MyAdminModal = ({visible, setVisible, colorValue, hrefValue, imgValue,altV
 
     let [distance, setDistance] = useState(0) 
 
-    // useMemo(()=>{
-    //     if (visible){
-    //         document.body.classList.add('desable-scroll');
-    //         document.documentElement.classList.add('html-overflow')
-    //         rootContentClasses.push(cl.contentM)
-    //     }else{
-    //          rootContentClasses.pop(cl.contentM)
-    //         document.documentElement.classList.remove('html-overflow')
-    //         document.body.classList.remove('desable-scroll');
-    //     }},[visible])
+   
   
 
 
         
   
     visible && rootClasses.push(cl.active) && rootContentClasses.push(cl.activeContent)
+  
+
     return (
-        <div ref={blockModal} className={rootClasses.join` `} onClick={(e)=>{e.preventDefault();setVisible(false)}}>
-          
+        <div ref={blockModal} className={rootClasses.join` `} onClick={(e)=>{e.preventDefault();setColor('');setInputValue('');setAltInput('');setModalInfo({img:''});setVisible(false)}}>
+
+               
+                    <MyFormData  isImg={isImg} id={id} count={count} typeAction={actionImg}/>
+                
                 <div  className={rootContentClasses.join` `} onClick={e=>e.stopPropagation()}>
+                  
+                 
+               
                     <form action="" id='modal' className={cl.modalForm} >
                         {colorValue && <label className={cl.labelColor}>
-                            <span>Выберите цвет</span>
-                            <input type="color" id="head" name="head" defaultValue={colorValue} className={cl.colorChange} onChange={e=>{setColor( e.target.value)}}/>
+                            <span>Выберете цвет</span>
+                            <input type="color" id="head" name="head" defaultValue={'#'+color} className={cl.colorChange} onChange={e=>{setColor( e.target.value)}}/>
                         </label>
                        }
 
@@ -78,8 +94,8 @@ const MyAdminModal = ({visible, setVisible, colorValue, hrefValue, imgValue,altV
                             <input {...getInputProps()} />
                             {
                                 isDragActive ?
-                                <p>Отпустите файлы, чтобы загрузить их</p> :
-                                <p>Преместите сюда изображени</p>
+                                <p className="changeImgBlockActive" style={{'marginBottom':'25px'}}>Отпустите файлы, чтобы загрузить их</p> :
+                                <p className="changeImgBlock"  style={{'marginBottom':'25px'}}>Преместите сюда изображени</p>
                             }
                         </div>
                         </div>
@@ -88,10 +104,10 @@ const MyAdminModal = ({visible, setVisible, colorValue, hrefValue, imgValue,altV
                        
                         
                        { hrefValue && <MyInput valueInput={inputValue}  required clean={clean} classesInput={cl.modalInput} classesPlace={cl.modalPlace} place='Ссылка на страницу' setCheckInputSite={setInputValue} input={modalInfo}/>}
-                       { hrefValue && <MyInput valueInput={altInput}  required clean={clean} classesInput={cl.modalInput} classesPlace={cl.modalPlace} place='Alt img' setCheckInputSite={setAltInput} input={modalInfo}/>}
+                       { altValue && <MyInput valueInput={altInput}  required clean={clean} classesInput={cl.modalInput} classesPlace={cl.modalPlace} place='Alt img' setCheckInputSite={setAltInput} input={modalInfo}/>}
                         <span className={cl.modalExit} onClick={e=>{e.preventDefault();setVisible(false)}}></span>
                         <div className={cl.btnBlock}>
-                            <MyBtnFiled  type='submit' form='modal' classes={cl.modalBtn} onClick={e=>{addModalInfo(e); clean = true; }}>ОТПРАВИТЬ</MyBtnFiled>
+                            <MyBtnFiled  type='submit' form='modal' classes={cl.modalBtn} onClick={e=>{addModalInfo(e);setColor('');setInputValue('');setAltInput('');setModalInfo({img:''}); clean = true; }}>ОТПРАВИТЬ</MyBtnFiled>
                         </div>
                     </form>
                 </div>

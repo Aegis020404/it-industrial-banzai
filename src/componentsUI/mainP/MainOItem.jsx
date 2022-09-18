@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from "react";
+import React, {useState, useCallback, useMemo, useRef, useEffect} from "react";
 import MyBtnBlank from "../UI/buttonborder/MyBtnBlank";
 import cl from '../../style/MainOther.module.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,9 +8,16 @@ import MyAdminInput from "../UI/admininput/MyAdminInput";
 import MyDeleteElement from "../UI/admindelel/MyDeleteElement";
 import {useDropzone} from 'react-dropzone'
 import Image from "next/image";
+import MyFormData from '../../untils/ImgFetch';
+import { useFetchingGet, useFetchingPost } from "../../hooks/useAdminChangeing";
 
-const MainOItem = ({title, img, setModalItem, id})=>{
+const MainOItem = ({title, img,premissionTariff, setModalItem, id, element})=>{
+
+
     const dispatch = useDispatch()
+
+    
+    const [isImg, setIsImg] = useState('')
     const onDrop = useCallback((acceptedFiles) => {
         acceptedFiles.forEach((file) => {
           const reader = new FileReader()
@@ -20,11 +27,11 @@ const MainOItem = ({title, img, setModalItem, id})=>{
           reader.onload = () => {
        
             const binaryStr = reader.result
-            console.log(binaryStr)
+            setIsImg(file)
           }
           reader.readAsArrayBuffer(file)
         })
-        dispatch({type: 'OTHER_ITEM_IMG_CHANGE', info: {text:acceptedFiles[0].path, id: id}})
+        // dispatch({type: 'OTHER_ITEM_IMG_CHANGE', info: {text:acceptedFiles[0].path, id: id}})
         
       }, [])
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
@@ -34,18 +41,26 @@ const MainOItem = ({title, img, setModalItem, id})=>{
     const [otherInfo, setOtherInfo ] = useState({title: {width:0,height:0}})
     const [changeImg, setChangeImg] = useState(false)
 
+   
+
+
     return (
         <li className={cl.otherItem}>
-             {isAdmin ?
+            {isAdmin&& premissionTariff == '200'  ? 
+                <MyFormData  isImg={isImg} id={id} typeAction={'OTHER_ITEM_IMG_CHANGE'}/>
+            :
+            ''}
+          
+             {isAdmin&& premissionTariff == '200' ?
                 <span className={'changeItemBtn'} onClick={e=>setChangeImg(!changeImg)}>изменить</span>
             :''}
-            {isAdmin ?
+            {isAdmin&& premissionTariff == '200' ?
                 <MyDeleteElement id={id} typeAction={'OTHER_DELETE_ITEM'}></MyDeleteElement>
             :''}
             
             {
-                  isAdmin ? 
-                  <MyAdminInput width={otherInfo.title.width} id={id}  height={otherInfo.title.height} typeAction={'OTHER_ITEM_TITLE_CHANGE'}>
+                  isAdmin && premissionTariff == '200' ? 
+                  <MyAdminInput width={otherInfo.title.width} id={id} fetchInfo={{item: element, category: 'mainOther', id: id}} height={otherInfo.title.height} typeAction={'OTHER_ITEM_TITLE_CHANGE'}>
                       <h3 className={cl.otherItemTitle} onClick={e=>setOtherInfo({...otherInfo, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{title}</h3>
                   </MyAdminInput>
                   :

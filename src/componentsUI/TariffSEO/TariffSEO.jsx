@@ -13,6 +13,8 @@ import MyDeleteElement from '../UI/admindelel/MyDeleteElement';
 import MyBtnFiled from '../UI/buttonback/MyBtnFiled';
 import { useEventCallback } from '@mui/material';
 import TariffSEOitem from './TariffSEOitem';
+import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
+
 const TariffSeo = ({column}) => {
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
     const [sizeInfo, setSizeInfo] = useState({title: {width:0,height:0}, text: {width:0,height:0},titleItem:{width:0,height:0},price:{width:0,height:0},listItem:{width:0,height:0}, titleText: {width:0,height:0}, listText: {width:0,height:0}})
@@ -21,9 +23,11 @@ const TariffSeo = ({column}) => {
     let swiperWrapper = React.createRef(false), pag = React.createRef(false), state = tarrifSEOPage.find(e=>e.id == column)
     const [modal, setModal] = useState(false)
     const [thxModal, setThxModal] = useState(false)
+    const [activeItem,setActiveItem] = useState('')
    
-   
+    const [premission, setPremission] = useState(0) 
 
+    const changeState =  useChangeStateFirst(setPremission,premission, "-","/tariffSeo",tarrifSEOPage, 'SEO_TARIFF_CHANGE_STATE')
     React.useEffect(() => {
         let swiper = null;
         let mediaQuerySize = null
@@ -95,13 +99,14 @@ const TariffSeo = ({column}) => {
             window.addEventListener('load', loadResize);
             window.addEventListener('resize', loadResize);
     })
+    
     return (<div className={cl.tariffSEO}>
             <div className="container">
 
                 <div className={cl.column1}>
                     {state.title ?  <MyViewElement element={
-                          isAdmin ? 
-                          <MyAdminInput width={sizeInfo.title.width} id={column} height={sizeInfo.title.height} typeAction={'TITLE_TARIFF_SEO_CHANGE'}>
+                          isAdmin && premission == '200' ? 
+                          <MyAdminInput width={sizeInfo.title.width}   fetchInfo={{item: state, category: 'tariffSEO', id: column}} id={column} height={sizeInfo.title.height} typeAction={'TITLE_TARIFF_SEO_CHANGE'}>
                                <div className={cl.title}  onClick={e=>setSizeInfo({...sizeInfo, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{state.title}</div>
                           </MyAdminInput>
                           :
@@ -109,8 +114,8 @@ const TariffSeo = ({column}) => {
                        
                     }/> : ''}
                     {state.text ? <MyViewElement element={
-                          isAdmin ? 
-                          <MyAdminInput width={sizeInfo.text.width} id={column} height={sizeInfo.text.height} typeAction={'TEXT_TARIFF_SEO_CHANGE'}>
+                          isAdmin && premission == '200' ? 
+                          <MyAdminInput width={sizeInfo.text.width } fetchInfo={{item: state, category: 'tariffSEO', id: column}} id={column} height={sizeInfo.text.height} typeAction={'TEXT_TARIFF_SEO_CHANGE'}>
                                <div className={cl.text}  onClick={e=>setSizeInfo({...sizeInfo, text: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{state.text}</div>
                           </MyAdminInput>
                           :
@@ -118,8 +123,8 @@ const TariffSeo = ({column}) => {
                        
                     }/> : ''}
                     {state.titleText ? <MyViewElement element={
-                          isAdmin ? 
-                          <MyAdminInput width={sizeInfo.titleText.width} id={column} height={sizeInfo.titleText.height} typeAction={'TITLE_TEXT_TARIFF_SEO_CHANGE'}>
+                          isAdmin && premission == '200' ? 
+                          <MyAdminInput width={sizeInfo.titleText.width } fetchInfo={{item: state, category: 'tariffSEO', id: column}} id={column} height={sizeInfo.titleText.height} typeAction={'TITLE_TEXT_TARIFF_SEO_CHANGE'}>
                               <div className={cl.titleText} onClick={e=>setSizeInfo({...sizeInfo, titleText: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{state.titleText}</div>
                           </MyAdminInput>
                           :
@@ -134,14 +139,14 @@ const TariffSeo = ({column}) => {
           
             <div className={"swiper " + nameSwiper + ' ' + cl.swiper}>
                 <div className={"swiper-wrapper " + ' container ' + cl.wrapperSlid} ref={swiperWrapper}>
-                    {state.cases.map((el, i) => <TariffSEOitem setModal={setModal} column={column} indexItem={i} sizeInfo={sizeInfo} setSizeInfo={setSizeInfo} infoItem={el}/>)}
+                    {state.cases.map((el, i) => <TariffSEOitem setActiveItem={setActiveItem} premission={premission} setModal={setModal} element={el} stateFetch={state} column={column} indexItem={i} sizeInfo={sizeInfo} setSizeInfo={setSizeInfo} infoItem={el}/>)}
                 </div>
                 <div className="swiper-scrollbar"/>
                 <div className={cl.pag + ' ' + nameSwiper + 'pag'} ref={pag}/>
             </div>
               }/>
 
-            <MyModal visible={modal} setVisible={setModal} title='Получить консультацию' setThx={setThxModal}/>
+            <MyModal visible={modal} id={'TariffSeo'} infoObj={{activeItem}} setVisible={setModal} title='Получить консультацию' setThx={setThxModal}/>
             <MyThxModal visible={thxModal} setVisible={setThxModal}/>
         </div>
 

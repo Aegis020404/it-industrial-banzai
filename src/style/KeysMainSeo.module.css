@@ -1,4 +1,7 @@
-
+.adminBlock {
+    position: relative;
+    margin: 20px 0;
+}
 
 .pag {
     margin: 55px 10px !important;

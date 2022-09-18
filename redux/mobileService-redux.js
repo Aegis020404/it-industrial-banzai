@@ -1,6 +1,8 @@
+import {useFetchingPost} from './../src/hooks/useAdminChangeing';
+
 const initialState = {
     mobileDevelop: {
-        title: 'Услуги по разработке приложений',
+     title: 'Услуги по разработке приложений',
         text: 'Обратитесь к нам и мы на ранней стадии поможем вам спроектировать бизнес-модель и стратегию его поэтапного развития. ' +
             'Важное место в нашей работе занимает аналитика:' +
             ' анализ требований и бизнес-процессов, маркетинговый и технический аудит, управление требованиями на всех этапах проекта.',
@@ -87,54 +89,85 @@ export function mobileServiceReducer(state = initialState, action) {
     switch (action.type) {
 
         case 'TITLE_CRM_PAGE_CHANGE': {
-            return {...state, crmDevelop: {...state.crmDevelop, title: action.info.text}}
+            const result = {...state, crmDevelop: {...state.crmDevelop, title: action.info.text}}
+            useFetchingPost(result['crmDevelop'], 'mobileService', 'crmDevelop')
+            return result
         }
         case 'LIST_ADD_CRM_PAGE_CHANGE': {
-            return {...state, crmDevelop: {...state.crmDevelop, cases: [...state.crmDevelop.cases, {...state.crmDevelop.cases[state.crmDevelop.cases.length-1], id:state.crmDevelop.cases[state.crmDevelop.cases.length]}]}}
+            const result = {...state, crmDevelop: {...state.crmDevelop, cases: [...state.crmDevelop.cases, {...state.crmDevelop.cases[state.crmDevelop.cases.length-1], id:state.crmDevelop.cases[state.crmDevelop.cases.length]}]}}
+            useFetchingPost(result['crmDevelop'], 'mobileService', 'crmDevelop')
+            return result
         }
         case 'LIST_DELETE_CRM_PAGE_CHANGE': {
-            return {...state, crmDevelop: {...state.crmDevelop, cases: state.crmDevelop.cases.filter(e=>e.id !== action.info.id)}}
+            const result = {...state, crmDevelop: {...state.crmDevelop, cases: state.crmDevelop.cases.filter(e=>e.id !== action.info.id)}}
+            useFetchingPost(result['crmDevelop'], 'mobileService', 'crmDevelop')
+            return result
         }
         case 'LIST_TITLE_CRM_PAGE_CHANGE': {
-            return {...state, crmDevelop: {...state.crmDevelop, cases: state.crmDevelop.cases.map(e=>e.id == action.info.id ? {...e, title: action.info.text} : e)}}
+            const result = {...state, crmDevelop: {...state.crmDevelop, cases: state.crmDevelop.cases.map(e=>e.id == action.info.id ? {...e, title: action.info.text} : e)}}
+            useFetchingPost(result['crmDevelop'], 'mobileService', 'crmDevelop')
+            return result
         }
         case 'LIST_DESCR_CRM_PAGE_CHANGE': {
-            return {...state, crmDevelop: {...state.crmDevelop, cases: state.crmDevelop.cases.map(e=>e.id == action.info.id ? {...e, descr: action.info.text} : e)}}
+            const result = {...state, crmDevelop: {...state.crmDevelop, cases: state.crmDevelop.cases.map(e=>e.id == action.info.id ? {...e, descr: action.info.text} : e)}}
+            useFetchingPost(result['crmDevelop'], 'mobileService', 'crmDevelop')
+            return result
         }
         case 'LIST_IMG_CRM_PAGE_CHANGE': {
-            return {...state, crmDevelop: {...state.crmDevelop, cases: state.crmDevelop.cases.map(e=>e.id == action.info.id ? {...e, img: action.info.text} : e)}}
+            const result = {...state, crmDevelop: {...state.crmDevelop, cases: state.crmDevelop.cases.map(e=>e.id == action.info.id ? {...e, img: action.info.text} : e)}}
+            useFetchingPost(result['crmDevelop'], 'mobileService', 'crmDevelop')
+            return result
         }
 
 
 
         case 'TITLE_MOBILE_PAGE_CHANGE': {
-            return {...state, mobileDevelop: {...state.mobileDevelop, title: action.info.text}}
+            const result = {...state, mobileDevelop: {...state.mobileDevelop, title: action.info.text}}
+            useFetchingPost(result['mobileDevelop'], 'mobileService', 'mobileDevelop')
+            return result
         }
         case 'DESCR_MOBILE_PAGE_CHANGE': {
-            return {...state, mobileDevelop: {...state.mobileDevelop, descr: action.info.text}}
+            const result = {...state, mobileDevelop: {...state.mobileDevelop, descr: action.info.text}}
+            useFetchingPost(result['mobileDevelop'], 'mobileService', 'mobileDevelop')
+            return result
         }
         case 'LIST_ADD_MOBILE_PAGE_CHANGE': {
-            return {...state, mobileDevelop: {...state.mobileDevelop, cases: [...state.mobileDevelop.cases, {...state.mobileDevelop.cases[state.mobileDevelop.cases.length-1], id:state.mobileDevelop.cases[state.mobileDevelop.cases.length]}]}}
+            const result = {...state, mobileDevelop: {...state.mobileDevelop, cases: [...state.mobileDevelop.cases, {...state.mobileDevelop.cases[state.mobileDevelop.cases.length-1], id:state.mobileDevelop.cases[state.mobileDevelop.cases.length]}]}}
+            useFetchingPost(result['mobileDevelop'], 'mobileService', 'mobileDevelop')
+            return result
         }
         case 'LIST_DELETE_MOBILE_PAGE_CHANGE': {
-            return {...state, mobileDevelop: {...state.mobileDevelop, cases: state.mobileDevelop.cases.filter(e=>e.id !== action.info.id)}}
+            const result = {...state, mobileDevelop: {...state.mobileDevelop, cases: state.mobileDevelop.cases.filter(e=>e.id !== action.info.id)}}
+            useFetchingPost(result['mobileDevelop'], 'mobileService', 'mobileDevelop')
+            return result
         }
         case 'LIST_TITLE_MOBILE_PAGE_CHANGE': {
-            return {...state, mobileDevelop: {...state.mobileDevelop, cases: state.mobileDevelop.cases.map(e=>e.id == action.info.id ? {...e, title: action.info.text} : e)}}
+            const result = {...state, mobileDevelop: {...state.mobileDevelop, cases: state.mobileDevelop.cases.map(e=>e.id == action.info.id ? {...e, title: action.info.text} : e)}}
+            useFetchingPost(result['mobileDevelop'], 'mobileService', 'mobileDevelop')
+            return result
         }
         case 'LIST_DESCR_MOBILE_PAGE_CHANGE': {
-            return {...state, mobileDevelop: {...state.mobileDevelop, cases: state.mobileDevelop.cases.map(e=>e.id == action.info.id ? {...e, descr: action.info.text} : e)}}
+            const result = {...state, mobileDevelop: {...state.mobileDevelop, cases: state.mobileDevelop.cases.map(e=>e.id == action.info.id ? {...e, descr: action.info.text} : e)}}
+            useFetchingPost(result['mobileDevelop'], 'mobileService', 'mobileDevelop')
+            return result
         }
         case 'LIST_IMG_MOBILE_PAGE_CHANGE': {
-            return {...state, mobileDevelop: {...state.mobileDevelop, cases: state.mobileDevelop.cases.map(e=>e.id == action.info.id ? {...e, img: action.info.text} : e)}}
+            const result = {...state, mobileDevelop: {...state.mobileDevelop, cases: state.mobileDevelop.cases.map(e=>e.id == action.info.id ? {...e, img: action.info.text} : e)}}
+            useFetchingPost(result['mobileDevelop'], 'mobileService', 'mobileDevelop')
+            return result
         }
-
-
+        case 'CHANGE_STATE_SERVICES_PAGES': {
+            const result = {...state, ...action.info.text}
+           
+            return result
+        }
         default:
             return state
-    }
+        }
 }
-
+export const changeStateServicesPages = (info)=>({
+    type: 'CHANGE_STATE_SERVICES_PAGES', info
+})
 export const titleCrmPageChange = (info)=>({
     type: 'TITLE_CRM_PAGE_CHANGE', info
 })

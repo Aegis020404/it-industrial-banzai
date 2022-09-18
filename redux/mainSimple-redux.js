@@ -1,3 +1,4 @@
+import {useFetchingPost} from './../src/hooks/useAdminChangeing';
 
 
 const initialState = [{
@@ -42,24 +43,49 @@ const initialState = [{
 const MainSimpleReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_SIMPLE_ELEMENT': {
-            return [...state, {...state[state.length - 1], id: state[state.length - 1].id + 1}]
+            
+            const result =  [...state, {...state[state.length - 1], id: state[state.length - 1].id + 1}]
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'mainSimple', action.info.id)
+            return result
         }
         case 'DELETE_SIMPLE_ELEMENT': {
-            return state.filter(e=>e.id !== action.info.id)
+            
+            const result =  state.filter(e=>e.id !== action.info.id)
+            useFetchingPost(null, 'mainSimple', action.info.id)
+            return result
         }
         case 'TITLE_SIMPLE_ITEM_CHANGE': {
-            return state.map(e=>e.id == action.info.id ? {...e, title: action.info.text} : e)
+            
+            const result =  state.map(e=>e.id == action.info.id ? {...e, title: action.info.text} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'mainSimple', action.info.id)
+            return result
         }
         case 'COUNT_SIMPLE_ITEM_CHANGE': {
-            return state.map(e=>e.id == action.info.id ? {...e, count: action.info.text} : e)
+            
+            const result =  state.map(e=>e.id == action.info.id ? {...e, count: action.info.text} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'mainSimple', action.info.id)
+            return result
         }
         case 'DESCR_SIMPLE_ITEM_CHANGE': {
-            return state.map(e=>e.id == action.info.id ? {...e, descr: action.info.text} : e)
+            
+            const result =  state.map(e=>e.id == action.info.id ? {...e, descr: action.info.text} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'mainSimple', action.info.id)
+            return result
+        }
+        case 'SIMPLE_MAIN_CHANGE_STATE': {
+            
+            const result =   [...state, ...action.info.text].filter((el,i,arr)=> arr.filter((item,n)=>n< i &&el.id==item.id).length!==0 || arr.filter((item,n)=>el.id==item.id).length<=1).sort((a,b)=>a.id-b.id)
+          
+            return result
         }
         default:
-            return state
+            
+        return state
     }
 } 
+export const simpleMainChangeState = (info) => ({
+    type: 'SIMPLE_MAIN_CHANGE_STATE',info
+})
 export const simpleAddElement = (info) => ({
     type: 'DELETE_SIMPLE_ELEMENT',info
 })

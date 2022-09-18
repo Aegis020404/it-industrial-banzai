@@ -1,3 +1,4 @@
+import {useFetchingPost} from './../src/hooks/useAdminChangeing';
 
 const initialState =  [{title: 'SEO-продвижение', img: 'circle-cubs.WebP', id:1},
 {title: 'SMM', img: 'circle-phone.WebP', id:2},
@@ -8,22 +9,37 @@ const initialState =  [{title: 'SEO-продвижение', img: 'circle-cubs.W
 const MainOtherReducer = (state = initialState,action)=>{
     switch (action.type) {
         case 'OTHER_ITEM_TITLE_CHANGE': {
-            return state.map(e=>e.id === action.info.id ? {...e, title: action.info.text} : e)
+            const result =state.map(e=>e.id === action.info.id ? {...e, title: action.info.text} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'mainOther', action.info.id)
+            return result
         }
         case 'OTHER_ITEM_IMG_CHANGE': {
-            return state.map(e=>e.id === action.info.id ? {...e, img: action.info.text} : e)
+            const result =state.map(e=>e.id === action.info.id ? {...e, img: action.info.text} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'mainOther', action.info.id)
+            return result
         }
         case 'OTHER_ADD_ITEM': {
-            return [...state, {...state[state.length-1], id: state.length+1}]
+            const result =[...state, {...state[state.length-1], id: state.length+1}]
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'mainOther', action.info.id)
+            return result
         }
         case 'OTHER_DELETE_ITEM' : {
-            return state.filter((e,i)=> e.id !== action.info.id)
+            const result =state.filter((e,i)=> e.id !== action.info.id)
+            useFetchingPost(null, 'mainOther', action.info.id)
+            return result
+        }
+        case 'OTHER_CHANGE_STATE': {
+            const result = [...state, ...action.info.text].filter((el,i,arr)=> arr.filter((item,n)=>n< i &&el.id==item.id).length!==0 || arr.filter((item,n)=>el.id==item.id).length<=1).sort((a,b)=>a.id-b.id)
+          
+            return result
         }
         default:
            return state
     }
 }
-
+export const otherChangeState = (info) => ({
+    type: 'OTHER_CHANGE_STATE', info
+})
 export const otherTitleChange = (info) => ({
     type: 'OTHER_ITEM_TITLE_CHANGE', info
 })

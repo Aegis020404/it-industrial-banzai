@@ -1,4 +1,5 @@
 
+import {useFetchingPost} from './../src/hooks/useAdminChangeing';
 
 const initialState = [{
     id: 1,
@@ -77,79 +78,126 @@ const initialState = [{
 export function KeysMainSeoReducer(state = initialState, action) {
     switch (action.type) {
         case 'ADD_KEYS_SEO_ELEMENT': {
-            return [...state, {...state[state.length-1],id:  state.length+1}]
+           const result = [...state, {...state[state.length-1],id:  state.length+1}]
+              useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysSeo', action.info.id) 
+           return result
         }
         case 'DELETE_KEYS_SEO_ELEMENT': {
-            return state.filter(e=>e.id != action.info.id)
+           const result = state.filter(e=>e.id != action.info.id)
+              useFetchingPost(null, 'keysSeo', action.info.id) 
+           return result
         }
         case 'NAME_KEYS_SEO_CHANGE': {
-            return state.map(e=> e.id == action.info.id ? {...e, nameCompany: action.info.text} : e)
+           const result = state.map(e=> e.id == action.info.id ? {...e, nameCompany: action.info.text} : e)
+              useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysSeo', action.info.id) 
+           return result
         }
         case 'LINK_KEYS_SEO_CHANGE': {
-            return state.map(e=> e.id == action.info.id ? {...e, linkCompany: action.info.text} : e)
+           const result = state.map(e=> e.id == action.info.id ? {...e, linkCompany: action.info.text} : e)
+              useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysSeo', action.info.id) 
+           return result
         }
         case 'IMG_GRAPH_KEYS_SEO_CHANGE': {
-            return state.map(e=> e.id == action.info.id ? {...e, graphImg: action.info.text} : e)
+           const result = state.map(e=> e.id == action.info.id ? {...e, graphImg: action.info.text} : e)
+              useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysSeo', action.info.id) 
+           return result
         }
 
 
         case 'BEEN_TEN_SEO_CHANGE': {
-            return state.map(e=> e.id == action.info.id ? {...e, changeSeo: {...e.changeSeo, beenChange: {...e.changeSeo.beenChange, topTen: action.info.text}}} : e)
+           const result = state.map(e=> e.id == action.info.id ? {...e, changeSeo: {...e.changeSeo, beenChange: {...e.changeSeo.beenChange, topTen: action.info.text}}} : e)
+              useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysSeo', action.info.id) 
+           return result
         }
         case 'BEEN_TRAFFIS_SEO_CHANGE': {
-            return state.map(e=> e.id == action.info.id ? {...e, changeSeo: {...e.changeSeo, beenChange: {...e.changeSeo.beenChange, traffic: action.info.text}}} : e)
+           const result = state.map(e=> e.id == action.info.id ? {...e, changeSeo: {...e.changeSeo, beenChange: {...e.changeSeo.beenChange, traffic: action.info.text}}} : e)
+              useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysSeo', action.info.id) 
+           return result
         }
         case 'BECAME_TRAFFIS_SEO_CHANGE': {
-            return state.map(e=> e.id == action.info.id ? {...e, changeSeo: {...e.changeSeo, becameChange: {...e.changeSeo.becameChange, topTen: action.info.text}}} : e)
+           const result = state.map(e=> e.id == action.info.id ? {...e, changeSeo: {...e.changeSeo, becameChange: {...e.changeSeo.becameChange, topTen: action.info.text}}} : e)
+              useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysSeo', action.info.id) 
+           return result
         } 
         case 'BECAME_TEN_SEO_CHANGE': {
-            return state.map(e=> e.id == action.info.id ? {...e, changeSeo: {...e.changeSeo, becameChange: {...e.changeSeo.becameChange, traffic: action.info.text}}} : e)
+           const result = state.map(e=> e.id == action.info.id ? {...e, changeSeo: {...e.changeSeo, becameChange: {...e.changeSeo.becameChange, traffic: action.info.text}}} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysSeo', action.info.id) 
+           return result
         }
 
 
 
         case 'TOP_TEN_TITLE_SEO_CHANGE': {
-            return state.map(e=> e.id == action.info.id ? {...e, topTenTitle:  action.info.text} : e)
+           const result = state.map(e=> e.id == action.info.id ? {...e, topTenTitle:  action.info.text} : e)
+              useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysSeo', action.info.id) 
+           return result
         }
         case 'TRAFFIC_TITLE_SEO_CHANGE': {
-            return state.map(e=> e.id == action.info.id ? {...e, trafficTitle:  action.info.text} : e)
+           const result = state.map(e=> e.id == action.info.id ? {...e, trafficTitle:  action.info.text} : e)
+              useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysSeo', action.info.id) 
+           return result
         }
         case 'TOP_TITLE_LEFT_SEO_CHANGE': {
-            return state.map(e=> e.id == action.info.id ? {...e, titleTopLeft:  action.info.text} : e)
+           const result = state.map(e=> e.id == action.info.id ? {...e, titleTopLeft:  action.info.text} : e)
+              useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysSeo', action.info.id) 
+           return result
         }
 
 
         case 'ADD_INPUTS_KEYS_SEO_ELEMENT': {
-            return state.map(e=> e.id == action.info.id ? {...e, schedule:  {...e.schedule, inputs: [...e.schedule.inputs, {...e.schedule.inputs[e.schedule.inputs.length-1], id:e.schedule.inputs.length+1}]}} : e)
+           const result = state.map(e=> e.id == action.info.id ? {...e, schedule:  {...e.schedule, inputs: [...e.schedule.inputs, {...e.schedule.inputs[e.schedule.inputs.length-1], id:e.schedule.inputs.length+1}]}} : e)
+              useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysSeo', action.info.id) 
+           return result
         }
         case 'DELETE_INPUTS_KEYS_SEO_ELEMENT': {
-            return state.map(e=> e.id == action.info.id ? {...e, schedule:  {...e.schedule, inputs: e.schedule.inputs.filter(el=>el.id!==action.info.count)}} : e)
+           const result = state.map(e=> e.id == action.info.id ? {...e, schedule:  {...e.schedule, inputs: e.schedule.inputs.filter(el=>el.id!==action.info.count)}} : e)
+              useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysSeo', action.info.id) 
+           return result
         }
         case 'NAME_INPUTS_SEO_KEYS_CHANGE': {
-            return state.map(e=> e.id == action.info.id ? {...e, schedule:  {...e.schedule, inputs: e.schedule.inputs.map(el=>el.id===action.info.count ? {...el, name: action.info.text} : el)}} : e)
+           const result = state.map(e=> e.id == action.info.id ? {...e, schedule:  {...e.schedule, inputs: e.schedule.inputs.map(el=>el.id===action.info.count ? {...el, name: action.info.text} : el)}} : e)
+              useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysSeo', action.info.id) 
+           return result
         }
         case 'VALUE_INPUTS_SEO_KEYS_CHANGE': {
-            return state.map(e=> e.id == action.info.id ? {...e, schedule:  {...e.schedule, inputs: e.schedule.inputs.map(el=>el.id===action.info.count ? {...el, value: action.info.text} : el)}} : e)
+           const result = state.map(e=> e.id == action.info.id ? {...e, schedule:  {...e.schedule, inputs: e.schedule.inputs.map(el=>el.id===action.info.count ? {...el, value: action.info.text} : el)}} : e)
+              useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysSeo', action.info.id) 
+           return result
         }
         case 'CROSSING_INPUTS_SEO_KEYS_CHANGE': {
-            return state.map(e=> e.id == action.info.id ? {...e, schedule:  {...e.schedule, crossing: action.info.text}} : e)
+           const result = state.map(e=> e.id == action.info.id ? {...e, schedule:  {...e.schedule, crossing: action.info.text}} : e)
+              useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysSeo', action.info.id) 
+           return result
         }
         case 'MAX_VALUES_SEO_KEYS_CHANGE': {
-            return state.map(e=> e.id == action.info.id ? {...e, schedule:  {...e.schedule, max: action.info.text}} : e)
+           const result = state.map(e=> e.id == action.info.id ? {...e, schedule:  {...e.schedule, max: action.info.text}} : e)
+              useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysSeo', action.info.id) 
+           return result
         }
         case 'MIN_VALUES_SEO_KEYS_CHANGE': {
-            return state.map(e=> e.id == action.info.id ? {...e, schedule:  {...e.schedule, min: action.info.text}} : e)
+           const result = state.map(e=> e.id == action.info.id ? {...e, schedule:  {...e.schedule, min: action.info.text}} : e)
+              useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysSeo', action.info.id) 
+           return result
         }
         case 'CHANGE_VALUES_SEO_KEYS_CHANGE': {
-            return state.map(e=> e.id == action.info.id ? {...e, schedule:  {...e.schedule, change: action.info.text}} : e)
+           const result = state.map(e=> e.id == action.info.id ? {...e, schedule:  {...e.schedule, change: action.info.text}} : e)
+              useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysSeo', action.info.id) 
+           return result
         }
-
-        
+        case 'SEO_KEYS_CHANGE_STATE': {
+           const result =  [...state, ...action.info.text].filter((el,i,arr)=> arr.filter((item,n)=>n< i &&el.id==item.id).length!==0 || arr.filter((item,n)=>el.id==item.id).length<=1).sort((a,b)=>a.id-b.id)
+             
+           return result
+        }        
         default:
-            return state
+           return state
     }
  
 }
+
+export const seoKeysChangeState = (info) => ({
+    type: 'SEO_KEYS_CHANGE_STATE',info
+})
 
 export const maxValuesKeysSeoElement = (info) => ({
     type: 'MAX_VALUES_SEO_KEYS_CHANGE',info

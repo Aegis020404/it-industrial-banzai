@@ -1,5 +1,6 @@
 
 import cl from '../src/style/MainKeys.module.css';
+import {useFetchingPost} from './../src/hooks/useAdminChangeing';
 
 
 
@@ -72,33 +73,53 @@ const initialState =
 const MainKeysReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_KEYS_MAIN_ITEM_ELEMENT': {
-            return [...state, {...state[state.length - 1], id: state[state.length - 1].id + 1}]
+            const result = [...state, {...state[state.length - 1], id: state[state.length - 1].id + 1}]
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'mainKeys', action.info.id)
+            return result
         }
         case 'DELETE_KEYS_MAIN_ITEM_ELEMENT': {
-            return state.filter(e=>e.id !== action.info.id)
+            const result = state.filter(e=>e.id !== action.info.id)
+            useFetchingPost(null, 'mainKeys', action.info.id)
+            return result
         }
         case 'DESCR_KEYS_MAIN_ITEM_ELEMENT': {
-            return state.map(e=>e.id == action.info.id ? {...e, info: e.info.map(el=>el.id == action.info.count ? {...el, descr: action.info.text} : el)} : e)
+            const result = state.map(e=>e.id == action.info.id ? {...e, info: e.info.map(el=>el.id == action.info.count ? {...el, descr: action.info.text} : el)} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'mainKeys', action.info.id)
+            return result
         }
         case 'HREF_KEYS_MAIN_ITEM_ELEMENT': {
-            return state.map(e=>e.id == action.info.id ? {...e, info: e.info.map(el=>el.id == action.info.count ? {...el, href: action.info.text} : el)} : e)
+            const result = state.map(e=>e.id == action.info.id ? {...e, info: e.info.map(el=>el.id == action.info.count ? {...el, href: action.info.text} : el)} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'mainKeys', action.info.id)
+            return result
         }
         case 'IMG_KEYS_MAIN_ITEM_ELEMENT': {
-            return state.map(e=>e.id == action.info.id ? {...e, info: e.info.map(el=>el.id == action.info.count ? {...el, img: [action.info.text]} : el)} : e)
+            const result = state.map(e=>e.id == action.info.id ? {...e, info: e.info.map(el=>el.id == action.info.count ? {...el, img: [action.info.text]} : el)} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'mainKeys', action.info.id)
+            return result
         }
         case 'ALT_KEYS_MAIN_ITEM_ELEMENT': {
-            return state.map(e=>e.id == action.info.id ? {...e, info: e.info.map(el=>el.id == action.info.count ? {...el, alt: action.info.text} : el)} : e)
+            const result = state.map(e=>e.id == action.info.id ? {...e, info: e.info.map(el=>el.id == action.info.count ? {...el, alt: action.info.text} : el)} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'mainKeys', action.info.id)
+            return result
         }
         case 'COLOR_KEYS_MAIN_ITEM_ELEMENT': {
-            return state.map(e=>e.id == action.info.id ? {...e, info: e.info.map(el=>el.id == action.info.count ? {...el, backColor: action.info.text} : el)} : e)
+            const result = state.map(e=>e.id == action.info.id ? {...e, info: e.info.map(el=>el.id == action.info.count ? {...el, backColor: action.info.text} : el)} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'mainKeys', action.info.id)
+            return result
         }
-
+        case 'MAIN_KEYS_CHANGE_STATE': {
+            const result =  [...state, ...action.info.text].filter((el,i,arr)=> arr.filter((item,n)=>n< i &&el.id==item.id).length!==0 || arr.filter((item,n)=>el.id==item.id).length<=1).sort((a,b)=>a.id-b.id)
+          
+            return result
+        }
         default:
             return state
     }
 } 
 
-
+export const mainKeysChangeState = (info) => ({
+    type: 'MAIN_KEYS_CHANGE_STATE',info
+})
 export const descrKeysMainChange = (info) => ({
     type: 'DESCR_KEYS_MAIN_ITEM_ELEMENT',info
 })

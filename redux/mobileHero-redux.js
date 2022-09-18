@@ -1,4 +1,5 @@
 import cl from "../src/style/MobileHero.module.css";
+import {useFetchingPost} from './../src/hooks/useAdminChangeing';
 
 let initialState = {
     mobile: {
@@ -30,41 +31,61 @@ let initialState = {
 export function mobileHeroReducer(state = initialState, action) {
    switch (action.type) {
     case 'TITLE_MARKETPLACE_HERO_CHANGE': {
-        return {...state, marketPlace: {...state.marketPlace, title: action.info.text}}
+        
+        const result = {...state, marketPlace: {...state.marketPlace, title: action.info.text}}
+        useFetchingPost(result['marketPlace'], 'mobileHero', 'marketPlace')
+            return result
     }
     case 'TITLE_SEO_HERO_CHANGE': {
-        return {...state, seo: {...state.seo, title: action.info.text}}
+        
+        const result = {...state, seo: {...state.seo, title: action.info.text}}
+        useFetchingPost(result['seo'], 'mobileHero', 'seo')
+            return result
     }
     case 'DESCR_SEO_HERO_CHANGE': {
-        return {...state, seo: {...state.seo, descr: action.info.text}}
-    }
-    case 'TITLE_MARKETPLACE_HERO_CHANGE': {
-        return {...state, marketPlace: {...state.marketPlace, title: action.info.text}}
-    }
-    case 'TITLE_MARKETPLACE_HERO_CHANGE': {
-        return {...state, marketPlace: {...state.marketPlace, title: action.info.text}}
-    }
-    case 'TITLE_MARKETPLACE_HERO_CHANGE': {
-        return {...state, marketPlace: {...state.marketPlace, title: action.info.text}}
+        
+        const result = {...state, seo: {...state.seo, descr: action.info.text}}
+        useFetchingPost(result['seo'], 'mobileHero', 'seo')
+            return result
     }
     case 'TITLE_HERO_CRM_PAGE_INFO': {
-        return {...state, crm: {...state.crm, title: action.info.text}}
+        
+        const result = {...state, crm: {...state.crm, title: action.info.text}}
+        useFetchingPost(result['crm'], 'mobileHero', 'crm')
+            return result
     }
     case 'DESCR_HERO_CRM_PAGE_INFO': {
-        return {...state, crm: {...state.crm, descr: action.info.text}}
+        
+        const result = {...state, crm: {...state.crm, descr: action.info.text}}
+        useFetchingPost(result['crm'], 'mobileHero', 'crm')
+            return result
     }
     case 'TITLE_HERO_MOBILE_PAGE_INFO': {
-        return {...state, mobile: {...state.mobile, title: action.info.text}}
+        
+        const result = {...state, mobile: {...state.mobile, title: action.info.text}}
+        useFetchingPost(result['mobile'], 'mobileHero', 'mobile')
+            return result
     }
     case 'DESCR_HERO_MOBILE_PAGE_INFO': {
-        return {...state, mobile: {...state.mobile, descr: action.info.text}}
+        
+        const result = {...state, mobile: {...state.mobile, descr: action.info.text}}
+        useFetchingPost(result['mobile'], 'mobileHero', 'mobile')
+            return result
+    }
+    case 'CHANGE_STATE_HEROS_PAGES': {
+        
+        const result = {...state, ...action.info.text}
+       
+            return result
     }
 
     default:
         return state
    }
 }
-
+export const changeStateHerosPages = (info) => ({
+    type: 'CHANGE_STATE_HEROS_PAGES', info
+})
 export const titleCrmPageChange = (info) => ({
     type: 'TITLE_HERO_CRM_PAGE_INFO', info
 })

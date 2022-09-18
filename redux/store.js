@@ -30,6 +30,7 @@ import { crmPortfolioReducer } from './crmPortfolio-redux';
 import MainKeysReducer from './mainKeys-redux';
 import keysMobileReducer from './keysMobile-redux';
 import keysCrmReducer from './keysCrm-redux';
+import MainQuizReducer from './mainQuiz-redux';
 
 
 
@@ -62,7 +63,8 @@ let reducers = combineReducers( {
     CrmPortfolio: crmPortfolioReducer,
     MainKeys: MainKeysReducer,
     KeysMobile: keysMobileReducer,
-    KeysCrm: keysCrmReducer
+    KeysCrm: keysCrmReducer,
+    MainQuiz: MainQuizReducer
 })
 
 const initStore = ()=>{

@@ -1,4 +1,5 @@
 
+import {useFetchingPost} from './../src/hooks/useAdminChangeing';
 
 const initialState = [
 {id:1,title: 'Подготовка', img: 'seo-ready.svg', infoArr: [{id:1,text:'Проверка индексации в Яндексе и в Google'},{id:2,text:'Проверка корректности robots.txt'}, {id:3,text:'Проверка корректности robots.txt'}, {id:4,text:'Проверка корректности составления ЧПУ'}, {id:5,text:'Проверка настройки кодов ответа сервера (200, 404, 50*)'}, {id:6,text:'Проверка на дубликаты страниц, мета-тегов'}, {id:7,text:'Проверка HTML кода сайта'}, {id:8,text:'Проверка корректности оформления страницы контактов'}, {id:9,text:'Проверка контента сайта на спам'}, {id:10,text:'Проверка контента на уникальность текста'}, {id:11,text:'Анализ внешних ссылок'}, {id:12,text:'Проверка работоспособности HTML форм на сайте'}, {id:13,text:'Проверка работоспособности HTML форм на сайте'}]},
@@ -13,25 +14,43 @@ const initialState = [
 export function SeoServicesReducer  (state = initialState, action) {
     switch (action.type) {
         case 'ADD_SEO_SERV_ELEMENT': {
-            return [...state, {...state[state.length - 1], id: state[state.length - 1].id + 1}]
+            const result =  [...state, {...state[state.length - 1], id: state[state.length - 1].id + 1}]
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'seoServices', action.info.id)
+            return result
         }
         case 'DELETE_SEO_SERV_ELEMENT': {
-            return state.filter(e=>e.id !== action.info.id)
+            const result =  state.filter(e=>e.id !== action.info.id)
+            useFetchingPost(null, 'seoServices', action.info.id)
+            return result
         }
         case 'TITLE_SEO_SERV_CHANGE': {
-            return state.map(e=>e.id == action.info.id ? {...e, title: action.info.text} : e)
+            const result =  state.map(e=>e.id == action.info.id ? {...e, title: action.info.text} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'seoServices', action.info.id)
+            return result
         }
         case 'IMG_SEO_SERV_CHANGE': {
-            return state.map(e=>e.id == action.info.id ? {...e, img: action.info.text} : e)
+            const result =  state.map(e=>e.id == action.info.id ? {...e, img: action.info.text} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'seoServices', action.info.id)
+            return result
         }
         case 'LIST_SEO_SERV_CHANGE': {
-            return state.map(e=>e.id == action.info.id ? {...e, infoArr: e.infoArr.map(el=>el.id == action.info.count ? {...el, text: action.info.text} : el)} : e)
+            const result =  state.map(e=>e.id == action.info.id ? {...e, infoArr: e.infoArr.map(el=>el.id == action.info.count ? {...el, text: action.info.text} : el)} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'seoServices', action.info.id)
+            return result
+        }
+        case 'SEO_SERV_CHANGE_STATE': {
+            const result =   [...state, ...action.info.text].filter((el,i,arr)=> arr.filter((item,n)=>n< i &&el.id==item.id).length!==0 || arr.filter((item,n)=>el.id==item.id).length<=1).sort((a,b)=>a.id-b.id)
+          
+            return result
         }
         default:
             return state
     }
 }
 
+export const seoServChangeState = (info)=>({
+    type: 'SEO_SERV_CHANGE_STATE',info
+})
 export const addSeoServElement = (info)=>({
     type: 'ADD_SEO_SERV_ELEMENT',info
 })

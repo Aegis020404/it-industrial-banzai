@@ -5,8 +5,8 @@ import MyInput from "../input/MyInput";
 import MyMask from "../maskinput/MyMask";
 import postRequest from "../../../../redux/requests";
 import ContactsService from "../../../API/ContactsService";
-
-const MyModal = ({block, title, visible, setVisible, setThx})=>{
+import { useFetchingPost } from "../../../hooks/useAdminChangeing";
+const MyModal = ({block, title, visible, setVisible, setThx, id, infoObj = {}})=>{
     
     const [modalInfo, setModalInfo] = useState({namePerson: '', tel: ''})
 
@@ -18,35 +18,14 @@ const MyModal = ({block, title, visible, setVisible, setThx})=>{
     const addModalInfo = (e)=>{
         e.preventDefault();
         setVisible(false); 
-        const newModal = {
-            ...modalInfo, id: Date.now()
-        }
-        forServerInfo = {...newModal}
-        setModalInfo({namePerson:'',tel:''})
-        // postRequest(forServerInfo)
-        // console.log(forServerInfo)
-        // ContactsService.setPhoneNName(modalInfo.tel, modalInfo.tel)
+        useFetchingPost({...modalInfo, ...infoObj}, 'modalOrder', id);
+       
     }
 
 
     let clean = false
 
     let [distance, setDistance] = useState(0) 
-
-    // useMemo(()=>{
-    //     if (visible){
-    //         document.body.classList.add('desable-scroll');
-    //         document.documentElement.classList.add('html-overflow')
-    //         rootContentClasses.push(cl.contentM)
-    //     }else{
-    //          rootContentClasses.pop(cl.contentM)
-    //         document.documentElement.classList.remove('html-overflow')
-    //         document.body.classList.remove('desable-scroll');
-    //     }},[visible])
-  
-
-
-        
   
     visible && rootClasses.push(cl.active) && rootContentClasses.push(cl.activeContent)
     return (

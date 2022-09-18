@@ -7,15 +7,18 @@ import {useDropzone} from 'react-dropzone'
 
 import MyAdminInput from "../UI/admininput/MyAdminInput";
 import Image from "next/image";
+import MyFormData from '../../untils/ImgFetch';
 
 
 
-const SeoServicesItem = ({title, img, infoItem, id})=>{
+const SeoServicesItem = ({title, img,premissionLists, infoItem, id, element})=>{
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
     const seoTexts = useSelector(state=>state.AdminTexts.seoServices)
     const servicesData = useSelector(state=>state.SeoServices)
     const [servicesItem, setServicesItem] = useState({title:{width:0,height:0}, textItem: {width:0,height:0}})
     const dispatch = useDispatch()
+    const [isImg, setIsImg] = useState('')
+
     const onDrop = useCallback((acceptedFiles) => {
         acceptedFiles.forEach((file) => {
           const reader = new FileReader()
@@ -25,7 +28,8 @@ const SeoServicesItem = ({title, img, infoItem, id})=>{
           reader.onload = () => {
        
             const binaryStr = reader.result
-            console.log(binaryStr)
+            setIsImg(file)
+
           }
           reader.readAsArrayBuffer(file)
         })
@@ -43,7 +47,11 @@ const SeoServicesItem = ({title, img, infoItem, id})=>{
 
     return (
         <li className={cl.servicesItem}>
-             {isAdmin ? 
+            {isAdmin&& premissionLists == '200'  ? 
+                <MyFormData  isImg={isImg} id={id} typeAction={'IMG_SEO_SERV_CHANGE'}/>
+            :
+            ''}
+             {isAdmin && premissionLists == '200' ? 
                 <span className={['changeItemBtn', cl.changeItemBtn].join` `} onClick={e=>setChangeImg(!changeImg)}>изменить</span>
             :'' }
             <div className={cl.servicesIHead}>
@@ -66,8 +74,8 @@ const SeoServicesItem = ({title, img, infoItem, id})=>{
             }
                
                 <MyViewElement element={
-                    isAdmin ?
-                        <MyAdminInput width={servicesItem.title.width} id={id} height={servicesItem.title.height} typeAction={'TITLE_SEO_SERV_CHANGE'}>
+                    isAdmin && premissionLists == '200' ?
+                        <MyAdminInput width={servicesItem.title.width} fetchInfo={{item: element, category: 'seoServices', id: id}} id={id} height={servicesItem.title.height} typeAction={'TITLE_SEO_SERV_CHANGE'}>
                             <h4 className={cl.servicesITitle}  onClick={e=>setServicesItem({...servicesItem, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{title}</h4>
                         </MyAdminInput>
                     :
@@ -79,8 +87,8 @@ const SeoServicesItem = ({title, img, infoItem, id})=>{
             <ul className={cl.servicesIList}>
                 {infoItem.map((e, i)=>
                 <MyViewElement element={
-                    isAdmin ?
-                    <MyAdminInput width={servicesItem.textItem.width} id={id} count={e.id} height={servicesItem.textItem.height} typeAction={'LIST_SEO_SERV_CHANGE'}>
+                    isAdmin && premissionLists == '200' ?
+                    <MyAdminInput width={servicesItem.textItem.width} id={id} count={e.id } fetchInfo={{item: element, category: 'seoServices', id: id}} height={servicesItem.textItem.height} typeAction={'LIST_SEO_SERV_CHANGE'}>
 
                         <li className={cl.servicesIItem} key={i} onClick={e=>setServicesItem({...servicesItem, textItem: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{e.text}</li>  
                     </MyAdminInput>

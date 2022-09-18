@@ -7,14 +7,14 @@ import MyAdminInput from "../UI/admininput/MyAdminInput";
 import MyDeleteElement from "../UI/admindelel/MyDeleteElement";
 import Image from "next/image";
 
-const MainKItem = ({count, infoArr, id, modalInfoChanging, setModal, modalInfo})=>{
-    <MyDeleteElement typeAction={'DELETE_KEYS_MAIN_ITEM_ELEMENT'} id={id}/>
+const MainKItem = ({count, infoArr, id, modalInfoChanging,premissionTariff, setModal, modalInfo, element})=>{
+   
     const [sizeInfo, setSizeInfo] = useState({descr: {width:0,height:0}})
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
 
     return (
         <li className={cl.keysItem}>
-            <MyDeleteElement id={id} typeAction={'DELETE_KEYS_MAIN_ITEM_ELEMENT'}></MyDeleteElement>
+            {isAdmin?<MyDeleteElement id={id} typeAction={'DELETE_KEYS_MAIN_ITEM_ELEMENT'}></MyDeleteElement>:''}
             {count === 2 ?  
                 <div className={cl.keysIContentS}>
                     <MyViewElement element={
@@ -33,8 +33,8 @@ const MainKItem = ({count, infoArr, id, modalInfoChanging, setModal, modalInfo})
                                 </div>}
                                 </Link>
                                 {
-                                      isAdmin ? 
-                                      <MyAdminInput width={sizeInfo.descr.width} id={id} count={1} height={sizeInfo.descr.height} typeAction={'DESCR_KEYS_MAIN_ITEM_ELEMENT'}>
+                                      isAdmin && premissionTariff == '200' ? 
+                                      <MyAdminInput width={sizeInfo.descr.width}  fetchInfo={{item: element, category: 'mainKeys', id: id}} id={id} count={1} height={sizeInfo.descr.height} typeAction={'DESCR_KEYS_MAIN_ITEM_ELEMENT'}>
                                           <figcaption className={cl.keysIDescr} onClick={e=>{e.preventDefault();setSizeInfo({...sizeInfo, descr: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}}>{infoArr[0].descr}</figcaption>
                                       </MyAdminInput>
                                       :
@@ -47,7 +47,7 @@ const MainKItem = ({count, infoArr, id, modalInfoChanging, setModal, modalInfo})
                     <MyViewElement element={
                   
                         <figure alt={infoArr[1].alt} className={cl.keysIRight} >
-                             <span className={cl.changeItem} onClick={e=>{setModal(true);modalInfoChanging({...modalInfo,href: infoArr[1].href,color:infoArr[1].backColor, alt:infoArr[1].alt, id: id, count: 2})}}>ИЗМЕНИТЬ</span>
+                             {isAdmin?<span className={cl.changeItem} onClick={e=>{setModal(true);modalInfoChanging({...modalInfo,href: infoArr[1].href,color:infoArr[1].backColor, alt:infoArr[1].alt, id: id, count: 2})}}>ИЗМЕНИТЬ</span>:''}
                               <Link href={'/keys/' + infoArr[1].href}>
                             {infoArr[1].classes == cl.imgMiniPad ? 
                             <div className={[cl.padBlock, cl.img].join` `} style={{backgroundColor: infoArr[1].backColor}} onClick={e=>document.body.scrollTo({top:0,behavior:'smooth'})}>
@@ -60,8 +60,8 @@ const MainKItem = ({count, infoArr, id, modalInfoChanging, setModal, modalInfo})
                             </div>  }
                             </Link>
                                 {
-                                      isAdmin ? 
-                                      <MyAdminInput width={sizeInfo.descr.width} id={id} count={2} height={sizeInfo.descr.height} typeAction={'DESCR_KEYS_MAIN_ITEM_ELEMENT'}>
+                                      isAdmin && premissionTariff == '200' ? 
+                                      <MyAdminInput width={sizeInfo.descr.width}  fetchInfo={{item: element, category: 'mainKeys', id: id}}  id={id} count={2} height={sizeInfo.descr.height} typeAction={'DESCR_KEYS_MAIN_ITEM_ELEMENT'}>
                                           <figcaption className={cl.keysIDescr} onClick={e=>setSizeInfo({...sizeInfo, descr: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{infoArr[1].descr}</figcaption>
                                       </MyAdminInput>
                                       :
@@ -84,7 +84,7 @@ const MainKItem = ({count, infoArr, id, modalInfoChanging, setModal, modalInfo})
                         </div>
                         </Link>
                             {
-                                    isAdmin ? 
+                                    isAdmin && premissionTariff == '200' ? 
                                     <MyAdminInput width={sizeInfo.descr.width} id={id} count={1} height={sizeInfo.descr.height} typeAction={'DESCR_KEYS_MAIN_ITEM_ELEMENT'}>
                                         <figcaption className={cl.keysIDescr} onClick={e=>setSizeInfo({...sizeInfo, descr: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{infoArr[0].descr}</figcaption>
                                     </MyAdminInput>

@@ -1,4 +1,5 @@
 
+import {useFetchingPost} from './../src/hooks/useAdminChangeing';
 
 
 const initialState = [
@@ -45,27 +46,55 @@ const initialState = [
 const MainReviewReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_REVIEW_MAIN_ELEMENT': {
-            return [...state, {...state[state.length - 1], id: state[state.length - 1].id + 1}]
+            
+            const result =  [...state, {...state[state.length - 1], id: state[state.length - 1].id + 1}]
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'mainReview', action.info.id)
+            return result
         }
         case 'DELETE_REVIEW_MAIN_ELEMENT': {
-            return state.filter(e=>e.id !== action.info.id)
+            
+            const result =  state.filter(e=>e.id !== action.info.id)
+            useFetchingPost(null, 'mainReview', action.info.id)
+            return result
         }
         case 'COMMENT_REVIEW_MAIN_CHANGE': {
-            return state.map(e=>e.id == action.info.id ? {...e, comment: action.info.text} : e)
+            
+            const result =  state.map(e=>e.id == action.info.id ? {...e, comment: action.info.text} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'mainReview', action.info.id)
+            return result
         }
         case 'INITIALS_REVIEW_MAIN_CHANGE': {
-            return state.map(e=>e.id == action.info.id ? {...e, name: action.info.text} : e)
+            
+            const result =  state.map(e=>e.id == action.info.id ? {...e, name: action.info.text} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'mainReview', action.info.id)
+            return result
         }
         case 'IMG_REVIEW_MAIN_CHANGE': {
-            return state.map(e=>e.id == action.info.id ? {...e, photo: action.info.text} : e)
+            
+            const result =  state.map(e=>e.id == action.info.id ? {...e, photo: action.info.text} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'mainReview', action.info.id)
+            return result
         }
         case 'POSITION_REVIEW_MAIN_CHANGE': {
-            return state.map(e=>e.id == action.info.id ? {...e, position: action.info.text} : e)
+            
+            const result =  state.map(e=>e.id == action.info.id ? {...e, position: action.info.text} : e)
+            useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'mainReview', action.info.id)
+            return result
+        }
+        case 'REVIEW_MAIN_CHANGE_STATE': {
+            
+            const result =   [...state, ...action.info.text].filter((el,i,arr)=> arr.filter((item,n)=>n< i &&el.id==item.id).length!==0 || arr.filter((item,n)=>el.id==item.id).length<=1).sort((a,b)=>a.id-b.id)
+           
+            return result
         }
         default:
             return state
     }
 } 
+
+export const reviewMainChangeState = (info) => ({
+    type: 'REVIEW_MAIN_CHANGE_STATE',info
+})
 
 export const commentReviewChange = (info) => ({
     type: 'COMMENT_REVIEW_MAIN_CHANGE',info

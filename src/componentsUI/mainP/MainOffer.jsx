@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useMemo, useState, useEffect} from 'react';
 import cl from '../../style/MainOffer.module.css'
 import MyBtnFiled from '../UI/buttonback/MyBtnFiled'
 import MyMask from '../UI/maskinput/MyMask'
@@ -13,7 +13,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import MyViewElement from '../UI/viewelement/MyViewElement';
 import { useStepContext } from '@mui/material';
 import MyAdminInput from '../UI/admininput/MyAdminInput';
-
+import { getStartedInfo } from '../../untils/getStartedInfo';
 const MainOffer = (props) => {
     const [btnActive, setBtnActive] = useState('')
     const dispatch = useDispatch();
@@ -51,6 +51,22 @@ const MainOffer = (props) => {
         console.log(modalInfo)
         // ContactsService.setPhonaNameBudget(forServerInfo.namePerson, forServerInfo.tel, forServerInfo.range.from, forServerInfo.range.to)
     }
+
+
+    const [premissionGet, setPremissionGet] = useState(0) 
+    const [viewElUntil, setViewElUntil] = useState('')
+    useMemo(()=>{
+        if(premissionGet) {
+           setPremissionGet('200')
+        }
+    },[adminTexts.mainOffer])
+    useEffect(()=>{
+        const startedInfo =  getStartedInfo("mainOffer",'CHANGE_ALL_ADMIN','/adminTexts/mainOffer',dispatch )
+        startedInfo.then(res=>{
+            if(res){setPremissionGet(1)}else{setPremissionGet('200')}
+        })
+    },[viewElUntil])
+
     return (
         <section className={cl.MainOffer}>
             <div className={["container", cl.container].join` `}>
@@ -58,16 +74,16 @@ const MainOffer = (props) => {
                     <span className={cl.mailRight}/>
                     <span className={cl.mailLeft}/>
                     <MyViewElement element={
-                        isAdmin ? 
-                         <MyAdminInput width={offerInfo.title.width} height={offerInfo.title.height} typeAction={'TITLE_OFFER_INFO'}>
+                        isAdmin&& premissionGet === '200' ? 
+                         <MyAdminInput width={offerInfo.title.width} fetchInfo={{item: adminTexts.mainOffer, id: "mainOffer", category: 'adminTexts'}} height={offerInfo.title.height} typeAction={'TITLE_OFFER_INFO'}>
                             <p className={cl.title} onClick={e=>setOfferInfo({...offerInfo, title: {width: e.target.offsetWidth, height: e.target.offsetHeight}})}>{adminTexts.mainOffer.title}</p>
                         </MyAdminInput>
                         :
                             <p className={cl.title}>{adminTexts.mainOffer.title}</p>                       
                     }/>
                     <MyViewElement element={
-                         isAdmin ? 
-                         <MyAdminInput width={offerInfo.descr.width} height={offerInfo.descr.height} typeAction={'DESCR_OFFER_INFO'}>
+                         isAdmin&& premissionGet === '200' ? 
+                         <MyAdminInput width={offerInfo.descr.width} fetchInfo={{item: adminTexts.mainOffer, id: "mainOffer", category: 'adminTexts'}} height={offerInfo.descr.height} typeAction={'DESCR_OFFER_INFO'}>
                             <p className={cl.titleText} onClick={e=>setOfferInfo({...offerInfo, descr: {width:e.target.offsetWidth,height:e.target.offsetHeight}})}>{adminTexts.mainOffer.descr}</p>
                         </MyAdminInput>
                         :
@@ -109,14 +125,14 @@ const MainOffer = (props) => {
                    
                     <MyViewElement element={
                         <div className={cl.prices}>
-                        {isAdmin ?
+                        {isAdmin && premissionGet === '200'?
                             <MyAdminInput width={offerInfo.titlePrice.width} height={offerInfo.titlePrice.height} typeAction={'TITLE_PRICE_OFFER_INFO'}>
                             <p className={cl.titlePrices} onClick={e=>setOfferInfo({...offerInfo, titlePrice: {width: e.target.offsetWidth, height: e.target.offsetHeight}})}>{adminTexts.mainOffer.titlePrice}</p>
                             </MyAdminInput>
                         :
                         <p className={cl.titlePrices}>{adminTexts.titlePrice}</p>
                         }
-                        {isAdmin ?
+                        {isAdmin&& premissionGet === '200' ?
                             <MyAdminInput width={offerInfo.descrPrice.width} height={offerInfo.descrPrice.height} typeAction={'DESCR_PRICE_OFFER_INFO'}>
                             <p className={cl.titlePricesText} onClick={e=>setOfferInfo({...offerInfo, descrPrice: {width: e.target.offsetWidth, height: e.target.offsetHeight}})}>{adminTexts.mainOffer.descrPrice}</p>
                             </MyAdminInput>
@@ -131,7 +147,7 @@ const MainOffer = (props) => {
                     <div className={cl.contacts}>
                         <form id='offer' action="">
                             <MyViewElement element={
-                                isAdmin ?
+                                isAdmin&& premissionGet === '200' ?
                                 <MyAdminInput width={offerInfo.titleContact.width} height={offerInfo.titleContact.height} typeAction={'TITLE_CONTACT_OFFER_INFO'}>
                                 <p className={cl.titleContacts}  onClick={e=>setOfferInfo({...offerInfo, titleContact: {width: e.target.offsetWidth, height: e.target.offsetHeight}})}>{adminTexts.mainOffer.titleContact}</p>
                                 </MyAdminInput>
@@ -153,7 +169,7 @@ const MainOffer = (props) => {
                                 </div>
                             }/>
                             <MyViewElement element={
-                                 isAdmin ?
+                                 isAdmin&& premissionGet === '200' ?
                                     <MyAdminInput width={offerInfo.descrContact.width} height={offerInfo.descrContact.height} typeAction={'DESCR_CONTACT_OFFER_INFO'}>
                                     <p className={cl.agreement}  onClick={e=>setOfferInfo({...offerInfo, descrContact: {width: e.target.offsetWidth, height: e.target.offsetHeight}})}>{adminTexts.mainOffer.descrContact}</p>
                                     </MyAdminInput>

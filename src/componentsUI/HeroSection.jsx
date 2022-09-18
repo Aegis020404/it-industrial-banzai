@@ -5,7 +5,7 @@ import MyModal from './UI/modal/MyModal';
 import MyThxModal from './UI/thxmodal/MyThxModal';
 import { useSelector } from 'react-redux';
 import MyAdminInput from './UI/admininput/MyAdminInput';
-const HeroSection = ({title, descr, classesImg, gridCl, actionTitle, actionDescr})=>{
+const HeroSection = ({title, descr,premissionState, classesImg, gridCl, actionTitle,columnName,stateColumn, actionDescr})=>{
     const [modal, setModal] = useState(false)
     const [thxModal, setThxModal] = useState(false)
     const {isAdmin} = useSelector(state=>state.AdminKey)
@@ -15,14 +15,14 @@ const HeroSection = ({title, descr, classesImg, gridCl, actionTitle, actionDescr
         <div className="container">
             <div className={[cl.content, gridCl].join` `}>
                 <div className={cl.left}>
-                    {isAdmin ?
-                        <MyAdminInput width={heroInfo.title.width} height={heroInfo.title.height} typeAction={actionTitle}>
+                    {isAdmin && premissionState == '200' ?
+                        <MyAdminInput width={heroInfo.title.width} fetchInfo={{item: stateColumn,id: columnName, category: 'mobileHero'}} height={heroInfo.title.height} typeAction={actionTitle}>
                             <h1 className={cl.title} onClick={e=>setHeroInfo({...heroInfo, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{title}</h1>
                         </MyAdminInput>
                     :
                         <h1 className={cl.title}>{title}</h1>
                     }
-                    {isAdmin ?
+                    {isAdmin && premissionState == '200' ?
                         <MyAdminInput width={heroInfo.descr.width} height={heroInfo.descr.height} typeAction={actionDescr}>
                             <p className={cl.descr}  onClick={e=>setHeroInfo({...heroInfo, descr: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{descr}</p>
                         </MyAdminInput>
@@ -40,7 +40,7 @@ const HeroSection = ({title, descr, classesImg, gridCl, actionTitle, actionDescr
                 </div>
             </div>
         </div>
-        <MyModal visible={modal} setVisible={setModal} title='Оставить заявку' setThx={setThxModal}/>
+        <MyModal visible={modal} id={columnName} setVisible={setModal} title='Оставить заявку' setThx={setThxModal}/>
         <MyThxModal visible={thxModal} setVisible={setThxModal} />
     </section>
     )

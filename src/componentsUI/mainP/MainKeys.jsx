@@ -1,29 +1,51 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect,useMemo } from 'react';
 import cl from '../../style/MainKeys.module.css';
 import MainKItem from './MainKItem';
 import MyBtnBlank from '../UI/buttonborder/MyBtnBlank';
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import MyAdminModal from '../UI/adminmodal/MyAdminModal';
-
+import { getStartedInfo } from '../../untils/getStartedInfo';
 import Link from 'next/link';
 import MyViewElement from '../UI/viewelement/MyViewElement';
 import MyAdminInput from "../UI/admininput/MyAdminInput";
 import MyAddElement from '../UI/adminaddel/MyAddElement';
+import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
+
 const MainKeys = () => {
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
+    const adminTexts =  useSelector(state=>state.AdminTexts)
     const keysTexts = useSelector(state=>state.AdminTexts.mainKeys)
     const [sizeInfo, setSizeInfo] = useState({title: {width:0,height:0}, descr: {width:0,height:0}})
     const itemInfo = useSelector(state=>state.MainKeys)
     const [modalInfo, setModalInfo] = useState({href:'',color:'', alt:'', id: '', count: ''})
     const [isModal, setIsModal] = useState(false)
+    const dispatch = useDispatch()
+
+    const [premissionGet, setPremissionGet] = useState(0) 
+    const [viewElUntil, setViewElUntil] = useState('')
+
+    useMemo(()=>{
+        if(premissionGet) {
+           setPremissionGet('200')
+        }
+    },[adminTexts.mainKeys])
+    useEffect(()=>{
+        const startedInfo = getStartedInfo("mainKeys",'CHANGE_ALL_ADMIN','/adminTexts/MainKeys',dispatch )
+        startedInfo.then(res=>{
+            if(res){setPremissionGet(1)}else{setPremissionGet('200')}
+        })
+    },[viewElUntil])
+    const [premissionTariff, setPremissionTariff] = useState(0) 
+    const changeState = useChangeStateFirst( setPremissionTariff,premissionTariff, "-","/mainKeys",itemInfo, 'MAIN_KEYS_CHANGE_STATE') 
 
     return (
         <section className={cl.keys}>
             <div className="container">
                 <div className={cl.keysContent}>
                     <MyViewElement element={
-                          isAdmin ? 
-                          <MyAdminInput width={sizeInfo.title.width}  height={sizeInfo.title.height} typeAction={'TITLE_KEYS_MAIN_INFO'}>
+                          isAdmin && premissionGet === '200' ? 
+                          <MyAdminInput width={sizeInfo.title.width} fetchInfo={{item: keysTexts, id: "mainKeys", category: 'adminTexts'}} height={sizeInfo.title.height} typeAction={'TITLE_KEYS_MAIN_INFO'}>
                               <h2 className={cl.keysTitle}  onClick={e=>setSizeInfo({...sizeInfo, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{keysTexts.title}</h2>
                           </MyAdminInput>
                           :
@@ -31,8 +53,8 @@ const MainKeys = () => {
                         
                     }/>
                      <MyViewElement element={
-                          isAdmin ? 
-                          <MyAdminInput width={sizeInfo.descr.width}  height={sizeInfo.descr.height} typeAction={'DESCR_KEYS_MAIN_INFO'}>
+                          isAdmin && premissionGet === '200' ? 
+                          <MyAdminInput width={sizeInfo.descr.width} fetchInfo={{item: keysTexts, id: "mainKeys", category: 'adminTexts'}} height={sizeInfo.descr.height} typeAction={'DESCR_KEYS_MAIN_INFO'}>
                               <p className={cl.keysDescr}  onClick={e=>setSizeInfo({...sizeInfo, descr: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{keysTexts.descr}</p>
                           </MyAdminInput>
                           :
@@ -43,7 +65,7 @@ const MainKeys = () => {
                         <MyAddElement typeAction={'ADD_KEYS_MAIN_ITEM_ELEMENT'}></MyAddElement>
                         <ul className={cl.keysList}>
                             {itemInfo.map((e, i) =>
-                                <MainKItem setModal={setIsModal} modalInfo={modalInfo} modalInfoChanging={setModalInfo} count={e.count} id={e.id} infoArr={e.info} key={i}/>
+                                <MainKItem premissionTariff={premissionTariff} setModal={setIsModal} element={e} modalInfo={modalInfo} modalInfoChanging={setModalInfo} count={e.count} id={e.id} infoArr={e.info} key={i}/>
                             )}
                         </ul>
                     </div>
@@ -56,7 +78,9 @@ const MainKeys = () => {
                     }/>
                 </div>
             </div>
-            <MyAdminModal visible={isModal} setVisible={setIsModal} colorValue={modalInfo.color} hrefValue={modalInfo.href} altValue={modalInfo.alt} imgValue={1} id={modalInfo.id} count={modalInfo.count} actionHref={'HREF_KEYS_MAIN_ITEM_ELEMENT'} actionImg={'IMG_KEYS_MAIN_ITEM_ELEMENT'} actionAlt={'ALT_KEYS_MAIN_ITEM_ELEMENT'} actionColor={'COLOR_KEYS_MAIN_ITEM_ELEMENT'}></MyAdminModal>
+            {isAdmin &&  premissionTariff == '200' ? 
+                <MyAdminModal visible={isModal} setVisible={setIsModal} colorValue={modalInfo.color} hrefValue={modalInfo.href} altValue={modalInfo.alt} imgValue={1} id={modalInfo.id} count={modalInfo.count} actionHref={'HREF_KEYS_MAIN_ITEM_ELEMENT'} actionImg={'IMG_KEYS_MAIN_ITEM_ELEMENT'} actionAlt={'ALT_KEYS_MAIN_ITEM_ELEMENT'} actionColor={'COLOR_KEYS_MAIN_ITEM_ELEMENT'}></MyAdminModal>
+            :''}
         </section>
     )
 }
