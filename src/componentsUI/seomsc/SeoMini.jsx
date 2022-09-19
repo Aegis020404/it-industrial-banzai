@@ -1,13 +1,24 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useMemo} from "react";
+
 import cl from '../../style/SeoMini.module.css'
 import MyViewElement from '../UI/viewelement/MyViewElement';
 import { useSelector } from 'react-redux';
 import MyAdminInput from "../UI/admininput/MyAdminInput";
+import { useDispatch } from "react-redux";
+import { getStartedInfo } from "../../untils/getStartedInfo";
+import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
 
 const SeoMini = ()=>{
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
+    const adminTexts = useSelector(state=>state.AdminTexts)
     const seoTexts = useSelector(state=>state.AdminTexts.seoMini)
     const [miniData, setMiniData] = useState({title: {width:0,height:0}, descr: {width:0,height:0}})
+    const dispatch = useDispatch()
+
+    const [premissionGet, setPremissionGet] = useState(0) 
+    const changeStateTexts = useChangeStateFirst(setPremissionGet, premissionGet, 'seoMini', 'AT',seoTexts)
+
+  
 
     return (
         <section className={cl.miniSection}>
@@ -21,8 +32,8 @@ const SeoMini = ()=>{
                         </svg> */}
                     </span>
                     <MyViewElement element={
-                        isAdmin ? 
-                        <MyAdminInput width={miniData.title.width}  height={miniData.title.height} typeAction={'TITLE_SEO_MINI_INFO'}>
+                        isAdmin  && premissionGet === '200' ? 
+                        <MyAdminInput width={miniData.title.width} fetchInfo={{item: seoTexts,id: "seoMini", category: 'adminTexts'}} height={miniData.title.height} typeAction={'TITLE_SEO_MINI_INFO'}>
                             <h2 className={cl.miniTitle} onClick={e=>setMiniData({...miniData, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{seoTexts.title}</h2>
                         </MyAdminInput>
                         :
@@ -30,8 +41,8 @@ const SeoMini = ()=>{
                            
                     }/>
                     <MyViewElement element={
-                        isAdmin ? 
-                        <MyAdminInput width={miniData.descr.width}  height={miniData.descr.height} typeAction={'DESCR_SEO_MINI_INFO'}>
+                        isAdmin  && premissionGet === '200' ? 
+                        <MyAdminInput width={miniData.descr.width} fetchInfo={{item: seoTexts,id: "seoMini", category: 'adminTexts'}} height={miniData.descr.height} typeAction={'DESCR_SEO_MINI_INFO'}>
                             <p className={cl.miniDescr}  onClick={e=>setMiniData({...miniData, descr: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{seoTexts.descr}</p>
 
                         </MyAdminInput>

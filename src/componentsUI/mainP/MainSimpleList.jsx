@@ -5,6 +5,7 @@ import MainSItem from './MainSItem';
 import Swiper, {Pagination} from "swiper";
 import { useSelector } from 'react-redux';
 import MyViewElement from '../UI/viewelement/MyViewElement';
+import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
 
 import MyAddElement from '../UI/adminaddel/MyAddElement';
 
@@ -15,7 +16,7 @@ const MainSimpleList = () => {
 
 
     const itemInfo = useSelector(state=>state.MainSimple)
-    console.log(itemInfo)
+  
     React.useEffect(() => {
         let swiperS = null;
         let mediaQuerySize = 576;
@@ -66,6 +67,10 @@ const MainSimpleList = () => {
     }, []);
 
 
+ const [premissionLists, setPremissionLists] = useState(0) 
+    const changeState = useChangeStateFirst( setPremissionLists,premissionLists, "-","/mainSimple",itemInfo, 'SIMPLE_MAIN_CHANGE_STATE') 
+
+
     return (
         <div>
             <div className={`swiper ${cl.swiperSim} ` + cl.mySwiper}>
@@ -75,7 +80,7 @@ const MainSimpleList = () => {
                    
                     {itemInfo.map((e, i) => (
                         <div className={'swiper-slide ' + cl.swipSl}  key={i}>
-                            <MainSItem title={e.title} id={e.id} descr={e.descr} count={e.count}/>
+                            <MainSItem title={e.title} premissionLists={premissionLists} element={e} id={e.id} descr={e.descr} count={e.count}/>
                         </div>
                     ))}
 

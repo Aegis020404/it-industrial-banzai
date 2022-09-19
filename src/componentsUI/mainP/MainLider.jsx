@@ -1,22 +1,42 @@
-import React, {useState} from "react";
+import React, {useState,useEffect, useMemo} from "react";
 import cl from '../../style/MainLider.module.css';
 import MyViewElement from "../UI/viewelement/MyViewElement";
 import { useSelector } from "react-redux";
 import MyAdminModal from '../UI/adminmodal/MyAdminModal';
 import MyAdminInput from "../UI/admininput/MyAdminInput";
+import { getStartedInfo } from '../../untils/getStartedInfo';
+import { useDispatch } from "react-redux";
 const MainLider = ()=>{
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
+    const adminTexts = useSelector(state=>state.AdminTexts)
     const liderTexts = useSelector(state=>state.AdminTexts.mainLider)
     const [sizeInfo, setSizeInfo] = useState({title: {width:0,height:0}, descr: {width:0,height:0}, initialis:  {width:0,height:0}, post:  {width:0,height:0}})
     const [isModal, setIsModal] = useState(false)
+    const dispatch = useDispatch()
+
+    
+    const [premissionGet, setPremissionGet] = useState(0) 
+    const [viewElUntil, setViewElUntil] = useState('')
+    useMemo(()=>{
+        if(premissionGet) {
+           setPremissionGet('200')
+        }
+    },[adminTexts.mainLider])
+    useEffect(()=>{
+        const startedInfo = getStartedInfo("mainLider",'CHANGE_ALL_ADMIN','/adminTexts/mainLider',dispatch )
+        startedInfo.then(res=>{
+            if(res){setPremissionGet(1)}else{setPremissionGet('200')}
+        })
+    },[viewElUntil])
+
     return (
         <section className={cl.lider}>
             <div className="container">
                 <div className={cl.liderContent}>
                     <div className={cl.liderLeft}>
                         <MyViewElement element={
-                             isAdmin ? 
-                             <MyAdminInput width={sizeInfo.title.width}  height={sizeInfo.title.height} typeAction={'TITLE_LIDER_INFO'}>
+                             isAdmin && premissionGet === '200' ? 
+                             <MyAdminInput width={sizeInfo.title.width} fetchInfo={{item: adminTexts, id: "mainLider", category: 'adminTexts'}}  height={sizeInfo.title.height} typeAction={'TITLE_LIDER_INFO'}>
                                  <h2 className={cl.liderTitle} onClick={e=>setSizeInfo({...sizeInfo, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{liderTexts.title}</h2>
                              </MyAdminInput>
                              :
@@ -37,16 +57,16 @@ const MainLider = ()=>{
                         <MyViewElement element={
                         <div className={cl.liderInfo}>
                             {
-                                 isAdmin ? 
-                                 <MyAdminInput width={sizeInfo.initialis.width}  height={sizeInfo.initialis.height} typeAction={'INITIIALS_LIDER_INFO'}>
+                                 isAdmin && premissionGet === '200' ? 
+                                 <MyAdminInput width={sizeInfo.initialis.width} fetchInfo={{item: liderTexts, id: "mainLider", category: 'adminTexts'}} height={sizeInfo.initialis.height} typeAction={'INITIIALS_LIDER_INFO'}>
                                      <p className={cl.liderName}  onClick={e=>setSizeInfo({...sizeInfo, initialis: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{liderTexts.initialis}</p>
                                  </MyAdminInput>
                                  :
                                  <p className={cl.liderName}>{liderTexts.initialis}</p>
                             }
                             {
-                                 isAdmin ? 
-                                 <MyAdminInput width={sizeInfo.post.width}  height={sizeInfo.post.height} typeAction={'POST_LIDER_INFO'}>
+                                 isAdmin && premissionGet === '200' ? 
+                                 <MyAdminInput width={sizeInfo.post.width} fetchInfo={{item: liderTexts, id: "mainLider", category: 'adminTexts'}} height={sizeInfo.post.height} typeAction={'POST_LIDER_INFO'}>
                                      <p className={cl.liderNameDescr}  onClick={e=>setSizeInfo({...sizeInfo, post: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{liderTexts.post}</p>
                                  </MyAdminInput>
                                  :

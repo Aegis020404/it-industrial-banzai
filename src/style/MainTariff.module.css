@@ -3,6 +3,9 @@
     padding-top: 67px;
     height: auto;
 }
+.adminBlock{
+    position: relative;
+}
 
 .tariffTittleBlock {
     text-align: center;

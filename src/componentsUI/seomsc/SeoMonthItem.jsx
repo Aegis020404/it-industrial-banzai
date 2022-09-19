@@ -4,7 +4,7 @@ import MyViewElement from "../UI/viewelement/MyViewElement";
 import { useSelector } from "react-redux";
 import MyDeleteElement from "../UI/admindelel/MyDeleteElement";
 import MyAdminInput from "../UI/admininput/MyAdminInput";
-const SeoMonthItem = ({title, descr, id})=>{
+const SeoMonthItem = ({title,premissionLists, element, descr, id})=>{
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
     const [monthData, setMonthData] = useState({title: {width:0,height:0}, descr: {width:0,height:0}})
     return (
@@ -12,8 +12,8 @@ const SeoMonthItem = ({title, descr, id})=>{
             <li className={cl.monthItem}>
                 <MyDeleteElement id={id} typeAction={'DELETE_SEO_MONTH_ELEMENT'}></MyDeleteElement>
                 <MyViewElement element={
-                     isAdmin ? 
-                     <MyAdminInput width={monthData.title.width} id={id} height={monthData.title.height} typeAction={'TITLE_SEO_MONTH_ITEM_CHANGE'}>
+                     isAdmin && premissionLists == '200' ? 
+                     <MyAdminInput width={monthData.title.width}  fetchInfo={{item: element, category: 'seoMonth', id: id}} id={id} height={monthData.title.height} typeAction={'TITLE_SEO_MONTH_ITEM_CHANGE'}>
                          <h4 className={cl.monthITitle}  onClick={e=>setMonthData({...monthData, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{title}</h4>
                      </MyAdminInput>
                      :
@@ -21,8 +21,8 @@ const SeoMonthItem = ({title, descr, id})=>{
                     
                 }/>
                 <MyViewElement element={
-                isAdmin ? 
-                <MyAdminInput width={monthData.descr.width} id={id}  height={monthData.descr.height} typeAction={'DESCR_SEO_MONTH_CHANGE'}>
+                isAdmin && premissionLists == '200' ? 
+                <MyAdminInput width={monthData.descr.width}  fetchInfo={{item: element, category: 'seoMonth', id: id}} id={id}  height={monthData.descr.height} typeAction={'DESCR_SEO_MONTH_CHANGE'}>
                     <p className={cl.monthIDescr}  onClick={e=>setMonthData({...monthData, descr: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{descr}</p>
                 </MyAdminInput>
                 :

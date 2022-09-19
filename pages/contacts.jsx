@@ -3,8 +3,11 @@ import ContactMap from "../src/componentsUI/contactsP/ContactMap";
 import ContactsLocationInfo from '../src/componentsUI/contactsP/ContactsLocationInfo';
 import NavPagesHead from "../src/componentsUI/UI/navpage/MyNavPages";
 import Container from '../src/componentsUI/Container'
+import { CheckAdminKey } from '../src/untils/checkAdminKey';
 
 const ContactsPage = ()=>{
+    CheckAdminKey()
+
     const contactI = useRef('')
    
     useEffect(()=>{

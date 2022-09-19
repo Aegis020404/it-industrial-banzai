@@ -4,12 +4,13 @@ import MyViewElement from "../UI/viewelement/MyViewElement";
 import { useDispatch, useSelector } from "react-redux";
 import MyDeleteElement from '../UI/admindelel/MyDeleteElement'
 import MyAdminInput from "../UI/admininput/MyAdminInput";
+import MyFormData from '../../untils/ImgFetch';
 
 
 import {useDropzone} from 'react-dropzone'
 import Image from "next/image";
 
-const ReviewsItem = ({imgPerson, namePerson, positionPerson, commentPerson, id})=>{
+const ReviewsItem = ({imgPerson, namePerson, positionPerson,premissionLists, commentPerson, id, element})=>{
     const reviewsInfo = useSelector(state=>state.Reviews)
     const [changeImg, setChangeImg] = useState(false)
     const dispatch = useDispatch()
@@ -27,6 +28,7 @@ const ReviewsItem = ({imgPerson, namePerson, positionPerson, commentPerson, id})
             <>{res}</>
         );
     }
+    const [isImg, setIsImg] = useState('')
     
     const onDrop = useCallback((acceptedFiles) => {
         acceptedFiles.forEach((file) => {
@@ -37,11 +39,12 @@ const ReviewsItem = ({imgPerson, namePerson, positionPerson, commentPerson, id})
           reader.onload = () => {
        
             const binaryStr = reader.result
-            console.log(binaryStr)
+            setIsImg(file)
+           
           }
           reader.readAsArrayBuffer(file)
         })
-        dispatch({type: 'IMG_REVIEWS_CHANGE', info: {text:acceptedFiles[0].path, id: id}})
+      
       }, [])
 
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
@@ -51,10 +54,14 @@ const ReviewsItem = ({imgPerson, namePerson, positionPerson, commentPerson, id})
     return (
         <MyViewElement element={
             <li className={cl.reviewsItem}>
-                 {isAdmin ? 
+                {isAdmin&& premissionLists == '200'  ? 
+                    <MyFormData isImg={isImg} id={id} typeAction={'IMG_REVIEWS_CHANGE'}/>
+                :
+                ''}
+                 {isAdmin && premissionLists == '200' ? 
                     <span className={'changeItemBtn'} onClick={e=>setChangeImg(!changeImg)}>изменить</span>
                 :'' }
-                <MyDeleteElement typeAction={'DELETE_REVIEWS_ELEMENT'} id={id}></MyDeleteElement>
+                {isAdmin && premissionLists == '200'?<MyDeleteElement typeAction={'DELETE_REVIEWS_ELEMENT'} id={id}></MyDeleteElement>:''}
                 <div className={cl.reviewsLeft}>
                     <div className={cl.reviewsImgCard}>
                         <div className={cl.reviewsImgBlock}>
@@ -74,16 +81,16 @@ const ReviewsItem = ({imgPerson, namePerson, positionPerson, commentPerson, id})
                         }
                           
                         </div>
-                        {isAdmin ?
-                            <MyAdminInput width={reviewsData.name.width} id={id} height={reviewsData.name.height} typeAction={'INITIALS_REVIEWS_CHANGE'}>
+                        {isAdmin && premissionLists == '200' ?
+                            <MyAdminInput width={reviewsData.name.width} fetchInfo={{item: element, category: 'Reviews', id: id}}  id={id} height={reviewsData.name.height} typeAction={'INITIALS_REVIEWS_CHANGE'}>
                                 <h4 className={cl.reviewsTitleItem} onClick={e=>setReviewsData({...reviewsData, name: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{namePerson}</h4>
                             </MyAdminInput>
                         :
                             <h4 className={cl.reviewsTitleItem}>{namePerson}</h4>
                         }
                     </div>
-                        {isAdmin ?
-                            <MyAdminInput width={reviewsData.position.width} id={id} height={reviewsData.position.height} typeAction={'POSITION_REVIEWS_CHANGE'}>
+                        {isAdmin && premissionLists == '200' ?
+                            <MyAdminInput width={reviewsData.position.width}  fetchInfo={{item: element, category: 'Reviews', id: id}} id={id} height={reviewsData.position.height} typeAction={'POSITION_REVIEWS_CHANGE'}>
                                 <p className={cl.reviewsDescrItem} onClick={e=>setReviewsData({...reviewsData, position: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{positionPerson}</p>
                             </MyAdminInput>
                         :
@@ -92,8 +99,8 @@ const ReviewsItem = ({imgPerson, namePerson, positionPerson, commentPerson, id})
                     
                 </div>
                 <div className={cl.reviewsRight}>
-                    {isAdmin ?
-                            <MyAdminInput width={reviewsData.descr.width} id={id} height={reviewsData.descr.height} typeAction={'COMMENT_REVIEWS_CHANGE'}>
+                    {isAdmin && premissionLists == '200' ?
+                            <MyAdminInput width={reviewsData.descr.width} fetchInfo={{item: element, category: 'Reviews', id: id}} id={id} height={reviewsData.descr.height} typeAction={'COMMENT_REVIEWS_CHANGE'}>
                                 <div className={cl.reviewsDescr} onClick={e=>setReviewsData({...reviewsData, descr: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{commentPerson}</div>
                             </MyAdminInput>
                         :

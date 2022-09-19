@@ -1,16 +1,20 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState, useEffect, useMemo} from "react";
+
 import cl from '../../style/MobileService.module.css';
 import MobileServItem from './MobileServItem';
-import {connect} from "react-redux/lib";
 import {Pagination, Swiper} from "swiper";
 
 import { useSelector, useDispatch } from 'react-redux';
 import MyViewElement from '../UI/viewelement/MyViewElement';
 import MyAddElement from '../UI/adminaddel/MyAddElement';
 import MyAdminInput from '../UI/admininput/MyAdminInput';
-const MobileService = ({column, actionTitle, actionListAdd, actionImg, actionListTitle, actionListDescr, actionListDelete, actionDescr}) => {
+import { getStartedInfo } from "../../untils/getStartedInfo";
+import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
+
+const MobileService = ({column, actionTitle,stateName, actionListAdd, actionImg, actionListTitle, actionListDescr, actionListDelete, actionDescr}) => {
     const {mobileServicePage} = useSelector(state=>state)
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
+    const adminTexts = useSelector(state=>state.AdminTexts)
     const [mobileData, setMobileData] = useState({title: {width:0,height:0}, descr:{width:0,height:0}})
     const dispatch = useDispatch()
     const state = mobileServicePage[column]
@@ -61,12 +65,22 @@ const MobileService = ({column, actionTitle, actionListAdd, actionImg, actionLis
         }
     }, [])
 
+  
+  
+    const [premissionLists, setPremissionLists] = useState(0) 
+    const changeState = useChangeStateFirst( setPremissionLists,premissionLists, "-","/mobileService",mobileServicePage, 'CHANGE_STATE_SERVICES_PAGES') 
+
+   
+
+
+
+
     return (
         <section className={cl.serviceSection}>
             <div className="container">
                 {state.title ? <MyViewElement element={
-                    isAdmin ? 
-                    <MyAdminInput width={mobileData.title.width}  height={mobileData.title.height} typeAction={actionTitle}>
+                    isAdmin && premissionLists=='200' ? 
+                    <MyAdminInput width={mobileData.title.width} fetchInfo={{item: state,id: column, category: 'adminTexts'}} height={mobileData.title.height} typeAction={actionTitle}>
                         <h2 className={cl.serviceTitle} onClick={e=>setMobileData({...mobileData, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{state.title}</h2>
                     </MyAdminInput>
                     :
@@ -74,20 +88,26 @@ const MobileService = ({column, actionTitle, actionListAdd, actionImg, actionLis
                    
                 }/> : ''}
                 {state.text ?  <MyViewElement element={
-                    isAdmin ? 
-                    <MyAdminInput width={mobileData.descr.width}  height={mobileData.descr.height} typeAction={actionDescr}>
+                    isAdmin && premissionLists=='200' ? 
+                    <MyAdminInput width={mobileData.descr.width} fetchInfo={{item: state,id: column, category: 'adminTexts'}} height={mobileData.descr.height} typeAction={actionDescr}>
                         <p className={cl.serviceDescr} onClick={e=>setMobileData({...mobileData, descr: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{state.text}</p>
                     </MyAdminInput>
                     :
                     <p className={cl.serviceDescr}>{state.text}</p>
                    
                 }/> : ''}
+                {isAdmin?
+                <div className={cl.adminKey}>
+                      <MyAddElement typeAction={actionListAdd}/>
+                </div>
+                :
+                ''}
                 <div className={cl.serviceListBlock}>
                     <div className={`swiper ${column}`}>
                         <div className={'swiper-wrapper ' + cl.serviceList}>
-                            <MyAddElement typeAction={actionListAdd}/>
+                          
                             {state.cases.map((e, i) => <div className={'swiper-slide ' + cl.swiperSl} key={i}>
-                                <MobileServItem title={e.title} id={e.id} descr={e.descr} img={e.img} actionListTitle={actionListTitle} actionImg={actionImg} actionListDelete={actionListDelete} actionListDescr={actionListDescr}/>
+                                <MobileServItem premissionLists={premissionLists} title={e.title} element={e} id={e.id} descr={e.descr} img={e.img} actionListTitle={actionListTitle} actionImg={actionImg} actionListDelete={actionListDelete} actionListDescr={actionListDescr}/>
                             </div>)}
                         </div>
                         <div className="swiper-scrollbar"></div>

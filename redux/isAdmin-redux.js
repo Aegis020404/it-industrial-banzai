@@ -1,16 +1,17 @@
 
 
 const initialState = {
-    isAdmin: true,
+    isAdmin: false,
 }
 
 export function isAdminReducer (state = initialState, action) {
     switch (action.type) {
-        case 'IS_ADMIN_TRUE': {
-            return {...state, isAdmin: true}
+        case 'IS_ADMIN_CHANGE': {
+            return {...state, isAdmin: !state.isAdmin}
         }
-        case 'IS_ADMIN_FALSE': {
-            return {...state, isAdmin: false}
+        case 'CHANGE_STATE_KEY': {
+           
+            return {...state, isAdmin: action.info.text[0].isAdmin}
         }
     
         default:
@@ -19,11 +20,11 @@ export function isAdminReducer (state = initialState, action) {
 }
 
 
-export const isAdminTruth = (value)=>({
-    type: 'IS_ADMIN_TRUE', value
+export const adminKeyChange = (value)=>({
+    type: 'CHANGE_STATE_KEY', value
 })
 
-
-export const isAdminFalse = (value)=>({
-    type: 'IS_ADMIN_FALSE', value
+export const isAdminChange = (value)=>({
+    type: 'IS_ADMIN_CHANGE', value
 })
+

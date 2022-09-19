@@ -9,6 +9,8 @@ import MyThxModal from '../UI/thxmodal/MyThxModal';
 import MyViewElement from '../UI/viewelement/MyViewElement';
 import MyAddElement from '../UI/adminaddel/MyAddElement';
 import MyAdminInput from '../UI/admininput/MyAdminInput';
+import { getStartedInfo } from "../../untils/getStartedInfo";
+import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
 const MainTariff = props => {
     const [theme, setTheme] = useState('')
     const [modal, setModal] = useState(false)
@@ -16,14 +18,25 @@ const MainTariff = props => {
     const dispatch = useDispatch();
     const {MainTariffPage} = useSelector((state) => state)
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
-    const {AdminTexts} = useSelector(state=>state)
+    const adminTexts = useSelector(state=>state.AdminTexts)
     const [tariffInfo, setTariffInfo] = useState({title: {width:0,height:0}})
 
     const infoData = [...MainTariffPage]
 
-    const [modalInfo, setModalInfo] = useState({namePerson: '', tel: ''})
 
-    let forServerInfo = {}
+
+   
+
+
+    const [pageLoaded, setPageLoaded]=useState('')
+    useEffect(()=>{setPageLoaded(1)},[])
+    const [premissionTariff, setPremissionTariff] = useState(0) 
+
+    const changeState =  useChangeStateFirst( setPremissionTariff,premissionTariff, "-","/mainTariff",MainTariffPage, 'TARIFF_CHANGE_STATE')
+
+
+    const [modalInfo, setModalInfo] = useState({namePerson: '', tel: ''})
+  
 
     const addModalInfo = (e) => {
         e.preventDefault();
@@ -88,19 +101,55 @@ const MainTariff = props => {
         }
     }, []);
 
-    console.log(isAdmin)
+
+
+    // console.log([...[{id:1,text:'afdas'},{id:2,text:'dsa'}], ...[{id:3,text:'afsa'},{id:1,text:'gfds'}]].filter((el,i,arr)=> arr.filter((item,n)=>n<i&&el.id==item.id).length!==0 || arr.filter((item,n)=>el.id==item.id).length<=1  ))
+    
+
+    const [permitView, setPermitView] = useState(1)
+    if(typeof window !== "undefined"){
+        useMemo(()=>{
+            if(window.innerWidth<=576){
+                setPermitView(0)
+            }
+        },[window.innerWidth])
+    }
+   
+    const [premissionGet, setPremissionGet] = useState(0)
+    const changeStateTexts = useChangeStateFirst(setPremissionGet, premissionGet, 'mainTariff', 'AT',adminTexts.mainTariff)
+
+
+    // const [viewElUntil, setViewElUntil] = useState('')
+    // useMemo(()=>{
+    //     if(premissionGet) {
+    //        setPremissionGet('200')
+    //     }
+    // },[adminTexts.mainTariff])
+    // useEffect(()=>{
+    //     const startedInfo = getStartedInfo("mainTariff",'CHANGE_ALL_ADMIN','/adminTexts/mainTariff',dispatch )
+    //     startedInfo.then(res=>{
+    //         if(res){setPremissionGet(1)}else{setPremissionGet('200')}
+    //     })
+
+    // },[viewElUntil])
+
+
+
+
+
+
 
     const tariffS = useRef('')
     return (
         <section ref={tariffS} className={cl.tariffSection}>
 
-            <MyViewElement element={
+            <MyViewElement  element={
                 props.title ? 
-                    isAdmin ? 
+                    isAdmin&& premissionGet === '200' ? 
                        
                             <div className={cl.tariffTittleBlock}>
-                                 <MyAdminInput width={tariffInfo.title.width} height={tariffInfo.title.height} typeAction={ 'TITLE_TARIFF_INFO'}>
-                                    <h2 className={cl.tariffTitle} onClick={e=>setTariffInfo({...tariffInfo, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{AdminTexts.mainTariff.title}</h2>
+                                 <MyAdminInput width={tariffInfo.title.width}    height={tariffInfo.title.height} typeAction={ 'TITLE_TARIFF_INFO'}>
+                                    <h2 className={cl.tariffTitle} onClick={e=>setTariffInfo({...tariffInfo, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{adminTexts.mainTariff.title}</h2>
                                 </MyAdminInput>
                             </div>
                         
@@ -111,18 +160,26 @@ const MainTariff = props => {
                     :
                     ''
             }/> 
+              {isAdmin ?
+                <div className='container'>
+                    <div className={cl.adminBlock}>
+                    <MyAddElement  typeAction={'TARIFF_ELEMENT_ADD'}/>
+                    </div>
+                </div>
+              :''}
+           
    
             
             <div className={cl.tariffListBlock}>
-
+          
                 <div className={`swiper  ` + cl.mySwiper}>
-
+                
                     <div className={'swiper-wrapper ' + cl.tariffList}>
-                        {isAdmin ?<MyAddElement  typeAction={'TARIFF_ELEMENT_ADD'}/>:''}
+                   
                         {infoData.map((e, i) => (
                                 <div className={'swiper-slide ' + cl.slide} key={i}>
-                                    <MyViewElement element={
-                                    <MainTItem img={e.img} title={e.title} descr={e.descr} price={e.price} dl={e.dl}
+                                    <MyViewElement permit={permitView} element={
+                                    <MainTItem img={e.img} premission={premissionTariff} title={e.title} element={e} descr={e.descr} price={e.price} dl={e.dl}
                                             key={e.title} logo={e.logo} setModal={setModal} setTheme={setTheme} id={i+1} deleteAction={'TARIFF_ELEMENT_DELETE'}/>}/>
                                 </div>
                         ))}
@@ -133,7 +190,7 @@ const MainTariff = props => {
 
                 </div>
             </div>
-            <MyModal block={tariffS} visible={modal} setVisible={setModal} title='Оставить заявку'
+            <MyModal block={tariffS} visible={modal} id={'MainTariff'} setVisible={setModal} title='Оставить заявку'
                      setThx={setThxModal}/>
             <MyThxModal visible={thxModal} setVisible={setThxModal}/>
         </section>

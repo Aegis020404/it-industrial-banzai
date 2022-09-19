@@ -14,16 +14,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import MyAdminInput from "../UI/admininput/MyAdminInput";
 import MyAddElement from '../UI/adminaddel/MyAddElement';
 import MyAdminModal from '../UI/adminmodal/MyAdminModal';
+import MyFormData from '../../untils/ImgFetch';
 
 import {useDropzone} from 'react-dropzone'
 import Image from "next/image";
 
-const MainReviewItem = ({infoObj})=>{
+const MainReviewItem = ({infoObj, premissionLists})=>{
   
     const [sizeInfo, setSizeInfo] = useState({title: {width:0,height:0}, name: {width:0,height:0}, position: {width:0,height:0}, descr: {width:0,height:0}})
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
     const [changeImg, setChangeImg] = useState(false)
     const dispatch = useDispatch()
+    const [isImg, setIsImg] = useState('')
+
     const onDrop = useCallback((acceptedFiles) => {
         acceptedFiles.forEach((file) => {
           const reader = new FileReader()
@@ -33,16 +36,34 @@ const MainReviewItem = ({infoObj})=>{
           reader.onload = () => {
        
             const binaryStr = reader.result
-            console.log(binaryStr)
+            
           }
           reader.readAsArrayBuffer(file)
         })
         dispatch({type: 'IMG_REVIEW_MAIN_CHANGE', info: {text:acceptedFiles[0].path, id: infoObj.id}})
       }, [])
 
+      const replacerComments = (str, find, replace)=>{
+        let parts = str.split(find);
+        let res = []
+        for(let i = 0, result = []; i < parts.length; i++) {
+            result.push(parts[i]);
+            result.push(replace);
+            res = result
+        }
+        return (
+            <>{res}</>
+        );
+    }
+
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+   
     return (
         <div className={cl.wrapper}>
+             {isAdmin&& premissionLists == '200'  ? 
+                <MyFormData  isImg={isImg} id={infoObj.id} typeAction={'IMG_REVIEW_MAIN_CHANGE'}/>
+            :
+            ''}
             {isAdmin ? 
                 <span className={'changeItemBtn'} onClick={e=>setChangeImg(!changeImg)}>изменить</span>
             :'' }
@@ -63,16 +84,16 @@ const MainReviewItem = ({infoObj})=>{
                 }
                
                 {
-                         isAdmin ? 
-                         <MyAdminInput width={sizeInfo.name.width} id={infoObj.id} height={sizeInfo.name.height} typeAction={'INITIALS_REVIEW_MAIN_CHANGE'}>
+                         isAdmin&& premissionLists == '200' ? 
+                         <MyAdminInput width={sizeInfo.name.width}  fetchInfo={{item: infoObj, category: 'mainReview', id: infoObj.id}} id={infoObj.id} height={sizeInfo.name.height} typeAction={'INITIALS_REVIEW_MAIN_CHANGE'}>
                              <p className={cl.name} onClick={e=>setSizeInfo({...sizeInfo, name: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{infoObj.name}</p>
                          </MyAdminInput>
                          :
                          <p className={cl.name}>{infoObj.name}</p>
                     }
                  {
-                        isAdmin ? 
-                        <MyAdminInput width={sizeInfo.position.width} id={infoObj.id} height={sizeInfo.position.height} typeAction={'POSITION_REVIEW_MAIN_CHANGE'}>
+                        isAdmin&& premissionLists == '200' ? 
+                        <MyAdminInput width={sizeInfo.position.width} id={infoObj.id}  fetchInfo={{item: infoObj, category: 'mainReview', id: infoObj.id}} height={sizeInfo.position.height} typeAction={'POSITION_REVIEW_MAIN_CHANGE'}>
                             <p className={cl.position}  onClick={e=>setSizeInfo({...sizeInfo, position: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{infoObj.position}</p>
                         </MyAdminInput>
                         :
@@ -80,8 +101,8 @@ const MainReviewItem = ({infoObj})=>{
                     }
             </div>
             {
-                isAdmin ? 
-                <MyAdminInput width={sizeInfo.descr.width} id={infoObj.id} height={sizeInfo.descr.height} typeAction={'COMMENT_REVIEW_MAIN_CHANGE'}>
+                isAdmin&& premissionLists == '200' ? 
+                <MyAdminInput width={sizeInfo.descr.width} id={infoObj.id}  fetchInfo={{item: infoObj, category: 'mainReview', id: infoObj.id}} height={sizeInfo.descr.height} typeAction={'COMMENT_REVIEW_MAIN_CHANGE'}>
                     <div className={cl.comment}  onClick={e=>setSizeInfo({...sizeInfo, descr: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{infoObj.comment}</div>
                 </MyAdminInput>
                 :

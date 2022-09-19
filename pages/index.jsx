@@ -17,7 +17,11 @@ import MainReview from "../src/componentsUI/mainP/MainReview";
 import MainDevContainer from "../src/componentsUI/mainP/MainDev";
 import cl from "../src/style/MainTariff.module.css";
 import Container from '../src/componentsUI/Container'
+import { CheckAdminKey } from '../src/untils/checkAdminKey';
+
 const MainPage = ()=>{
+    CheckAdminKey()
+
 
     const mainI = useRef('')
     useEffect(()=>{

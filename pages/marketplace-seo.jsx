@@ -8,8 +8,11 @@ import MainResult from "../src/componentsUI/mainP/MainResult";
 import MainSimple from "../src/componentsUI/mainP/MainSimple";
 import MobileHero from '../src/componentsUI/MobileHero';
 import Container from '../src/componentsUI/Container';
+import { CheckAdminKey } from '../src/untils/checkAdminKey';
 
 const MarketplaceSeoPage = ()=>{
+    CheckAdminKey()
+
     const marketI = useRef('')
     useEffect(()=>{
         document.body.scrollTo({top:0,behavior:'smooth'})

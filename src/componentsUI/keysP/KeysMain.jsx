@@ -4,17 +4,19 @@ import MyTitle from "../UI/titlepage/MyTitle";
 import KeysMainCard from "./KeysMainCard";
 import MyNavPages from '../UI/navpage/MyNavPages';
 import MyAdminModal from '../UI/adminmodal/MyAdminModal';
+import { useSelector } from "react-redux";
 
 const KeysMain = ()=>{
     const [navInfoArr, setNavInfoArr] = useState(['Кейсы']);
     const [modalInfo, setModalInfo] = useState({href:'',color:'', alt:'', id: ''})
-    useMemo(()=>{console.log(modalInfo)},[modalInfo])
+  
     const [modal, setModal] = useState({sites: false, crm: false, mobile: false, graph: false})
+    const adminTexts = useSelector(state=>state.AdminTexts)
     return (
         <section className={cl.keysMain}>
             <div className={["container", cl.cont].join` `}>
                 <div className={cl.keysCont}>
-                    <MyTitle title='Кейсы' classes={cl.keysTitle} typeAction={'TITLE_KEYS_PAGE_CHANGE'}/>
+                    <MyTitle title={adminTexts.keysTexts.title} classes={cl.keysTitle}  fetchInfo={{item: adminTexts,id: "keysTexts", category: 'adminTexts'}}  typeAction={'TITLE_KEYS_PAGE_CHANGE'}/>
                     <KeysMainCard setNavInfo={setNavInfoArr} setModalInfo={setModalInfo} modalInfo={modalInfo} setModal={setModal} modal={modal} />
                 </div>               
             </div>

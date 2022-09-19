@@ -12,8 +12,11 @@ import MobileServiceContainer from "../src/componentsUI/mobilemsc/MobileService"
 import MobileHero from '../src/componentsUI/MobileHero'
 import CrmCount from '../src/componentsUI/crmseo/CrmCount';
 import Container from "../src/componentsUI/Container";
+import { CheckAdminKey } from '../src/untils/checkAdminKey';
 
 const CRMPage = ()=>{
+    CheckAdminKey()
+
     const mobileI = useRef('')
     useEffect(()=>{
         mobileI.current.classList.toggle('mobileI')

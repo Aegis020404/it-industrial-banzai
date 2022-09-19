@@ -16,8 +16,12 @@ import SeoTariff from '../src/componentsUI/seomsc/SeoTariff';
 import KeysMainSeoSwiperContainer from "../src/componentsUI/seomsc/KeysMainSeoSwiper";
 import MobileHero from '../src/componentsUI/MobileHero'
 import Container from "../src/componentsUI/Container";
+import { CheckAdminKey } from '../src/untils/checkAdminKey';
+
 
 const SeoPage =()=>{
+    CheckAdminKey()
+
     const seoI = useRef(false)
     useEffect(()=>{
         document.body.scrollTo({top:0,behavior:'smooth'})
