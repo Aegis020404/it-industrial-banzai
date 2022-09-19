@@ -51,8 +51,8 @@ const MainPage = ()=>{
                 <MainQuestion/>
             </main>
             </Container>
-           
-           
+
+
         </div>
     )
 }
