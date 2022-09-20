@@ -19,9 +19,8 @@ const Slider = ({...props}) => {
     const infoData = [...mainSliderPage]
     const {isAdmin} = useSelector(state=>state.AdminKey)
     const [heroInfo, setHeroInfo] = useState({title: {width:0,height:0}, descr: {width:0,height:0}})
-    const [stopAutoplay,setStopAutoplay] = useState(false)
-    
-  
+
+
     let forServerInfo = {}
 
     const addModalInfo = (e) => {
@@ -53,8 +52,6 @@ const Slider = ({...props}) => {
             },
                 autoplay: {
                     delay: 2500,
-                   
-                    disableOnInteraction: false,
                 },
                 speed: 600,
             autoHeight: true,
@@ -65,7 +62,7 @@ const Slider = ({...props}) => {
             pagination: {
                 el: '.pagSlider'
             }
-        })
+        },[])
 
     })
     return (
@@ -74,8 +71,6 @@ const Slider = ({...props}) => {
 
 
                 <div className={'swiper-wrapper'}>
-
-
                         {
                             infoData.map((item, i) => (
                                 <div className={'swiper-slide'} key={i}>
@@ -98,13 +93,11 @@ const Slider = ({...props}) => {
                                                     :
                                                         <div className={cl.text}>{item.botTitle}</div>
                                                     }
-                                                   
+
                                                     <MyBtnBlank classes={cl.btn} onClick={e => {
                                                         e.preventDefault(e);
                                                         setModal(true)
                                                     }}>получить консультацию</MyBtnBlank>
-                                                    {/*<div className={`pag ${cl.pag}`}></div>*/}
-
                                                 </div>
                                             </div>
                                             <div className={cl.imgBlock}>

@@ -9,10 +9,12 @@
     overflow: hidden;
     box-sizing: border-box;
     transition: all .7s ease-in-out;
-   
-   
-}
 
+
+}
+.pagSlider {
+
+}
 .heading {
     font-family: 'GothamProMedium';
     font-style: normal;
@@ -225,7 +227,7 @@
         background-size: contain;
         background-position: center;
     }
-    
+
     .photo2 {
         width: 358px;
         height: 254px;
@@ -235,7 +237,7 @@
         background-size: contain;
         background-position: center;
     }
-    
+
     .photo3 {
         width: 507px;
         height: 240px;
@@ -297,7 +299,7 @@
         background-size: contain;
         background-position: left;
     }
-    
+
     .photo2 {
         width: 308px;
         height: 204px;
@@ -308,11 +310,11 @@
         background-size: contain;
         background-position: left;
     }
-    
+
     .photo3 {
         width: 407px;
         height: 320px;
-        transform: translateX(-100px); 
+        transform: translateX(-100px);
         background-image: url('../../public/img/2.WebP');
         background-repeat: no-repeat;
         background-size: contain;
@@ -329,7 +331,7 @@
         height: 68px;
         padding: 26px 35px 19px !important;
     }
-    
+
     .modalMask {
         margin-bottom: 32px;
         width: 100%;
@@ -404,10 +406,10 @@
         font-size: 9px;
         line-height: 11px;
         /* identical to box height */
-    
+
         text-align: center;
         text-transform: uppercase;
-    
+
         color: #F84263;
         border: 1px solid rgba(248, 66, 99, 0.3);
         box-sizing: border-box;
@@ -429,10 +431,10 @@
         width: 300px;
         height: 500px;
         align-items: stretch;
-    
+
     }
 
-    
+
     .photo1 {
         width: 274px;
         height: 315px;
@@ -442,7 +444,7 @@
         background-size: contain;
         background-position: left;
     }
-    
+
     .photo2 {
         width: 288px;
         height: 184px;
@@ -452,7 +454,7 @@
         background-size: contain;
         background-position: left;
     }
-    
+
     .photo3 {
         width: 307px;
         height: 240px;
@@ -479,7 +481,7 @@
         height: 68px;
         padding: 26px 35px 19px !important;
     }
-    
+
     .modalMask {
         margin-bottom: 32px;
         width: 100%;
@@ -576,10 +578,10 @@
         font-size: 9px;
         line-height: 11px;
         /* identical to box height */
-    
+
         text-align: center;
         text-transform: uppercase;
-    
+
         color: #F84263;
         border: 1px solid rgba(248, 66, 99, 0.3);
         box-sizing: border-box;
@@ -604,9 +606,9 @@
     .photoWraper {
         max-width: 100%;
         height: 100%;
-      
+
     }
-        
+
     .photo1 {
         display: inline-block;
         width: 244px;
@@ -617,7 +619,7 @@
         background-size: contain;
         background-position: center;
     }
-    
+
     .photo2 {
         width: 288px;
         height: 184px;
@@ -627,7 +629,7 @@
         background-size: contain;
         background-position: center;
     }
-    
+
     .photo3 {
         width: 307px;
         height: 240px;
@@ -653,7 +655,7 @@
         letter-spacing: -0.02em;
         color: var(--deep-blue);
     }
-    
+
     .modalDescr {
         display: inline-block;
         padding:  0 10px;
@@ -669,7 +671,7 @@
         color: #607483;
         opacity: 0.8;
     }
-    
+
     .modalWarning {
         display: inline-block;
         margin-top: 10px;
@@ -685,7 +687,7 @@
         color: var(--rock-grey-color);
         opacity: 0.7;
     }
-    
+
     .modalBtn {
         width: 100%;
         max-width: 350px;
@@ -693,7 +695,7 @@
         padding: 14px 0;
         font-size: 10px;
     }
-    
+
     .modalInput {
         margin-bottom: 10px;
         height: 44px;
@@ -705,14 +707,14 @@
     .modalInput::placeholder {
         font-size: 10px;
     }
-    
+
     .modalMask {
         margin: 0;
         width: 100%;
         padding: 14px 14px;
         font-size: 10px;
     }
-    
+
     .modalMask::placeholder {
         font-size: 10px;
         color:  #83919B;
@@ -724,7 +726,7 @@
         height: 55px;
         padding: 26px 25px 15px !important;
     }
-    
+
     .modalMask {
         margin-bottom: 15px;
         width: 100%;
