@@ -28,7 +28,7 @@ const KeysMainSeoSwiper = (props) => {
                 >
                 {state.map((e,i)=> <SwiperSlide key={i}>
                     <div className={"container " + cl.container} key={i}>
-                    <KeysMainSeoItem key={i} permit={false} element={e} nameCompany={e.nameCompany} linkCompany={e.linkCompany} beenTopTen={e.changeSeo.beenChange.topTen} schedule={e.schedule} scheduleSet={e.scheduleSet} beenTraffic={e.changeSeo.becameChange.traffic} becameTopTen={e.changeSeo.becameChange.topTen} becameTraffic={e.changeSeo.becameChange.traffic} index={i}/>
+                    <KeysMainSeoItem element={e} key={i} permit={false} id={e.id} index={i} topTenTitle={e.topTenTitle} trafficTitle={e.trafficTitle} titleTopLeft={e.titleTopLeft} nameCompany={e.nameCompany} linkCompany={e.linkCompany} beenTopTen={e.changeSeo.beenChange.topTen}  schedule={e.schedule} scheduleSet={e.scheduleSet} beenTraffic={e.changeSeo.becameChange.traffic} becameTopTen={e.changeSeo.becameChange.topTen} graphImg={e.graphImg} becameTraffic={e.changeSeo.becameChange.traffic}/>
                     </div>
                     </SwiperSlide>
                 )}

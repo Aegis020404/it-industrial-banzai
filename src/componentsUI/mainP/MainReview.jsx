@@ -78,7 +78,7 @@ const MainReview = () => {
             }/>
             <MyViewElement element={
                 <div className={cl.container}>
-                    <MyAddElement typeAction={'ADD_REVIEW_MAIN_ELEMENT'}></MyAddElement>
+                    {isAdmin?<MyAddElement typeAction={'ADD_REVIEW_MAIN_ELEMENT'}></MyAddElement>:''}
                 <div className={`arrPrevRev ${cl.arrPrevWrap}`}>
                     <span className={cl.arrPrev}></span>
                 </div>

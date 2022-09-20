@@ -23,8 +23,8 @@ const TariffSEOitem = ({column,premission, infoItem,stateFetch,setActiveItem, si
     }
     return (
         <div key={indexItem} className={"swiper-slide " + cl.swiperSl}>
-            <span className={cl.changeItem} onClick={e=>setModalChange(true)}>ИЗМЕНИТЬ</span>
-            <div className={changeModal ? [cl.changeModal, cl.activeModal].join` ` : cl.changeModal} onClick={e=>setModalChange(false)}>
+            {isAdmin?<span className={cl.changeItem} onClick={e=>setModalChange(true)}>ИЗМЕНИТЬ</span>:''}
+            {isAdmin?<div className={changeModal ? [cl.changeModal, cl.activeModal].join` ` : cl.changeModal} onClick={e=>setModalChange(false)}>
                 <div onClick={e=>e.stopPropagation()} className={cl.contetnModal}>
                     <label className={cl.labelColor}>
                         <span>Выберите цвет фона</span>
@@ -36,7 +36,7 @@ const TariffSEOitem = ({column,premission, infoItem,stateFetch,setActiveItem, si
                     </label>
                     <MyBtnFiled classes={cl.modalBtn} onClick={e=>confirmModal(e)}>ПОДТВЕРДИТЬ</MyBtnFiled>
                 </div>
-            </div>
+            </div>:''}
             <div className={cl.titleCase } style={{backgroundColor: '#'+infoItem.background}}>
                 {
                     isAdmin && premission == '200' ? 

@@ -37,7 +37,7 @@ const MainSimple = () => {
         <section className={cl.simple}>
             <div className="container">
             <div className={cl.simpleContent}>
-                <MyAddElement typeAction={'ADD_SIMPLE_ELEMENT'}/>
+            {isAdmin?<MyAddElement typeAction={'ADD_SIMPLE_ELEMENT'}/>:''}
                 <MyViewElement element={
                      isAdmin  && premissionGet === '200' ? 
                      <MyAdminInput width={sizeInfo.title.width}  fetchInfo={{item: adminTexts.mainSimple,id: "mainSimple", category: 'adminTexts'}}  height={sizeInfo.title.height} typeAction={'TITLE_SIMPLE_INFO'}>

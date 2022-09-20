@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 const KeysMain = ()=>{
     const [navInfoArr, setNavInfoArr] = useState(['Кейсы']);
     const [modalInfo, setModalInfo] = useState({href:'',color:'', alt:'', id: ''})
+    const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
   
     const [modal, setModal] = useState({sites: false, crm: false, mobile: false, graph: false})
     const adminTexts = useSelector(state=>state.AdminTexts)
@@ -20,9 +21,9 @@ const KeysMain = ()=>{
                     <KeysMainCard setNavInfo={setNavInfoArr} setModalInfo={setModalInfo} modalInfo={modalInfo} setModal={setModal} modal={modal} />
                 </div>               
             </div>
-            <MyAdminModal visible={modal.sites} setVisible={setModal} colorValue={modalInfo.color} hrefValue={modalInfo.href} altValue={modalInfo.alt} logoValue={1} imgValue={1} id={modalInfo.id}  actionHref={'HREF_SITES_CHANGE'} actionImg={'IMG_SITES_CHANGE'} actionAlt={'ALT_SITES_CHANGE'} actionLogo={'LOGO_SITES_CHANGE'} actionColor={'BACKGROUND_SITES_CHANGE'}></MyAdminModal>
-            <MyAdminModal visible={modal.crm} setVisible={setModal} colorValue={modalInfo.color} hrefValue={modalInfo.href} altValue={modalInfo.alt} logoValue={1} imgValue={1} id={modalInfo.id}  actionHref={'HREF_CRM_KEYS_CHANGE'} actionImg={'IMG_CRM_KEYS_CHANGE'} actionAlt={'ALT_CRM_KEYS_CHANGE'} actionLogo={'LOGO_CRM_KEYS_CHANGE'} actionColor={'BACKGROUND_CRM_KEYS_CHANGE'}></MyAdminModal>
-            <MyAdminModal visible={modal.mobile} setVisible={setModal} colorValue={modalInfo.color} hrefValue={modalInfo.href} altValue={modalInfo.alt} logoValue={1} imgValue={1} id={modalInfo.id}  actionHref={'HREF_MOBILE_CHANGE'} actionImg={'IMG_MOBILE_CHANGE'} actionAlt={'ALT_MOBILE_CHANGE'} actionLogo={'LOGO_MOBILE_CHANGE'} actionColor={'BACKGROUND_MOBILE_CHANGE'}></MyAdminModal>
+            {isAdmin ?<MyAdminModal visible={modal.sites} setVisible={setModal} colorValue={modalInfo.color} hrefValue={modalInfo.href} altValue={modalInfo.alt} logoValue={1} imgValue={1} id={modalInfo.id}  actionHref={'HREF_SITES_CHANGE'} actionImg={'IMG_SITES_CHANGE'} actionAlt={'ALT_SITES_CHANGE'} actionLogo={'LOGO_SITES_CHANGE'} actionColor={'BACKGROUND_SITES_CHANGE'}></MyAdminModal>:''}
+            {isAdmin ?<MyAdminModal visible={modal.crm} setVisible={setModal} colorValue={modalInfo.color} hrefValue={modalInfo.href} altValue={modalInfo.alt} logoValue={1} imgValue={1} id={modalInfo.id}  actionHref={'HREF_CRM_KEYS_CHANGE'} actionImg={'IMG_CRM_KEYS_CHANGE'} actionAlt={'ALT_CRM_KEYS_CHANGE'} actionLogo={'LOGO_CRM_KEYS_CHANGE'} actionColor={'BACKGROUND_CRM_KEYS_CHANGE'}></MyAdminModal>:''}
+            {isAdmin ?<MyAdminModal visible={modal.mobile} setVisible={setModal} colorValue={modalInfo.color} hrefValue={modalInfo.href} altValue={modalInfo.alt} logoValue={1} imgValue={1} id={modalInfo.id}  actionHref={'HREF_MOBILE_CHANGE'} actionImg={'IMG_MOBILE_CHANGE'} actionAlt={'ALT_MOBILE_CHANGE'} actionLogo={'LOGO_MOBILE_CHANGE'} actionColor={'BACKGROUND_MOBILE_CHANGE'}></MyAdminModal>:''}
 
         </section>
     )

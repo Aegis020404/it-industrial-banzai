@@ -41,7 +41,7 @@ const SeoStable = ()=>{
                 }/>
                 
                 <div className={cl.stableListBlock}>
-                    <MyAddElement typeAction={'ADD_SEO_STABLE_ELEMENT'}></MyAddElement>
+                {isAdmin?<MyAddElement typeAction={'ADD_SEO_STABLE_ELEMENT'}></MyAddElement>:''}
                     <ul className={cl.stableList}>
                         {infoArr.map((e, i)=>
                             <SeoStableItem  premissionLists={premissionLists} element={e} title={e.title} id={e.id} descr={e.descr} key={i} img={e.img}/>

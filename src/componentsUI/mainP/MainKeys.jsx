@@ -62,7 +62,7 @@ const MainKeys = () => {
                     
                     }/>
                     <div className={cl.keysListBlock}>
-                        <MyAddElement typeAction={'ADD_KEYS_MAIN_ITEM_ELEMENT'}></MyAddElement>
+                        {isAdmin?<MyAddElement typeAction={'ADD_KEYS_MAIN_ITEM_ELEMENT'}></MyAddElement>:''}
                         <ul className={cl.keysList}>
                             {itemInfo.map((e, i) =>
                                 <MainKItem premissionTariff={premissionTariff} setModal={setIsModal} element={e} modalInfo={modalInfo} modalInfoChanging={setModalInfo} count={e.count} id={e.id} infoArr={e.info} key={i}/>

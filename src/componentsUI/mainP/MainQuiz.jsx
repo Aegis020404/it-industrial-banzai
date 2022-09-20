@@ -103,7 +103,11 @@ const MainQuiz = ()=>{
                     }/>
 
                     <div>
-                        {quizState.map((e,i,arr)=><MainQuizItem setModalInfo={setModalInfo} modalInfo={modalInfo} sendOrder={sendOrder} setModal={setModal} resultPrice={resultPrice} premissionLists={premissionLists} lastId={arr.length} infoObj={e} id={e.id}></MainQuizItem>)}
+                        {quizState.map((e,i,arr)=>
+                        <MyViewElement element={
+                            <MainQuizItem setModalInfo={setModalInfo} modalInfo={modalInfo} sendOrder={sendOrder} setModal={setModal} resultPrice={resultPrice} premissionLists={premissionLists} lastId={arr.length} infoObj={e} id={e.id}></MainQuizItem>
+                        }/>
+                        )}
                     </div>
 
               

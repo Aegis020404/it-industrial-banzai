@@ -55,7 +55,7 @@ const MobilePortfolio = ()=>{
                 }/>
                     
                <div className={cl.portCardBlock}>
-                <MyAddElement typeAction={'ADD_CRM_PORTFOLIO_ELEMENT'}></MyAddElement>
+               {isAdmin?<MyAddElement typeAction={'ADD_CRM_PORTFOLIO_ELEMENT'}></MyAddElement>:''}
                 {infoData.map(e=>
                     isAdmin && premissionGet == '200'  ? 
                     <MyViewElement element={

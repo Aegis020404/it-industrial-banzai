@@ -41,7 +41,7 @@ const SeoMonth = ()=>{
                 }/>
                 <div className={cl.monthContent}>
                     <div className={cl.monthLeft}>
-                        <MyAddElement typeAction={'ADD_SEO_MONTH_ELEMENT'}></MyAddElement>
+                    {isAdmin?<MyAddElement typeAction={'ADD_SEO_MONTH_ELEMENT'}></MyAddElement>:''}
                         <ul className={cl.monthLeftList}>
                             {infoArr.map((e, i)=><SeoMonthItem premissionLists={premissionLists} element={e} key={i} title={e.title} id={e.id} descr={e.descr}/>)}
                         </ul>

@@ -3,7 +3,7 @@ import cl from './MyViewElement.module.css';
 import { useInView } from 'react-intersection-observer';
 
 const MyViewElement = ({element, permit = true})=>{
-    const { ref, inView, entry } = useInView({threshold: 0.5})
+    const { ref, inView, entry } = useInView({threshold: 0.2})
     const [isViewElement, setIsViewElement] = useState(true)
     const [classes, setClasses] = useState([cl.disableElement])
    

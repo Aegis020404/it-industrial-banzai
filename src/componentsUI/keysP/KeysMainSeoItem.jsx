@@ -14,6 +14,7 @@ import MyBtnFiled from '../UI/buttonback/MyBtnFiled';
 import { useDispatch } from 'react-redux';
 import Image from "next/image";
 
+import MyFormData from '../../untils/ImgFetch';
 
 const KeysMainSeoItem = ({nameCompany,premissionLists,permit, linkCompany,id,element, beenTopTen,graphImg,topTenTitle,setModal,modalInfoChanging,trafficTitle,titleTopLeft, becameTopTen, beenTraffic, becameTraffic, schedule, index,countSchedule})=>{
     const [checkImg, setCheckImg] = useState(false)
@@ -31,16 +32,15 @@ const KeysMainSeoItem = ({nameCompany,premissionLists,permit, linkCompany,id,ele
     const [inputMax, setInputMax] = useState('')
     const [inputMin, setInputMin] = useState('')
 
-    const onDrop = useCallback(acceptedFiles => {
-        setModalInfo({...modalInfo, img:acceptedFiles[0].path})
-    }, [])
-    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+   
 
     const max = schedule.max;
     const min = schedule.min;
     for (let i = 1; i<=10;i++){
         countArr.push(max-(~~((max - min) / 10))*i)
     }
+
+
     
     
 
@@ -79,9 +79,37 @@ const KeysMainSeoItem = ({nameCompany,premissionLists,permit, linkCompany,id,ele
         }
     }
 
+    const [isImg, setIsImg] = useState('')
+    
+    const [changeImg, setChangeImg] = useState(false)
+
+    const onDrop = useCallback((acceptedFiles) => {
+        acceptedFiles.forEach((file) => {
+          const reader = new FileReader()
+    
+          reader.onabort = () => console.log('file reading was aborted')
+          reader.onerror = () => console.log('file reading has failed')
+          reader.onload = () => {
+       
+            const binaryStr = reader.result
+            setIsImg(file)
+            setChangeImg(false)
+          }
+          reader.readAsArrayBuffer(file)
+        })
+      
+        
+      }, [])
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+
+
     return (
         <MyViewElement permit={permit} element={
             <li className={cl.seoItem}>
+                {isAdmin&& premissionLists == '200'  ? 
+                    <MyFormData  isImg={isImg} id={id} typeAction={'IMG_GRAPH_KEYS_SEO_CHANGE'}/>
+                :
+                ''}
                 {isAdmin && premissionLists == '200' ?<MyDeleteElement typeAction={'DELETE_KEYS_SEO_ELEMENT'} id={id}/>:''}
                 {isAdmin && premissionLists == '200' ?
                  <div className={modalChange ? [cl.overlayBlock, cl.overlayActive].join` ` : cl.overlayBlock} onClick={e=>{modalChange ? setModalChange(false) : ''}}>
@@ -233,15 +261,17 @@ const KeysMainSeoItem = ({nameCompany,premissionLists,permit, linkCompany,id,ele
                         <p className={cl.seoSwitchDescr}>Скриншот</p>
                     </div>
                     <div>
-                        {checkImg ? 
-                            <div className={cl.imgCard}>
-                                <figure ref={figureItem} className={cl.imgBlock} onClick={e=>figureActive(e)} onMouseMove={e=>figureMove(e)} onMouseLeave={e=>figureLeave(e)}>
-                                    <img ref={imgItem} src={`/img/${graphImg}`} className={cl.img} id='graph'/>
-                                </figure>
-                               
-                            </div>  
-                        :
-                            <div className={cl.seoRightCard}>
+                         
+                                <div className={checkImg?[cl.activeChangeCard,cl.imgCard].join` `:cl.imgCard}>
+                                  
+                                    <figure ref={figureItem} className={cl.imgBlock} onClick={e=>figureActive(e)} onMouseMove={e=>figureMove(e)} onMouseLeave={e=>figureLeave(e)}>
+                                        <img ref={imgItem} src={`/img/${graphImg}`} className={cl.img} id='graph'/>
+                                    </figure>
+                                </div>  
+                       
+                          
+                       
+                            <div className={!checkImg?[cl.activeChangeCard,cl.seoRightCard].join` `:cl.seoRightCard}>
                                 <div className={cl.seoCountBlock}>
                                     <ul className={cl.seoCountList}>
                                             {countArr.map((e, i)=><li className={cl.seoCountItem} key={i}>{e}</li>)}
@@ -288,7 +318,7 @@ const KeysMainSeoItem = ({nameCompany,premissionLists,permit, linkCompany,id,ele
                                     </div>
                                 </div>
                             </div>
-                        }
+                        
                         
                     </div>
                 </div>

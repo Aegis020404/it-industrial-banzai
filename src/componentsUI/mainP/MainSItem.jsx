@@ -19,7 +19,7 @@ const MainSItem = ({title, descr,premissionLists, count, id, element})=>{
     return (
         
             <li className={cl.simpleItem}>
-                <MyDeleteElement id={id} typeAction={'DELETE_SIMPLE_ELEMENT'}/>
+                {isAdmin?<MyDeleteElement id={id} typeAction={'DELETE_SIMPLE_ELEMENT'}/>:''}
                 <MyViewElement permit={permitView} element={
                      isAdmin&& premissionLists == '200' ? 
                      <MyAdminInput width={sizeInfo.count.width}  fetchInfo={{item: element, category: 'mainSimple', id: id}} id={id} height={sizeInfo.count.height} typeAction={'COUNT_SIMPLE_ITEM_CHANGE'}>

@@ -10,7 +10,7 @@ const SeoMonthItem = ({title,premissionLists, element, descr, id})=>{
     return (
         <>
             <li className={cl.monthItem}>
-                <MyDeleteElement id={id} typeAction={'DELETE_SEO_MONTH_ELEMENT'}></MyDeleteElement>
+            {isAdmin?<MyDeleteElement id={id} typeAction={'DELETE_SEO_MONTH_ELEMENT'}></MyDeleteElement>:''}
                 <MyViewElement element={
                      isAdmin && premissionLists == '200' ? 
                      <MyAdminInput width={monthData.title.width}  fetchInfo={{item: element, category: 'seoMonth', id: id}} id={id} height={monthData.title.height} typeAction={'TITLE_SEO_MONTH_ITEM_CHANGE'}>

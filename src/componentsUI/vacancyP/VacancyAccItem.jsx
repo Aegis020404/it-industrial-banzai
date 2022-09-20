@@ -15,7 +15,7 @@ const VacancyAccItem = ({title, descr, whatDo, info,premissionLists, check,eleme
   const [vacancyData, setVacancyData] = useState({title: {width:0,height:0}, descr: {width:0,height:0}, question: {width:0,height:0}, listItem: {width:0,height:0}})
     return (
         <div className={cl.wrapItem}>
-          <MyDeleteElement typeAction={actionDeleteMain} id={id}></MyDeleteElement>
+          {isAdmin?<MyDeleteElement typeAction={actionDeleteMain} id={id}></MyDeleteElement>:''}
           <Accordion expanded={isActive ? expanded === check : false} onClick={e=>setIsActive(true)} defaultExpanded={false} onChange={handleChange(check)} className={cl.Accordion}>
           <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" className={cl.accSummary}>
           {isAdmin && premissionLists == '200' ?

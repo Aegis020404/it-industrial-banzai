@@ -40,7 +40,7 @@ const SeoStableItem = ({title, descr, img, id,premissionLists, element})=>{
               {isAdmin&& premissionLists == '200' ?
                 <span className={'changeItemBtn'} onClick={e=>setChangeImg(!changeImg)}>изменить</span>
                 :''}
-            <MyDeleteElement id={id} typeAction={'DELETE_SEO_STABLE_ELEMENT'}></MyDeleteElement>
+             {isAdmin?<MyDeleteElement id={id} typeAction={'DELETE_SEO_STABLE_ELEMENT'}></MyDeleteElement>:''}
             <MyViewElement element={
                  isAdmin && changeImg ? 
                     <div className={cl.imgBlock}>

@@ -18,7 +18,6 @@ const MainKItem = ({count, infoArr, id, modalInfoChanging,premissionTariff, setM
             {count === 2 ?  
                 <div className={cl.keysIContentS}>
                     <MyViewElement element={
-                       
                             <figure  alt={infoArr[0].alt} className={cl.keysILeft} >
                                 <span className={cl.changeItem} onClick={e=>{setModal(true);modalInfoChanging({...modalInfo,href: infoArr[0].href,color:infoArr[0].backColor, alt:infoArr[0].alt, id: id, count: 1})}}>ИЗМЕНИТЬ</span>
                                  <Link href={'/keys/' + infoArr[0].href}>

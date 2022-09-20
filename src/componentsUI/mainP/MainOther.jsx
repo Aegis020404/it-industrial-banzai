@@ -149,7 +149,7 @@ const MainOther = () => {
                         }/>
                           {isAdmin ? 
                             <div className={cl.adminBlock}>
-                                <MyAddElement typeAction={'OTHER_ADD_ITEM'}/>
+                                {isAdmin?<MyAddElement typeAction={'OTHER_ADD_ITEM'}/>:''}
                             </div> 
                             : ''}
                        <MyViewElement element={

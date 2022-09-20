@@ -30,7 +30,7 @@ const SeoServices = ()=>{
     return (
         <section className={cl.servicesSection}>
             <div className={["container",cl.cont].join` `}>
-                <MyAddElement typeAction={'ADD_SEO_SERV_ELEMENT'}></MyAddElement>
+            {isAdmin?<MyAddElement typeAction={'ADD_SEO_SERV_ELEMENT'}></MyAddElement>:''}
                 {isAdmin  && premissionGet === '200'? 
                 <MyAdminInput width={servicesInfo.title.width} fetchInfo={{item: seoTexts,id:"seoServices", category: 'adminTexts'}} height={servicesInfo.title.height} typeAction={'TITLE_SEO_SERVICES_INFO'}>
                     <h2 className={cl.servicesTitle} onClick={e=>setServicesInfo({...servicesInfo, title: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{seoTexts.title}</h2>

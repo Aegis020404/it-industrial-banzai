@@ -9,7 +9,7 @@ const SeoReportItem = ({img, text, id,premissionLists, element})=>{
     const [reportInfo, setReportInfo] = useState({title:{width:0,height:0},descr:{width:0,height:0}})
     return (
         <li className={cl.reportItemList}>
-            <MyDeleteElement typeAction={'DELETE_SEO_REPORT_ELEMENT'} id={id}></MyDeleteElement>
+            {isAdmin?<MyDeleteElement typeAction={'DELETE_SEO_REPORT_ELEMENT'} id={id}></MyDeleteElement>:''}
             <div className={cl.reportItem}>
                 <MyViewElement element={
                     <div className={cl.reportImgBlock}>
