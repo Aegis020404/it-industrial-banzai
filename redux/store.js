@@ -31,6 +31,7 @@ import MainKeysReducer from './mainKeys-redux';
 import keysMobileReducer from './keysMobile-redux';
 import keysCrmReducer from './keysCrm-redux';
 import MainQuizReducer from './mainQuiz-redux';
+import { isInternetReducer } from './adminPing-redux';
 
 
 
@@ -64,7 +65,8 @@ let reducers = combineReducers( {
     MainKeys: MainKeysReducer,
     KeysMobile: keysMobileReducer,
     KeysCrm: keysCrmReducer,
-    MainQuiz: MainQuizReducer
+    MainQuiz: MainQuizReducer,
+    InternetKey: isInternetReducer,
 })
 
 const initStore = ()=>{

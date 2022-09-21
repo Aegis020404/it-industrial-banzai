@@ -8,13 +8,15 @@ import MyInput from '../UI/input/MyInput';
 import MyBtnBlank from '../UI/buttonborder/MyBtnBlank';
 import MyBtnFiled from '../UI/buttonback/MyBtnFiled';
 import MyThxModal from '../UI/thxmodal/MyThxModal';
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import { checkInternetConnect } from "../../untils/checkInternetConnect";
+
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MyAdminInput from '../UI/admininput/MyAdminInput';
 
 
-const MainQuizItem = ({id,infoObj,lastId,premissionLists,resultPrice,setModal,setModalInfo,modalInfo,sendOrder})=>{
+const MainQuizItem = ({id,infoObj,changeActivePage,lastId,permitActive,premissionLists,resultPrice,setModal,setModalInfo,modalInfo,sendOrder})=>{
     const dispatch = useDispatch()
     const [checkInputSite,setCheckInputSite] = useState('')
     const [activeNextBtn,setActiveNextBtn] = useState(false)
@@ -34,10 +36,14 @@ const MainQuizItem = ({id,infoObj,lastId,premissionLists,resultPrice,setModal,se
     },[checkInputSite])
 
    
+    const {isInternet} = useSelector(state=>state.InternetKey)
+    useEffect(()=>{
+        const statusConnect = checkInternetConnect(dispatch)
+    },[isInternet])
 
 
 
-    
+   
 
     const [quizInfo, setQuizInfo] = useState({lastTitle: {width:0,height:0},title:{width:0,height:0}, lastDescr: {width:0,height:0}, lastHelper: {width:0,height:0}})
     
@@ -45,7 +51,7 @@ const MainQuizItem = ({id,infoObj,lastId,premissionLists,resultPrice,setModal,se
     
     return (
         <>
-          <div  className={infoObj.activePage ? [cl.quizTabsActive,cl.quizTabs].join` ` :cl.quizTabs} >
+          <div  className={permitActive ? [cl.quizTabsActive,cl.quizTabs].join` ` :cl.quizTabs} >
                     {isAdmin&&premissionLists=='200'?
                     <MyAdminInput width={quizInfo.title.width} id={id} height={quizInfo.title.height} typeAction={'CHANGE_TITLE_QUIZ'}>
                         <h3 className={cl.quizSectionTitle} onClick={e=>setQuizInfo({...quizInfo, title: {width:e.target.offsetWidth, height:e.target.offsetHeight}})}>{infoObj.title}</h3>
@@ -112,7 +118,7 @@ const MainQuizItem = ({id,infoObj,lastId,premissionLists,resultPrice,setModal,se
                                     <span className={cl.resultHelper}>{infoObj.lastHelper}</span>
                                     }
                                     <div className={cl.resultBtnBlock}>
-                                        <MyBtnBlank type='submit' form='quiz' classes={cl.resultButton} onClick={(e)=>{e.preventDefault();setModal(true);sendOrder();dispatch({type:'RESET_ACTIVE_QUIZ'})}} >Обсудить детали проекта</MyBtnBlank>
+                                        <MyBtnBlank type='submit' form='quiz' classes={cl.resultButton} onClick={(e)=>{if(isInternet){e.preventDefault();setModal(true);sendOrder();changeActivePage(1)}else{alert('У вас отсутствует соединение с интернетом')}}} >Обсудить детали проекта</MyBtnBlank>
                                     </div>
                                 </form>
                             </div>
@@ -122,8 +128,8 @@ const MainQuizItem = ({id,infoObj,lastId,premissionLists,resultPrice,setModal,se
                   
                 
                     <div className={cl.quizBtnBlock}>
-                        {infoObj.id !== 1&&id !== lastId?<button className={cl.quizSectionBtnBack} onClick={e=>dispatch({type:'CHANGE_ACTIVE_PAGE_QUIZ',info:{id:id-1}})}>Назад</button>:''}
-                        {id !== lastId ? <MyBtnBlank classes={activeNextBtn ? [cl.quizSectionBtnActive, cl.quizSectionBtnNext].join` `:cl.quizSectionBtnNext}  onClick={e=>dispatch({type:'CHANGE_ACTIVE_PAGE_QUIZ',info:{id:id+1}})}>Далее</MyBtnBlank>:''}
+                        {infoObj.id !== 1&&id !== lastId?<button className={cl.quizSectionBtnBack} onClick={e=>changeActivePage(id-1)}>Назад</button>:''}
+                        {id !== lastId ? <MyBtnBlank classes={activeNextBtn ? [cl.quizSectionBtnActive, cl.quizSectionBtnNext].join` `:cl.quizSectionBtnNext}  onClick={e=>changeActivePage(id+1)}>Далее</MyBtnBlank>:''}
                     </div>
                     
                

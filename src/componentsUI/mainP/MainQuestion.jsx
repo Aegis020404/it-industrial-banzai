@@ -2,6 +2,8 @@ import React, { useState,useEffect,useMemo } from "react";
 import cl from '../../style/MainQuestion.module.css';
 import MyBtnFiled from "../UI/buttonback/MyBtnFiled";
 import MyInput from "../UI/input/MyInput";
+import { checkInternetConnect } from "../../untils/checkInternetConnect";
+
 import MyMask from "../UI/maskinput/MyMask";
 import MyModal from "../UI/modal/MyModal";
 import MyTextarea from "../UI/textarea/MyTextarea";
@@ -30,10 +32,14 @@ const MainQuestion = ()=>{
         e.preventDefault();
         setModal(true); 
       
-        useFetchingPost({...modalInfo}, 'modalOrder', 'MainQuestion');
+        useFetchingPost({...modalInfo}, 'modalOrder', `${new Date()}`);
         setModalInfo({namePerson:'',tel:'', question:''})
     
     }
+    const {isInternet} = useSelector(state=>state.InternetKey)
+    useEffect(()=>{
+        const statusConnect = checkInternetConnect(dispatch)
+    },[isInternet])
 
    
     
@@ -98,7 +104,7 @@ const MainQuestion = ()=>{
   
                         }
                        
-                        <MyBtnFiled type='submit' form='question' classes={cl.questionBtn} onClick={e=>{addModalInfo(e)}}>ЗАДАТЬ ВОПРОС</MyBtnFiled>
+                        <MyBtnFiled type='submit' form='question' classes={cl.questionBtn} onClick={e=>{isInternet?addModalInfo(e):alert('У вас отсутствует соединение с интернетом')}}>ЗАДАТЬ ВОПРОС</MyBtnFiled>
                         
                     </form>
                      }/>

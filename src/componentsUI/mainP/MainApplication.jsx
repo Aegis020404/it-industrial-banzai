@@ -8,11 +8,14 @@ import postRequest from "../../../redux/requests";
 import MyThxModal from "../UI/thxmodal/MyThxModal";
 import MyViewElement from "../UI/viewelement/MyViewElement";
 import MyAdminInput from '../UI/admininput/MyAdminInput';
-import { useSelector } from "react-redux";
-import { useFetchingGet, useFetchingPost } from "../../hooks/useAdminChangeing";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useFetchingPost, usePing } from "../../hooks/useAdminChangeing";
+
+
 import { getStartedInfo } from "../../untils/getStartedInfo";
 import { useChangeStateFirst } from "../../hooks/useChangeStateFirst";
+import { checkInternetConnect } from "../../untils/checkInternetConnect"
+
 const MainApplication = ()=>{
     const [modalInfo, setModalInfo] = useState({namePerson: '', tel: ''})
     const isAdmin = useSelector(state=>state.AdminKey)
@@ -24,22 +27,19 @@ const MainApplication = ()=>{
     const [premissionGet, setPremissionGet] = useState(0) 
     const changeState = useChangeStateFirst(setPremissionGet, premissionGet, "mainApplication", 'AT', adminTexts.mainApplication) 
 
-
+    const {isInternet} = useSelector(state=>state.InternetKey)
+    useEffect(()=>{
+        const statusConnect = checkInternetConnect(dispatch)
+    },[isInternet])
 
 
 
   
-    let forServerInfo = {}
-   
     const addModalInfo = (e)=>{
         e.preventDefault();
         setModal(true); 
-        const newModal = {
-            ...modalInfo, id: Date.now()
-        }
-        forServerInfo = {...newModal}
+        useFetchingPost({...modalInfo}, 'modalOrder', `${new Date()}`);
         setModalInfo({namePerson:'',tel:''})
-        console.log(forServerInfo);
         // postRequest(forServerInfo)
 
     }
@@ -97,8 +97,8 @@ const MainApplication = ()=>{
                                     :
                                         <p className={cl.applicationBottomDescr}>Нажимая на кнопку, вы даете согласие на обработку ваших персональных данных</p>
                                     }
-                                     <MyBtnBlank classes={cl.applicationBtn} type='submit' form='application' onClick={(e)=>{addModalInfo(e)}}>ОТПРАВИТЬ</MyBtnBlank>
-                                     <MyBtnBlank classes={cl.applicationBtnM}  type='submit' form='application' onClick={(e)=>{addModalInfo(e)}}>ОСТАВИТЬ ЗАЯВКУ</MyBtnBlank>
+                                     <MyBtnBlank classes={cl.applicationBtn} type='submit' form='application' onClick={(e)=>{isInternet?addModalInfo(e):alert('У вас отсутствует соединение с интернетом')}}>ОТПРАВИТЬ</MyBtnBlank>
+                                     <MyBtnBlank classes={cl.applicationBtnM}  type='submit' form='application' onClick={(e)=>{isInternet?addModalInfo(e):alert('У вас отсутствует соединение с интернетом')}}>ОСТАВИТЬ ЗАЯВКУ</MyBtnBlank>
                                  </form>
                             
                          </div>

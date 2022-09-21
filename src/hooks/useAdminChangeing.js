@@ -30,3 +30,11 @@ export const useFetchingImg = async (formData)=>{
     const data = await response.json()
     return data
  }
+
+
+ export const usePing = async ()=>{
+    const response = await fetch(`api/ping`)
+    const data = await response.json()
+    
+    return data
+ }

@@ -28,25 +28,40 @@ const MainQuiz = ()=>{
             let activeItem = e.list!==null&&e.list!=='lastPage'?e.list.filter(el=>el.activeItem)[0].subtitle:e.list==null?{'oldSite':e.oldSite,'oldSiteUrl':e.oldSiteUrl}:resultPrice
             objRes[titleItem]=activeItem
         })
-       
+       dispatch({type:'RESET_ACTIVE_QUIZ',info:{}})
         useFetchingPost({...objRes, ...modalInfo}, 'modalOrder', 'MainQuiz')  
+
     }
     let arrElementLine = quizState.filter(e=>e.id<5).map((e,i,arr)=>i+1==arr.length?[e]:[e,'-'])
     const stepArr = []
     arrElementLine.map((e,i,arr)=>{e[1]!==undefined?stepArr.push(e[0],e[1]):stepArr.push(e[0])})
+ 
+
+   let arrItemActive = []
+   arrItemActive.length = quizState.length
+   arrItemActive.fill(false)
+   arrItemActive[0] = true
+
+
+   const [activeItemState, setActiveItemState] = useState(arrItemActive)
+
+   const changeActivePage = (activeId)=>{
+    setActiveItemState(activeItemState.map((e,i)=>i==activeId-1?true:false))
+
+   }
+
    useMemo(()=>{
-    if(quizState[quizState.length-1].activePage){
+    if(activeItemState[activeItemState.length-1]){
+        console.log(quizState.filter((e,i,arr)=>e.list!==null&&e.list!=='lastPage').map((e,i,arr)=>e.list.filter(el=>el.activeItem)).reduce((ac,el)=>el[0].price+ac,0))
         setResultPrice(quizState.filter((e,i,arr)=>e.list!==null&&e.list!=='lastPage').map((e,i,arr)=>e.list.filter(el=>el.activeItem)).reduce((ac,el)=>el[0].price+ac,0))
     }
-   },[quizState[quizState.length-1].activePage])
-   
+   },[activeItemState[activeItemState.length-1]])
 
     const [premissionLists, setPremissionLists] = useState(0) 
     const changeState = useChangeStateFirst( setPremissionLists,premissionLists, "-","/mainQuiz",quizState, 'MAIN_QUIZ_CHANGE_STATE') 
     const [premissionGet, setPremissionGet] = useState(0) 
     const changeStateTexts = useChangeStateFirst(setPremissionGet, premissionGet, 'mainQuiz', 'AT',adminTexts.mainQuiz)
 
-    
     return (
         <section className={cl.quizSection}>
            
@@ -74,7 +89,7 @@ const MainQuiz = ()=>{
                     }/>
                     <MyViewElement element={
                         <div className={cl.quizPagination}>
-                        {quizState[quizState.length-1].activePage?
+                        {activeItemState[activeItemState.length-1]?
                         ''
                         :
                         <ul className={cl.quizPLisy}>
@@ -86,7 +101,7 @@ const MainQuiz = ()=>{
                                 :
                                 <li className={cl.quizPItem}>
                                     <div className={cl.quizPBlock} >
-                                        <div className={e.activePage?[cl.quizPCountBlock,cl.quizActiveP].join` `:cl.quizPCountBlock} >
+                                        <div className={activeItemState[e.id-1]?[cl.quizPCountBlock,cl.quizActiveP].join` `:cl.quizPCountBlock} >
                                             <span className={cl.quizPCount} >{e.id}</span>
                                         </div>
                                         <div className={cl.quizStepBlock}>
@@ -105,7 +120,7 @@ const MainQuiz = ()=>{
                     <div>
                         {quizState.map((e,i,arr)=>
                         <MyViewElement element={
-                            <MainQuizItem setModalInfo={setModalInfo} modalInfo={modalInfo} sendOrder={sendOrder} setModal={setModal} resultPrice={resultPrice} premissionLists={premissionLists} lastId={arr.length} infoObj={e} id={e.id}></MainQuizItem>
+                            <MainQuizItem setModalInfo={setModalInfo}changeActivePage={changeActivePage}  permitActive={activeItemState[e.id-1]} modalInfo={modalInfo} sendOrder={sendOrder} setModal={setModal} resultPrice={resultPrice} premissionLists={premissionLists} lastId={arr.length} infoObj={e} id={e.id}></MainQuizItem>
                         }/>
                         )}
                     </div>

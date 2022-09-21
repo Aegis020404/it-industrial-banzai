@@ -66,7 +66,7 @@ const Slider = ({...props}) => {
 
     })
     return (
-        <section className={cl.slider} onClick={e=>setStopAutoplay(true)}>
+        <section className={cl.slider} >
             <div className={'swiper swiperSlider ' + cl.mySwiper}>
 
 

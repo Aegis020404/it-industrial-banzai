@@ -13,7 +13,7 @@ const MainQItem = ({name,subtitle,check,id,count,premissionLists,isAdmin})=>{
         <li  className={check&&isAdmin? [cl.quizSectionItemActive,cl.quizSectionAllActive,cl.quizSectionItem].join` ` :check?[cl.quizSectionItemActive,cl.quizSectionItem].join` `: cl.quizSectionItem} onClick={e=>dispatch({type:'CHANGE_ACTIVE_ITEM_QUIZ',info:{id:id,count:count,text:!check}})}>
             <div className={cl.quizContentCard} style={isAdmin?{'pointerEvents':'all'} :{'pointerEvents':'none'}}>
                 <div className={cl.quizPointBlock}>
-                    <input type="radio"  defaultChecked={check} checked={check}  className={cl.quizRadio}/>
+                    <input type="radio"   checked={check} onChange={e=>{e.target.checked = check}} className={cl.quizRadio}/>
                     <div className={cl.radioHelper}></div>
                 </div>
                 {isAdmin&&premissionLists=='200'?
