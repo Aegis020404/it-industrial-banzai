@@ -45,7 +45,7 @@ const Slider = ({...props}) => {
 
 
     React.useEffect(() => {
-        let swiper = new Swiper('.swiperSlider', {
+        new Swiper('.swiperSlider', {
             navigation: {
                 prevEl: '.prevElSlider',
                 nextEl: '.nextElSlider'
@@ -62,9 +62,9 @@ const Slider = ({...props}) => {
             pagination: {
                 el: '.pagSlider'
             }
-        },[])
+        })
 
-    })
+    },[])
     return (
         <section className={cl.slider} >
             <div className={'swiper swiperSlider ' + cl.mySwiper}>
@@ -113,7 +113,6 @@ const Slider = ({...props}) => {
                         ))}
 
                 </div>
-                {/*<div className="swiper-slide" data-swiper-autoplay="200"/>*/}
                 <div className="swiper-pagination pagSlider"/>
                 <div className="swiper-button-prev prevElSlider"/>
                 <div className="swiper-button-next nextElSlider"/>
