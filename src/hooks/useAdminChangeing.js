@@ -13,7 +13,7 @@ export const useFetchingPost = async (infoChange, category, id,isAdmin)=>{
  }
 
 export const useFetchingGet = async (urlApi)=>{
-    const response = await fetch('/api/state/get/'+urlApi)
+    const response = await fetch('api/state/get/'+urlApi)
     const data = await response.json()
     if( typeof data === 'object') {
         return data
