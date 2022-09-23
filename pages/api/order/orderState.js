@@ -1,4 +1,5 @@
-var db = require("../../../src/API/DataStore").db;
+import db from '../../../src/API/DataStore';
+
 
 export default async (req, res) => {
     let name = req.query.name;
@@ -13,10 +14,17 @@ export default async (req, res) => {
         return;
     }
 
+    let order_type = req.query.order_type;
+    if(order_type === undefined) {
+        res.status(400).json({err: "order_type invalid!"});
+        return;
+    }
+
     let data = {
         name: name,
-        number: number
+        number: number,
+        order_type: order_type
     };
-    db.push("/applications[]", data, true);
+    db.push("/orders[]", data, true);
     res.status(200).json({status: "ok"});
 }

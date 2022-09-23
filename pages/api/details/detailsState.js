@@ -1,4 +1,4 @@
-var db = require("../../../src/API/DataStore").db;
+import db from '../../../src/API/DataStore';
 
 export default async (req, res) => {
     let name = req.query.name;
@@ -19,15 +19,20 @@ export default async (req, res) => {
         return;
     }
 
-    let budget_min = req.query.budget_min;
-    if(budget_min === undefined) {
-        res.status(400).json({err: "budget_min invalid!"});
+    let task = req.query.task;
+    if(task === undefined) {
+        res.status(400).json({err: "task invalid!"});
         return;
     }
 
-    let budget_max = req.query.budget_max;
-    if(budget_max === undefined) {
-        res.status(400).json({err: "budget_max invalid!"});
+    let link = req.query.link; // may be empty
+    if(link === undefined) {
+        link = "";
+    }
+    
+    let has_text = req.query.has_text;
+    if(has_text === undefined) {
+        res.status(400).json({err: "has_text invalid!"});
         return;
     }
 
@@ -35,9 +40,10 @@ export default async (req, res) => {
         name: name,
         number: number,
         type: type,
-        budget_min: budget_min,
-        budget_max: budget_max,
+        task: task,
+        link: link,
+        has_text: has_text,
     };
-    db.push("/commercial_offers[]", data, true);
+    db.push("/detailed_offers[]", data, true);
     res.status(200).json({status: "ok"});
 }
