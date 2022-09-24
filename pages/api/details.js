@@ -1,4 +1,4 @@
-import db from '../../../src/API/DataStore';
+import db from '../../src/API/DataStore';
 
 export default async (req, res) => {
     let name = req.query.name;
