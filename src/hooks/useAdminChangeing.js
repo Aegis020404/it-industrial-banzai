@@ -18,7 +18,7 @@ export const useFetchingPost = async (infoChange, category, id,isAdmin)=>{
  }
 
 export const useFetchingGet = async (urlApi)=>{
-    const response = await fetch('http://localhost:3000/api/state/get?'+urlApi, {
+    const response = await fetch('/api/state/get?'+urlApi, {
         referrerPolicy:'unsafe-url',
        })
     const data = await response.json()
