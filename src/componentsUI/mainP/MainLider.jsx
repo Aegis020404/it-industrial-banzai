@@ -6,6 +6,8 @@ import MyAdminModal from '../UI/adminmodal/MyAdminModal';
 import MyAdminInput from "../UI/admininput/MyAdminInput";
 import { getStartedInfo } from '../../untils/getStartedInfo';
 import { useDispatch } from "react-redux";
+import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
+
 const MainLider = ()=>{
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
     const adminTexts = useSelector(state=>state.AdminTexts)
@@ -16,18 +18,9 @@ const MainLider = ()=>{
 
     
     const [premissionGet, setPremissionGet] = useState(0) 
-    const [viewElUntil, setViewElUntil] = useState('')
-    useMemo(()=>{
-        if(premissionGet) {
-           setPremissionGet('200')
-        }
-    },[adminTexts.mainLider])
-    useEffect(()=>{
-        const startedInfo = getStartedInfo("mainLider",'CHANGE_ALL_ADMIN','/adminTexts/mainLider',dispatch )
-        startedInfo.then(res=>{
-            if(res){setPremissionGet(1)}else{setPremissionGet('200')}
-        })
-    },[viewElUntil])
+    const changeStateTexts = useChangeStateFirst(setPremissionGet, premissionGet, 'mainLider', 'AT',liderTexts)
+
+  
 
     return (
         <section className={cl.lider}>

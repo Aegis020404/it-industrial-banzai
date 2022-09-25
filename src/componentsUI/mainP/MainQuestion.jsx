@@ -12,6 +12,7 @@ import MyViewElement from "../UI/viewelement/MyViewElement";
 import MyAdminInput from "../UI/admininput/MyAdminInput";
 import MyAddElement from '../UI/adminaddel/MyAddElement';
 import { useDispatch, useSelector } from "react-redux";
+import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
 
 import { getStartedInfo } from '../../untils/getStartedInfo';
 import { useFetchingPost } from "../../hooks/useAdminChangeing";
@@ -45,18 +46,8 @@ const MainQuestion = ()=>{
     
 
     const [premissionGet, setPremissionGet] = useState(0) 
-    const [viewElUntil, setViewElUntil] = useState('')
-    useMemo(()=>{
-        if(premissionGet) {
-           setPremissionGet('200')
-        }
-    },[adminTexts.mainQuestion])
-    useEffect(()=>{
-        const startedInfo =  getStartedInfo("mainQuestion",'CHANGE_ALL_ADMIN','/adminTexts/mainQuestion',dispatch )
-        startedInfo.then(res=>{
-            if(res){setPremissionGet(1)}else{setPremissionGet('200')}
-        })
-    },[viewElUntil])
+    const changeStateTexts = useChangeStateFirst(setPremissionGet, premissionGet, 'mainQuestion', 'AT',questionTexts)
+
 
 
     return (

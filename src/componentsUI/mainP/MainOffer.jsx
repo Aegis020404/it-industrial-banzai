@@ -14,6 +14,8 @@ import MyViewElement from '../UI/viewelement/MyViewElement';
 import { useStepContext } from '@mui/material';
 import MyAdminInput from '../UI/admininput/MyAdminInput';
 import { getStartedInfo } from '../../untils/getStartedInfo';
+import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
+
 const MainOffer = (props) => {
     const [btnActive, setBtnActive] = useState('')
     const dispatch = useDispatch();
@@ -54,6 +56,8 @@ const MainOffer = (props) => {
 
 
     const [premissionGet, setPremissionGet] = useState(0) 
+    const changeStateTexts = useChangeStateFirst(setPremissionGet, premissionGet, 'mainOffer', 'AT',adminTexts.mainOffer)
+
     const [viewElUntil, setViewElUntil] = useState('')
     useMemo(()=>{
         if(premissionGet) {

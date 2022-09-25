@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import MyAdminInput from "../../UI/admininput/MyAdminInput";
 import { useDispatch } from "react-redux";
 import { getStartedInfo } from "../../../untils/getStartedInfo";
+import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
+
 const MarketplaceSeoText = ()=>{
     const textData = useSelector(state=>state.AdminTexts.marketText)
     const [textInfo, setTextInfo] = useState({title: {width:0,height:0},descr: {width:0,height:0}, overDescr: {width:0,height:0}})
@@ -28,20 +30,9 @@ const MarketplaceSeoText = ()=>{
 
 
     const [premissionGet, setPremissionGet] = useState(0) 
-    const [viewElUntil, setViewElUntil] = useState('')
+    const changeStateTexts = useChangeStateFirst(setPremissionGet, premissionGet, 'marketText', 'AT',textData)
 
-    useMemo(()=>{
-        if(premissionGet) {
-           setPremissionGet('200')
-        }
-    },[textData])
-    useEffect(()=>{
-        const startedInfo = getStartedInfo("marketText",'CHANGE_ALL_ADMIN','/adminTexts/marketText',dispatch )
-        startedInfo.then(res=>{
-            if(res){setPremissionGet(1)}else{setPremissionGet('200')}
-        })
-
-    },[viewElUntil])
+    
 
 
 

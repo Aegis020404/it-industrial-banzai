@@ -5,6 +5,7 @@ import MyTitle from "../UI/titlepage/MyTitle";
 import MyViewElement from "../UI/viewelement/MyViewElement";
 import { useSelector } from "react-redux";
 import MyAdminInput from "../UI/admininput/MyAdminInput";
+import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
 
 import { getStartedInfo } from "../../untils/getStartedInfo";
 import { useDispatch } from "react-redux";
@@ -17,19 +18,8 @@ const ContactsLocationInfo = ()=>{
     const dispatch = useDispatch()
     
     const [premissionGet, setPremissionGet] = useState(0) 
-    const [viewElUntil, setViewElUntil] = useState('')
-    useMemo(()=>{
-        if(premissionGet) {
-           setPremissionGet('200')
-        }
-    },[adminTexts.contactTexts])
-    useEffect(()=>{
-        const startedInfo = getStartedInfo("contactTexts",'CHANGE_ALL_ADMIN','/adminTexts/contactTexts',dispatch )
-        startedInfo.then(res=>{
-            if(res){setPremissionGet(1)}else{setPremissionGet('200')}
-        })
+    const changeStateTexts = useChangeStateFirst(setPremissionGet, premissionGet, 'contactTexts', 'AT',contactTexts)
 
-    },[viewElUntil])
     
     
     const [contactData, setContactData] = useState({titleFirst: {width:0,height:0}, titleSec: {width:0,height:0}, titleNumber: {width:0,height:0}, titleEmail: {width:0,height:0}, valueNumber: {width:0,height:0}, valueEmail: {width:0,height:0}, titleAddres: {width:0,height:0}, valueAddres: {width:0,height:0}})

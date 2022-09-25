@@ -8,9 +8,10 @@ import MyAdminModal from '../UI/adminmodal/MyAdminModal';
 import { getStartedInfo } from '../../untils/getStartedInfo';
 import Link from 'next/link';
 import MyViewElement from '../UI/viewelement/MyViewElement';
+import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
+
 import MyAdminInput from "../UI/admininput/MyAdminInput";
 import MyAddElement from '../UI/adminaddel/MyAddElement';
-import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
 
 const MainKeys = () => {
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
@@ -23,19 +24,9 @@ const MainKeys = () => {
     const dispatch = useDispatch()
 
     const [premissionGet, setPremissionGet] = useState(0) 
-    const [viewElUntil, setViewElUntil] = useState('')
+    const changeStateTexts = useChangeStateFirst(setPremissionGet, premissionGet, 'mainKeys', 'AT',keysTexts)
 
-    useMemo(()=>{
-        if(premissionGet) {
-           setPremissionGet('200')
-        }
-    },[adminTexts.mainKeys])
-    useEffect(()=>{
-        const startedInfo = getStartedInfo("mainKeys",'CHANGE_ALL_ADMIN','/adminTexts/MainKeys',dispatch )
-        startedInfo.then(res=>{
-            if(res){setPremissionGet(1)}else{setPremissionGet('200')}
-        })
-    },[viewElUntil])
+   
     const [premissionTariff, setPremissionTariff] = useState(0) 
     const changeState = useChangeStateFirst( setPremissionTariff,premissionTariff, "-","/mainKeys",itemInfo, 'MAIN_KEYS_CHANGE_STATE') 
 

@@ -5,13 +5,14 @@ import {Navigation, Pagination} from "swiper";
 import cl from '../../style/MainDev.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import MyViewElement from '../UI/viewelement/MyViewElement';
+import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
+
 import MyAddElement from '../UI/adminaddel/MyAddElement';
 import MyDeleteElement from '../UI/admindelel/MyDeleteElement';
 import MyAdminInput from '../UI/admininput/MyAdminInput';
 import {useDropzone} from 'react-dropzone'
 import MainDevItem from './MainDevItem';
 import { getStartedInfo } from '../../untils/getStartedInfo';
-import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
 
 
 const MainDev = (props) => {
@@ -33,19 +34,8 @@ const MainDev = (props) => {
     
 
     const [premissionGet, setPremissionGet] = useState(0) 
-    const [viewElUntil, setViewElUntil] = useState('')
+    const changeStateTexts = useChangeStateFirst(setPremissionGet, premissionGet, 'mainDev', 'AT',adminTexts.mainDev)
 
-    useMemo(()=>{
-        if(premissionGet) {
-           setPremissionGet('200')
-        }
-    },[adminTexts.mainDev])
-    useEffect(()=>{
-        const startedInfo = getStartedInfo("mainDev",'CHANGE_ALL_ADMIN','/adminTexts/mainDev',dispatch )
-        startedInfo.then(res=>{
-            if(res){setPremissionGet(1)}else{setPremissionGet('200')}
-        })
-    },[viewElUntil])
 
     const [premissionTariff, setPremissionTariff] = useState(0) 
     const changeState = useChangeStateFirst( setPremissionTariff,premissionTariff, "-","/mainDev",infoData, 'CHANGE_STATE_DEV') 

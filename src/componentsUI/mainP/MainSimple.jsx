@@ -8,6 +8,8 @@ import MyAdminInput from "../UI/admininput/MyAdminInput";
 import MyAddElement from "../UI/adminaddel/MyAddElement";
 import { useDispatch } from "react-redux";
 import { getStartedInfo } from "../../untils/getStartedInfo";
+import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
+
 
 const MainSimple = () => {
 
@@ -18,19 +20,9 @@ const MainSimple = () => {
     const dispatch = useDispatch()
 
     const [premissionGet, setPremissionGet] = useState(0) 
-    const [viewElUntil, setViewElUntil] = useState('')
-    useMemo(()=>{
-        if(premissionGet) {
-           setPremissionGet('200')
-        }
-    },[adminTexts.mainSimple])
-    useEffect(()=>{
-        const startedInfo = getStartedInfo("mainSimple",'CHANGE_ALL_ADMIN','/adminTexts/mainSimple',dispatch )
-        startedInfo.then(res=>{
-            if(res){setPremissionGet(1)}else{setPremissionGet('200')}
-        })
+    const changeStateTexts = useChangeStateFirst(setPremissionGet, premissionGet, 'mainSimple', 'AT',simpleTexts)
 
-    },[viewElUntil])
+  
 
 
     return (
