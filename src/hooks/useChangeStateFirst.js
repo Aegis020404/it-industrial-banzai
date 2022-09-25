@@ -14,7 +14,7 @@ export const useChangeStateFirst = (setPremissionGet,premissionGet, changingItem
   
     useEffect(()=>{ 
         
-        const startedInfo = urlState == 'AT' ? getStartedInfo(changingItem,'CHANGE_ALL_ADMIN','/adminTexts/'+changingItem,dispatch ) : getStartedInfo(changingItem,typeActionChange,urlState,dispatch )
+        const startedInfo = urlState == 'AT' ? getStartedInfo(changingItem,'CHANGE_ALL_ADMIN','category=adminTexts&id='+changingItem,dispatch ) : getStartedInfo(changingItem,typeActionChange,`category=${urlState.split``.filter(e=>e!=='/').join``}`,dispatch )
         startedInfo.then(res=>{
             setPremissionGet('200')
         })

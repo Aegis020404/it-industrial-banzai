@@ -16,8 +16,9 @@ export default async (req, res) => {
         } else {
             data =  db.getData("/" + category + "/");
         }
-        res.status(200).json(data);
     } catch(error) {
-        res.status(500).json(error);
+        // lol
     };
+    res.status(200).json(data);
+
 }
