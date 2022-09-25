@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import MyAdminInput from "../../UI/admininput/MyAdminInput";
 import { useDispatch } from "react-redux";
 import { getStartedInfo } from "../../../untils/getStartedInfo";
-import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
+import { useChangeStateFirst } from '../../../hooks/useChangeStateFirst';
 
 const MarketplaceSeoText = ()=>{
     const textData = useSelector(state=>state.AdminTexts.marketText)
