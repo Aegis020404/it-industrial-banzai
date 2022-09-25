@@ -1,5 +1,4 @@
-// var db = require("../../../../src/API/DataStore").db;
-import db from '../../../../src/API/DataStore';
+import db from '../../../src/API/DataStore';
 
 
 export default async (req, res) => {
