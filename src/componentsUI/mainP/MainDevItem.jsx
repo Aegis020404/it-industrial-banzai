@@ -178,7 +178,7 @@ const MainDevItem = ({actionTitle,premissionTariff, actionDescr, actionDelete, i
                 <div className={cl.photoBlockM}>
                     <div className={cl.photoWrapM}>
                              <span className={[cl.photoM].join` `}>
-                                <Image width={64} height={64}  src={'/img/' + obj.img}/>
+                             {premissionTariff=='200'&&<Image width={64} height={64}  src={'/img/' + obj.img}/>}
                             </span>
                     </div>
                 </div>

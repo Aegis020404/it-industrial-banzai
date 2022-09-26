@@ -37,11 +37,11 @@ const KeysItemList = ({logo,logoClasses,premissionLists, descr, background, alt,
                             <div className={cl.keysImgCard}>
                         <span className={defaultLinks.some(e=>e == '/img/'+logo) ? [cl.keysLogo, logoClasses].join` ` : cl.keysLogo}>
                             {/*<Image width={69} height={68}  alt='logo' src={'/img/'+logo}/>*/}
-                            <img alt='logo' src={'/img/'+logo}/>
+                            {premission=='200'&&<img alt='logo' src={'/img/'+logo}/>}
                         </span>
                             </div>
                             <div className={[cl.keysImgCard, classesImg].join` `}>
-                                <img width='90%' height='70%' src={`/img/${img}`} alt={'preview'} className={cl.keysImg}/>
+                            {premission=='200'&&<img width='90%' height='70%' src={`/img/${img}`} alt={'preview'} className={cl.keysImg}/>}
                             </div>
                         </div>
                     </Link>

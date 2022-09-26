@@ -73,7 +73,7 @@ const MainTItem = ({img,premission, title, descr, price, dl, setModal, setTheme,
             <div className={cl.tariffContent}>
                 <div className={cl.tariffHeader}>
                     <span className={cl.tariffImg}>
-                        <Image width={38} height={39} src={'/img/' + logo}></Image>
+                        {premission=='200'&&<Image width={38} height={39} src={'/img/' + logo}></Image>}
                     </span>
                     {isAdmin && premission == '200' ? 
                         <MyAdminInput premissionFetching={premissionFetching} setPremissionFetching={setPremissionFetching} width={tariffItem.title.width} height={tariffItem.title.height} typeAction={'TARIFF_TITLE_CHANGE'} id={id}>

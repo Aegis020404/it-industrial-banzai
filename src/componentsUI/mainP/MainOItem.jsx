@@ -78,7 +78,7 @@ const MainOItem = ({title, img,premissionTariff, setModalItem, id, element})=>{
                     </div>
                 </div>
                 :
-                <Image width={104} height={103}  className={cl.otherItemImgBlock} src={`/img/${img}`}/>
+                premissionTariff=='200'&&<Image width={104} height={103}  className={cl.otherItemImgBlock} src={`/img/${img}`}/>
             }
            
             <MyBtnBlank classes={cl.otherItemBtn} onClick={e=>{e.preventDefault(e); setModalItem(true)}}>ЗАКАЗАТЬ</MyBtnBlank>

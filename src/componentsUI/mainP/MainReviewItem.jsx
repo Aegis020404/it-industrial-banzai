@@ -80,7 +80,7 @@ const MainReviewItem = ({infoObj, premissionLists})=>{
                         </div>
                     </div>
                     :
-                    <Image width={107} height={107} src={`/img/${infoObj.photo}`} alt="photo" className={cl.photo}/>
+                    premissionLists=='200'&&<Image width={107} height={107} src={`/img/${infoObj.photo}`} alt="photo" className={cl.photo}/>
                 }
                
                 {

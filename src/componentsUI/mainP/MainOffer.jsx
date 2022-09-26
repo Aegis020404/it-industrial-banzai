@@ -58,18 +58,7 @@ const MainOffer = (props) => {
     const [premissionGet, setPremissionGet] = useState(0) 
     const changeStateTexts = useChangeStateFirst(setPremissionGet, premissionGet, 'mainOffer', 'AT',adminTexts.mainOffer)
 
-    const [viewElUntil, setViewElUntil] = useState('')
-    useMemo(()=>{
-        if(premissionGet) {
-           setPremissionGet('200')
-        }
-    },[adminTexts.mainOffer])
-    useEffect(()=>{
-        const startedInfo =  getStartedInfo("mainOffer",'CHANGE_ALL_ADMIN','/adminTexts/mainOffer',dispatch )
-        startedInfo.then(res=>{
-            if(res){setPremissionGet(1)}else{setPremissionGet('200')}
-        })
-    },[viewElUntil])
+  
 
     return (
         <section className={cl.MainOffer}>

@@ -74,7 +74,7 @@ const MobileServItem = ({title,premissionLists, descr,element, img,id, actionLis
                         </div>
                         :
                         <span className={cl.serviceImg}>
-                            <Image width={35} height={35} src={'/img/'+img} />
+                             {premissionLists=='200'&&<Image width={35} height={35} src={'/img/'+img} />}
                         </span>
                 }/>
                 <MyViewElement permit={permitView} element={

@@ -20,8 +20,10 @@ const MyFormData = ({isImg,setSrcImgDrop,id,typeAction, count})=>{
             form.append("file", isImg, isImg.name)
           
             const fetchImg = useFetchingImg(form).then((fetch)=>{
+                console.log(fetch)
                 dispatch({type:typeAction,info:{id:id,text:fetch.filename, count: count}})
             })
+            fetchImg()
         }
     },[isImg])
 

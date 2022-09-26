@@ -69,7 +69,7 @@ const MainResultItem = ({infoObj,premissionLists})=>{
                         </div>
                     :
                         <span className={[cl.resultImg].join` `}>
-                            <Image width={68} height={76}  src={'/img/' +  infoObj.img}/>
+                             {premissionLists=='200'&&<Image width={68} height={76}  src={'/img/' +  infoObj.img}/>}
                         </span>
                     } 
                 </div>

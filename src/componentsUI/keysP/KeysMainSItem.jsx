@@ -14,7 +14,7 @@ const KeysMainSItem = ({descr, logo, img, background, alt, classesImg})=>{
                             </span>
                         </div>
                         <div className={[cl.keysSitesIImgCard,classesImg].join` `}>
-                            <spaan>a</spaan>
+                            <span></span>
                         </div>
                     </div>
                     <figcaption className={cl.keysSitesIDescr}>{descr}</figcaption>

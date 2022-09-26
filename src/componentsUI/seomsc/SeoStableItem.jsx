@@ -55,7 +55,7 @@ const SeoStableItem = ({title, descr, img, id,premissionLists, element})=>{
                     </div>
                     :
                  <span className={cl.stableImgBlock}>
-                    <Image src={`/img/${img}`} width={75} height={75} />
+                     {premissionLists=='200'&&<Image src={`/img/${img}`} width={75} height={75} />}
                 </span>
             }/>
             <MyViewElement element={

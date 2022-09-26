@@ -68,7 +68,7 @@ const SeoServicesItem = ({title, img,premissionLists, infoItem, id, element})=>{
                 </div>
                 :
                 <span className={cl.servicesImgBlock}>
-                        <Image width={50} height={50}  src={`/img/${img}`} alt="photo" className={cl.itemImg}/>
+                         {premissionLists=='200'&&<Image width={50} height={50}  src={`/img/${img}`} alt="photo" className={cl.itemImg}/>}
                 </span>
                 
             }
