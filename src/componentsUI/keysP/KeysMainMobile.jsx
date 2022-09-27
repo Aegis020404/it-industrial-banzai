@@ -10,7 +10,7 @@ const KeysMainMobile = ({classesTabs, setModalInfo, modalInfo, setModal, modal})
     const infoArr = useSelector(state=>state.KeysMobile)
     const [premissionLists, setPremissionLists] = useState(0) 
     const changeState = useChangeStateFirst( setPremissionLists,premissionLists, "-","/keysMobile",infoArr, 'MOBILE_CHANGE_STATE') 
-    console.log(infoArr)
+  
     return (
         <div className={[cl.mobileBlock,classesTabs].join` `}>
              {isAdmin && 
