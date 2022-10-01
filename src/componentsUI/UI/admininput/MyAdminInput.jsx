@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 
 
-const MyAdminInput = ({width, height, typeAction, count,complitedSave, children,isAdminText=1, id, number, fetchInfo,setPremissionFetching,premissionFetching })=>{
+const MyAdminInput = ({width, height,btnsDirection = 1, typeAction, count,complitedSave, children,isAdminText=1, id, number, fetchInfo,setPremissionFetching,premissionFetching })=>{
     const [isChange, setIsChange] = useState(undefined)
     const [blockChild, setBlockChild] = useState(width)
     const dispatch = useDispatch();
@@ -21,6 +21,7 @@ const MyAdminInput = ({width, height, typeAction, count,complitedSave, children,
     
 
     const saveChange = ()=>{
+        console.log({text: valueArea, id: id, })
         dispatch({type: typeAction, info: {text: valueArea, id: id, count: count, number: number}})
       
         setIsChange(false)
@@ -43,8 +44,8 @@ const MyAdminInput = ({width, height, typeAction, count,complitedSave, children,
                 {isChange ? 
                     <label className={cl.labelAdmin} >
                         <textarea type='text' name='changeItem' value={valueArea} onChange={e=>setValueArea(e.target.value)}  className={[cl.inputAdmin, children.props.className].join` `} style={{width: width + 2, height: height}}/>
-                        <span className={cl.saveAdmin} onClick={e=>saveChange(e)}>save</span>
-                        <span className={cl.cancelAdmin} onClick={e=>сancellationChange(e)}>cancel</span>
+                        <span className={btnsDirection ?cl.saveAdmin:cl.saveAdminBottom} onClick={e=>saveChange(e)}>save</span>
+                        <span className={btnsDirection ?cl.cancelAdmin:cl.cancelAdminBottom} onClick={e=>сancellationChange(e)}>cancel</span>
                     </label>
                 :
                 <div  onClick={e=>getChildAndActive(e)}>

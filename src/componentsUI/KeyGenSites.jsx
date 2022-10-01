@@ -8,8 +8,14 @@ import MyModal from "./UI/modal/MyModal";
 import MyThxModal from "./UI/thxmodal/MyThxModal";
 import MyBtnBlank from "./UI/buttonborder/MyBtnBlank";
 import NavPagesHead from './UI/navpage/MyNavPages';
+import MyAdminInput from "./UI/admininput/MyAdminInput";
+import MyAddElement from './UI/adminaddel/MyAddElement';
+import MyDeleteElement from './UI/admindelel/MyDeleteElement';
 import { useDispatch,useSelector } from 'react-redux';
+import { useChangeStateFirst } from '../hooks/useChangeStateFirst';
+
 import Image from "next/image";
+import KeyGenSitesItem from './KeyGenSitesItem';
 
 const KeyGenSites = ({link}) => {
     const [modal, setModal] = useState(false)
@@ -17,33 +23,78 @@ const KeyGenSites = ({link}) => {
     // let [state] = props.KeySitePage.filter(el => el.href === props.match.path)
     const dispatch = useDispatch();
     const {KeySitePage} = useSelector(state=>state)
-    const [state] = KeySitePage.filter(e=>e.href === link)
+   console.log(link, KeySitePage)
+    const [state] = KeySitePage.filter(e=>e.href==link)
+ 
+
    
-    const keyItem = useRef('')
-    useEffect(()=>{
-        keyItem.current.classList.toggle('keyI')
-    },[keyItem])
+    const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
+
+    const [premission, setPremission] = useState(0) 
+    const changeState = useChangeStateFirst( setPremission,premission, "-","/genericPages",KeySitePage, 'CHANGE_ALL_STATE') 
+    const [modalInfo, setModalInfo] = useState({descrAchor:'',descr:'', achorSite:'', aboutCompany: '', task: '', link: ''})
+
+    const replacerComments = (str, find, replace)=>{
+        let parts = str.split(find);
+        let res = []
+        for(let i = 0, result = []; i < parts.length; i++) {
+            result.push(parts[i]);
+            result.push(replace);
+            res = result
+        }
+        return (
+            <>{res}</>
+        );
+    }
+
+
+   console.log(state)
+  
     const infoPage = [{text: 'Кейсы', link: '/keys'}, {text: state.descrAchor}]
     return (
-        <div ref={keyItem} className={[cl.KeySite, 'key'].join` `} >
-                <NavPagesHead navItems={infoPage}/>
+        <div className={[cl.KeySite, ].join` `} >
+                <NavPagesHead action={'CHANGE_TITLE_GEN_KEYS'} id={state.id} premission={premission} navItems={infoPage}/>
             <div className={cl.container}>
-                <div className={cl.descr}>{state.descr}</div>
-                <div className={cl.achorSite}>
-                    { state.achorSite ? <a href={state.achorSite[1]} target='_blank' className={cl.hrefSite} >{state.achorSite[0]}</a> : ''}
-                </div>
+                {
+                    isAdmin && premission === '200' ? 
+                    <MyAdminInput width={modalInfo.descr.width} btnsDirection={0} id={state.id} height={modalInfo.descr.height} typeAction={'CHANGE_DESCR_GEN_KEYS'}>
+                          <div className={cl.descr} onClick={e=>{e.preventDefault();setModalInfo({...modalInfo, descr: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}}>{state.descr}</div>
+                      
+                    </MyAdminInput>
+                    :
+                    <div className={cl.descr}>{replacerComments(state.descr, '_', < br/>)}</div>
+                }
+               
+                <div className={cl.achorSite}>{ state.achorSite ? 
+                    isAdmin && premission === '200' ? 
+                    <MyAdminInput width={modalInfo.link.width} id={state.id} height={modalInfo.link.height} typeAction={'CHANGE_ABOUT_DESCR_GEN_KEYS'}>
+                         <a href={`https://${state.achorSite}`} target='_blank' className={cl.hrefSite} onClick={e=>{e.preventDefault();setModalInfo({...modalInfo, link: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}}>{state.achorSite}</a> 
+                    </MyAdminInput>
+                    :
+                    <a href={`https://${state.achorSite}`} target='_blank' className={cl.hrefSite} >{state.achorSite}</a> 
+                   
+                
+                : ''}</div>
                 <div className={cl.about}>
                     <div className={cl.aboutCompany}>
                         <div className={cl.title}>О компании</div>
-                        <div className={cl.text}>
-                            {state.aboutCompany}
-                        </div>
+                        {isAdmin && premission === '200' ? 
+                          <MyAdminInput width={modalInfo.aboutCompany.width} id={state.id} height={modalInfo.aboutCompany.height} typeAction={'CHANGE_ABOUT_DESCR_GEN_KEYS'}>
+                               <div className={cl.text} onClick={e=>setModalInfo({...modalInfo, aboutCompany: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{state.aboutCompany}</div>
+                          </MyAdminInput>
+                          :
+                          <div className={cl.text}>{ replacerComments(state.aboutCompany, '_', < br/>)}</div>}
+                       
                     </div>
                     <div className={cl.task}>
                         <div className={cl.title}>Задача</div>
-                        <div className={cl.text}>
-                            {state.task}
-                        </div>
+                        {isAdmin && premission === '200' ? 
+                          <MyAdminInput width={modalInfo.task.width} id={state.id} height={modalInfo.task.height} typeAction={'CHANGE_TASK_GEN_KEYS'}>
+                               <div className={cl.text} onClick={e=>setModalInfo({...modalInfo, task: {width:e.target.offsetWidth, height: e.target.offsetHeight}})}>{state.task}</div>
+                          </MyAdminInput>
+                          :
+                          <div className={cl.text}>{state.task}</div>}
+                        
                     </div>
                 </div>
 
@@ -51,17 +102,7 @@ const KeyGenSites = ({link}) => {
 
 
             {state.imageInfo.map((el, i) => (
-                <div className={cl.photoWrap}>
-                    {!i ?
-                        <Image  src={`/img/${state.imageInfo[i][1]}`} alt="photo" className={cl.photo}/>
-                    :   
-                    <>
-                         <h1 className={cl.imageInfo}>{state.imageInfo[i][0]}</h1>
-                        <Image src={`/img/${state.imageInfo[i][1]}`} alt="photo" className={cl.photo}/>
-                    </>
-                    }
-                    
-                </div>
+                <KeyGenSitesItem premission={premission} id={state.id} infoObj={el}></KeyGenSitesItem>
             ))
             }
 

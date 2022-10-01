@@ -11,6 +11,20 @@
     object-fit: contain;
 }
 
+.keysImgCard {
+    position: relative;
+}
+
+.keysImgCard img {
+    position: relative !important;
+}
+
+.keysImgCard span {
+    display: inline !important;
+    position: relative !important;
+}
+
+
 .stroyLogo {
     width: 60px;
     height: 60px;

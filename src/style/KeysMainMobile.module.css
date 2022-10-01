@@ -18,14 +18,35 @@
     grid-template-rows: repeat(1, auto);
     gap: 80px;
 }
-.mobilaAppImg  img {
-    margin-top: 10px;
+
+
+
+.mobilaAppImg  {
+    display: flex;
+    align-items: center;
+    height: 100%;
  }
+ 
+.mobilaAppImg div {
+    margin-top: 10px;
+    width: 322px;
+    height: 371px;
+}
+.basicBlock {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.basicBlock div {
+    width: 360px;
+    height: 275px;
+}
 
 
 
 @media (max-width:768px) {
-    .mobilaAppImg  img {
+    .mobilaAppImg div {
        margin-bottom: 5px;
     }
 
@@ -35,11 +56,32 @@
         transition: all .35s ease-in-out;
         padding-bottom: 55px;
     }
-    .mobilaAppImg  img {
-        max-width: 170px;
-        min-height: 210px;
+
+    .mobilaAppImg  {
+        display: flex;
+        align-items: center;
+        height: 100%;
+     }
+     .basicBlock {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    
+    .basicBlock div {
+        width: 210px;
+        height: 160px;
+    }
+    
+     
+    .mobilaAppImg div {
+        width: 170px;
+        height: 210px;
         margin-bottom:5px;
     }
+
+
+  
     .logoBlue {
         width: 40px;
         height: 33px;

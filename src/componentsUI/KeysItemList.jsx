@@ -14,7 +14,7 @@ const KeysItemList = ({logo,logoClasses,premissionLists, descr, background, alt,
     const [sizeInfo, setSizeInfo] = useState({descr: {width:0,height:0}})
     const logoElement = useRef()
 
-    console.log(logoClasses)
+   
     const defaultLinks = ['/img/keys-stroy-logo.svg',
     '/img/keys-auto-logo.svg',
     '/img/llumar-pad.WebP',
@@ -30,18 +30,23 @@ const KeysItemList = ({logo,logoClasses,premissionLists, descr, background, alt,
                    
                    
                 :''}
-                <span className={cl.changeItemBtn} onClick={e=>{keysPage == 'sites' ?setModal({...modal, sites: true}) : keysPage == 'crm' ? setModal({...modal, crm: true}) :  keysPage == 'mobile' ?  setModal({...modal, mobile: true}) : '' ;setActiveItem({...activeItem,href:page,color:background, alt: alt, id: id})}}>ИЗМЕНИТЬ</span>
+                 {isAdmin &&<span className={cl.changeItemBtn} onClick={e=>{keysPage == 'sites' ?setModal({...modal, sites: true}) : keysPage == 'crm' ? setModal({...modal, crm: true}) :  keysPage == 'mobile' ?  setModal({...modal, mobile: true}) : '' ;setActiveItem({...activeItem,href:page,color:background, alt: alt, id: id})}}>ИЗМЕНИТЬ</span>}
                 <figure alt={alt} className={cl.keysFigure}>
-                    <Link href={`/keys${page}`}>
+                    <Link href={`/keys/${page}`}>
                         <div className={cl.keysImgBlock} style={{backgroundColor: '#'+background}}  onClick={e=>document.body.scrollTo({top:0,behavior:'smooth'})}>
-                            <div className={cl.keysImgCard}>
+                            <div className={cl.keysLogoCard}>
                         <span className={defaultLinks.some(e=>e == '/img/'+logo) ? [cl.keysLogo, logoClasses].join` ` : cl.keysLogo}>
                             {/*<Image width={69} height={68}  alt='logo' src={'/img/'+logo}/>*/}
                             {premissionLists=='200'&&<img alt='logo' src={'/img/'+logo}/>}
                         </span>
                             </div>
                             <div className={[cl.keysImgCard, classesImg].join` `}>
-                            {premissionLists=='200'&&<img width='90%' height='70%' src={`/img/${img}`} alt={'preview'} className={cl.keysImg}/>}
+                            {premissionLists=='200'&&
+                            <div>
+                                <Image layout='fill' src={`/img/${img}`} alt={'preview'} className={cl.keysImg}/>
+                            </div>
+                          
+                            }
                             </div>
                         </div>
                     </Link>

@@ -245,7 +245,7 @@ html {
     background-color: rgb(103, 103, 103);
 }
 
-.main, .about, .keys, .reviews, .vacancy, .tariff, .key, .contacts, .seo, .mobile, .marketplace {
+.main, .about,.gen-pages, .keys, .reviews, .vacancy, .tariff, .key, .contacts, .seo, .mobile, .marketplace {
     -webkit-transition: all .45s ease-in-out;
     -o-transition: all .45s ease-in-out;
     transition: all .45s ease-in-out;
@@ -253,7 +253,7 @@ html {
     margin-top: 125px;
 }
 
-.mainL, .keysI, .aboutI, .reviewsI, .vacancyI , .tariffI, .keyI, .contactsI, .seoI, .mobileI, .marketplaceI {
+.mainL, .keysI, .aboutI,.genPage, .reviewsI, .vacancyI , .tariffI, .keyI, .contactsI, .seoI, .mobileI, .marketplaceI {
     opacity: 1;
 }
 
@@ -377,7 +377,7 @@ input[type="range"]{
 }   
 
 @media (max-width: 992px) {
-    .main, .about, .keys, .reviews, .vacancy, .tariff, .key, .contacts, .seo, .mobile, .marketplace {
+    .main, .about, .keys,.gen-pages, .reviews, .vacancy, .tariff, .key, .contacts, .seo, .mobile, .marketplace {
         margin-top: 104px;
     }
 
@@ -386,7 +386,7 @@ input[type="range"]{
     .seo-page-o {
         margin-bottom: 75px;
     }
-    .main, .about, .keys, .reviews, .vacancy, .tariff, .key, .contacts, .seo, .mobile, .marketplace {
+    .main, .about, .keys,.gen-pages, .reviews, .vacancy, .tariff, .key, .contacts, .seo, .mobile, .marketplace {
         margin-top: 0px;
     }
 }

@@ -1,5 +1,6 @@
 
 export const useFetchingPost = async (infoChange, category, id,isAdmin)=>{
+    console.log(infoChange,category,id)
    if( id !== undefined) {
     
     const response = await fetch(`/api/state/set?category=${category}&id=${id}&data=${JSON.stringify(infoChange)}`, {

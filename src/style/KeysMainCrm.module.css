@@ -13,10 +13,31 @@
     height: 44px;
 }
 
+.crmLlumarImg {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.crmLlumarImg div {
+    width: 427px;
+    height: 355px;
+}
+
 .crmList {
     display: grid;
     grid-template-rows: repeat(1, auto);
     gap: 80px;
+}
+.basicBlock {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.basicBlock div {
+    width: 360px;
+    height: 275px;
 }
 
 @media (max-width:768px) {
@@ -26,10 +47,21 @@
 }
 
 @media (max-width:576px) {
-    .crmLlumarImg img {
+    .crmLlumarImg div {
         width: 270px;
         height: 200px;
     }
+    .basicBlock {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    
+    .basicBlock div {
+        width: 210px;
+        height: 160px;
+    }
+    
     .crmlogo {
         width: 50px;
         height: 34px;
