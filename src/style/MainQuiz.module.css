@@ -189,11 +189,11 @@
     border-radius: 10px;
     cursor: pointer;
     transition: all .35s ease-in-out;
-    outline: 1px solid #fff;
+    border: 1px solid #fff;
 }
 
 .quizSectionItemActive {
-    outline: 1px solid var(--pink-color);
+    border: 1px solid var(--pink-color);
     box-shadow: none;
 }
 
