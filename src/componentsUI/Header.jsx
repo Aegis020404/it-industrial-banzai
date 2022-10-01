@@ -10,15 +10,21 @@ import HeaderNav from "./HeaderNav";
 
 import MyThxModal from "./UI/thxmodal/MyThxModal";
 let deferredPrompt;
+
+
 const Header = () => {
     const [installable, setInstallable] = useState(false);
-
+    const [pwa, pwaSet] = useState(false)
     useEffect(() => {
+        if(localStorage.getItem(localStorage.getItem('pwa')))
+        setTimeout(() => {
+            pwaSet(true)
+            localStorage.setItem('pwa', true);
+        }, 3000000)
         window.addEventListener("beforeinstallprompt", (e) => {
             // Prevent the mini-infobar from appearing on mobile
             e.preventDefault();
             // Stash the event so it can be triggered later.
-            deferredPrompt = e;
             // Update UI notify the user they can install the PWA
             setInstallable(true);
         });
@@ -44,10 +50,12 @@ const Header = () => {
                 console.log('User dismissed the install prompt');
             }
         });
-        } catch (e) {
-            console.log('fuck')
-            console.log(e)
-            console.log('fuck')
+        } catch (err) {
+            if(pwa) {
+                e.target.value =`приложение загружается`
+            } else {
+                e.target.value =`приложение загружено`
+            }
         }
     };
 
