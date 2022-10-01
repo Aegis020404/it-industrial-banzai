@@ -44,7 +44,11 @@ const Header = () => {
                 console.log('User dismissed the install prompt');
             }
         });
-        } catch (e) {}
+        } catch (e) {
+            console.log('fuck')
+            console.log(e)
+            console.log('fuck')
+        }
     };
 
     const [burger, setBurger] = useState(false)
