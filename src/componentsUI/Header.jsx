@@ -261,12 +261,12 @@ const Header = () => {
                         </div>
                         {
                             pwaStartGet ?
-                               'hue':
+                            <MyBtnFiled classes={cl.btn}  onClick={e=>setModal(true)} >оставить заявку</MyBtnFiled>:
                                <MyBtnFiled classes={cl.btn}  onClick={handleInstallClick} >НАШЕ ПРИЛОЖЕНИЕ</MyBtnFiled>
                         }
 
                     </div>
-                            <MyModal id={'Header'} block={headerI} visible={modal} setVisible={setModal} title='Оставить заявку' setThx={setThxModal}/>
+                            <MyModal id={'Header'} block={headerI}  visible={modal} setVisible={setModal} title='Оставить заявку' setThx={setThxModal}/>
                             <MyThxModal visible={thxModal} setVisible={setThxModal} />
                         <div  className={burger ? [cl.burgerBlock, cl.burgerActive].join` ` : [cl.burgerBlock].join` `} onClick={e=>{setBurger(!burger); navActive(e); }}>
                             <span className={cl.burgerLine}></span>
