@@ -15,6 +15,7 @@ let deferredPrompt;
 const Header = () => {
     const [installable, setInstallable] = useState(false);
     const [pwa, pwaSet] = useState(false)
+    const [pwaDown, setPwaDown] = useState(false)
     useEffect(() => {
         if(!localStorage.getItem(localStorage.getItem('pwa'))) {
         setTimeout(() => {
@@ -62,10 +63,13 @@ const Header = () => {
             }
             setTimeout(() => {
                 e.innerHTML = 'НАШЕ ПРИЛОЖЕНИЕ'
+                setPwaDown(true)
             },5000)
         }
     };
-
+    useMemo(() => {
+        localStorage.setItem('pwaDown', true)
+    }, [pwaDown])
     const [burger, setBurger] = useState(false)
     const headerI = useRef('')
     const topHeader = useRef('')
@@ -249,8 +253,12 @@ const Header = () => {
                         <div className={cl.numberWrap}>
                             <a href=""className={cl.number}>+7(925) 117-00-46</a>
                         </div>
+                        {
+                           localStorage.getItem('pwaDown') ?
+                               'hue':
+                               <MyBtnFiled classes={cl.btn}  onClick={handleInstallClick} >НАШЕ ПРИЛОЖЕНИЕ</MyBtnFiled>
+                        }
 
-                        <MyBtnFiled classes={cl.btn}  onClick={handleInstallClick} >НАШЕ ПРИЛОЖЕНИЕ</MyBtnFiled>
                     </div>
                             <MyModal id={'Header'} block={headerI} visible={modal} setVisible={setModal} title='Оставить заявку' setThx={setThxModal}/>
                             <MyThxModal visible={thxModal} setVisible={setThxModal} />
