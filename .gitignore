@@ -52,3 +52,5 @@ yarn-error.log*
 **/public/worker-*.js.map
 
 app-data.json
+public/fallback-development.js
+public/sw.js

@@ -21,7 +21,7 @@ const Header = () => {
         setTimeout(() => {
             pwaSet(true)
             localStorage.setItem('pwa', true);
-        }, 3000000)
+        }, 10000)
         } else {
             pwaSet(true)
         }
