@@ -63,13 +63,12 @@ const Header = () => {
             }
             setTimeout(() => {
                 e.innerHTML = 'НАШЕ ПРИЛОЖЕНИЕ'
+                 localStorage.setItem('pwaDown', true)
                 setPwaDown(true)
             },5000)
         }
     };
-    useMemo(() => {
-        localStorage.setItem('pwaDown', true)
-    }, [pwaDown])
+ 
     const [burger, setBurger] = useState(false)
     const headerI = useRef('')
     const topHeader = useRef('')
@@ -113,6 +112,13 @@ const Header = () => {
             document.body.classList.remove('desable-scroll-h');
         }
     },[navItem])
+
+    const [pwaStartGet,setPwaStartGet] = useState(false)
+
+    useEffect(()=>{
+
+        setPwaStartGet(localStorage.getItem('pwaDown'))
+    },[])
 
     let  tempScrollTop, currentScrollTop = 0
 
@@ -254,7 +260,7 @@ const Header = () => {
                             <a href=""className={cl.number}>+7(925) 117-00-46</a>
                         </div>
                         {
-                           localStorage.getItem('pwaDown') ?
+                            pwaStartGet ?
                                'hue':
                                <MyBtnFiled classes={cl.btn}  onClick={handleInstallClick} >НАШЕ ПРИЛОЖЕНИЕ</MyBtnFiled>
                         }
