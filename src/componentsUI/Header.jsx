@@ -16,11 +16,14 @@ const Header = () => {
     const [installable, setInstallable] = useState(false);
     const [pwa, pwaSet] = useState(false)
     useEffect(() => {
-        if(localStorage.getItem(localStorage.getItem('pwa')))
+        if(!localStorage.getItem(localStorage.getItem('pwa'))) {
         setTimeout(() => {
             pwaSet(true)
             localStorage.setItem('pwa', true);
         }, 3000000)
+        } else {
+            pwaSet(true)
+        }
         window.addEventListener("beforeinstallprompt", (e) => {
             // Prevent the mini-infobar from appearing on mobile
             e.preventDefault();
@@ -52,10 +55,14 @@ const Header = () => {
         });
         } catch (err) {
             if(pwa) {
-                e.target.value =`приложение загружается`
+                e.innerHTML =`приложение загружается`
+
             } else {
-                e.target.value =`приложение загружено`
+                e.innerHTML =`приложение загружено`
             }
+            setTimeout(() => {
+                e.innerHTML = 'НАШЕ ПРИЛОЖЕНИЕ'
+            },5000)
         }
     };
 
