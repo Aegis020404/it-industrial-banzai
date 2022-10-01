@@ -16,7 +16,7 @@ const initialState =
             descr: 'Интернет-магазин «Строймат»',
             classes: cl.imgPhone,
             backColor: '',
-            img: ['orange-phone-block.WebP'],
+            img: ['orange-phone-block.jpg'],
             alt: 'Website компании "Строймат" на телефоне'
         }, {
             
@@ -25,7 +25,7 @@ const initialState =
             descr: 'Интернет-магазин «Автоэстетика»',
             classes: cl.imgAmout,
             backColor: '',
-            img: ['black-gadjets-block.WebP'],
+            img: ['black-gadjets-block.jpg'],
             alt: 'Website компании "Автоэстетика" на телефоне и ноутбуке'
         }]
     }, {
