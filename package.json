@@ -42,7 +42,7 @@
     "eject": "react-scripts eject",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 42069",
     "lint": "next lint"
   },
   "browserslist": {
