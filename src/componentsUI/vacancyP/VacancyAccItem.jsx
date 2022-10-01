@@ -56,10 +56,10 @@ const VacancyAccItem = ({title, descr, whatDo, info,premissionLists, check,eleme
                     }
                     {info !== undefined && 
                     <ul className={cl.accordionList}>
-                      <MyAddElement typeAction={'VACANCY_LIST_ADD_ELEMENT'} id={id}/>
+                      {isAdmin &&<MyAddElement typeAction={'VACANCY_LIST_ADD_ELEMENT'} id={id}/>}
                         {info.map(e => 
                         <li className={cl.accordionItem}>
-                            <MyDeleteElement typeAction={'VACANCY_LIST_DELETE_ELEMENT'} id={id} count={e.id}/>
+                            {isAdmin &&<MyDeleteElement typeAction={'VACANCY_LIST_DELETE_ELEMENT'} id={id} count={e.id}/>}
                             <span className={cl.point}></span>
                             {isAdmin && premissionLists == '200' ?
                             <MyAdminInput width={vacancyData.listItem.width}  fetchInfo={{item: element, id: id, category: urlAcc}} id={id} count={e.id} height={vacancyData.listItem.height} typeAction={'VACANCY_LIST_CHANGE'}>

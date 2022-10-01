@@ -77,7 +77,7 @@ const ReviewsItem = ({imgPerson, namePerson, positionPerson,premissionLists, com
                                 </div>
                             </div>
                             :
-                            premissionLists=='200'&&<Image   src={'/img/'+imgPerson} alt="Personality image" width={200} height={200} className={cl.reviewsImg}/>
+                            premissionLists=='200'&&<Image   src={'/img/'+imgPerson} alt="Personality image" width={109} height={110} className={cl.reviewsImg}/>
                         }
                           
                         </div>

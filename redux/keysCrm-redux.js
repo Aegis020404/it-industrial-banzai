@@ -38,7 +38,7 @@ const keysCrmReducer = (state= initialState, action) => {
             return result
         }
         case 'IMG_CRM_KEYS_CHANGE': {
-            const result = state.map(e=> e.id == action.info.id ? {...e, img: {...e.img, image: action.info.text}} : e)
+            const result = state.map(e=> e.id == action.info.id ? {...e, img: {...e.img, image: action.info.text, classesImg: cl.basicBlock}} : e)
             useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysCrm', action.info.id)
             return result
         }

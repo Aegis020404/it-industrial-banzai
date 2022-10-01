@@ -16,13 +16,13 @@ const MainKItem = ({count, infoArr, id, modalInfoChanging,premissionTariff, setM
 
     return (
         <li className={cl.keysItem}>
-            <MyDeleteElement id={id} typeAction={'DELETE_KEYS_MAIN_ITEM_ELEMENT'}></MyDeleteElement>
+            {isAdmin&&<MyDeleteElement id={id} typeAction={'DELETE_KEYS_MAIN_ITEM_ELEMENT'}></MyDeleteElement>}
             {count === 2 ?
                 <div className={cl.keysIContentS}>
                     <MyViewElement element={
 
                             <figure  alt={infoArr[0].alt} className={cl.keysILeft} >
-                                <span className={cl.changeItem} onClick={e=>{setModal(true);modalInfoChanging({...modalInfo,href: infoArr[0].href,color:infoArr[0].backColor, alt:infoArr[0].alt, id: id, count: 1})}}>ИЗМЕНИТЬ</span>
+                                {isAdmin&&<span className={cl.changeItem} onClick={e=>{setModal(true);modalInfoChanging({...modalInfo,href: infoArr[0].href,color:infoArr[0].backColor, alt:infoArr[0].alt, id: id, count: 1})}}>ИЗМЕНИТЬ</span>}
                                  <Link href={'/keys/' + infoArr[0].href}>
                                 {infoArr[0].classes == cl.imgEva ?  <div className={[cl.evaBlock, cl.img].join` `} style={{backgroundColor: infoArr[0].backColor}} onClick={e=>document.body.scrollTo({top:0,behavior:'smooth'})}>
                                     {premissionTariff=="200"&&<img src={`/img/${infoArr[0].img[0]}`} alt="logo Ekovtor" className={[cl.evaLogo].join` `}/>}
@@ -49,7 +49,7 @@ const MainKItem = ({count, infoArr, id, modalInfoChanging,premissionTariff, setM
                     <MyViewElement element={
 
                         <figure alt={infoArr[1].alt} className={cl.keysIRight} >
-                             <span className={cl.changeItem} onClick={e=>{setModal(true);modalInfoChanging({...modalInfo,href: infoArr[1].href,color:infoArr[1].backColor, alt:infoArr[1].alt, id: id, count: 2})}}>ИЗМЕНИТЬ</span>
+                             {isAdmin&&<span className={cl.changeItem} onClick={e=>{setModal(true);modalInfoChanging({...modalInfo,href: infoArr[1].href,color:infoArr[1].backColor, alt:infoArr[1].alt, id: id, count: 2})}}>ИЗМЕНИТЬ</span>}
                               <Link href={'/keys/' + infoArr[1].href}>
                             {infoArr[1].classes == cl.imgMiniPad ?
                             <div className={[cl.padBlock, cl.img].join` `} style={{backgroundColor: infoArr[1].backColor}} onClick={e=>document.body.scrollTo({top:0,behavior:'smooth'})}>
@@ -77,7 +77,7 @@ const MainKItem = ({count, infoArr, id, modalInfoChanging,premissionTariff, setM
                 <MyViewElement element={
 
                     <figure  alt={infoArr[0].alt}  className={cl.keysIContentF}  >
-                         <span className={cl.changeItem} onClick={e=>{setModal(true);modalInfoChanging({...modalInfo,href: infoArr[0].href,color:infoArr[0].backColor, alt:infoArr[0].alt, id: id, count: 1})}}>ИЗМЕНИТЬ</span>
+                         {isAdmin&&<span className={cl.changeItem} onClick={e=>{setModal(true);modalInfoChanging({...modalInfo,href: infoArr[0].href,color:infoArr[0].backColor, alt:infoArr[0].alt, id: id, count: 1})}}>ИЗМЕНИТЬ</span>}
                           <Link href={'/keys/' + infoArr[0].href} >
                         <div className={[cl.keysImgBlockF, cl.img].join` `} style={{backgroundColor: infoArr[0].backColor}} onClick={e=>document.body.scrollTo({top:0,behavior:'smooth'})}>
                         {premissionTariff=="200"&&<img src={`/img/${infoArr[0].img[0]}`} className={[cl.keysImg, infoArr[0].classes[0]].join` `}/>}

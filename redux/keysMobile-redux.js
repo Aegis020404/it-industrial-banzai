@@ -51,7 +51,7 @@ const keysMobileReducer = (state= initialState, action) => {
         }
         case 'IMG_MOBILE_CHANGE': {
             
-            const result =  state.map(e=> e.id == action.info.id ? {...e, img: {...e.img, image: action.info.text}} : e)
+            const result =  state.map(e=> e.id == action.info.id ? {...e, img: {...e.img, image: action.info.text, classesImg: cl.basicBlock}} : e)
         useFetchingPost(result.filter(e=>e.id==action.info.id)[0], 'keysMobile', action.info.id) 
            
         return result

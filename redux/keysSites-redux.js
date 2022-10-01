@@ -101,7 +101,7 @@ const keysSitesReducer = (state = initialState, action) => {
         case 'IMG_SITES_CHANGE': {
             const result = state.map(e => e.id == action.info.id ? {
                 ...e,
-                imageInfo: {...e.imageInfo, img: action.info.text}
+                imageInfo: {...e.imageInfo, img: action.info.text, classesImg: cl.basicBlock}
             } : e)
             useFetchingPost(result.filter(e => e.id == action.info.id)[0], 'keysSites', action.info.id)
             return result

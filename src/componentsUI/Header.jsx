@@ -10,15 +10,25 @@ import HeaderNav from "./HeaderNav";
 
 import MyThxModal from "./UI/thxmodal/MyThxModal";
 let deferredPrompt;
+
+
 const Header = () => {
     const [installable, setInstallable] = useState(false);
-
+    const [pwa, pwaSet] = useState(false)
+    const [pwaDown, setPwaDown] = useState(false)
     useEffect(() => {
+        if(!localStorage.getItem(localStorage.getItem('pwa'))) {
+        setTimeout(() => {
+            pwaSet(true)
+            localStorage.setItem('pwa', true);
+        }, 3000000)
+        } else {
+            pwaSet(true)
+        }
         window.addEventListener("beforeinstallprompt", (e) => {
             // Prevent the mini-infobar from appearing on mobile
             e.preventDefault();
             // Stash the event so it can be triggered later.
-            deferredPrompt = e;
             // Update UI notify the user they can install the PWA
             setInstallable(true);
         });
@@ -44,9 +54,21 @@ const Header = () => {
                 console.log('User dismissed the install prompt');
             }
         });
-        } catch (e) {}
-    };
+        } catch (err) {
+            if(pwa) {
+                e.innerHTML =`приложение загружается`
 
+            } else {
+                e.innerHTML =`приложение загружено`
+            }
+            setTimeout(() => {
+                e.innerHTML = 'НАШЕ ПРИЛОЖЕНИЕ'
+                 localStorage.setItem('pwaDown', true)
+                setPwaDown(true)
+            },5000)
+        }
+    };
+ 
     const [burger, setBurger] = useState(false)
     const headerI = useRef('')
     const topHeader = useRef('')
@@ -90,6 +112,13 @@ const Header = () => {
             document.body.classList.remove('desable-scroll-h');
         }
     },[navItem])
+
+    const [pwaStartGet,setPwaStartGet] = useState(false)
+
+    useEffect(()=>{
+
+        setPwaStartGet(localStorage.getItem('pwaDown'))
+    },[])
 
     let  tempScrollTop, currentScrollTop = 0
 
@@ -230,8 +259,12 @@ const Header = () => {
                         <div className={cl.numberWrap}>
                             <a href=""className={cl.number}>+7(925) 117-00-46</a>
                         </div>
+                        {
+                            pwaStartGet ?
+                               'hue':
+                               <MyBtnFiled classes={cl.btn}  onClick={handleInstallClick} >НАШЕ ПРИЛОЖЕНИЕ</MyBtnFiled>
+                        }
 
-                        <MyBtnFiled classes={cl.btn}  onClick={handleInstallClick} >НАШЕ ПРИЛОЖЕНИЕ</MyBtnFiled>
                     </div>
                             <MyModal id={'Header'} block={headerI} visible={modal} setVisible={setModal} title='Оставить заявку' setThx={setThxModal}/>
                             <MyThxModal visible={thxModal} setVisible={setThxModal} />

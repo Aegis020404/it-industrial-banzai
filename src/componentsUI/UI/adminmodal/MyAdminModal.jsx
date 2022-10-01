@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import {useDropzone} from 'react-dropzone'
 import MyFormData from '../../../untils/ImgFetch';
 
-const MyAdminModal = ({visible, setVisible, colorValue, hrefValue, imgValue,altValue, id, count, actionHref, actionColor, actionAlt, actionImg})=>{
+const MyAdminModal = ({visible, setVisible, colorValue,keysIdintificator, hrefValue, imgValue,altValue, id, count, actionHref, actionColor, actionAlt, actionImg})=>{
     const dispatch = useDispatch()
     const [modalInfo, setModalInfo] = useState({img: ''})
     const [color, setColor] = useState('F84263')
@@ -45,11 +45,13 @@ const MyAdminModal = ({visible, setVisible, colorValue, hrefValue, imgValue,altV
 
     const addModalInfo = (e)=>{
         e.preventDefault();
-        console.log(color)
+       
         colorValue && color && dispatch({type: actionColor, info: {text: color.match(/\w/g).join``, id: id, count: count}})
         hrefValue && inputValue && dispatch({type: actionHref, info: {text: inputValue, id: id, count: count}})
         altValue && altInput && dispatch({type: actionAlt, info: {text: altInput, id: id, count: count}})
         imgValue && modalInfo.img && dispatch({type: actionImg, info: {text: modalInfo.img, id: id, count: count}})
+
+        hrefValue && keysIdintificator && dispatch({type: 'ADD_KEY_SITE_GEN_KEYS', info: {text:inputValue}})
         visible.sites ? setVisible({...visible, sites: false}) : setVisible(false)
         setColor('');setInputValue('');setAltInput('');setModalInfo({img:''})
         // postRequest(forServerInfo)

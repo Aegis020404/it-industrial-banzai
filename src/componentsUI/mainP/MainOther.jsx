@@ -23,7 +23,7 @@ import { getStartedInfo } from '../../untils/getStartedInfo';
 import { useChangeStateFirst } from '../../hooks/useChangeStateFirst';
 
 const MainOther = () => {
-    const isAdmin = useSelector(state=>state.AdminKey)
+    const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
     const adminTexts = useSelector(state=>state.AdminTexts)
     const otherData = useSelector(state=>state.MainOther)
     const [modalInfo, setModalInfo] = useState({namePerson: '', tel: ''})
@@ -149,7 +149,7 @@ const MainOther = () => {
                         }/>
                           {isAdmin ? 
                             <div className={cl.adminBlock}>
-                                {isAdmin?<MyAddElement typeAction={'OTHER_ADD_ITEM'}/>:''}
+                                <MyAddElement typeAction={'OTHER_ADD_ITEM'}/>
                             </div> 
                             : ''}
                        <MyViewElement element={

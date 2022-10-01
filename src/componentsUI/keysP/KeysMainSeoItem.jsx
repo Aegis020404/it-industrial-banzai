@@ -265,7 +265,7 @@ const KeysMainSeoItem = ({nameCompany,premissionLists,permit, linkCompany,id,ele
                                 <div className={checkImg?[cl.activeChangeCard,cl.imgCard].join` `:cl.imgCard}>
                                   
                                     <figure ref={figureItem} className={cl.imgBlock} onClick={e=>figureActive(e)} onMouseMove={e=>figureMove(e)} onMouseLeave={e=>figureLeave(e)}>
-                                        <img ref={imgItem} src={`/img/${graphImg}`} className={cl.img} id='graph'/>
+                                    { premissionLists == '200'&&<img ref={imgItem} src={`/img/${graphImg}`} className={cl.img} id='graph'/>}
                                     </figure>
                                 </div>  
                        

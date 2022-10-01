@@ -11,9 +11,8 @@ const KeysMainSites = ({classesTabs, setModalInfo, modalInfo, setModal, modal})=
     const infoArr = useSelector(state=>state.KeySitesPage)
     const [premissionLists, setPremissionLists] = useState(0) 
     const changeState = useChangeStateFirst( setPremissionLists,premissionLists, "-","/keysSites",infoArr, 'SITES_KEYS_CHANGE_STATE') 
-    const scrollTopPage = (e)=>{
-        document.body.scrollTo({top:0,behavior:'smooth'});
-    }
+  
+    console.log(infoArr)
     return (
        <div className={[cl.keysSitesBlock, classesTabs].join` `}>
             {isAdmin && 

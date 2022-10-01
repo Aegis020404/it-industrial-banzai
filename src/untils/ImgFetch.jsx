@@ -23,7 +23,7 @@ const MyFormData = ({isImg,setSrcImgDrop,id,typeAction, count})=>{
                 console.log(fetch)
                 dispatch({type:typeAction,info:{id:id,text:fetch.filename, count: count}})
             })
-            fetchImg()
+           
         }
     },[isImg])
 

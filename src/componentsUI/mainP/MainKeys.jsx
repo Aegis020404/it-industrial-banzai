@@ -70,7 +70,7 @@ const MainKeys = () => {
                 </div>
             </div>
             {isAdmin &&  premissionTariff == '200' ? 
-                <MyAdminModal visible={isModal} setVisible={setIsModal} colorValue={modalInfo.color} hrefValue={modalInfo.href} altValue={modalInfo.alt} imgValue={1} id={modalInfo.id} count={modalInfo.count} actionHref={'HREF_KEYS_MAIN_ITEM_ELEMENT'} actionImg={'IMG_KEYS_MAIN_ITEM_ELEMENT'} actionAlt={'ALT_KEYS_MAIN_ITEM_ELEMENT'} actionColor={'COLOR_KEYS_MAIN_ITEM_ELEMENT'}></MyAdminModal>
+                <MyAdminModal visible={isModal} keysIdintificator={true} setVisible={setIsModal} colorValue={modalInfo.color} hrefValue={modalInfo.href} altValue={modalInfo.alt} imgValue={1} id={modalInfo.id} count={modalInfo.count} actionHref={'HREF_KEYS_MAIN_ITEM_ELEMENT'} actionImg={'IMG_KEYS_MAIN_ITEM_ELEMENT'} actionAlt={'ALT_KEYS_MAIN_ITEM_ELEMENT'} actionColor={'COLOR_KEYS_MAIN_ITEM_ELEMENT'}></MyAdminModal>
             :''}
         </section>
     )
