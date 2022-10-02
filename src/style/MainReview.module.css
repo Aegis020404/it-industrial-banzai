@@ -560,4 +560,7 @@
         height: 60px;
         width: 60px;
     }
+    .changeItem {
+        opacity: 0;
+    }
 }

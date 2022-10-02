@@ -1,14 +1,28 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 .blockAdmin {
     height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 
 }
 
 
 .cardAdmin {
-    box-shadow: 0 14px 24px hsl(0deg 6% 80% / 25%);
+    -webkit-box-shadow: 0 14px 24px hsl(0deg 6% 80% / 25%);
+            box-shadow: 0 14px 24px hsl(0deg 6% 80% / 25%);
     padding: 60px 70px 50px;
 
 }
@@ -24,12 +38,18 @@
 }
 
 .btnBlock {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 .fromAdmin {
+    display: -ms-grid;
     display: grid;
+    -ms-grid-rows: auto 30px auto 30px auto;
     grid-template-rows: repeat(3, auto);
     gap: 30px;
 }

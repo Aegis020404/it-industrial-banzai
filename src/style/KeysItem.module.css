@@ -1,14 +1,9 @@
-/*
-* Prefixed by https://autoprefixer.github.io
-* PostCSS: v8.4.14,
-* Autoprefixer: v10.4.7
-* Browsers: last 4 version
-*/
 
 .keysLogo img {
     width: 75px;
     height: 65px;
-    object-fit: contain;
+    -o-object-fit: contain;
+       object-fit: contain;
 }
 
 .keysImgCard {
@@ -58,6 +53,7 @@
     height: 400px;
     display: -ms-grid;
     display: grid;
+
 
     grid-template-columns: repeat(2, 1fr);
     -webkit-box-align: center;
@@ -195,7 +191,8 @@
     .keysLogo img {
     width: 60px;
     height: 40px;
-    object-fit: contain;
+    -o-object-fit: contain;
+       object-fit: contain;
 }
 
 .stroyLogo img {

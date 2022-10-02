@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 
 .reviewsSection {
     margin-top: 45px;
@@ -21,21 +28,29 @@
     width: 100%;
 }
 .container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 .reviewsCont {
     max-width: 950px;
 }
 
 .reviewsList {
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
     gap: 30px;
 }
 
 .reviewsItem {
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: 2fr 30px 3fr;
     grid-template-columns: 2fr 3fr;
     gap: 30px;
     border: 1px solid #E9ECEE;
@@ -48,7 +63,8 @@
     border-radius: 50%;
     width: 107px;
     height: 107px;
-    object-fit: contain;
+    -o-object-fit: contain;
+       object-fit: contain;
     margin-bottom: 33px;
 }
 
@@ -120,17 +136,31 @@
         margin: 0 auto 20px;
     }
     .reviewsItem {
+        -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
+        -ms-grid-rows: auto 40px auto;
         grid-template-rows: repeat(2, auto);
         gap: 40px;
         padding: 25px 21px 35px 25px;
     }
+    .reviewsItem > *:nth-child(1) {
+        -ms-grid-row: 1;
+        -ms-grid-column: 1;
+    }
+    .reviewsItem > *:nth-child(2) {
+        -ms-grid-row: 3;
+        -ms-grid-column: 1;
+    }
     .reviewsRight {
-        order: -1;
+        -webkit-box-ordinal-group: 0;
+            -ms-flex-order: -1;
+                order: -1;
     }
     .reviewsImgCard {
         margin-bottom: 20px;
+        display: -ms-grid;
         display: grid;
+        -ms-grid-columns: auto 30px 9fr;
         grid-template-columns: auto 9fr;
         gap: 30px;
     }
@@ -145,8 +175,12 @@
     }
 
     .reviewsTitleItem {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        align-items: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         margin: 0;
         max-width: 60px;
     }
