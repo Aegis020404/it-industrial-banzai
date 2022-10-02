@@ -20,7 +20,9 @@ const Header = () => {
 
     
     useEffect(() => {
+
         pwaSet(localStorage.getItem('pwaSet'))
+
         window.addEventListener("beforeinstallprompt", (e) => {
          
             e.preventDefault();
