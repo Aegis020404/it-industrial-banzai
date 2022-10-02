@@ -82,7 +82,7 @@ const MainTariff = props => {
         }
 
         function loadResize() {
-            console.log('hello')
+          
             if (typeof window !== 'undefined') {
 
                 let windowWidth = window.innerWidth
@@ -117,22 +117,6 @@ const MainTariff = props => {
    
     const [premissionGet, setPremissionGet] = useState(0)
     const changeStateTexts = useChangeStateFirst(setPremissionGet, premissionGet, 'mainTariff', 'AT',adminTexts.mainTariff)
-
-
-    // const [viewElUntil, setViewElUntil] = useState('')
-    // useMemo(()=>{
-    //     if(premissionGet) {
-    //        setPremissionGet('200')
-    //     }
-    // },[adminTexts.mainTariff])
-    // useEffect(()=>{
-    //     const startedInfo = getStartedInfo("mainTariff",'CHANGE_ALL_ADMIN','/adminTexts/mainTariff',dispatch )
-    //     startedInfo.then(res=>{
-    //         if(res){setPremissionGet(1)}else{setPremissionGet('200')}
-    //     })
-
-    // },[viewElUntil])
-
 
 
 

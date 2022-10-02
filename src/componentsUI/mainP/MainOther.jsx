@@ -119,7 +119,6 @@ const MainOther = () => {
     const [premissionTariff, setPremissionTariff] = useState(0) 
     const changeState = useChangeStateFirst( setPremissionTariff,premissionTariff, "-","/mainOther",otherData, 'OTHER_CHANGE_STATE') 
 
-    console.log(premissionGet)
 
 
     return (
