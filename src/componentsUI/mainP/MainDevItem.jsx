@@ -39,7 +39,7 @@ const MainDevItem = ({actionTitle,premissionTariff, actionDescr, actionDelete, i
           reader.readAsArrayBuffer(file)
         })
         
-        
+        setChangeImg(false)
       }, [])
       const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
    

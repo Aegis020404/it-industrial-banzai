@@ -39,6 +39,7 @@ const MainResultItem = ({infoObj,premissionLists})=>{
           }
           reader.readAsArrayBuffer(file)
         })
+        setChangeimg(false)
       }, [])
 
 

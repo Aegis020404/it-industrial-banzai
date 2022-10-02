@@ -38,9 +38,10 @@ const MainReviewItem = ({infoObj, premissionLists})=>{
             const binaryStr = reader.result
             
           }
+        
           reader.readAsArrayBuffer(file)
         })
-        dispatch({type: 'IMG_REVIEW_MAIN_CHANGE', info: {text:acceptedFiles[0].path, id: infoObj.id}})
+        setChangeImg(false)
       }, [])
 
       const replacerComments = (str, find, replace)=>{

@@ -43,8 +43,9 @@ const ReviewsItem = ({imgPerson, namePerson, positionPerson,premissionLists, com
            
           }
           reader.readAsArrayBuffer(file)
+          setChangeImg(false)
         })
-      
+        setChangeImg(false)
       }, [])
 
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})

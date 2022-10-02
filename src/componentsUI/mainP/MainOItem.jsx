@@ -18,6 +18,13 @@ const MainOItem = ({title, img,premissionTariff, setModalItem, id, element})=>{
 
     
     const [isImg, setIsImg] = useState('')
+  
+
+    const [modal, setModal] = useState(false)
+    const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
+    const [otherInfo, setOtherInfo ] = useState({title: {width:0,height:0}})
+    const [changeImg, setChangeImg] = useState(false)
+
     const onDrop = useCallback((acceptedFiles) => {
         acceptedFiles.forEach((file) => {
           const reader = new FileReader()
@@ -31,15 +38,11 @@ const MainOItem = ({title, img,premissionTariff, setModalItem, id, element})=>{
           }
           reader.readAsArrayBuffer(file)
         })
+        setChangeImg(false)
         // dispatch({type: 'OTHER_ITEM_IMG_CHANGE', info: {text:acceptedFiles[0].path, id: id}})
         
       }, [])
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
-
-    const [modal, setModal] = useState(false)
-    const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
-    const [otherInfo, setOtherInfo ] = useState({title: {width:0,height:0}})
-    const [changeImg, setChangeImg] = useState(false)
 
    
 

@@ -13,6 +13,8 @@ const SeoStableItem = ({title, descr, img, id,premissionLists, element})=>{
     const isAdmin = useSelector(state=>state.AdminKey.isAdmin)
     const [stableItem, setStableItem] = useState({title: {width:0,height:0}, descr: {width:0,height:0}})
     const [isImg, setIsImg] = useState('')
+    const [changeImg, setChangeImg] = useState(false)
+
     const onDrop = useCallback((acceptedFiles) => {
         acceptedFiles.forEach((file) => {
           const reader = new FileReader()
@@ -26,10 +28,10 @@ const SeoStableItem = ({title, descr, img, id,premissionLists, element})=>{
           }
           reader.readAsArrayBuffer(file)
         })
+        setChangeImg(false)
       }, [])
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
-    const [changeImg, setChangeImg] = useState(false)
 
     return (
         <li className={cl.stableItem}>

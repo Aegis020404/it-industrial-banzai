@@ -36,11 +36,7 @@ const MainTItem = ({img,premission, title, descr, price, dl, setModal, setTheme,
 
       const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
-    const confirmModal = (e)=>{
-        e.preventDefault();
-        dispatch({type:'TARIFF_LOGO_CHANGE', info: {id:id, text: isLogo}})
-        setChangeModal(false)
-    }
+  
 
  
     return (
@@ -65,7 +61,7 @@ const MainTItem = ({img,premission, title, descr, price, dl, setModal, setTheme,
                                 }
                             </div>
                         </div>
-                    <MyBtnBlank classes={cl.tariffButton} onClick={e=>confirmModal(e)}>ПОДТВЕРДИТЬ</MyBtnBlank>
+                    <MyBtnBlank classes={cl.tariffButton} onClick={e=>setChangeModal(false)}>ПОДТВЕРДИТЬ</MyBtnBlank>
                     </div>
                 </div>
             : ''}

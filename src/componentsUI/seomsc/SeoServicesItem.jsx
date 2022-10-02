@@ -18,6 +18,7 @@ const SeoServicesItem = ({title, img,premissionLists, infoItem, id, element})=>{
     const [servicesItem, setServicesItem] = useState({title:{width:0,height:0}, textItem: {width:0,height:0}})
     const dispatch = useDispatch()
     const [isImg, setIsImg] = useState('')
+    const [changeImg, setChangeImg] = useState(false)
 
     const onDrop = useCallback((acceptedFiles) => {
         acceptedFiles.forEach((file) => {
@@ -33,7 +34,8 @@ const SeoServicesItem = ({title, img,premissionLists, infoItem, id, element})=>{
           }
           reader.readAsArrayBuffer(file)
         })
-        dispatch({type: 'IMG_SEO_SERV_CHANGE', info: {text:acceptedFiles[0].path, id: id}})
+        setChangeImg(false)
+     
       }, [])
    
 
@@ -42,7 +44,6 @@ const SeoServicesItem = ({title, img,premissionLists, infoItem, id, element})=>{
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
     
 
-    const [changeImg, setChangeImg] = useState(false)
 
 
     return (
