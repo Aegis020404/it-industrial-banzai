@@ -134,6 +134,12 @@ pointer-events: all;
 }
 
 
+.modalHeaderBtn {
+    pointer-events: all !important;
+    opacity: 1 !important; 
+}
+
+
 
 .modalDescr {
     

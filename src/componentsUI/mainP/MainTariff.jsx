@@ -37,7 +37,6 @@ const MainTariff = props => {
 
     const [modalInfo, setModalInfo] = useState({namePerson: '', tel: ''})
   
-    console.log(infoData)
 
     const addModalInfo = (e) => {
         e.preventDefault();

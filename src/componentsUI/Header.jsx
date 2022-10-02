@@ -16,18 +16,15 @@ const Header = () => {
     const [installable, setInstallable] = useState(false);
     const [pwa, pwaSet] = useState(false)
     const [pwaDown, setPwaDown] = useState(false)
+    const [deferredPrompt, setDeferredPrompt] = useState('')
+
+    
     useEffect(() => {
-        if(!localStorage.getItem(localStorage.getItem('pwa'))) {
-        setTimeout(() => {
-            pwaSet(true)
-            localStorage.setItem('pwa', true);
-        }, 3000000)
-        } else {
-            pwaSet(true)
-        }
+        pwaSet(localStorage.getItem('pwaSet'))
         window.addEventListener("beforeinstallprompt", (e) => {
-            // Prevent the mini-infobar from appearing on mobile
+         
             e.preventDefault();
+            setDeferredPrompt(e)
             // Stash the event so it can be triggered later.
             // Update UI notify the user they can install the PWA
             setInstallable(true);
@@ -35,37 +32,29 @@ const Header = () => {
 
         window.addEventListener('appinstalled', () => {
             // Log install to analytics
-            console.log('INSTALL: Success');
+          
         });
-    }, []);
+    }, [pwa]);
 
     const handleInstallClick = (e) => {
         // Hide the app provided install promotion
         setInstallable(false);
         // Show the install prompt
         try {
-
+        
+        console.log(deferredPrompt)
         deferredPrompt.prompt();
         // Wait for the user to respond to the prompt
         deferredPrompt.userChoice.then((choiceResult) => {
             if (choiceResult.outcome === 'accepted') {
-                console.log('User accepted the install prompt');
+                localStorage.setItem('pwaSet', true)
+                pwaSet(true)
             } else {
                 console.log('User dismissed the install prompt');
             }
         });
         } catch (err) {
-            if(pwa) {
-                e.innerHTML =`приложение загружается`
-
-            } else {
-                e.innerHTML =`приложение загружено`
-            }
-            setTimeout(() => {
-                e.innerHTML = 'НАШЕ ПРИЛОЖЕНИЕ'
-                 localStorage.setItem('pwaDown', true)
-                setPwaDown(true)
-            },5000)
+           console.log(err)
         }
     };
  
@@ -113,12 +102,9 @@ const Header = () => {
         }
     },[navItem])
 
-    const [pwaStartGet,setPwaStartGet] = useState(false)
+    
 
-    useEffect(()=>{
-
-        setPwaStartGet(localStorage.getItem('pwaDown'))
-    },[])
+   
 
     let  tempScrollTop, currentScrollTop = 0
 
@@ -260,13 +246,13 @@ const Header = () => {
                             <a href=""className={cl.number}>+7(925) 117-00-46</a>
                         </div>
                         {
-                            pwaStartGet ?
+                            pwa ?
                             <MyBtnFiled classes={cl.btn}  onClick={e=>setModal(true)} >оставить заявку</MyBtnFiled>:
                                <MyBtnFiled classes={cl.btn}  onClick={handleInstallClick} >НАШЕ ПРИЛОЖЕНИЕ</MyBtnFiled>
                         }
 
                     </div>
-                            <MyModal id={'Header'} block={headerI}  visible={modal} setVisible={setModal} title='Оставить заявку' setThx={setThxModal}/>
+                            <MyModal id={'Header'} block={headerI}  visible={modal} isHeader={true} setVisible={setModal} title='Оставить заявку' setThx={setThxModal}/>
                             <MyThxModal visible={thxModal} setVisible={setThxModal} />
                         <div  className={burger ? [cl.burgerBlock, cl.burgerActive].join` ` : [cl.burgerBlock].join` `} onClick={e=>{setBurger(!burger); navActive(e); }}>
                             <span className={cl.burgerLine}></span>

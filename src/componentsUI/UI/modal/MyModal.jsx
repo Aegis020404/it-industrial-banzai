@@ -9,9 +9,16 @@ import { useFetchingPost, usePing } from "../../../hooks/useAdminChangeing";
 
 import { useDispatch, useSelector } from "react-redux";
 import { checkInternetConnect } from "../../../untils/checkInternetConnect";
-const MyModal = ({block, title, visible, setVisible, setThx, id, infoObj = {}})=>{
+const MyModal = ({block, title, visible, setVisible, setThx, isHeader = false, id, infoObj = {}})=>{
     
     const [modalInfo, setModalInfo] = useState({namePerson: '', tel: ''})
+    const [isHeaderForm, setIsHeaderForm] = useState(false)
+
+    useMemo(()=>{
+        if(modalInfo.namePerson && modalInfo.tel) {
+            setIsHeaderForm(true)
+        }
+    },[modalInfo])
 
     const blockModal = useRef('')
     let forServerInfo = {}
@@ -22,8 +29,10 @@ const MyModal = ({block, title, visible, setVisible, setThx, id, infoObj = {}})=
         setVisible(false); 
         let data = new Date()
         useFetchingPost({...modalInfo, ...infoObj},'modalOrder', `${new Date()}`);
-       
+        
     }
+
+    
 
     const {isInternet} = useSelector(state=>state.InternetKey)
     const dispatch = useDispatch()
@@ -48,7 +57,7 @@ const MyModal = ({block, title, visible, setVisible, setThx, id, infoObj = {}})=
                         <p className={cl.modalWarning}>Нажимая на кнопку, вы даете согласие на обработку ваших персональных данных</p>
                         <span className={cl.modalExit} onClick={e=>{e.preventDefault();setVisible(false)}}></span>
                         <div className={cl.btnBlock}>
-                            <MyBtnFiled  type='submit' form='modal' classes={cl.modalBtn} onClick={e=>{
+                            <MyBtnFiled  type='submit' form='modal' classes={isHeader&&isHeaderForm ? [cl.modalBtn, cl.modalHeaderBtn].join` ` : cl.modalBtn} onClick={e=>{
                                 if(isInternet){
                                     addModalInfo(e); clean = true; setThx(true)
                                 } else {
